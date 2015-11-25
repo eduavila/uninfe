@@ -167,11 +167,31 @@ namespace NFSe.Components
                 TagLoteAtributoId = "LoteRps",
                 TargetNameSpace = "http://nfe.sjp.pr.gov.br/servico_enviar_lote_rps_envio_v03.xsd"
             });
-            #endregion 
-           
             #endregion
 
             #endregion
+
+            #endregion
+
+
+            #region Schemas padrão SIGCORP_SIGISS
+
+            #region SIGCORP_SIGISS - Londrina - PR (4113700)
+
+            #region XML de lote RPS
+            SchemaXML.InfSchemas.Add("NFSE-SIGCORP_SIGISS-4113700-tcDescricaoRps", new InfSchema() {
+                Tag = "tcDescricaoRps",
+                ID = SchemaXML.InfSchemas.Count + 1,
+                ArquivoXSD = "NFSe\\SIGCORP_SIGISS\\tcDescricaoRps.xsd",
+                Descricao = "XML de Lote RPS",
+                TargetNameSpace = "http://iss.londrina.pr.gov.br/ws/v1_03"
+            });
+            #endregion
+            
+            #endregion
+
+            #endregion
+
 
             #region Schemas padrão BETHA
 
