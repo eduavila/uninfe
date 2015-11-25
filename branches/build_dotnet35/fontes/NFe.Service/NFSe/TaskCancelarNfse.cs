@@ -52,7 +52,8 @@ namespace NFe.Service.NFSe
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
                     wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedCanNfse.cMunicipio, oDadosPedCanNfse.tpAmb, oDadosPedCanNfse.tpEmis, padraoNFSe);
-                    pedCanNfse = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
+                    if (wsProxy != null)
+                        pedCanNfse = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
                 string cabecMsg = "";
@@ -113,7 +114,7 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.SYSTEMPRO:
                         SystemPro syspro = new SystemPro((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                            Empresas.Configuracoes[emp].PastaXmlRetorno, Empresas.Configuracoes[emp].X509Certificado);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno, Empresas.Configuracoes[emp].X509Certificado);
                         AssinaturaDigital ad = new AssinaturaDigital();
                         ad.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
 
@@ -122,21 +123,20 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.SIGCORP_SIGISS:
                         SigCorp sigcorp = new SigCorp((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                            Empresas.Configuracoes[emp].PastaXmlRetorno,
-                            oDadosPedCanNfse.cMunicipio);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        oDadosPedCanNfse.cMunicipio);
                         sigcorp.CancelarNfse(NomeArquivoXML);
                         break;
 
                     case PadroesNFSe.FIORILLI:
                         Fiorilli fiorilli = new Fiorilli((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosPedCanNfse.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
-
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        oDadosPedCanNfse.cMunicipio,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor);
 
                         AssinaturaDigital ass = new AssinaturaDigital();
                         ass.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
@@ -146,13 +146,13 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.SIMPLISS:
                         SimplISS simpliss = new SimplISS((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosPedCanNfse.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
+                                                Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                oDadosPedCanNfse.cMunicipio,
+                                                Empresas.Configuracoes[emp].UsuarioWS,
+                                                Empresas.Configuracoes[emp].SenhaWS,
+                                                ConfiguracaoApp.ProxyUsuario,
+                                                ConfiguracaoApp.ProxySenha,
+                                                ConfiguracaoApp.ProxyServidor);
 
                         AssinaturaDigital sing = new AssinaturaDigital();
                         sing.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
@@ -162,10 +162,10 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.CONAM:
                         Conam conam = new Conam((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosPedCanNfse.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS);
+                                                Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                oDadosPedCanNfse.cMunicipio,
+                                                Empresas.Configuracoes[emp].UsuarioWS,
+                                                Empresas.Configuracoes[emp].SenhaWS);
 
                         conam.CancelarNfse(NomeArquivoXML);
                         break;

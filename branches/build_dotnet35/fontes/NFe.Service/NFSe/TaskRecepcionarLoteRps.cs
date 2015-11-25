@@ -54,7 +54,8 @@ namespace NFe.Service.NFSe
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
                     wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosEnvLoteRps.cMunicipio, oDadosEnvLoteRps.tpAmb, oDadosEnvLoteRps.tpEmis, padraoNFSe);
-                    envLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
+                    if (wsProxy != null)
+                        envLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
                 string cabecMsg = "";
@@ -305,7 +306,6 @@ namespace NFe.Service.NFSe
                                                         Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.EnvLoteRps) + "\\" + Propriedade.ExtRetorno.RetLoteRps);
                     if (File.Exists(filenameFTP))
                         new GerarXML(emp).XmlParaFTP(emp, filenameFTP);
-
                 }
             }
             catch (Exception ex)

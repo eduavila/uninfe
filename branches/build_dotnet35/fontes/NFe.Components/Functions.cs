@@ -256,10 +256,47 @@ namespace NFe.Components
         {
             FileInfo fi = new FileInfo(arquivo);
             string ret = fi.Name;
-            ret = ret.Substring(0, ret.Length - finalArq.Length);
-            return ret;
+
+            ///
+            /// alteracao feita pq um usuario comentou que estava truncando uma parte do nome original do arquivo
+            ///
+            /// se o nome do arquivo for: 123456790-nfe.xml e
+            ///             finalArq for:      -ret-nfe.xml, retornaria: 12345
+            /// ou
+            /// se o nome do arquivo for: 123456790-ret-nfe.xml e
+            ///             finalArq for:              -nfe.xml, retornaria: 123456789-ret
+            ///
+            if (ret.EndsWith(finalArq, StringComparison.InvariantCultureIgnoreCase))
+            {
+                ret = ret.Substring(0, ret.Length - finalArq.Length);
+                
+                return ret;
+            }
+
+            foreach (var pS in typeof(Propriedade.ExtEnvio).GetFields(BindingFlags.Public | BindingFlags.Static))
+            {
+                string extensao = pS.GetValue(null).ToString();
+
+                if (ret.EndsWith(extensao, StringComparison.InvariantCultureIgnoreCase))
+                    return ret.Substring(0, ret.Length - extensao.Length);
+            }
+
+            foreach (var pS in typeof(Propriedade.ExtRetorno).GetFields(BindingFlags.Public | BindingFlags.Static))
+            {
+                string extensao = pS.GetValue(null).ToString();
+
+                if (ret.EndsWith(extensao, StringComparison.InvariantCultureIgnoreCase))
+                    return ret.Substring(0, ret.Length - extensao.Length);
+            }
+
+            return fi.Name;
         }
+
+
         #endregion
+
+
+
 
         #region ExtraiPastaNomeArq()
         /// <summary>
@@ -515,7 +552,7 @@ namespace NFe.Components
                 // Get the integral value of the character.
                 int value = Convert.ToInt32(letter);
                 // Convert the decimal value to a hexadecimal value in string form.
-                hexOutput += String.Format("{0:X}", value);
+                hexOutput += String.Format("{0:x}", value);
             }
 
             return hexOutput;

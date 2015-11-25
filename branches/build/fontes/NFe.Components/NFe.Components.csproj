@@ -109,6 +109,8 @@
     <Compile Include="MGM\BauruSP\h\MGMH.cs" />
     <Compile Include="MGM\MGMCorp.cs" />
     <Compile Include="MGM\MGMBase.cs" />
+    <Compile Include="SigCorp\IgarapeMG\h\SigCorpH.cs" />
+    <Compile Include="SigCorp\IgarapeMG\p\SigCorpP.cs" />
     <Compile Include="SigCorp\CianortePR\h\SigCorpH.cs" />
     <Compile Include="SigCorp\CianortePR\p\SigCorpP.cs" />
     <Compile Include="FISSLEX\PiracicabaSP\h\FISSLEXH.cs" />
@@ -346,6 +348,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\br.com.sigiss.igarape.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\br.com.sigiss.marilia.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -366,12 +373,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\Reference.cs">
+    <Compile Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\Reference.cs">
+    <Compile Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -857,6 +864,20 @@
     <None Include="Web References\br.com.sigiss.cianorte.p\tcRetornoNota.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\br.com.sigiss.igarape.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.sigiss.igarape.p\sigiss_ws.wsdl" />
+    <None Include="Web References\br.com.sigiss.igarape.p\tcDadosNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.igarape.p\tcEstruturaDescricaoErros.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.igarape.p\tcRetornoNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\br.com.sigiss.marilia.p\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -913,38 +934,6 @@
     <None Include="Web References\br.com.sigiss.tremembe.p\tcRetornoNota.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarLoteNfseResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarLoteRpsResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarNfseResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarLoteRpsResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarNfseResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarNfseRpsResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarSituacaoLoteRpsResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\EnviarLoteRpsResposta.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\HCuritibaPR-EGoverne.wsdl" />
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ListaMensagemRetorno.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\CancelarLoteNfseResposta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -974,6 +963,38 @@
     </None>
     <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\PCuritibaPR-EGoverne.wsdl" />
     <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\CancelarLoteNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\CancelarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\CancelarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\ConsultarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\ConsultarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\ConsultarNfseRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\ConsultarSituacaoLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\EnviarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\HCuritibaPR-EGoverne.wsdl" />
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\ListaMensagemRetorno.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -1317,16 +1338,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="C:\Users\Renan\Desktop\NFSE\curitiba\HCuritibaPR-EGoverne.wsdl">
+    <WebReferenceUrl Include="C:\projetos\uninfe\trunk\fontes\NFe.Components.Wsdl\NFse\WSDL\Homologacao\HCuritibaPR-EGoverne.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\br.gov.egoverne.isscuritiba.curitiba.h\</RelPath>
-      <UpdateFromURL>C:\Users\Renan\Desktop\NFSE\curitiba\HCuritibaPR-EGoverne.wsdl</UpdateFromURL>
+      <RelPath>Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\</RelPath>
+      <UpdateFromURL>C:\projetos\uninfe\trunk\fontes\NFe.Components.Wsdl\NFse\WSDL\Homologacao\HCuritibaPR-EGoverne.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>NFe_Components_br_gov_egoverne_isscuritiba_curitiba_h_WS_x0020___x0020_NFS_e_x0020_V1_0_0_1</CachedSettingsPropName>
+      <CachedSettingsPropName>NFe_Components_br_gov_pr_curitiba_pilotoisscuritiba_h_WS_x0020___x0020_NFS_e_x0020_V1_0_0_1</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="C:\Users\Renan\Desktop\NFSE\curitiba\PCuritibaPR-EGoverne.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -1690,6 +1711,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_govdigital_homolog_saojosedalapa_h_NfseServiceImplSjlService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://igarape.sigiss.com.br/igarape/ws/sigiss_ws.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.sigiss.igarape.p\</RelPath>
+      <UpdateFromURL>https://igarape.sigiss.com.br/igarape/ws/sigiss_ws.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_sigiss_igarape_p_WebService_SigISS</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://iss.londrina.pr.gov.br/ws/v1_03/sigiss_ws.php%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>

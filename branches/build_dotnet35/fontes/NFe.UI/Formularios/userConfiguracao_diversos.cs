@@ -168,7 +168,7 @@ namespace NFe.UI.Formularios
                 checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Checked = this.empresa.GravarEventosCancelamentoNaPastaEnviadosNFe;
                 checkBoxCompactaNFe.Checked = this.empresa.CompactarNfe;
                 cbIndSinc.Checked = this.empresa.IndSinc;
-                edtIdentificadorCSC.Text = this.empresa.IndentificadorCSC;
+                edtIdentificadorCSC.Text = this.empresa.IdentificadorCSC;
                 edtTokenCSC.Text = this.empresa.TokenCSC;
 
                 cboDiretorioSalvarComo.Text = this.empresa.DiretorioSalvarComo;
@@ -262,7 +262,7 @@ namespace NFe.UI.Formularios
             this.empresa.Servico = (TipoAplicativo)this.cbServico.SelectedValue;
             this.empresa.SenhaWS = this.txtSenhaWS.Text;
             this.empresa.UsuarioWS = this.txtUsuarioWS.Text;
-            this.empresa.IndentificadorCSC = this.edtIdentificadorCSC.Text;
+            this.empresa.IdentificadorCSC = this.edtIdentificadorCSC.Text;
             this.empresa.TokenCSC = this.edtTokenCSC.Text;
 
             return true;

@@ -40,7 +40,7 @@ namespace NFe.Service.NFSe
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
                     wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe);
-                    pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
+                    if (wsProxy != null) pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
 
                 }
                 string cabecMsg = "";
@@ -85,26 +85,26 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.FIORILLI:
                         Fiorilli fiorilli = new Fiorilli((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        ler.oDadosPedSitNfseRps.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        ler.oDadosPedSitNfseRps.cMunicipio,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor);
 
                         fiorilli.ConsultarNfsePorRps(NomeArquivoXML);
                         break;
 
                     case PadroesNFSe.SIMPLISS:
                         SimplISS simpliss = new SimplISS((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        ler.oDadosPedSitNfseRps.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        ler.oDadosPedSitNfseRps.cMunicipio,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor);
 
                         simpliss.ConsultarNfsePorRps(NomeArquivoXML);
                         break;
@@ -112,12 +112,12 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.EGOVERNE:
                         #region E-Governe
                         EGoverne egoverne = new EGoverne((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        ler.oDadosPedSitNfseRps.cMunicipio,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor,
-                        Empresas.Configuracoes[emp].X509Certificado);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        ler.oDadosPedSitNfseRps.cMunicipio,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor,
+                                                        Empresas.Configuracoes[emp].X509Certificado);
 
                         AssinaturaDigital assegov = new AssinaturaDigital();
                         assegov.Assinar(NomeArquivoXML, emp, ler.oDadosPedSitNfseRps.cMunicipio);
@@ -166,13 +166,13 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.FISSLEX:
                         FISSLEX fisslex = new FISSLEX((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        ler.oDadosPedSitNfseRps.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        ler.oDadosPedSitNfseRps.cMunicipio,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor);
 
                         fisslex.ConsultarNfsePorRps(NomeArquivoXML);
                         break;
@@ -180,7 +180,6 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.NATALENSE:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
                         break;
-
                 }
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe, Servico))

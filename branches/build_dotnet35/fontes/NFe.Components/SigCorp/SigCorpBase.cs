@@ -71,6 +71,10 @@ namespace NFe.Components.SigCorp
                                 sigCorpService = new NFe.Components.SigCorp.CianortePR.p.SigCorpP(tpAmb, PastaRetorno);
                                 break;
 
+                            case 3130101: //Igarape-MG
+                                sigCorpService = new NFe.Components.SigCorp.IgarapeMG.p.SigCorpP(tpAmb, PastaRetorno);
+                                break;
+
                             default:
                                 throw new Exception(); // não tem                                
                         }

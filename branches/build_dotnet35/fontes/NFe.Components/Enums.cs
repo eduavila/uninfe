@@ -741,10 +741,7 @@ combo.ValueMember = "Key";
                         as DescriptionAttribute;
 
             return attribute == null ? value.ToString() : attribute.Description;
-        }*/
-
-
-
+        }*/               
 
         public static T StringToEnum<T>(string name) { return (T)Enum.Parse(typeof(T), name, true); }
 

@@ -45,7 +45,7 @@ namespace NFe.Service.NFSe
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
                     wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe); ;
-                    pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
+                    if (wsProxy != null) pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
                 string cabecMsg = "";

@@ -3733,4 +3733,24 @@
       <CancelarNfse>WSDL\Producao\PIvoti-CancelamentoNFSe.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
+  <Estado ID="3130101" Nome="Igarapé - MG" UF="MG" Padrao="SIGCORP_SIGISS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps></RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps></ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps></ConsultarNfsePorRps>
+      <ConsultarNfse></ConsultarNfse>
+      <ConsultarLoteRps></ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse></CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PIgarapeMG-sigiss.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PIgarapeMG-sigiss.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PIgarapeMG-sigiss.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PIgarapeMG-sigiss.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PIgarapeMG-sigiss.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Producao\PIgarapeMG-sigiss.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
 </Webservice>
