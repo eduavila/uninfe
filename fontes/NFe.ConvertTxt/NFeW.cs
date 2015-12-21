@@ -135,7 +135,7 @@ namespace NFe.ConvertTxt
             GerarCompra(NFe.compra, infNfe);
             GerarCana(NFe.cana, infNfe);
 
-            this.cFileName = NFe.infNFe.ID + Propriedade.ExtEnvio.Nfe;
+            this.cFileName = NFe.infNFe.ID + Propriedade.Extensao(Propriedade.TipoEnvio.NFe).EnvioXML;
 
             if (!string.IsNullOrEmpty(folderDestino))
             {
@@ -2433,8 +2433,11 @@ namespace NFe.ConvertTxt
             // ERR - resposta
             // Filename: XXXXXXXX-gerar-chave.err
 
-            string ArqXMLRetorno = Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + (xml ? Functions.ExtrairNomeArq(ArqPedido, Propriedade.ExtEnvio.GerarChaveNFe_XML) + Propriedade.ExtRetorno.RetGerarChaveNFe_XML : Functions.ExtrairNomeArq(ArqPedido, Propriedade.ExtEnvio.GerarChaveNFe_TXT) + Propriedade.ExtRetorno.RetGerarChaveNFe_TXT);
-            string ArqERRRetorno = Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + Path.ChangeExtension(Path.GetFileName(ArqPedido), ".err");//Propriedade.ExtEnvio.GerarChaveNFe_XML) + "-gerar-chave.err" : Functions.ExtrairNomeArq(ArqPedido, Propriedade.ExtEnvio.GerarChaveNFe_TXT) + "-gerar-chave.err");
+            string ArqXMLRetorno = Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + 
+                    (xml ? Functions.ExtrairNomeArq(ArqPedido, Propriedade.Extensao(Propriedade.TipoEnvio.GerarChaveNFe).EnvioXML) + Propriedade.Extensao(Propriedade.TipoEnvio.GerarChaveNFe).RetornoXML :
+                           Functions.ExtrairNomeArq(ArqPedido, Propriedade.Extensao(Propriedade.TipoEnvio.GerarChaveNFe).EnvioTXT) + Propriedade.Extensao(Propriedade.TipoEnvio.GerarChaveNFe).RetornoTXT);
+            //string ArqERRRetorno = Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + Path.ChangeExtension(Path.GetFileName(ArqPedido), ".err");
+            string ArqERRRetorno = ArqXMLRetorno.Replace((xml ? ".xml" : ".txt"), ".err");
 
             try
             {

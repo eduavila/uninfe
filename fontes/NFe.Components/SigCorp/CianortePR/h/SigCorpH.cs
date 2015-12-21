@@ -26,7 +26,7 @@ namespace NFe.Components.SigCorp.CianortePR.h
         #region Métodos
         public override void EmiteNF(string file)
         {
-            throw new Exceptions.ServicoInexistenteException();
+           throw new Exceptions.ServicoInexistenteException();
         }
 
         public override void CancelarNfse(string file)
@@ -68,6 +68,8 @@ namespace NFe.Components.SigCorp.CianortePR.h
             doc.Load(file);
             XmlNodeList nodes = doc.GetElementsByTagName(tag);
             XmlNode node = nodes[0];
+            if (node == null)
+                throw new Exception("Tag <" + tag + "> não encontrada");
 
             foreach (XmlNode n in node)
             {
@@ -76,7 +78,6 @@ namespace NFe.Components.SigCorp.CianortePR.h
                     SetProperrty(value, n.Name, n.InnerXml);
                 }
             }
-
             return value;
         }
 
@@ -87,6 +88,8 @@ namespace NFe.Components.SigCorp.CianortePR.h
             doc.Load(file);
             XmlNodeList nodes = doc.GetElementsByTagName(tag);
             XmlNode node = nodes[0];
+            if (node == null)
+                throw new Exception("Tag <" + tag + "> não encontrada");
 
             foreach (XmlNode n in node)
             {

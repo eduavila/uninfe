@@ -15,37 +15,93 @@ namespace NFe.Components.Conam.VarginhaMG.h
 {
     public class ConamH : EmiteNFSeBase
     {
-        ws_nfe service = new ws_nfe();
         string UsuarioWs = "";
         string SenhaWs = "";
+        int codigoMun = 0;
 
         #region construtores
-        public ConamH(TipoAmbiente tpAmb, string pastaRetorno, string usuario, string senhaWs)
+        public ConamH(TipoAmbiente tpAmb, string pastaRetorno, string usuario, string senhaWs, int CodigoMun)
             : base(tpAmb, pastaRetorno)
         {
             UsuarioWs = usuario;
             SenhaWs = senhaWs;
+            codigoMun = CodigoMun;
         }
         #endregion
 
         #region Métodos
+        private string Url(string cidade)
+        {
+            if (tpAmb == TipoAmbiente.taHomologacao)
+                return "https://nfehomologacao.etransparencia.com.br/" + cidade + "/webservice/aws_nfe.aspx";
+            else
+                return "https://nfe.etransparencia.com.br/" + cidade + "/webservice/aws_nfe.aspx";
+
+        }
+        private ws_nfe _service = null;
+        private ws_nfe service
+        {
+            get
+            {
+                if (_service == null)
+                {
+                    _service = new ws_nfe();
+                }
+                switch (codigoMun)
+                {
+                    case 3507001:
+                        _service.Url = Url("sp.boituva");
+                        break;
+                    case 3509007:
+                        _service.Url = Url("sp.caieiras");
+                        break;
+                    case 3522208:
+                        _service.Url = Url("sp.itapecericadaserra");
+                        break;
+                    case 3525300:
+                        _service.Url = Url("sp.jahu");
+                        break;
+                    case 3526902:
+                        _service.Url = Url("sp.limeira");
+                        break;
+                    case 3528502:
+                        _service.Url = Url("sp.mairipora");
+                        break;
+                    case 3539806:
+                        _service.Url = Url("sp.poa");
+                        break;
+                    case 3552809:
+                        _service.Url = Url("sp.taboaodaserra");
+                        break;
+                    case 3554102:
+                        _service.Url = Url("sp.taubate");
+                        break;
+                    case 3170701:
+                        _service.Url = Url("mg.varginha");
+                        break;
+                }
+                return _service;
+            }
+        }
+
         public override void EmiteNF(string file)
         {
             Sdt_ProcessarpsIn oProcessaRpsIn = ReadXML<Sdt_ProcessarpsIn>(file);
             Sdt_ProcessarpsOut result = service.PROCESSARPS(oProcessaRpsIn);
             
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.EnvLoteRps, Propriedade.ExtRetorno.LoteRps);
-            
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML, 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML);
         }
 
         public override void CancelarNfse(string file)
-        {            
+        {
             Sdt_CancelaNFE oCancelaNFE = ReadXML<Sdt_CancelaNFE>(file);
             Sdt_RetornoCancelaNFE result = service.CANCELANOTAELETRONICA(oCancelaNFE);
             
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedCanNfse, Propriedade.ExtRetorno.retCancelamento_XML);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML, 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).RetornoXML);
         }
 
         public override void ConsultarLoteRps(string file)
@@ -54,7 +110,8 @@ namespace NFe.Components.Conam.VarginhaMG.h
             SDT_ConsultaNotasProtocoloOut result = service.CONSULTANOTASPROTOCOLO(oConsultaLoteRps);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedLoteRps, Propriedade.ExtRetorno.RetLoteRps);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).EnvioXML, 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).RetornoXML);
         }
 
         public override void ConsultarSituacaoLoteRps(string file)
@@ -68,7 +125,8 @@ namespace NFe.Components.Conam.VarginhaMG.h
             SDT_ConsultaProtocoloOut result = service.CONSULTAPROTOCOLO(oConsultaProtocolo);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitNfse, Propriedade.ExtRetorno.SitNfse);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).EnvioXML, 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).RetornoXML);
         }
 
         public override void ConsultarNfsePorRps(string file)
@@ -83,9 +141,14 @@ namespace NFe.Components.Conam.VarginhaMG.h
 
             XmlDocument doc = new XmlDocument();
             doc.Load(file);
-            XmlNodeList nodes = doc.GetElementsByTagName(result.GetType().Name);
+            XmlNodeList nodes = doc.GetElementsByTagName((tpAmb == TipoAmbiente.taProducao?"nfe:":"") + result.GetType().Name);
+
+            if (nodes.Count == 0)
+                nodes = doc.GetElementsByTagName(result.GetType().Name);
+
             object rps = result;
             string tagName = rps.GetType().Name;
+            if (nodes[0] == null) throw new Exception("Tag <" + tagName + "> não encontrada");
 
             XmlNode node = nodes[0];
             ReadXML(node, rps, tagName);
@@ -121,7 +184,6 @@ namespace NFe.Components.Conam.VarginhaMG.h
                         {
                             SetProperty(value, item.Name, item.InnerXml);
                         }
-
                 }
                 value = result.ToArray();
             }
@@ -133,25 +195,36 @@ namespace NFe.Components.Conam.VarginhaMG.h
                         string nomeObjeto = value.GetType().Name;
 
                         Object instance =
-                        System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(
-                            "NFe.Components.br.com.etransparencia.nfehomologacao.h." + this.GetNameObject(n.Name, nomeObjeto),
-                            false,
-                            BindingFlags.Default,
-                            null,
-                            new object[] { },
-                            null,
-                            null
-                        );
+                                System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(
+                                    "NFe.Components.br.com.etransparencia.nfehomologacao.h." + this.GetNameObject(n.Name, nomeObjeto),
+                                    false,
+                                    BindingFlags.Default,
+                                    null,
+                                    new object[] { },
+                                    null,
+                                    null
+                                );
 
-                        if (n.Name.Equals("Reg20"))
+                        switch(n.Name)
                         {
-                            instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20Item>();
+                            case "Reg20":
+                            case "nfe:Reg20":
+                                instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20Item>();
+                                break;
+                            case "Reg30":
+                            case "nfe:Reg30":
+                                instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20ItemReg30Item>();
+                                break;
                         }
+                        //if (n.Name.Equals((tpAmb == TipoAmbiente.taProducao?"nfe:":"") + "Reg20"))
+                        //{
+                        //    instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20Item>();
+                        //}
 
-                        if (n.Name.Equals("Reg30"))
-                        {
-                            instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20ItemReg30Item>();
-                        }
+                        //if (n.Name.Equals((tpAmb == TipoAmbiente.taProducao?"nfe:":"")+"Reg30"))
+                        //{
+                        //    instance = new List<NFe.Components.br.com.etransparencia.nfehomologacao.h.Sdt_ProcessarpsInSDTRPSReg20ItemReg30Item>();
+                        //}
 
                         SetProperty(value, n.Name, ReadXML(n, instance, n.Name));
                     }
@@ -192,9 +265,7 @@ namespace NFe.Components.Conam.VarginhaMG.h
                     {
                         value = Convert.ChangeType(value, pi.PropertyType);
                     }
-
                     pi.SetValue(result, value, null);
-
                 }
             }
         }
@@ -210,26 +281,29 @@ namespace NFe.Components.Conam.VarginhaMG.h
                     break;
 
                 case "Reg20":
-                    nameObject = parentTag + tag.Replace("nfe:", "") + "Item";
+                case "nfe:Reg20":
+                    nameObject = parentTag + GetNameProperty(tag) /* tag.Replace("nfe:", "")*/ + "Item";
                     break;
 
                 case "Reg30":
-                    nameObject = parentTag + tag.Replace("nfe:", "") + "Item";
+                case "nfe:Reg30":
+                    nameObject = parentTag + GetNameProperty(tag) /* tag.Replace("nfe:", "")*/ + "Item";
                     break;
 
                 case "Reg20Item":
+                case "nfe:Reg20Item":
                     nameObject = "Sdt_ProcessarpsInSDTRPSReg20Item";
                     break;
 
                 case "Reg30Item":
+                case "nfe:Reg30Item":
                     nameObject = "Sdt_ProcessarpsInSDTRPSReg20ItemReg30Item";
                     break;
 
                 default:
-                    nameObject = parentTag + tag.Replace("nfe:", "");
+                    nameObject = parentTag + GetNameProperty(tag);// tag.Replace("nfe:", "");
                     break;
             }
-
             return nameObject;
         }
 

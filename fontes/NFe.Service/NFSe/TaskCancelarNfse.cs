@@ -19,6 +19,7 @@ using NFe.Components.EL;
 using NFe.Components.GovDigital;
 using NFe.Components.EloTech;
 using NFe.Components.MGM;
+using NFe.Components.Consist;
 
 namespace NFe.Service.NFSe
 {
@@ -41,6 +42,10 @@ namespace NFe.Service.NFSe
 
             try
             {
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" +
+                                         Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML) + Propriedade.ExtRetorno.CanNfse_ERR);
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlErro + "\\" + NomeArquivoXML);
+
                 oDadosPedCanNfse = new DadosPedCanNfse(emp);
                 //Ler o XML para pegar parâmetros de envio
                 PedCanNfse(emp, NomeArquivoXML);
@@ -255,7 +260,20 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.NATALENSE:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
                         break;
+                    case PadroesNFSe.CONSIST:
+                        #region Consist
+                        Consist consist = new Consist((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                        oDadosPedCanNfse.cMunicipio,
+                        Empresas.Configuracoes[emp].UsuarioWS,
+                        Empresas.Configuracoes[emp].SenhaWS,
+                        ConfiguracaoApp.ProxyUsuario,
+                        ConfiguracaoApp.ProxySenha,
+                        ConfiguracaoApp.ProxyServidor);
 
+                        consist.CancelarNfse(NomeArquivoXML);
+                        break;
+                        #endregion
                 }
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
@@ -265,12 +283,15 @@ namespace NFe.Service.NFSe
                     ad.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
 
                     //Invocar o método que envia o XML para o SEFAZ
-                    oInvocarObj.InvocarNFSe(wsProxy, pedCanNfse, NomeMetodoWS(Servico, oDadosPedCanNfse.cMunicipio), cabecMsg, this, "-ped-cannfse", "-cannfse", padraoNFSe, Servico);
+                    oInvocarObj.InvocarNFSe(wsProxy, pedCanNfse, NomeMetodoWS(Servico, oDadosPedCanNfse.cMunicipio), cabecMsg, this,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML,   //"-ped-cannfse", 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).RetornoXML,   //"-cannfse", 
+                                            padraoNFSe, Servico);
 
                     ///
                     /// grava o arquivo no FTP
                     string filenameFTP = Path.Combine(Empresas.Configuracoes[emp].PastaXmlRetorno,
-                                                      Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.PedCanNfse) + Propriedade.ExtRetorno.CanNfse);
+                                                      Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML) + Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).RetornoXML);
                     if (File.Exists(filenameFTP))
                         new GerarXML(emp).XmlParaFTP(emp, filenameFTP);
                 }
@@ -280,7 +301,7 @@ namespace NFe.Service.NFSe
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.PedCanNfse, Propriedade.ExtRetorno.CanNfse_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML, Propriedade.ExtRetorno.CanNfse_ERR, ex);
                 }
                 catch
                 {
@@ -313,15 +334,15 @@ namespace NFe.Service.NFSe
         {
             //int emp = Empresas.FindEmpresaByThread();
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(arquivoXML);
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(arquivoXML);
 
-            XmlNodeList infCancList = doc.GetElementsByTagName("CancelarNfseEnvio");
+            //XmlNodeList infCancList = doc.GetElementsByTagName("CancelarNfseEnvio");
 
-            foreach (XmlNode infCancNode in infCancList)
-            {
-                XmlElement infCancElemento = (XmlElement)infCancNode;
-            }
+            //foreach (XmlNode infCancNode in infCancList)
+            //{
+            //    XmlElement infCancElemento = (XmlElement)infCancNode;
+            //}
         }
         #endregion
 
@@ -332,39 +353,8 @@ namespace NFe.Service.NFSe
         private void EncryptAssinatura()
         {
             ///danasa: 12/2013
-            NFe.Validate.ValidarXML val = new Validate.ValidarXML(NomeArquivoXML, oDadosPedCanNfse.cMunicipio);
+            NFe.Validate.ValidarXML val = new Validate.ValidarXML(NomeArquivoXML, oDadosPedCanNfse.cMunicipio, false);
             val.EncryptAssinatura(NomeArquivoXML);
-
-            /*
-            string arquivoXML = NomeArquivoXML;
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(arquivoXML);
-
-            XmlNodeList pedidoCancelamentoNFeList = doc.GetElementsByTagName("PedidoCancelamentoNFe");
-
-            foreach (XmlNode pedidoCancelamentoNFeNode in pedidoCancelamentoNFeList)
-            {
-                XmlElement pedidoCancelamentoNFeElemento = (XmlElement)pedidoCancelamentoNFeNode;
-
-                XmlNodeList detalheList = doc.GetElementsByTagName("Detalhe");
-
-                foreach (XmlNode detalheNode in detalheList)
-                {
-                    XmlElement detalheElement = (XmlElement)detalheNode;
-
-
-                    if (detalheElement.GetElementsByTagName("AssinaturaCancelamento").Count != 0)
-                    {
-                        //Encryptar a tag Assinatura
-                        detalheElement.GetElementsByTagName("AssinaturaCancelamento")[0].InnerText = Criptografia.SignWithRSASHA1(Empresas.Configuracoes[Empresas.FindEmpresaByThread()].X509Certificado,
-                            detalheElement.GetElementsByTagName("AssinaturaCancelamento")[0].InnerText);
-                    }
-                }
-            }
-
-            //Salvar o XML com as alterações efetuadas
-            doc.Save(arquivoXML);*/
         }
         #endregion
     }

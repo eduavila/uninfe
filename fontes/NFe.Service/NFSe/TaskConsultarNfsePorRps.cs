@@ -24,11 +24,18 @@ namespace NFe.Service.NFSe
         {
             int emp = Empresas.FindEmpresaByThread();
 
-            //Definir o serviço que será executado para a classe
+            ///
+            /// extensao permitida: PedSitNfseRps = "-ped-sitnfserps.xml";
+            /// 
+            /// Definir o serviço que será executado para a classe
             Servico = Servicos.NFSeConsultarPorRps;
 
             try
             {
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" +
+                                         Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).EnvioXML) + Propriedade.ExtRetorno.SitNfseRps_ERR);
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlErro + "\\" + NomeArquivoXML);
+
                 //Ler o XML para pegar parâmetros de envio
                 LerXML ler = new LerXML();
                 ler.PedSitNfseRps(NomeArquivoXML);
@@ -41,7 +48,6 @@ namespace NFe.Service.NFSe
                 {
                     wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe);
                     if (wsProxy != null) pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
-
                 }
                 string cabecMsg = "";
                 switch (padraoNFSe)
@@ -81,7 +87,6 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.FINTEL:
                         cabecMsg = "<cabecalho xmlns=\"http://iss.pontagrossa.pr.gov.br/Arquivos/nfse.xsd\" versao=\"1.00\"><versaoDados >1.00</versaoDados ></cabecalho>";
                         break;
-
 
                     case PadroesNFSe.FIORILLI:
                         Fiorilli fiorilli = new Fiorilli((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
@@ -180,6 +185,9 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.NATALENSE:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
                         break;
+
+                    case PadroesNFSe.CONAM:
+                        throw new NFe.Components.Exceptions.ServicoInexistenteException();
                 }
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe, Servico))
@@ -189,12 +197,15 @@ namespace NFe.Service.NFSe
                     ad.Assinar(NomeArquivoXML, emp, ler.oDadosPedSitNfseRps.cMunicipio);
 
                     //Invocar o método que envia o XML para o SEFAZ
-                    oInvocarObj.InvocarNFSe(wsProxy, pedLoteRps, NomeMetodoWS(Servico, ler.oDadosPedSitNfseRps.cMunicipio), cabecMsg, this, "-ped-sitnfserps", "-sitnfserps", padraoNFSe, Servico);
+                    oInvocarObj.InvocarNFSe(wsProxy, pedLoteRps, NomeMetodoWS(Servico, ler.oDadosPedSitNfseRps.cMunicipio), cabecMsg, this,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).EnvioXML,   //"-ped-sitnfserps", 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).RetornoXML, //"-sitnfserps", 
+                                            padraoNFSe, Servico);
 
                     ///
                     /// grava o arquivo no FTP
                     string filenameFTP = Path.Combine(Empresas.Configuracoes[emp].PastaXmlRetorno,
-                                                      Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.PedSitNfseRps) + Propriedade.ExtRetorno.SitNfseRps);
+                                                      Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).EnvioXML) + Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).RetornoXML);
                     if (File.Exists(filenameFTP))
                         new GerarXML(emp).XmlParaFTP(emp, filenameFTP);
                 }
@@ -204,7 +215,7 @@ namespace NFe.Service.NFSe
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.PedSitNfseRps, Propriedade.ExtRetorno.SitNfseRps_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).EnvioXML, Propriedade.ExtRetorno.SitNfseRps_ERR, ex);
                 }
                 catch
                 {

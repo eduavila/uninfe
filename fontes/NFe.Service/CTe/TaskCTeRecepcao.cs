@@ -61,7 +61,9 @@ namespace NFe.Service
                 oInvocarObj.Invocar(wsProxy,
                                     oRecepcao,
                                     wsProxy.NomeMetodoWS[0],//NomeMetodoWS(Servico, Convert.ToInt32(lerXml.oDadosNfe.cUF)), 
-                                    oCabecMsg, this, "-env-lot", "-rec");
+                                    oCabecMsg, this,
+                                    Propriedade.Extensao(Propriedade.TipoEnvio.EnvLot).EnvioXML,//"-env-lot", 
+                                    Propriedade.ExtRetorno.Rec);//"-rec");
                 #endregion
 
                 #region Parte que trata o retorno do lote, ou seja, o número do recibo
@@ -100,7 +102,7 @@ namespace NFe.Service
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.EnvLot, Propriedade.ExtRetorno.Rec_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLot).EnvioXML, Propriedade.ExtRetorno.Rec_ERR, ex);
                 }
                 catch
                 {
@@ -113,7 +115,7 @@ namespace NFe.Service
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.EnvLot, Propriedade.ExtRetorno.Rec_ERR, ex, false);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLot).EnvioXML, Propriedade.ExtRetorno.Rec_ERR, ex, false);
                 }
                 catch
                 {
@@ -126,7 +128,7 @@ namespace NFe.Service
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.EnvLot, Propriedade.ExtRetorno.Rec_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLot).EnvioXML, Propriedade.ExtRetorno.Rec_ERR, ex);
                 }
                 catch
                 {

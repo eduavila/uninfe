@@ -60,7 +60,9 @@ namespace NFe.Service
                                     oInutilizacao,
                                     wsProxy.NomeMetodoWS[0],//NomeMetodoWS(Servico, dadosPedInut.cUF), 
                                     oCabecMsg,
-                                    this, "-ped-inu", "-inu");
+                                    this,
+                                    Propriedade.Extensao(Propriedade.TipoEnvio.PedInu).EnvioXML,
+                                    Propriedade.Extensao(Propriedade.TipoEnvio.PedInu).RetornoXML);
 
                 //Ler o retorno do webservice
                 this.LerRetornoInut();
@@ -70,7 +72,8 @@ namespace NFe.Service
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.PedInu_XML, Propriedade.ExtRetorno.Inu_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedInu).EnvioXML, 
+                                                    Propriedade.ExtRetorno.Inu_ERR, ex);
                 }
                 catch
                 {
@@ -187,7 +190,8 @@ namespace NFe.Service
                         //Move o arquivo de Distribuição para a pasta de enviados autorizados
                         string strNomeArqProcInutNFe = Empresas.Configuracoes[emp].PastaXmlEnviado + "\\" +
                                                         PastaEnviados.EmProcessamento.ToString() + "\\" +
-                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.PedInu_XML) + Propriedade.ExtRetorno.ProcInutCTe;
+                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedInu).EnvioXML) + 
+                                                        Propriedade.ExtRetorno.ProcInutCTe;
                         TFunctions.MoverArquivo(strNomeArqProcInutNFe, PastaEnviados.Autorizados, DateTime.Now);
                     }
                     else
