@@ -73,7 +73,8 @@ namespace NFe.Components.FISSLEX.SinopMT.p
             ServiceConsultaLoteRps.Execute(oTcDadosConsultaLote, out result);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedLoteRps, Propriedade.ExtRetorno.RetLoteRps);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).EnvioXML,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).RetornoXML);
         }
 
         public override void ConsultarSituacaoLoteRps(string file)
@@ -88,8 +89,8 @@ namespace NFe.Components.FISSLEX.SinopMT.p
             result = ServiceConsultarSituacaoLoteRps.Execute(oTcDadosConsultaLote);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitLoteRps, Propriedade.ExtRetorno.SitLoteRps);
-
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).RetornoXML);
         }
 
         public override void ConsultarNfse(string file)
@@ -104,7 +105,8 @@ namespace NFe.Components.FISSLEX.SinopMT.p
             ServiceConsultaNfse.Execute(oTcDadosConsultaNfse, out result);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitNfse, Propriedade.ExtRetorno.SitNfse);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).EnvioXML,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).RetornoXML);
         }
 
         public override void ConsultarNfsePorRps(string file)
@@ -119,7 +121,8 @@ namespace NFe.Components.FISSLEX.SinopMT.p
             ServiceConsultaNfsePorRps.Execute(oTcDadosConsultaNfse, out result);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitNfseRps, Propriedade.ExtRetorno.SitNfseRps);
+            GerarRetorno(file, strResult,   Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).EnvioXML,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRps).RetornoXML);
         }
 
         private T ReadXML<T>(string file)
@@ -130,6 +133,8 @@ namespace NFe.Components.FISSLEX.SinopMT.p
             XmlDocument doc = new XmlDocument();
             doc.Load(file);
             XmlNodeList nodes = doc.GetElementsByTagName(result.GetType().Name);
+            if (nodes[0] == null) throw new Exception("Tag <" + result.GetType().Name + "> não encontrada");
+
             object rps = result;
             string tagName = rps.GetType().Name;
 
@@ -153,12 +158,12 @@ namespace NFe.Components.FISSLEX.SinopMT.p
 
                         if (tag.Equals("Tomador") && n.Name.Equals("CpfCnpj"))
                         {
-                            NFe.Components.br.com.fisslex.sinop.aws_consultanfse.p.tcIdentificacaoTomador instances = new NFe.Components.br.com.fisslex.sinop.aws_consultanfse.p.tcIdentificacaoTomador();
+                            NFe.Components.br.com.fisslex.sinop.aws_consultanfse.p.tcIdentificacaoTomador instances =
+                                new NFe.Components.br.com.fisslex.sinop.aws_consultanfse.p.tcIdentificacaoTomador();
                             instance = instances.CpfCnpj = new tcCpfCnpj();
                         }
                         else
-                            instance =
-                            System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(
+                            instance = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(
                                 this.GetNameClass(tag) + this.GetNameObject(n.Name),
                                 false,
                                 BindingFlags.Default,
@@ -168,6 +173,14 @@ namespace NFe.Components.FISSLEX.SinopMT.p
                                 null
                             );
 
+                        if (instance == null)
+                        {
+                            if (tag.EndsWith("IntermediarioServico") && n.Name.Equals("CpfCnpj"))
+                                instance = new tcCpfCnpj();
+
+                            if (instance == null)
+                                throw new Exception(this.GetNameClass(tag) + this.GetNameObject(n.Name) + " não encontrado");
+                        }
                         SetProperty(value, n.Name, ReadXML(n, instance, n.Name));
                     }
                     else
@@ -230,6 +243,10 @@ namespace NFe.Components.FISSLEX.SinopMT.p
 
                 case "Tomador":
                     nameObject = "tcIdentificacaoTomador";
+                    break;
+
+                case "IntermediarioServico":
+                    nameObject = "tcIdentificacaoIntermediarioServico";
                     break;
 
                 default:

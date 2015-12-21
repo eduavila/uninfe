@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\uninfe\bin\Release\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -47,7 +47,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\uninfe\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -80,20 +80,27 @@
     <Compile Include="Betha\Betha.cs" />
     <Compile Include="CNPJ.cs" />
     <Compile Include="ComboElemen.cs" />
+    <Compile Include="EGoverne\CuritibaPR\EGoverneSerialization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EGoverne\CuritibaPR\h\EGoverneH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EGoverne\CuritibaPR\p\EGoverneP.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EL\ColatinaES\p\ELP.cs" />
     <Compile Include="EL\SimoesFilhoBA\p\ELP.cs" />
     <Compile Include="EL\EL.cs" />
     <Compile Include="EL\ELBase.cs" />
-    <Compile Include="EGoverne\CuritibaPR\EGoverneSerialization.cs" />
     <Compile Include="EGoverne\EGoverne.cs" />
     <Compile Include="EGoverne\EGoverneBase.cs" />
-    <Compile Include="EGoverne\CuritibaPR\h\EGoverneH.cs" />
-    <Compile Include="EGoverne\CuritibaPR\p\EGoverneP.cs" />
     <Compile Include="EstadoURLs.cs" />
-    <Compile Include="FISSLEX\PiracicabaSP\p\FISSLEXP.cs" />
+    <Compile Include="FISSLEX\SinopMT\p\FISSLEXP.cs" />
     <Compile Include="GovDigital\GovDigital.cs" />
     <Compile Include="GovDigital\GovDigitalBase.cs" />
     <Compile Include="IPM\IPM.cs" />
-    <Compile Include="MGM\BauruSP\p\MGMP.cs" />
+    <Compile Include="MGM\PenapolisSP\p\MGMP.cs" />
     <Compile Include="MGM\XmlDocumentUtilities.cs" />
     <Compile Include="QRCode\QRCode.cs" />
     <Compile Include="RLZ_INFORMATICA\Rlz_Informatica.cs" />
@@ -105,20 +112,66 @@
     <Compile Include="CONAM\VarginhaMG\p\ConamP.cs" />
     <Compile Include="NFeStrConstants.cs" />
     <Compile Include="RLZ_INFORMATICA\SantaFeDoSulSP\p\Rlz_InformaticaP.cs" />
-    <Compile Include="SchemaXMLNFSe.cs" />
-    <Compile Include="MGM\BauruSP\h\MGMH.cs" />
+    <Compile Include="Schemas\SchemaXML_NFe.cs" />
+    <Compile Include="Schemas\SchemaXML_MDFe.cs" />
+    <Compile Include="Schemas\SchemaXML_CTE.cs" />
+    <Compile Include="Schemas\SchemaXML_DFE.cs" />
+    <Compile Include="Schemas\SchemaXML_LMC.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_NATALENSE.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_FISS_LEX.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_VVISS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_PRODATA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_EQUIPLANO.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_GOVDIGITAL.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_E_L.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_E_GOVERNE.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_SIMPLISS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_ISSWEB.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_FINTEL.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_FIORILLI.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_SMARAPD.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_CARIOCA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_TIPLAN.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_SYSTEMPRO.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_TECNOSISTEMAS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_DSF.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_ISSONLINE4R.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_PRONIN.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_PORTOVELHENSE.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_SALVADOR_BA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_PAULISTANA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_WebISS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_DUETO.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_GIF.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_BHISS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_BLUMENAU_SC.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_ISSOnLine.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_ISSNet.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_ABACO.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_THEMA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_BETHA.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_SIGCORP_SIGISS.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe_GINFES.cs" />
+    <Compile Include="Schemas\SchemaXMLNFSe.cs" />
+    <Compile Include="MGM\PenapolisSP\h\MGMH.cs" />
     <Compile Include="MGM\MGMCorp.cs" />
     <Compile Include="MGM\MGMBase.cs" />
+    <Compile Include="SigCorp\RioGrandeRS\h\SigCorpH.cs" />
+    <Compile Include="SigCorp\RioGrandeRS\p\SigCorpP.cs" />
     <Compile Include="SigCorp\IgarapeMG\h\SigCorpH.cs" />
     <Compile Include="SigCorp\IgarapeMG\p\SigCorpP.cs" />
     <Compile Include="SigCorp\CianortePR\h\SigCorpH.cs" />
     <Compile Include="SigCorp\CianortePR\p\SigCorpP.cs" />
-    <Compile Include="FISSLEX\PiracicabaSP\h\FISSLEXH.cs" />
+    <Compile Include="FISSLEX\SinopMT\h\FISSLEXH.cs" />
     <Compile Include="FISSLEX\FISSLEX.cs" />
     <Compile Include="FISSLEX\FISSLEXBase.cs" />
     <Compile Include="EloTech\QuatroBarrasPR\EloTechHP.cs" />
     <Compile Include="EloTech\EloTech.cs" />
     <Compile Include="EloTech\EloTechBase.cs" />
+    <Compile Include="Consist\PatosdeMinasMG\h\ConsistH.cs" />
+    <Compile Include="Consist\PatosdeMinasMG\p\ConsistP.cs" />
+    <Compile Include="Consist\Consist.cs" />
+    <Compile Include="Consist\ConsistBase.cs" />
     <Compile Include="SimplISS\EmbuDasArtesSP\p\SimplISSP.cs" />
     <Compile Include="SimplISS\PresidentePrudenteSP\h\SimplISSH.cs" />
     <Compile Include="SimplISS\PresidentePrudenteSP\p\SimplISSP.cs" />
@@ -147,12 +200,7 @@
     <Compile Include="ObjectXMLSerializer.cs" />
     <Compile Include="ParamEnvioXML.cs" />
     <Compile Include="POSTRequest.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="SchemaXML.cs" />
+    <Compile Include="Schemas\SchemaXML.cs" />
     <Compile Include="ServiceProcess.cs" />
     <Compile Include="SigCorp\BauruSP\h\SigCorpH.cs" />
     <Compile Include="SigCorp\BauruSP\p\SigCorpP.cs" />
@@ -168,17 +216,27 @@
     <Compile Include="SystemPro\SystemPro.cs" />
     <Compile Include="SystemPro\SystemProBase.cs" />
     <Compile Include="TipoArquivoXML.cs" />
+    <Compile Include="Web References\br.com.consist.patosdeminas.h\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.com.consist.patosdeminas.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.com.el.colatina.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\br.com.elnfse.simoesfilho.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.com.elotech.quatrobarras.hp\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\br.com.etransparencia.nfe.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -358,6 +416,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\br.com.sigiss.riogrande.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\br.com.sigiss.saogoncalo.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -368,12 +431,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\br.com.sigiss.testeigarape\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.com.sigiss.testeriogrande.h\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\br.com.sigiss.tremembe.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -485,9 +563,119 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService.wsdl" />
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoCancelaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoConsultaEmpresa.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoConsultaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoConsultaNFeCancelada.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoEmiteNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoProcessaRPS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoProcessaRPSSerie.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoValidaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoValidaRPS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\eISSWService_RetornoValidaRPSSerie.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.h\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService.wsdl" />
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoCancelaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoConsultaEmpresa.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoConsultaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoConsultaNFeCancelada.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoEmiteNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoProcessaRPS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoProcessaRPSSerie.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoValidaNFe.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoValidaRPS.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\eISSWService_RetornoValidaRPSSerie.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.consist.patosdeminas.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\cnae.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\empresa.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\loteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\nfseContribuinte.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\nfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\nfseRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\RpsService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\RpsServiceService.wsdl" />
+    <None Include="Web References\br.com.el.colatina.p\servico116Municipal.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\servicoMunic.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.el.colatina.p\situacaoLoteRps.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\br.com.elnfse.simoesfilho.p\cnae.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -556,23 +744,6 @@
     <None Include="Web References\br.com.elotech.quatrobarras.hp\SubstituirNfseResposta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\SDT_ConsultaNotasProtocoloOut.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\SDT_ConsultaProtocoloOut.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\Sdt_ProcessarpsOut.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\Sdt_RetornoCancelaNFE.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\br.com.etransparencia.nfe.p\ws_nfe.wsdl" />
     <None Include="Web References\br.com.etransparencia.nfehomologacao.h\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -892,6 +1063,20 @@
     <None Include="Web References\br.com.sigiss.marilia.p\tcRetornoNota.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\br.com.sigiss.riogrande.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.sigiss.riogrande.p\sigiss_ws.wsdl" />
+    <None Include="Web References\br.com.sigiss.riogrande.p\tcDadosNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.riogrande.p\tcEstruturaDescricaoErros.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.riogrande.p\tcRetornoNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\br.com.sigiss.saogoncalo.p\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -918,6 +1103,34 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\br.com.sigiss.testebauru.h\tcRetornoNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeigarape\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeigarape\sigiss_ws.wsdl" />
+    <None Include="Web References\br.com.sigiss.testeigarape\tcDadosNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeigarape\tcEstruturaDescricaoErros.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeigarape\tcRetornoNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeriogrande.h\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeriogrande.h\sigiss_ws.wsdl" />
+    <None Include="Web References\br.com.sigiss.testeriogrande.h\tcDadosNota.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeriogrande.h\tcEstruturaDescricaoErros.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.sigiss.testeriogrande.h\tcRetornoNota.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\br.com.sigiss.tremembe.p\Reference.map">
@@ -963,6 +1176,38 @@
     </None>
     <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\PCuritibaPR-EGoverne.wsdl" />
     <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarLoteNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\CancelarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarNfseRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ConsultarSituacaoLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\EnviarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\ListaMensagemRetorno.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\HCuritibaPR-EGoverne.wsdl" />
+    <None Include="Web References\br.gov.egoverne.isscuritiba.curitiba.h\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -1360,6 +1605,17 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_gov_egoverne_isscuritiba_curitiba_p_WS_x0020___x0020_NFS_e_x0020_V1_0_0_1</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="C:\Users\Renan\Desktop\NFSE\curitiba\PCuritibaPR-EGoverne.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.gov.egoverne.isscuritiba.curitiba.h\</RelPath>
+      <UpdateFromURL>C:\Users\Renan\Desktop\NFSE\curitiba\PCuritibaPR-EGoverne.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_gov_egoverne_isscuritiba_curitiba_h_WS_x0020___x0020_NFS_e_x0020_V1_0_0_1</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="C:\Users\Renan\Desktop\NFSE\Presidente Prudente SP\HPresidentePrudenteSP-SIMPLISS.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\br.gov.sp.presidenteprudente.sistemas.www.h\</RelPath>
@@ -1426,6 +1682,28 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_elotech_quatrobarras_hp_NfsePortService</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://200.162.29.193:8080/axis2/services/eISSWService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.consist.patosdeminas.p\</RelPath>
+      <UpdateFromURL>http://200.162.29.193:8080/axis2/services/eISSWService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_consist_patosdeminas_p_eISSWService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://200.162.29.193:8082/axis2/services/eISSWService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.consist.patosdeminas.h\</RelPath>
+      <UpdateFromURL>http://200.162.29.193:8082/axis2/services/eISSWService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_consist_patosdeminas_h_eISSWService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://201.28.69.146:5663/IssWeb-ejb/IssWebWS/IssWebWS%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\br.net.taquarituba.fiorilli.h\</RelPath>
@@ -1469,6 +1747,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_net_taquarituba_fiorilli_p_IssWebWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://nfse00.el.com.br:19080/nfse_es_colatina/RpsServiceService%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.el.colatina.p\</RelPath>
+      <UpdateFromURL>http://nfse00.el.com.br:19080/nfse_es_colatina/RpsServiceService%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_el_colatina_p_RpsServiceService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://saturno.rlz.com.br:3080/amfphp/services/RLZ/webservice/santafedosul.php%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -1745,17 +2034,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_sigiss_marilia_p_WebService_SigISS</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://nfe.etransparencia.com.br/mg.varginha/webservice/aws_nfe.aspx%3fwsdl">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\br.com.etransparencia.nfe.p\</RelPath>
-      <UpdateFromURL>https://nfe.etransparencia.com.br/mg.varginha/webservice/aws_nfe.aspx%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>NFe_Components_br_com_etransparencia_nfe_p_ws_nfe</CachedSettingsPropName>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="https://nfehomologacao.etransparencia.com.br/mg.varginha/webservice/aws_nfe.aspx%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\br.com.etransparencia.nfehomologacao.h\</RelPath>
@@ -1766,6 +2044,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_etransparencia_nfehomologacao_h_ws_nfe</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://riogrande.sigiss.com.br/riogrande/ws/sigiss_ws.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.sigiss.riogrande.p\</RelPath>
+      <UpdateFromURL>https://riogrande.sigiss.com.br/riogrande/ws/sigiss_ws.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_sigiss_riogrande_p_WebService_SigISS</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://saogoncalo.sigiss.com.br/saogoncalo/ws/sigiss_ws.php%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -1832,6 +2121,28 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_sigiss_testebauru_h_WebService_SigISS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://testeigarape.sigiss.com.br/testeigarape/ws/sigiss_ws.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.sigiss.testeigarape\</RelPath>
+      <UpdateFromURL>https://testeigarape.sigiss.com.br/testeigarape/ws/sigiss_ws.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_sigiss_testeigarape_WebService_SigISS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://testeriogrande.sigiss.com.br/testeriogrande/ws/sigiss_ws.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.sigiss.testeriogrande.h\</RelPath>
+      <UpdateFromURL>https://testeriogrande.sigiss.com.br/testeriogrande/ws/sigiss_ws.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_sigiss_testeriogrande_h_WebService_SigISS</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://tremembe.sigiss.com.br/tremembe/ws/sigiss_ws.php%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -1945,6 +2256,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EL\ColatinaES\h\" />
     <Folder Include="EL\SimoesFilhoBA\h\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

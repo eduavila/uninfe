@@ -387,7 +387,7 @@ namespace NFe.Components
         GINFES,
         /// <summary>
         /// Padrão da BETHA Sistemas
-        /// </summary>
+        /// </summary>        
         [Description("BETHA")]
         BETHA,
         /// <summary>
@@ -609,7 +609,25 @@ namespace NFe.Components
         /// Prefeitura de Natal - RN
         /// </summary>
         [Description("Natalense")]
-        NATALENSE
+        NATALENSE,
+        /// <summary>
+        /// Padrão ABRASF
+        /// Prefeitura de Recife - PE
+        /// </summary>
+        [Description("ABRASF")]
+        ABRASF,
+        /// <summary>
+        /// Padrão Consist
+        /// Prefeitura de Patos de Minas - MG
+        /// </summary>
+        [Description("Consist")]
+        CONSIST,
+        /// <summary>
+        /// Padrão Consist
+        /// Prefeitura de Goiania - GO
+        /// </summary>
+        [Description("Goiania")]
+        GOIANIA
 
         ///Atencao Wandrey.
         ///o nome deste enum tem que coincidir com o nome da url, pq faço um "IndexOf" deste enum para pegar o padrao        

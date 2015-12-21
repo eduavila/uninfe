@@ -317,7 +317,11 @@ namespace NFe.UI.Formularios
                            ufCod == 2930709 /*Simoes Filho*/||
                            ufCod == 3553807 /*Taquaritua*/||
                            ufCod == 3512902 /*Cosmorama*/||
-                           ufCod == 3515004 /*Embu das Artes*/;
+                           ufCod == 3515004 /*Embu das Artes*/||
+                           ufCod == 3148004 /*Patos de Minas*/||
+                           ufCod == 3506508 /*Birigui*/||
+                           ufCod == 3201506 /*Colatina*/||
+                           ufCod == 4118204 /*Paranagua*/;
 
             lbl_UsuarioWS.Visible =
                 lbl_SenhaWS.Visible =

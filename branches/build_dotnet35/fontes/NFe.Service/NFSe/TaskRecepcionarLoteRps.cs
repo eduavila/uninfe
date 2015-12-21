@@ -20,6 +20,7 @@ using NFe.Components.EL;
 using NFe.Components.GovDigital;
 using NFe.Components.EloTech;
 using NFe.Components.MGM;
+using NFe.Components.Consist;
 
 namespace NFe.Service.NFSe
 {
@@ -41,6 +42,10 @@ namespace NFe.Service.NFSe
 
             try
             {
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" +
+                                         Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML) + Propriedade.ExtRetorno.RetEnvLoteRps_ERR);
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlErro + "\\" + NomeArquivoXML);
+
                 oDadosEnvLoteRps = new DadosEnvLoteRps(emp);
 
                 EnvLoteRps(emp, NomeArquivoXML);
@@ -289,6 +294,22 @@ namespace NFe.Service.NFSe
                         break;
                         #endregion
 
+
+                    case PadroesNFSe.CONSIST:
+                        #region Consist
+                        Consist consist = new Consist((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                        oDadosEnvLoteRps.cMunicipio,
+                        Empresas.Configuracoes[emp].UsuarioWS,
+                        Empresas.Configuracoes[emp].SenhaWS,
+                        ConfiguracaoApp.ProxyUsuario,
+                        ConfiguracaoApp.ProxySenha,
+                        ConfiguracaoApp.ProxyServidor);
+
+                        consist.EmiteNF(NomeArquivoXML);
+                        break;
+                        #endregion
+
                 }
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
@@ -298,12 +319,15 @@ namespace NFe.Service.NFSe
                     ad.Assinar(NomeArquivoXML, emp, oDadosEnvLoteRps.cMunicipio);
 
                     //Invocar o método que envia o XML para o SEFAZ
-                    oInvocarObj.InvocarNFSe(wsProxy, envLoteRps, NomeMetodoWS(Servico, oDadosEnvLoteRps.cMunicipio), cabecMsg, this, "-env-loterps", "-ret-loterps", padraoNFSe, Servico);
+                    oInvocarObj.InvocarNFSe(wsProxy, envLoteRps, NomeMetodoWS(Servico, oDadosEnvLoteRps.cMunicipio), cabecMsg, this,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML,    //"-env-loterps", 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML,  //"-ret-loterps", 
+                                            padraoNFSe, Servico);
 
                     ///
                     /// grava o arquivo no FTP
                     string filenameFTP = Path.Combine(Empresas.Configuracoes[emp].PastaXmlRetorno,
-                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.EnvLoteRps) + "\\" + Propriedade.ExtRetorno.RetLoteRps);
+                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML) + "\\" + Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML);
                     if (File.Exists(filenameFTP))
                         new GerarXML(emp).XmlParaFTP(emp, filenameFTP);
                 }
@@ -313,7 +337,7 @@ namespace NFe.Service.NFSe
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.EnvLoteRps, Propriedade.ExtRetorno.RetLoteRps_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML, Propriedade.ExtRetorno.RetEnvLoteRps_ERR, ex);
                 }
                 catch
                 {
@@ -343,39 +367,8 @@ namespace NFe.Service.NFSe
         private void EncryptAssinatura()
         {
             ///danasa: 12/2013
-            NFe.Validate.ValidarXML val = new Validate.ValidarXML(NomeArquivoXML, oDadosEnvLoteRps.cMunicipio);
+            NFe.Validate.ValidarXML val = new Validate.ValidarXML(NomeArquivoXML, oDadosEnvLoteRps.cMunicipio, false);
             val.EncryptAssinatura(NomeArquivoXML);
-            /*
-            string arquivoXML = NomeArquivoXML;
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(arquivoXML);
-
-            XmlNodeList pedidoEnvioLoteRPSList = doc.GetElementsByTagName("PedidoEnvioLoteRPS");
-
-            foreach (XmlNode pedidoEnvioLoteRPSNode in pedidoEnvioLoteRPSList)
-            {
-                XmlElement pedidoEnvioLoteRPSElemento = (XmlElement)pedidoEnvioLoteRPSNode;
-
-                XmlNodeList rpsList = doc.GetElementsByTagName("RPS");
-
-                foreach (XmlNode rpsNode in rpsList)
-                {
-                    XmlElement rpsElement = (XmlElement)rpsNode;
-
-
-                    if (rpsElement.GetElementsByTagName("Assinatura").Count != 0)
-                    {
-                        //Encryptar a tag Assinatura
-                        rpsElement.GetElementsByTagName("Assinatura")[0].InnerText = Criptografia.SignWithRSASHA1(Empresas.Configuracoes[Empresas.FindEmpresaByThread()].X509Certificado,
-                            rpsElement.GetElementsByTagName("Assinatura")[0].InnerText);
-                    }
-                }
-            }
-
-            //Salvar o XML com as alterações efetuadas
-            doc.Save(arquivoXML);
-*/
         }
         #endregion
 
@@ -388,15 +381,15 @@ namespace NFe.Service.NFSe
         {
             //int emp = Empresas.FindEmpresaByThread();
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(arquivoXML);
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(arquivoXML);
 
-            XmlNodeList infEnvioList = doc.GetElementsByTagName("EnviarLoteRpsEnvio");
+            //XmlNodeList infEnvioList = doc.GetElementsByTagName("EnviarLoteRpsEnvio");
 
-            foreach (XmlNode infEnvioNode in infEnvioList)
-            {
-                XmlElement infEnvioElemento = (XmlElement)infEnvioNode;
-            }
+            //foreach (XmlNode infEnvioNode in infEnvioList)
+            //{
+            //    XmlElement infEnvioElemento = (XmlElement)infEnvioNode;
+            //}
         }
         #endregion
 
