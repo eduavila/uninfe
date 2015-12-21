@@ -49,6 +49,9 @@ namespace NFe.Service
         {
             int emp = Empresas.FindEmpresaByThread();
 
+            finalArqEnvio = Functions.ExtractExtension(finalArqEnvio);
+            finalArqRetorno = Functions.ExtractExtension(finalArqRetorno);
+
             XmlDocument docXML = new XmlDocument();
 
             // Definir o tipo de serviço da NFe
@@ -63,7 +66,7 @@ namespace NFe.Service
             Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + Functions.ExtrairNomeArq(XmlNfeDadosMsg, finalArqEnvio + ".xml") + finalArqRetorno + ".err");
 
             // Validar o Arquivo XML
-            ValidarXML validar = new ValidarXML(XmlNfeDadosMsg, Empresas.Configuracoes[emp].UnidadeFederativaCodigo);
+            ValidarXML validar = new ValidarXML(XmlNfeDadosMsg, Empresas.Configuracoes[emp].UnidadeFederativaCodigo, false);
 
             string cResultadoValidacao = validar.ValidarArqXML(XmlNfeDadosMsg);
             if (cResultadoValidacao != "")
@@ -219,6 +222,9 @@ namespace NFe.Service
         {
             int emp = Empresas.FindEmpresaByThread();
 
+            finalArqEnvio = Functions.ExtractExtension(finalArqEnvio);
+            finalArqRetorno = Functions.ExtractExtension(finalArqRetorno);
+
             XmlDocument docXML = new XmlDocument();
 
             // Definir o tipo de serviço da NFe
@@ -231,7 +237,7 @@ namespace NFe.Service
             Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" + Functions.ExtrairNomeArq(XmlNfeDadosMsg, finalArqEnvio + ".xml") + finalArqRetorno + ".err");
 
             // Validar o Arquivo XML
-            ValidarXML validar = new ValidarXML(XmlNfeDadosMsg, Empresas.Configuracoes[emp].UnidadeFederativaCodigo);
+            ValidarXML validar = new ValidarXML(XmlNfeDadosMsg, Empresas.Configuracoes[emp].UnidadeFederativaCodigo, false);
             string cResultadoValidacao = validar.ValidarArqXML(XmlNfeDadosMsg);
             if (cResultadoValidacao != "")
             {

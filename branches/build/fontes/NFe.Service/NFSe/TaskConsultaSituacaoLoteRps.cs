@@ -14,6 +14,7 @@ using NFe.Components.SimplISS;
 using NFe.Components.EGoverne;
 using NFe.Components.EL;
 using NFe.Components.FISSLEX;
+using NFe.Components.Conam;
 
 namespace NFe.Service.NFSe
 {
@@ -31,7 +32,10 @@ namespace NFe.Service.NFSe
         {
             int emp = Empresas.FindEmpresaByThread();
 
-            //Definir o serviço que será executado para a classe
+            ///
+            /// extensao permitida: PedSitLoteRps = "-ped-sitloterps.xml";
+            /// 
+            /// Definir o serviço que será executado para a classe
             Servico = Servicos.NFSeConsultarSituacaoLoteRps;
 
             try
@@ -40,6 +44,10 @@ namespace NFe.Service.NFSe
                 //Ler o XML para pegar parâmetros de envio
                 //LerXML ler = new LerXML();
                 PedSitLoteRps(NomeArquivoXML);
+
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlRetorno + "\\" +
+                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML) + Propriedade.ExtRetorno.SitLoteRps_ERR);
+                Functions.DeletarArquivo(Empresas.Configuracoes[emp].PastaXmlErro + "\\" + NomeArquivoXML);
 
                 //Definir o objeto do WebService
 
@@ -91,13 +99,13 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.SIMPLISS:
                         SimplISS simpliss = new SimplISS((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosPedSitLoteRps.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        oDadosPedSitLoteRps.cMunicipio,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor);
 
                         simpliss.ConsultarSituacaoLoteRps(NomeArquivoXML);
                         break;
@@ -105,12 +113,12 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.EGOVERNE:
                         #region E-Governe
                         EGoverne egoverne = new EGoverne((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosPedSitLoteRps.cMunicipio,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor,
-                        Empresas.Configuracoes[emp].X509Certificado);
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        oDadosPedSitLoteRps.cMunicipio,
+                                                        ConfiguracaoApp.ProxyUsuario,
+                                                        ConfiguracaoApp.ProxySenha,
+                                                        ConfiguracaoApp.ProxyServidor,
+                                                        Empresas.Configuracoes[emp].X509Certificado);
 
                         AssinaturaDigital assegov = new AssinaturaDigital();
                         assegov.Assinar(NomeArquivoXML, emp, oDadosPedSitLoteRps.cMunicipio);
@@ -131,14 +139,12 @@ namespace NFe.Service.NFSe
                                         (ConfiguracaoApp.Proxy ? ConfiguracaoApp.ProxyServidor : ""));
                         
                         el.ConsultarSituacaoLoteRps(NomeArquivoXML);
-
                         break;
                         #endregion
 
                     case PadroesNFSe.EQUIPLANO:
                         cabecMsg = "1";
                         break;
-
 
                     case PadroesNFSe.FISSLEX:
                         FISSLEX fisslex = new FISSLEX((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
@@ -156,6 +162,9 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.NATALENSE:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
                         break;
+
+                    case PadroesNFSe.CONAM:
+                        throw new NFe.Components.Exceptions.ServicoInexistenteException();
                 }
                 if (IsUtilizaCompilacaoWs(padraoNFSe, Servico))
                 {
@@ -164,12 +173,16 @@ namespace NFe.Service.NFSe
                     ad.Assinar(NomeArquivoXML, emp, oDadosPedSitLoteRps.cMunicipio);
 
                     //Invocar o método que envia o XML para o SEFAZ
-                    oInvocarObj.InvocarNFSe(wsProxy, pedSitLoteRps, NomeMetodoWS(Servico, oDadosPedSitLoteRps.cMunicipio), cabecMsg, this, "-ped-sitloterps", "-sitloterps", padraoNFSe, Servico);
+                    oInvocarObj.InvocarNFSe(wsProxy, pedSitLoteRps, NomeMetodoWS(Servico, oDadosPedSitLoteRps.cMunicipio), 
+                                            cabecMsg, this,
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML, //"-ped-sitloterps", 
+                                            Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).RetornoXML,  //"-sitloterps", 
+                                            padraoNFSe, Servico);
 
                     ///
                     /// grava o arquivo no FTP
                     string filenameFTP = Path.Combine(Empresas.Configuracoes[emp].PastaXmlRetorno,
-                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.ExtEnvio.PedSitLoteRps) + Propriedade.ExtRetorno.SitLoteRps);
+                                                        Functions.ExtrairNomeArq(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML) + Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).RetornoXML);
                     if (File.Exists(filenameFTP))
                         new GerarXML(emp).XmlParaFTP(emp, filenameFTP);
                 }
@@ -179,7 +192,7 @@ namespace NFe.Service.NFSe
                 try
                 {
                     //Gravar o arquivo de erro de retorno para o ERP, caso ocorra
-                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.ExtEnvio.PedSitLoteRps, Propriedade.ExtRetorno.SitLoteRps_ERR, ex);
+                    TFunctions.GravarArqErroServico(NomeArquivoXML, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML, Propriedade.ExtRetorno.SitLoteRps_ERR, ex);
                 }
                 catch
                 {
@@ -210,17 +223,17 @@ namespace NFe.Service.NFSe
         /// <param name="arquivoXML">Arquivo XML que é para efetuar a leitura</param>
         private void PedSitLoteRps(string arquivoXML)
         {
-            int emp = Empresas.FindEmpresaByThread();
+            //int emp = Empresas.FindEmpresaByThread();
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(arquivoXML);
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(arquivoXML);
 
-            XmlNodeList infConsList = doc.GetElementsByTagName("ConsultarSituacaoLoteRpsEnvio");
+            //XmlNodeList infConsList = doc.GetElementsByTagName("ConsultarSituacaoLoteRpsEnvio");
 
-            foreach (XmlNode infConsNode in infConsList)
-            {
-                XmlElement infConsElemento = (XmlElement)infConsNode;
-            }
+            //foreach (XmlNode infConsNode in infConsList)
+            //{
+            //    XmlElement infConsElemento = (XmlElement)infConsNode;
+            //}
         }
         #endregion
 

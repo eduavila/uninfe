@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using NFe.Components.Abstract;
-using NFe.Components.br.com.sigiss.cianorte.p;
+using NFe.Components.br.com.sigiss.testeigarape;
 
 namespace NFe.Components.SigCorp.IgarapeMG.h
 {
@@ -26,17 +26,32 @@ namespace NFe.Components.SigCorp.IgarapeMG.h
         #region Métodos
         public override void EmiteNF(string file)
         {
-            throw new Exceptions.ServicoInexistenteException();
+            tcDescricaoRps oTcDescricaoRps = ReadXML<tcDescricaoRps>(file);
+            tcEstruturaDescricaoErros[] tcErros = null;
+            tcRetornoNota result = service.GerarNota(oTcDescricaoRps, out tcErros);
+            string strResult = base.CreateXML(result, tcErros);
+            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML,
+                                          Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML);
         }
 
         public override void CancelarNfse(string file)
         {
-            throw new Exceptions.ServicoInexistenteException();
+            tcDadosCancelaNota oTcDadosCancela = ReadXML<tcDadosCancelaNota>(file);
+            tcEstruturaDescricaoErros[] tcErros = null;
+            tcRetornoNota result = service.CancelarNota(oTcDadosCancela, out tcErros);
+            string strResult = base.CreateXML(result, tcErros);
+            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).EnvioXML,
+                                          Propriedade.Extensao(Propriedade.TipoEnvio.PedCanNFSe).RetornoXML);
         }
 
         public override void ConsultarLoteRps(string file)
         {
-            throw new Exceptions.ServicoInexistenteException();
+            tcDadosConsultaNota oTcDadosPrestador = ReadXML<tcDadosConsultaNota>(file);
+            tcEstruturaDescricaoErros[] tcErros = null;
+            tcRetornoNota result = service.ConsultarNotaValida(oTcDadosPrestador, out tcErros);
+            string strResult = base.CreateXML(result, tcErros);
+            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).EnvioXML,
+                                          Propriedade.Extensao(Propriedade.TipoEnvio.PedLoteRps).RetornoXML);
         }
 
         public override void ConsultarSituacaoLoteRps(string file)
@@ -46,7 +61,12 @@ namespace NFe.Components.SigCorp.IgarapeMG.h
 
         public override void ConsultarNfse(string file)
         {
-            throw new Exceptions.ServicoInexistenteException();
+            tcDadosPrestador oTcDadosPrestador = ReadXML<tcDadosPrestador>(file);
+            tcEstruturaDescricaoErros[] tcErros = null;
+            tcDadosNota result = service.ConsultarNotaPrestador(oTcDadosPrestador, NumeroNota(file, "urn:ConsultarNotaPrestador"), out tcErros);
+            string strResult = base.CreateXML(result, tcErros);
+            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).EnvioXML,
+                                          Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).RetornoXML);
         }
 
         public override void ConsultarNfsePorRps(string file)

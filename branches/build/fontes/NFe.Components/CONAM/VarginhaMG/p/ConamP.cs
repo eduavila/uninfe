@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if false
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -68,7 +69,7 @@ namespace NFe.Components.Conam.VarginhaMG.p
             SDT_ConsultaProtocoloOut result = service.CONSULTAPROTOCOLO(oConsultaProtocolo);
 
             string strResult = base.CreateXML(result);
-            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitNfse, Propriedade.ExtRetorno.SitNfse);
+            GerarRetorno(file, strResult, Propriedade.ExtEnvio.PedSitNfse, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).RetornoXML);
         }
 
         public override void ConsultarNfsePorRps(string file)
@@ -121,7 +122,6 @@ namespace NFe.Components.Conam.VarginhaMG.p
                         {
                             SetProperty(value, item.Name, item.InnerXml);
                         }
-
                 }
                 value = result.ToArray();
             }
@@ -192,9 +192,7 @@ namespace NFe.Components.Conam.VarginhaMG.p
                     {
                         value = Convert.ChangeType(value, pi.PropertyType);
                     }
-
                     pi.SetValue(result, value, null);
-
                 }
             }
         }
@@ -240,3 +238,4 @@ namespace NFe.Components.Conam.VarginhaMG.p
         #endregion
     }
 }
+#endif
