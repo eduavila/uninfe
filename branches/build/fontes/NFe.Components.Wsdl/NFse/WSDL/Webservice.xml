@@ -4154,4 +4154,44 @@
       <CancelarNfse>wsdl\producao\PBrumadoBA-WebISS.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
+  <Estado ID="4207007" Nome="Içara - SC" UF="SC" Padrao="WEBISS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>WSDL\Homologacao\HIracaSC-WebIss.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Homologacao\HIracaSC-WebIss.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Homologacao\HIracaSC-WebIss.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Homologacao\HIracaSC-WebIss.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Homologacao\HIracaSC-WebIss.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Homologacao\HIracaSC-WebIss.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PIracaSC-WebIss.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PIracaSC-WebIss.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PIracaSC-WebIss.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PIracaSC-WebIss.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PIracaSC-WebIss.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Producao\PIracaSC-WebIss.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4217600" Nome="Siderópolis - SC" UF="SC" Padrao="WEBISS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>WSDL\Homologacao\HSideropolis-WebIss.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Homologacao\HSideropolis-WebIss.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Homologacao\HSideropolis-WebIss.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Homologacao\HSideropolis-WebIss.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Homologacao\HSideropolis-WebIss.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Homologacao\HSideropolis-WebIss.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PSideropolis-WebIss.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PSideropolis-WebIss.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PSideropolis-WebIss.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PSideropolis-WebIss.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PSideropolis-WebIss.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Producao\PSideropolis-WebIss.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>  
 </Webservice>
