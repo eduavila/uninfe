@@ -30,13 +30,14 @@ namespace NFe.Components.SimplISS
                     if (tpAmb == TipoAmbiente.taHomologacao)
                         switch (CodigoMun)
                         {
+                            case 3130309: //Iguatama-MG
                             case 3515004: //Embu das Artes-SP
                             case 3538709: //Piracicaba-SP 
-                                simplissService = new NFe.Components.SimplISS.PiracicabaSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new PiracicabaSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             case 3541406: //Presidente Prudente-SP
-                                simplissService = new NFe.Components.SimplISS.PresidentePrudenteSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new PresidentePrudenteSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             default:
@@ -46,15 +47,19 @@ namespace NFe.Components.SimplISS
                         switch (CodigoMun)
                         {
                             case 3538709: //Piracicaba-SP 
-                                simplissService = new NFe.Components.SimplISS.PiracicabaSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new PiracicabaSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             case 3541406: //Presidente Prudente-SP
-                                simplissService = new NFe.Components.SimplISS.PresidentePrudenteSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new PresidentePrudenteSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             case 3515004: //Embu das Artes-SP
-                                simplissService = new NFe.Components.SimplISS.EmbuDasArtesSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new EmbuDasArtesSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                break;
+
+                            case 3130309:
+                                simplissService = new IguatamaMG.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             default:

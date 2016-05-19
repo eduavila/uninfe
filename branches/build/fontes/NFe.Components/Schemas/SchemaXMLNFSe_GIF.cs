@@ -159,13 +159,13 @@ namespace NFSe.Components
             });
             #endregion
 
-            #region XML de Consulta de Lote RPS
+            #region XML de Consulta de Lote RPS / Obter XML da NFSe para o padrão GIF
             SchemaXML.InfSchemas.Add("NFSE-GIF-pedidoNFSe", new InfSchema()
             {
                 Tag = "pedidoNFSe",
                 ID = SchemaXML.InfSchemas.Count + 1,
                 ArquivoXSD = "NFSe\\GIF\\NFSe-Infisc-v1.xsd",
-                Descricao = "XML de Consulta de Lote RPS",
+                Descricao = "XML de Consulta de Lote RPS / Obter XML da NFSe para o padrão GIF",
                 TagAssinatura = "pedidoNFSe",
                 TagAtributoId = "pedidoNFSe",
                 TargetNameSpace = "http://ws.pc.gif.com.br/"
@@ -248,8 +248,8 @@ namespace NFSe.Components
                 TagAtributoId = "CNPJ",
                 TargetNameSpace = "http://ws.pc.gif.com.br/"
             });
-            #endregion
-
+            #endregion            
+            
             #endregion
         }
     }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:notainteligente.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="api" targetNamespace="urn:notainteligente.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:notainteligente.com" />
+  </wsdl:types>
+  <wsdl:message name="ConsultarLoteRps">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarLoteRpsResponse">
+    <wsdl:part name="Value" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="RecepcionarLoteRps">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="RecepcionarLoteRpsResponse">
+    <wsdl:part name="Value" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="GerarNfse">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="GerarNfseResponse">
+    <wsdl:part name="Value" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelarNfse">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelarNfseResponse">
+    <wsdl:part name="Value" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SubstituirNfse">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SubstituirNfseResponse">
+    <wsdl:part name="Value" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="api_port">
+    <wsdl:operation name="ConsultarLoteRps">
+      <wsdl:input message="tns:ConsultarLoteRps" />
+      <wsdl:output message="tns:ConsultarLoteRpsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="RecepcionarLoteRps">
+      <wsdl:input message="tns:RecepcionarLoteRps" />
+      <wsdl:output message="tns:RecepcionarLoteRpsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GerarNfse">
+      <wsdl:input message="tns:GerarNfse" />
+      <wsdl:output message="tns:GerarNfseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelarNfse">
+      <wsdl:input message="tns:CancelarNfse" />
+      <wsdl:output message="tns:CancelarNfseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="SubstituirNfse">
+      <wsdl:input message="tns:SubstituirNfse" />
+      <wsdl:output message="tns:SubstituirNfseResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="api_binding" type="tns:api_port">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultarLoteRps">
+      <soap:operation soapAction="ConsultarLoteRps" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecepcionarLoteRps">
+      <soap:operation soapAction="RecepcionarLoteRps" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GerarNfse">
+      <soap:operation soapAction="GerarNfse" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarNfse">
+      <soap:operation soapAction="CancelarNfse" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubstituirNfse">
+      <soap:operation soapAction="SubstituirNfse" />
+      <wsdl:input>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" namespace="urn:notainteligente.com" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="service">
+    <wsdl:port name="api_port" binding="tns:api_binding">
+      <soap:address location="https://treino-claudio-mg.notainteligente.com/api/action" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
