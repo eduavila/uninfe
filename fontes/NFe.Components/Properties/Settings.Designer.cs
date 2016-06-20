@@ -698,16 +698,6 @@ namespace NFe.Components.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://nfe.prefeitura.sp.gov.br/ws/lotenfe.asmx")]
-        public string NFe_Components_HSaoPauloSP_LoteNFe {
-            get {
-                return ((string)(this["NFe_Components_HSaoPauloSP_LoteNFe"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://nfe.prefeitura.sp.gov.br/ws/lotenfe.asmx")]
         public string NFe_Components_PSaoPauloSP_LoteNFe {
             get {
                 return ((string)(this["NFe_Components_PSaoPauloSP_LoteNFe"]));
@@ -737,26 +727,6 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://treino-claudio-mg.notainteligente.com/api/action")]
-        public string NFe_Components_com_notainteligente_claudiomg_h_service {
-            get {
-                return ((string)(this["NFe_Components_com_notainteligente_claudiomg_h_service"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://claudio-mg.notainteligente.com/api/action")]
-        public string NFe_Components_com_notainteligente_claudiomg_p_service {
-            get {
-                return ((string)(this["NFe_Components_com_notainteligente_claudiomg_p_service"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://web1.memory.com.br:81/nfse/ws/lote_rps_service.php")]
         public string NFe_Components_br_com_memory_pontenovamg_h_loterpswsdl {
             get {
@@ -771,6 +741,26 @@ namespace NFe.Components.Properties {
         public string NFe_Components_br_com_memory_pontenovamg_p_loterpswsdl {
             get {
                 return ((string)(this["NFe_Components_br_com_memory_pontenovamg_p_loterpswsdl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://usloft3931.serverloft.com:16580/pmcrbnfseletronica_homolog/ServicoWeb")]
+        public string NFe_Components_HCorumbaMS_NfseWSService {
+            get {
+                return ((string)(this["NFe_Components_HCorumbaMS_NfseWSService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://usloft3931.serverloft.com:16680/pmcrbnfseletronica/ServicoWeb")]
+        public string NFe_Components_PCorumbaMS_NfseWSService {
+            get {
+                return ((string)(this["NFe_Components_PCorumbaMS_NfseWSService"]));
             }
         }
     }
