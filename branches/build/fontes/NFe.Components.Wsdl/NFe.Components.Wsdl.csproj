@@ -59,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -994,7 +996,6 @@
     <EmbeddedResource Include="NFse\schemas\NFSe\PAULISTANA\xmldsig-core-schema_v01.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSaoPauloSP-PAULISTANA.wsdl" />
     <EmbeddedResource Include="NFe\WSDL\Homologacao\ES\HESNfeCadConsultaCadastro2.wsdl" />
     <EmbeddedResource Include="NFe\WSDL\Producao\ES\PESNfeCadConsultaCadastro2.wsdl" />
     <EmbeddedResource Include="NFe\WSDL\Homologacao\AM\HAMCadConsultaCadastro2.wsdl" />
@@ -2833,6 +2834,41 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HPonteNovaMG-Memory.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PCorumbaMS_NA_INFORMATICA.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HCorumbaMS_NA_INFORMATICA.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-cancelarnfse.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-consultarloterps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-consultarnfse.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-consultarnfseporrps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-consultarsituacaoloterps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HRondonopolisMT-recepcionarloterps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-cancelarnfse.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-consultarloterps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-consultarnfse.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-consultarnfseporrps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-consultarsituacaoloterps.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PRondonopolisMT-recepcionarloterps.wsdl" />
+    <EmbeddedResource Include="NFse\schemas\NFSe\ABACO\V2\nfse_v2010.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\schemas\NFSe\ABACO\V2\xmldsig-core-schema20020212.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCENfeAutorizacao_C.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCENfeConsulta2_C.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCENfeInutilizacao2_C.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCENfeRetAutorizacao_C.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCENfeStatusServico2_C.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\CE\HCERecepcaoEvento_C.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NFse\WSDL\Producao\PCamacariBA.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HCamacariBA.wsdl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
