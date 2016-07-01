@@ -59,7 +59,7 @@ namespace NFe.Service.NFSe
                         envLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
-                System.Net.SecurityProtocolType securityProtocolType = WebServiceProxy.DefinirProtocoloSeguranca(oDadosEnvLoteRps.cMunicipio, oDadosEnvLoteRps.tpAmb, oDadosEnvLoteRps.tpEmis, padraoNFSe);
+                System.Net.SecurityProtocolType securityProtocolType = WebServiceProxy.DefinirProtocoloSeguranca(oDadosEnvLoteRps.cMunicipio, oDadosEnvLoteRps.tpAmb, oDadosEnvLoteRps.tpEmis, padraoNFSe, Servico);
 
                 string cabecMsg = "";
                 switch (padraoNFSe)
