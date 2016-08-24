@@ -11,6 +11,7 @@ using NFe.Components.EL;
 using NFe.Components.GovDigital;
 using NFe.Components.FISSLEX;
 using NFe.Components.Memory;
+using NFe.Components.Metropolis;
 
 namespace NFe.Service.NFSe
 {
@@ -42,7 +43,7 @@ namespace NFe.Service.NFSe
                 object pedLoteRps = null;
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe);
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe, ler.oDadosPedSitNfseRps.cMunicipio);
                     if (wsProxy != null) pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
@@ -63,6 +64,7 @@ namespace NFe.Service.NFSe
                         wsProxy.Betha = new Betha();
                         break;
 
+                    case PadroesNFSe.ABACO:
                     case PadroesNFSe.CANOAS_RS:
                         cabecMsg = "<cabecalho versao=\"201001\"><versaoDados>V2010</versaoDados></cabecalho>";
                         break;
@@ -95,7 +97,8 @@ namespace NFe.Service.NFSe
                                                         Empresas.Configuracoes[emp].SenhaWS,
                                                         ConfiguracaoApp.ProxyUsuario,
                                                         ConfiguracaoApp.ProxySenha,
-                                                        ConfiguracaoApp.ProxyServidor);
+                                                        ConfiguracaoApp.ProxyServidor,
+                                                        Empresas.Configuracoes[emp].X509Certificado);
 
                         fiorilli.ConsultarNfsePorRps(NomeArquivoXML);
                         break;
@@ -147,7 +150,7 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.GOVDIGITAL:
                         GovDigital govdig = new GovDigital((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                                                            Empresas.Configuracoes[emp].PastaXmlRetorno, 
+                                                            Empresas.Configuracoes[emp].PastaXmlRetorno,
                                                             Empresas.Configuracoes[emp].X509Certificado,
                                                             ler.oDadosPedSitNfseRps.cMunicipio,
                                                             ConfiguracaoApp.ProxyUsuario,
@@ -164,6 +167,7 @@ namespace NFe.Service.NFSe
                         cabecMsg = "1";
                         break;
 
+                    case PadroesNFSe.ACTCON:
                     case PadroesNFSe.PRODATA:
                         cabecMsg = "<cabecalho versao=\"2.01\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"<versaoDados>2.01</versaoDados></cabecalho>";
                         break;
@@ -201,6 +205,24 @@ namespace NFe.Service.NFSe
                         }
 
                         break;
+
+
+                    case PadroesNFSe.METROPOLIS:
+                        #region METROPOLIS
+                        Metropolis metropolis = new Metropolis((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                                                      Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                      ler.oDadosPedSitNfseRps.cMunicipio,
+                                                      ConfiguracaoApp.ProxyUsuario,
+                                                      ConfiguracaoApp.ProxySenha,
+                                                      ConfiguracaoApp.ProxyServidor,
+                                                      Empresas.Configuracoes[emp].X509Certificado);
+
+                        AssinaturaDigital metropolisdig = new AssinaturaDigital();
+                        metropolisdig.Assinar(NomeArquivoXML, emp, ler.oDadosPedSitNfseRps.cMunicipio);
+
+                        metropolis.ConsultarNfsePorRps(NomeArquivoXML);
+                        break;
+                        #endregion
 
                     case PadroesNFSe.FREIRE_INFORMATICA:
                         cabecMsg = "<cabecalho xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\" versao=\"2.02\"><versaoDados>2.02</versaoDados></cabecalho>";

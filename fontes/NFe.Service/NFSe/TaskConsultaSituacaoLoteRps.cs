@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.IO;
-using System.Xml;
-
 using NFe.Components;
 using NFe.Settings;
 using NFe.Certificado;
 using NFSe.Components;
-using NFe.Components.Fiorilli;
 using NFe.Components.SimplISS;
 using NFe.Components.EGoverne;
 using NFe.Components.EL;
 using NFe.Components.FISSLEX;
-using NFe.Components.Conam;
 using NFe.Components.Memory;
+using NFe.Components.Metropolis;
 
 namespace NFe.Service.NFSe
 {
@@ -59,7 +53,7 @@ namespace NFe.Service.NFSe
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedSitLoteRps.cMunicipio, oDadosPedSitLoteRps.tpAmb, oDadosPedSitLoteRps.tpEmis, padraoNFSe);
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedSitLoteRps.cMunicipio, oDadosPedSitLoteRps.tpAmb, oDadosPedSitLoteRps.tpEmis, padraoNFSe, 0);
                     if (wsProxy != null) pedSitLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
@@ -80,6 +74,7 @@ namespace NFe.Service.NFSe
                         wsProxy.Betha = new Betha();
                         break;
 
+                    case PadroesNFSe.ABACO:
                     case PadroesNFSe.CANOAS_RS:
                         cabecMsg = "<cabecalho versao=\"201001\"><versaoDados>V2010</versaoDados></cabecalho>";
                         break;
@@ -128,7 +123,7 @@ namespace NFe.Service.NFSe
 
                         egoverne.ConsultarSituacaoLoteRps(NomeArquivoXML);
                         break;
-                        #endregion
+                    #endregion
 
                     case PadroesNFSe.EL:
                         #region E&L
@@ -140,10 +135,10 @@ namespace NFe.Service.NFSe
                                         (ConfiguracaoApp.Proxy ? ConfiguracaoApp.ProxyUsuario : ""),
                                         (ConfiguracaoApp.Proxy ? ConfiguracaoApp.ProxySenha : ""),
                                         (ConfiguracaoApp.Proxy ? ConfiguracaoApp.ProxyServidor : ""));
-                        
+
                         el.ConsultarSituacaoLoteRps(NomeArquivoXML);
                         break;
-                        #endregion
+                    #endregion
 
                     case PadroesNFSe.EQUIPLANO:
                         cabecMsg = "1";
@@ -158,7 +153,7 @@ namespace NFe.Service.NFSe
                         ConfiguracaoApp.ProxyUsuario,
                         ConfiguracaoApp.ProxySenha,
                         ConfiguracaoApp.ProxyServidor);
-                        
+
                         fisslex.ConsultarSituacaoLoteRps(NomeArquivoXML);
                         break;
 
@@ -201,6 +196,23 @@ namespace NFe.Service.NFSe
                         memory.CancelarNfse(NomeArquivoXML);
                         break;
                     #endregion
+
+                    case PadroesNFSe.METROPOLIS:
+                        #region METROPOLIS
+                        Metropolis metropolis = new Metropolis((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                                                      Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                      oDadosPedSitLoteRps.cMunicipio,
+                                                      ConfiguracaoApp.ProxyUsuario,
+                                                      ConfiguracaoApp.ProxySenha,
+                                                      ConfiguracaoApp.ProxyServidor,
+                                                      Empresas.Configuracoes[emp].X509Certificado);
+
+                        AssinaturaDigital metropolisdig = new AssinaturaDigital();
+                        metropolisdig.Assinar(NomeArquivoXML, emp, oDadosPedSitLoteRps.cMunicipio);
+
+                        metropolis.ConsultarSituacaoLoteRps(NomeArquivoXML);
+                        break;
+                        #endregion
                 }
 
                 if (IsInvocar(padraoNFSe, Servico))
@@ -210,7 +222,7 @@ namespace NFe.Service.NFSe
                     ad.Assinar(NomeArquivoXML, emp, oDadosPedSitLoteRps.cMunicipio);
 
                     //Invocar o método que envia o XML para o SEFAZ
-                    oInvocarObj.InvocarNFSe(wsProxy, pedSitLoteRps, NomeMetodoWS(Servico, oDadosPedSitLoteRps.cMunicipio), 
+                    oInvocarObj.InvocarNFSe(wsProxy, pedSitLoteRps, NomeMetodoWS(Servico, oDadosPedSitLoteRps.cMunicipio),
                                             cabecMsg, this,
                                             Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML, //"-ped-sitloterps", 
                                             Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).RetornoXML,  //"-sitloterps", 

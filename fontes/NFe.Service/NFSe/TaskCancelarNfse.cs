@@ -16,6 +16,7 @@ using NFe.Components.EloTech;
 using NFe.Components.MGM;
 using NFe.Components.Consist;
 using NFe.Components.Memory;
+using NFe.Components.Metropolis;
 
 namespace NFe.Service.NFSe
 {
@@ -52,7 +53,7 @@ namespace NFe.Service.NFSe
                 //Criar objetos das classes dos serviços dos webservices do SEFAZ
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedCanNfse.cMunicipio, oDadosPedCanNfse.tpAmb, oDadosPedCanNfse.tpEmis, padraoNFSe);
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedCanNfse.cMunicipio, oDadosPedCanNfse.tpAmb, oDadosPedCanNfse.tpEmis, padraoNFSe, oDadosPedCanNfse.cMunicipio);
                     if (wsProxy != null)
                         pedCanNfse = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
@@ -82,6 +83,7 @@ namespace NFe.Service.NFSe
                         wsProxy.Betha = new Betha();
                         break;
 
+                    case PadroesNFSe.ABACO:
                     case PadroesNFSe.CANOAS_RS:
                         cabecMsg = "<cabecalho versao=\"201001\"><versaoDados>V2010</versaoDados></cabecalho>";
                         break;
@@ -142,6 +144,23 @@ namespace NFe.Service.NFSe
                         sigcorp.CancelarNfse(NomeArquivoXML);
                         break;
 
+                    case PadroesNFSe.METROPOLIS:
+                        #region METROPOLIS
+                        Metropolis metropolis = new Metropolis((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                                                      Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                      oDadosPedCanNfse.cMunicipio,
+                                                      ConfiguracaoApp.ProxyUsuario,
+                                                      ConfiguracaoApp.ProxySenha,
+                                                      ConfiguracaoApp.ProxyServidor,
+                                                      Empresas.Configuracoes[emp].X509Certificado);
+
+                        AssinaturaDigital metropolisdig = new AssinaturaDigital();
+                        metropolisdig.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
+
+                        metropolis.CancelarNfse(NomeArquivoXML);
+                        break;
+                    #endregion
+
                     case PadroesNFSe.FIORILLI:
                         Fiorilli fiorilli = new Fiorilli((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
                                                         Empresas.Configuracoes[emp].PastaXmlRetorno,
@@ -150,7 +169,8 @@ namespace NFe.Service.NFSe
                                                         Empresas.Configuracoes[emp].SenhaWS,
                                                         ConfiguracaoApp.ProxyUsuario,
                                                         ConfiguracaoApp.ProxySenha,
-                                                        ConfiguracaoApp.ProxyServidor);
+                                                        ConfiguracaoApp.ProxyServidor,
+                                                        Empresas.Configuracoes[emp].X509Certificado);
 
                         AssinaturaDigital ass = new AssinaturaDigital();
                         ass.Assinar(NomeArquivoXML, emp, oDadosPedCanNfse.cMunicipio);
@@ -235,6 +255,7 @@ namespace NFe.Service.NFSe
                         cabecMsg = "1";
                         break;
 
+                    case PadroesNFSe.ACTCON:
                     case PadroesNFSe.PRODATA:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
                         break;
@@ -267,7 +288,9 @@ namespace NFe.Service.NFSe
                     #endregion
 
                     case PadroesNFSe.NATALENSE:
-                        cabecMsg = "<cabecalho xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" versao=\"1\" xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\"><versaoDados>1</versaoDados></cabecalho>";
+                        cabecMsg = @"
+                                    <![CDATA[<?xml version=""1.0""?> <cabecalho xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" versao =""1"" xmlns =""http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd"" > <versaoDados>1</versaoDados></cabecalho>
+                                    ";
                         break;
 
                     case PadroesNFSe.CONSIST:
