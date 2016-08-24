@@ -17,6 +17,7 @@ using NFe.Components.EloTech;
 using NFe.Components.MGM;
 using NFe.Components.Consist;
 using NFe.Components.Memory;
+using NFe.Components.Metropolis;
 
 namespace NFe.Service.NFSe
 {
@@ -54,7 +55,7 @@ namespace NFe.Service.NFSe
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosEnvLoteRps.cMunicipio, oDadosEnvLoteRps.tpAmb, oDadosEnvLoteRps.tpEmis, padraoNFSe);
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosEnvLoteRps.cMunicipio, oDadosEnvLoteRps.tpAmb, oDadosEnvLoteRps.tpEmis, padraoNFSe, oDadosEnvLoteRps.cMunicipio);
                     if (wsProxy != null)
                         envLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
@@ -146,6 +147,11 @@ namespace NFe.Service.NFSe
                         Servico = GetTipoServicoSincrono(Servico, NomeArquivoXML, PadroesNFSe.FINTEL);
                         break;
 
+                    case PadroesNFSe.ACTCON:
+                        cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados></cabecalho>";
+                        Servico = GetTipoServicoSincrono(Servico, NomeArquivoXML, PadroesNFSe.ACTCON);
+                        break;
+
                     case PadroesNFSe.SYSTEMPRO:
                         #region SystemPro
                         SystemPro syspro = new SystemPro((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
@@ -168,14 +174,14 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.FIORILLI:
                         #region Fiorilli
                         Fiorilli fiorilli = new Fiorilli((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                        Empresas.Configuracoes[emp].PastaXmlRetorno,
-                        oDadosEnvLoteRps.cMunicipio,
-                        Empresas.Configuracoes[emp].UsuarioWS,
-                        Empresas.Configuracoes[emp].SenhaWS,
-                        ConfiguracaoApp.ProxyUsuario,
-                        ConfiguracaoApp.ProxySenha,
-                        ConfiguracaoApp.ProxyServidor);
-
+                                                         Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                         oDadosEnvLoteRps.cMunicipio,
+                                                         Empresas.Configuracoes[emp].UsuarioWS,
+                                                         Empresas.Configuracoes[emp].SenhaWS,
+                                                         ConfiguracaoApp.ProxyUsuario,
+                                                         ConfiguracaoApp.ProxySenha,
+                                                         ConfiguracaoApp.ProxyServidor,
+                                                         Empresas.Configuracoes[emp].X509Certificado);
 
                         AssinaturaDigital ass = new AssinaturaDigital();
                         ass.Assinar(NomeArquivoXML, emp, oDadosEnvLoteRps.cMunicipio);
@@ -305,6 +311,23 @@ namespace NFe.Service.NFSe
                         break;
                     #endregion
 
+                    case PadroesNFSe.METROPOLIS:
+                        #region METROPOLIS
+                        Metropolis metropolis = new Metropolis((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                                                      Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                      oDadosEnvLoteRps.cMunicipio,
+                                                      ConfiguracaoApp.ProxyUsuario,
+                                                      ConfiguracaoApp.ProxySenha,
+                                                      ConfiguracaoApp.ProxyServidor,
+                                                      Empresas.Configuracoes[emp].X509Certificado);
+
+                        AssinaturaDigital metropolisdig = new AssinaturaDigital();
+                        metropolisdig.Assinar(NomeArquivoXML, emp, oDadosEnvLoteRps.cMunicipio);
+
+                        metropolis.EmiteNF(NomeArquivoXML);
+                        break;
+                    #endregion
+
                     case PadroesNFSe.MGM:
                         #region MGM
                         MGM mgm = new MGM((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
@@ -337,7 +360,7 @@ namespace NFe.Service.NFSe
                         wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
 
                         if (oDadosEnvLoteRps.tpAmb == 1)
-                        {                            
+                        {
                             //envLoteRps = new NFe.Components.PClaudioMG.api_portClient();
                         }
                         else
@@ -368,11 +391,11 @@ namespace NFe.Service.NFSe
                         memory.EmiteNF(NomeArquivoXML);
                         break;
                     #endregion
-                    
+
                     case PadroesNFSe.CAMACARI_BA:
                         cabecMsg = "<cabecalho><versaoDados>2.01</versaoDados><versao>2.01</versao></cabecalho>";
                         break;
-                   
+
                 }
 
                 if (IsInvocar(padraoNFSe))
