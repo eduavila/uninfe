@@ -2597,7 +2597,7 @@
       <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>WSDL\Producao\PPresidentePrudenteSP-SIMPLISS.wsdl</CancelarNfse>
     </LocalProducao>
-  </Estado>
+  </Estado>  
   <Estado ID="3122306" Nome="Divinópolis - MG" UF="MG" Padrao="GOVDIGITAL">
     <LocalHomologacao>
       <RecepcionarLoteRps>wsdl\homologacao\HDivinopolisMG-GOVDigital.wsdl</RecepcionarLoteRps>
@@ -4584,6 +4584,26 @@
       <ConsultarLoteRps>wsdl\producao\PGuarapuava-PR.wsdl</ConsultarLoteRps>
       <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PGuarapuava-PR.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3306305" Nome="Volta Redonda - RJ" UF="RJ" Padrao="SIMPLISS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
 </Webservice>

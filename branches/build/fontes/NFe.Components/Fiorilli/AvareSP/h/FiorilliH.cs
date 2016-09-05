@@ -5,6 +5,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml;
 
 namespace NFe.Components.Fiorilli.AvareSP.h
 {
@@ -13,6 +14,14 @@ namespace NFe.Components.Fiorilli.AvareSP.h
         IssWebWS service = new IssWebWS();
         string UsuarioWs = "";
         string SenhaWs = "";
+        public override string NameSpaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 
         #region construtores
         public FiorilliH(TipoAmbiente tpAmb, string pastaRetorno, string usuario, string senhaWs, string proxyuser, string proxypass, string proxyserver, X509Certificate2 certificado)
@@ -39,6 +48,26 @@ namespace NFe.Components.Fiorilli.AvareSP.h
         #region Métodos
         public override void EmiteNF(string file)
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(file);
+
+            string strResult = string.Empty;
+            switch (doc.DocumentElement.Name)
+            {
+                case "GerarNfseEnvio":
+                    strResult = EnvioSincrono(file);
+                    break;
+                case "EnviarLoteRpsSincronoEnvio":
+                    strResult = EnvioSincronoEmLote(file);
+                    break;
+            }
+
+            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML,
+                                          Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML);
+        }
+
+        private string EnvioSincrono(string file)
+        {
             GerarNfseEnvio envio = new GerarNfseEnvio();
             GerarNfseResposta resposta = new GerarNfseResposta();
 
@@ -56,11 +85,33 @@ namespace NFe.Components.Fiorilli.AvareSP.h
             XmlSerializer serializerResposta = new XmlSerializer(typeof(GerarNfseResposta));
             StringWriter textWriter = new StringWriter();
             serializerResposta.Serialize(textWriter, resposta);
-            string strResult = textWriter.ToString();
 
-            GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).EnvioXML,
-                                          Propriedade.Extensao(Propriedade.TipoEnvio.EnvLoteRps).RetornoXML);
+            return textWriter.ToString(); 
         }
+
+        private string EnvioSincronoEmLote(string file)
+        {
+            EnviarLoteRpsSincronoEnvio envio = new EnviarLoteRpsSincronoEnvio();
+            EnviarLoteRpsSincronoResposta resposta = new EnviarLoteRpsSincronoResposta();
+
+            XmlRootAttribute xRoot = new XmlRootAttribute();
+            xRoot.ElementName = "EnviarLoteRpsSincronoEnvio";
+            xRoot.Namespace = "http://www.abrasf.org.br/nfse.xsd";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(EnviarLoteRpsSincronoEnvio), xRoot);
+            StreamReader reader = new StreamReader(file);
+            envio = (EnviarLoteRpsSincronoEnvio)serializer.Deserialize(reader);
+            reader.Close();
+
+            resposta = service.recepcionarLoteRpsSincrono(envio, UsuarioWs, SenhaWs);
+
+            XmlSerializer serializerResposta = new XmlSerializer(typeof(EnviarLoteRpsSincronoResposta));
+            StringWriter textWriter = new StringWriter();
+            serializerResposta.Serialize(textWriter, resposta);
+
+            return textWriter.ToString();
+        }
+
 
         public override void CancelarNfse(string file)
         {

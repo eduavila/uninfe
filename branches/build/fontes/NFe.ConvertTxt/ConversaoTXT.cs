@@ -36,6 +36,7 @@ namespace NFe.ConvertTxt
                     _LayoutTXT.Add("B20E", prefix + "B20e|CPF|");
                     _LayoutTXT.Add("BA14", prefix + "BA14|CPF|");
                     _LayoutTXT.Add("B20I", prefix + "B20i|refCTe|");
+                    _LayoutTXT.Add("BA19", prefix + "BA19|refCTe|");
                     _LayoutTXT.Add("B20J", prefix + "B20j|mod|nECF|nCOO|");
                     _LayoutTXT.Add("BA20", prefix + "BA20|mod|nECF|nCOO|");
                     /// "C"
@@ -113,7 +114,7 @@ namespace NFe.ConvertTxt
                     _LayoutTXT.Add("N10_200", prefix + "N10|orig|CST|modBC|pRedBC|vBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|");
                     _LayoutTXT.Add("N10A_310", prefix + "N10a|orig|CST|modBC|vBC|pRedBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|pBCOp|UFST|");
                     _LayoutTXT.Add("N10A_200", prefix + "N10a|orig|CST|modBC|pRedBC|vBC|pICMS|vICMS|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|pBCOp|UFST|");
-                    _LayoutTXT.Add("N10B", prefix + "N10b|oOrig|CST|vBCSTRet|vICMSSTRet|vBCSTDest|vICMSSTDest|");
+                    _LayoutTXT.Add("N10B", prefix + "N10b|orig|CST|vBCSTRet|vICMSSTRet|vBCSTDest|vICMSSTDest|");
                     _LayoutTXT.Add("N10C", prefix + "N10c|orig|CSOSN|pCredSN|vCredICMSSN|");
                     _LayoutTXT.Add("N10D", prefix + "N10d|orig|CSOSN|");
                     _LayoutTXT.Add("N10E", prefix + "N10e|orig|CSOSN|modBCST|pMVAST|pRedBCST|vBCST|pICMSST|vICMSST|pCredSN|vCredICMSSN|");
@@ -1006,8 +1007,9 @@ namespace NFe.ConvertTxt
                     NFe.ide.NFref[NFe.ide.NFref.Count - 1].refNFP.CPF = this.LerString(TpcnResources.CPF, ObOp.Obrigatorio, 11, 11);
                     break;
 
+                case "BA19":
                 case "B20I":
-                    //layout = "§B20i|refCTe"; //ok
+                    //layout = "§BA19|refCTe"; //ok
                     NFe.ide.NFref.Add(new NFref(null, LerString(TpcnResources.refCTe, ObOp.Obrigatorio, 44, 44)));
                     break;
 

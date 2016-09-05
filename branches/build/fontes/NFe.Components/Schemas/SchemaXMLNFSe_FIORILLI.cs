@@ -84,6 +84,21 @@ namespace NFSe.Components
                 TargetNameSpace = "http://www.abrasf.org.br/nfse.xsd"
             });
             #endregion
+
+            #region XML de lote RPS
+            SchemaXML.InfSchemas.Add("NFSE-FIORILLI-EnviarLoteRpsSincronoEnvio", new InfSchema()
+            {
+                Tag = "EnviarLoteRpsSincronoEnvio",
+                ID = SchemaXML.InfSchemas.Count + 1,
+                ArquivoXSD = "NFSe\\FIORILLI\\nfse_v201.xsd",
+                Descricao = "XML de Lote RPS",
+                TagAssinatura = "Rps",
+                TagAtributoId = "InfDeclaracaoPrestacaoServico",
+                TagLoteAssinatura = "EnviarLoteRpsSincronoEnvio",
+                TagLoteAtributoId = "LoteRps",
+                TargetNameSpace = "http://www.abrasf.org.br/nfse.xsd"
+            });
+            #endregion
         }
     }
 }
