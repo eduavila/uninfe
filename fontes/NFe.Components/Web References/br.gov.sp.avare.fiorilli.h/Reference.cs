@@ -4844,8 +4844,9 @@ namespace NFe.Components.br.gov.sp.avare.fiorilli.h {
                 this.loteRpsField = value;
             }
         }
-        
+
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.w3.org/2000/09/xmldsig#")]
         public SignatureType Signature {
             get {
                 return this.signatureField;

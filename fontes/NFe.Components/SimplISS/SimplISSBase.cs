@@ -30,10 +30,11 @@ namespace NFe.Components.SimplISS
                     if (tpAmb == TipoAmbiente.taHomologacao)
                         switch (CodigoMun)
                         {
+                            case 3306305: //Volta Redonda-RJ
                             case 3130309: //Iguatama-MG
                             case 3515004: //Embu das Artes-SP
                             case 3538709: //Piracicaba-SP 
-                                simplissService = new PiracicabaSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                simplissService = new VoltaRedondaRJ.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             case 3541406: //Presidente Prudente-SP
@@ -56,6 +57,10 @@ namespace NFe.Components.SimplISS
 
                             case 3515004: //Embu das Artes-SP
                                 simplissService = new EmbuDasArtesSP.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                break;
+
+                            case 3306305: //Volta Redonda-RJ
+                                simplissService = new VoltaRedondaRJ.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             case 3130309:

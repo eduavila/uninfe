@@ -436,6 +436,7 @@ namespace NFe.Components
                                 case 22: //Piauí
                                 case 31: //Minas Gerais
                                 case 29: //Bahia
+                                case 13: //Amazonas
                                 case 3550308: //São Paulo-SP
                                     securityProtocolType = SecurityProtocolType.Tls;
                                     break;
