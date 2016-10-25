@@ -681,7 +681,12 @@ namespace NFe.Components
         /// Padrão Pública
         /// </summary>
         [Description("Pública")]
-        PUBLICA
+        PUBLICA,
+        /// <summary>
+        /// Padrão BSIT-BR
+        /// </summary>
+        [Description("BSIT-BR")]
+        BSITBR
 
         ///***ATENÇÃO***
         ///o nome deste enum tem que coincidir com o nome da url, pq faço um "IndexOf" deste enum para pegar o padrao

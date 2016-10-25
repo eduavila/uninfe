@@ -66,6 +66,10 @@ namespace NFe.Components
                             padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-4113700-";
                             break;
 
+                        case 4109401: //Guarapuava-PR
+                            padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-4109401-";
+                            break;
+
                         default:
                             padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-";
                             break;
