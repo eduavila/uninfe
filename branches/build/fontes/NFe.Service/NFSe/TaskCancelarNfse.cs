@@ -251,6 +251,15 @@ namespace NFe.Service.NFSe
                         govdig.CancelarNfse(NomeArquivoXML);
                         break;
 
+                    case PadroesNFSe.BSITBR:
+                        wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
+
+                        if (oDadosPedCanNfse.tpAmb == 1)
+                            pedCanNfse = new Components.PJaraguaGO.nfseWS();
+                        else
+                            throw new Exception("Município de Jaraguá-GO não dispõe de ambiente de homologação para envio de NFS-e em teste.");
+                        break;
+
                     case PadroesNFSe.EQUIPLANO:
                         cabecMsg = "1";
                         break;

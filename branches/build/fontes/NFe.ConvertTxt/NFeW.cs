@@ -1781,7 +1781,7 @@ namespace NFe.ConvertTxt
                 this.GerarIdeNFref(Nfe, ELide);
 
             nodeCurrent = ELide;
-            wCampo((int)Nfe.ide.tpImp, TpcnTipoCampo.tcInt, TpcnResources.tpImp, (Nfe.infNFe.Versao >= 3 ? ObOp.Opcional : ObOp.Obrigatorio));
+            wCampo((int)Nfe.ide.tpImp, TpcnTipoCampo.tcInt, TpcnResources.tpImp, ObOp.Obrigatorio);
             wCampo((int)Nfe.ide.tpEmis, TpcnTipoCampo.tcInt, TpcnResources.tpEmis, ObOp.Obrigatorio);
             wCampo(Nfe.ide.cDV, TpcnTipoCampo.tcInt, TpcnResources.cDV, ObOp.Obrigatorio);
             wCampo((int)Nfe.ide.tpAmb, TpcnTipoCampo.tcInt, TpcnResources.tpAmb, ObOp.Obrigatorio);

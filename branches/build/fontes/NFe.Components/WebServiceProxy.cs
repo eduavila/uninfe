@@ -145,6 +145,11 @@ namespace NFe.Components
                         return "WSNFSeV1001";
                     #endregion
 
+                    #region BSIT-BR
+                    case PadroesNFSe.BSITBR:
+                        return "nfseWS";
+                    #endregion
+
                     default:
                         return _NomeClasseWS;
                 }
@@ -188,7 +193,7 @@ namespace NFe.Components
             #region Descobrir o nome da classe e dos métodos
             NomeClasseWS = null;
             NomeMetodoWS = null;
-            if (serviceDescription.Services != null)
+            if (serviceDescription.Services != null && serviceDescription.Services.Count > 0)
             {
                 NomeClasseWS = ((Service)serviceDescription.Services[0]).Name.Replace(" ", "");
             }
@@ -546,7 +551,7 @@ namespace NFe.Components
 
             #region Se a NFSe for padrão DUETO/WEBISS/SALVADOR_BA/PRONIN preciso importar os schemas do WSDL
             switch (PadraoNFSe)
-            {
+            {                
                 case PadroesNFSe.NOTAINTELIGENTE:
                 case PadroesNFSe.SMARAPD:
                 case PadroesNFSe.DUETO:

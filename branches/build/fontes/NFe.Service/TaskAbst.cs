@@ -564,7 +564,11 @@ namespace NFe.Service
                 case PadroesNFSe.EGOVERNE:
                     retorna = "WSNFSeV1001";
                     break;
-                    #endregion
+                #endregion
+
+                case PadroesNFSe.BSITBR:
+                    retorna = "nfseWS";
+                    break;
 
             }
 
@@ -1758,6 +1762,33 @@ namespace NFe.Service
                             break;
                     }
                     break;
+                #endregion
+
+                #region BSIT-BR
+                case PadroesNFSe.BSITBR:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "consultarLoteRps";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "consultarNfseRps";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "cancelarNfse";
+                            break;
+
+                        case Servicos.NFSeGerarNfse:
+                            retorna = "gerarNfse";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRpsSincrono:
+                            retorna = "enviarLoteRpsSincrono";
+                            break;
+                    }
+                    break;
                     #endregion
             }
 
@@ -2333,6 +2364,7 @@ namespace NFe.Service
                 case PadroesNFSe.PAULISTANA:
                 case PadroesNFSe.NOTAINTELIGENTE:
                 case PadroesNFSe.NA_INFORMATICA:
+                case PadroesNFSe.BSITBR:
                 case PadroesNFSe.METROPOLIS:
                     retorno = false;
                     break;
@@ -2373,6 +2405,7 @@ namespace NFe.Service
                 case PadroesNFSe.NOTAINTELIGENTE:
                 case PadroesNFSe.PAULISTANA:
                 case PadroesNFSe.NA_INFORMATICA:
+                case PadroesNFSe.BSITBR:
                     invocar = true;
                     break;
             }
@@ -2497,6 +2530,41 @@ namespace NFe.Service
                         }
                     }
                     break;
+
+                case PadroesNFSe.BSITBR:
+                    if (servico == Servicos.NFSeRecepcionarLoteRps)
+                    {
+                        switch (doc.DocumentElement.Name)
+                        {
+                            case "p:EnviarLoteRpsSincronoEnvio":
+                                result = Servicos.NFSeRecepcionarLoteRpsSincrono;
+                                break;
+                            case "p:GerarNfseEnvio":
+                                result = Servicos.NFSeGerarNfse;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+
+                case PadroesNFSe.CAMACARI_BA:
+                    if (servico == Servicos.NFSeRecepcionarLoteRps)
+                    {
+                        switch (doc.DocumentElement.Name)
+                        {
+                            case "EnviarLoteRpsSincronoEnvio":
+                                result = Servicos.NFSeRecepcionarLoteRpsSincrono;
+                                break;
+                            case "EnviarLoteRpsEnvio":
+                                result = Servicos.NFSeRecepcionarLoteRps;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+
             }
 
             return result;

@@ -278,7 +278,16 @@ namespace NFe.Service.NFSe
 
                         metropolis.ConsultarLoteRps(NomeArquivoXML);
                         break;
-                        #endregion
+                    #endregion
+
+                    case PadroesNFSe.BSITBR:
+                        wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
+
+                        if (ler.oDadosPedSitNfseRps.tpAmb == 1)
+                            pedLoteRps = new Components.PJaraguaGO.nfseWS();
+                        else
+                            throw new Exception("Município de Jaraguá-GO não dispõe de ambiente de homologação para envio de NFS-e em teste.");
+                        break;
                 }
 
                 if (base.IsInvocar(padraoNFSe, Servico))

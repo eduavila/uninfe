@@ -26,23 +26,16 @@ namespace NFe.Components.SimplISS
             get
             {
                 if (simplissService == null)
-                {
                     if (tpAmb == TipoAmbiente.taHomologacao)
                         switch (CodigoMun)
                         {
-                            case 3306305: //Volta Redonda-RJ
-                            case 3130309: //Iguatama-MG
-                            case 3515004: //Embu das Artes-SP
-                            case 3538709: //Piracicaba-SP 
-                                simplissService = new VoltaRedondaRJ.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
-                                break;
-
                             case 3541406: //Presidente Prudente-SP
                                 simplissService = new PresidentePrudenteSP.h.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             default:
-                                throw new Exceptions.ServicoInexistenteException();
+                                simplissService = new Homologacao.SimplISSH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                break;
                         }
                     else
                         switch (CodigoMun)
@@ -63,14 +56,18 @@ namespace NFe.Components.SimplISS
                                 simplissService = new VoltaRedondaRJ.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
-                            case 3130309:
+                            case 3130309: //Iguatama-MG
                                 simplissService = new IguatamaMG.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
+                                break;
+
+                            case 4101101: // Andirá-PR
+                                simplissService = new AndiraPR.p.SimplISSP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer);
                                 break;
 
                             default:
                                 throw new Exceptions.ServicoInexistenteException();
                         }
-                }
+
                 return simplissService;
             }
         }

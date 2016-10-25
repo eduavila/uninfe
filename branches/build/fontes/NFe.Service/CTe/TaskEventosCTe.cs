@@ -37,6 +37,12 @@ namespace NFe.Service
                 //vai pegar o ambiente da Chave da Nfe autorizada p/ corrigir tpEmis
                 int tpEmis = this.dadosEnvEvento.eventos[0].tpEmis; //Convert.ToInt32(this.dadosEnvEvento.eventos[0].chNFe.Substring(34, 1)); 
 
+                //Se for carta de correção eletrônica, só aceita envio no ambiente normal.
+                if (dadosEnvEvento.eventos[0].tpEvento == ((int)ConvertTxt.tpEventos.tpEvCCe).ToString())
+                {
+                    tpEmis = (int)TipoEmissao.teNormal;
+                }
+
                 //Pegar o estado da chave, pois na cOrgao pode vir o estado 91 - Wandrey 22/08/2012
                 int cOrgao = dadosEnvEvento.eventos[0].cOrgao;
                 int ufParaWS = cOrgao;
@@ -46,7 +52,7 @@ namespace NFe.Service
                     ufParaWS = Convert.ToInt32(dadosEnvEvento.eventos[0].chNFe.Substring(0, 2));
 
                 //Definir o objeto do WebService
-                WebServiceProxy wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ufParaWS, dadosEnvEvento.eventos[0].tpAmb, tpEmis);
+                WebServiceProxy wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ufParaWS, dadosEnvEvento.eventos[0].tpAmb, tpEmis, 0);
                 System.Net.SecurityProtocolType securityProtocolType = WebServiceProxy.DefinirProtocoloSeguranca(ufParaWS, dadosEnvEvento.eventos[0].tpAmb, tpEmis, PadroesNFSe.NaoIdentificado, Servico);
 
                 object oRecepcaoEvento = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);//NomeClasseWS(Servico, ufParaWS));

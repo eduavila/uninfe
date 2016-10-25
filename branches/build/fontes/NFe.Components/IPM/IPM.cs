@@ -97,17 +97,20 @@ namespace NFSe.Components
                 case 4104303: // Campo mourão - PR
                     return (int)7483;
 
-                case 4309209: // Gravatai - RS
+                case 4309209: // Gravataí - RS
                     return (int)8683;
 
                 case 4104204: // Campo Largo - PR
                     return (int)7481;
 
-                case 4118204: // Paranagua - PR
+                case 4118204: // Paranaguá - PR
                     return (int)7745;
 
                 case 4217808: // Taió - SC
                     return (int)8351;
+
+                case 4201307: // Araquari - SC
+                    return (int)8025;
             }
 
             return 0;

@@ -2024,10 +2024,10 @@
     <EmbeddedResource Include="NFse\WSDL\Producao\PCaxiasdoSulRS-GIFServicos.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NFse\WSDL\Homologacao\HTaquaritubaSP-IssWebWS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HTaquaritubaSP-Fiorilli.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NFse\WSDL\Producao\PTaquaritubaSP-IssWebWS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PTaquaritubaSP-Fiorilli.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFe\WSDL\Homologacao\SCVRS\HSCVRSCteRecepcaoEvento.wsdl" />
@@ -2818,12 +2818,6 @@
     <EmbeddedResource Include="NFse\WSDL\Producao\PBarretos-SIGCORP.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NFse\WSDL\Homologacao\HClaudioMG-NotaInteligente.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="NFse\WSDL\Producao\PClaudioMG-NotaInteligente.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HAlagoinhasBA-FREIRE.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -2903,6 +2897,61 @@
     <EmbeddedResource Include="NFe\WSDL\Producao\MS\PMSNfeStatusServico2_C.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HVoltaRedondaRJ-SIMPLISS.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Producao\PVoltaRedondaRJ-SIMPLISS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HVenancioAires-NFSEcancelamento.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HVenancioAires-NFSEconsulta.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HVenancioAires-NFSEremessa.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PVenancioAires-NFSEcancelamento.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PVenancioAires-NFSEconsulta.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PVenancioAires-NFSEremessa.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PCruzAltaRSISSNET.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PItaporanga-SIMPLISS.wsdl" />
+    <EmbeddedResource Include="NFse\schemas\NFSe\BSITBR\nfse-v2.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeRecepcao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeAtivacao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeAtualizacao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeCancelamento_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeCertificacao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeComandos_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeLogs_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeParametrizacao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeRetRecepcao_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeServicoNacional_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeSignAC_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeStatus_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CFe\CFeRecepcao\CfeTeste_0007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="NFse\schemas\NFSe\BSITBR\xmldsig-core-schema20020212.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="NFse\WSDL\Producao\PJaraguaGO-BSITBR.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PGovernadorValarares-ACTCON.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Producao\PCamacariBA.wsdl">
