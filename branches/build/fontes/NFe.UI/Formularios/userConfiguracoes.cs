@@ -33,7 +33,8 @@ namespace NFe.UI
             _tpEmpresa_danfe,
             _tpEmpresa_pastas,
             _tpEmpresa_cert,
-            _tpEmpresa_ftp;
+            _tpEmpresa_ftp,
+            _tpEmpresa_sat;
 
         private string empcnpj = "";
         private TipoAplicativo servico;
@@ -44,6 +45,7 @@ namespace NFe.UI
         private Formularios.userConfiguracao_ftp uce_ftp;
         private Formularios.userConfiguracao_geral uc_geral = null;
         public Formularios.UserConfiguracaoPastas uce_pastas;
+        private Formularios.userConfiguracao_sat uce_sat;
         private Empresa currentEmpresa;
         private TipoAplicativo servicoCurrent;
 
@@ -93,6 +95,12 @@ namespace NFe.UI
                     uce_danfe.changeEvent += changed_Modificado;
                     tpage.Controls.Add(uce_danfe);
                     break;
+                case 5:
+                    tpage.Text = "SAT";
+                    uce_sat = new Formularios.userConfiguracao_sat();
+                    uce_sat.changeEvent += changed_Modificado;
+                    tpage.Controls.Add(uce_sat);
+                    break;
             }
             tpage.Controls[tpage.Controls.Count - 1].Dock = DockStyle.Fill;
 
@@ -135,6 +143,7 @@ namespace NFe.UI
                     if (_e.TabPage == _tpEmpresa_pastas) uce_pastas.FocusFirstControl();
                     if (_e.TabPage == _tpEmpresa_danfe) uce_danfe.FocusFirstControl();
                     if (_e.TabPage == _tpEmpresa_cert) uce_cert.FocusFirstControl();
+                    if (_e.TabPage == _tpEmpresa_sat) uce_sat.FocusFirstControl();
                 };
 
                 tc_main.SelectedIndex = 1;
@@ -161,6 +170,7 @@ namespace NFe.UI
                 tc_empresa.TabPages.Add(_tpEmpresa_cert = createtpage(2));
                 tc_empresa.TabPages.Add(_tpEmpresa_ftp = createtpage(3));
                 tc_empresa.TabPages.Add(_tpEmpresa_danfe = createtpage(4));
+                tc_empresa.TabPages.Add(_tpEmpresa_sat = createtpage(5));
                 uc_geral = new Formularios.userConfiguracao_geral();
                 tpGeral.Controls.Add(uc_geral);
             }
@@ -297,6 +307,14 @@ namespace NFe.UI
             oempresa.CompactarNfe = empresa.CompactarNfe;
             oempresa.IndSinc = empresa.IndSinc;
 
+            oempresa.CodigoAtivacaoSAT = empresa.CodigoAtivacaoSAT;
+            oempresa.MarcaSAT = empresa.MarcaSAT;
+            oempresa.UtilizaConversaoCFe = empresa.UtilizaConversaoCFe;
+            oempresa.CNPJSoftwareHouse = empresa.CNPJSoftwareHouse;
+            oempresa.SignACSAT = empresa.SignACSAT;
+            oempresa.IndRatISSQNSAT = empresa.IndRatISSQNSAT;
+            oempresa.RegTribISSQNSAT = empresa.RegTribISSQNSAT;
+
             oempresa.CriaPastasAutomaticamente = true;
         }
 
@@ -304,7 +322,7 @@ namespace NFe.UI
         {
             bool _modificado = false;
             bool _nova = string.IsNullOrEmpty(oempresa.PastaXmlEnvio);
-            
+
             stopChangedEvent = true;
             try
             {
@@ -390,6 +408,24 @@ namespace NFe.UI
                     if (_tpEmpresa_danfe != null)
                         _tpEmpresa_danfe.Parent = null;
                 }
+
+                if (oempresa.Servico == TipoAplicativo.SAT)
+                {
+                    _tpEmpresa_sat.Parent = tc_empresa;
+                    uce_sat.Populate(oempresa);
+
+                    if (_tpEmpresa_cert != null)
+                        _tpEmpresa_cert.Parent = null;
+                }
+                else
+                {
+                    if (_tpEmpresa_sat != null)
+                        _tpEmpresa_sat.Parent = null;
+
+                    _tpEmpresa_cert.Parent = tc_empresa;
+                    uce_cert.Populate(oempresa);
+
+                }
             }
             finally
             {
@@ -466,7 +502,7 @@ namespace NFe.UI
             {
                 if (DadosMudaramDaEmpresa(false) || uc_geral.Modificado || !EmpresaValidada)
                     return MetroFramework.MetroMessageBox.Show(uninfeDummy.mainForm,
-                        constAbandono, "", 
+                        constAbandono, "",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             }
             BackFuncao();
@@ -495,10 +531,13 @@ namespace NFe.UI
                     return false;
                 }
                 uce_pastas.Validar();
-                uce_cert.Validar();
+                if (currentEmpresa.Servico != TipoAplicativo.SAT)
+                    uce_cert.Validar();
                 if (currentEmpresa.Servico != TipoAplicativo.Nfse)
                     uce_danfe.Validar();
                 uce_ftp.Validar();
+                if (currentEmpresa.Servico == TipoAplicativo.SAT)
+                    uce_sat.Validar();
             }
             catch (Exception ex)
             {
@@ -581,7 +620,7 @@ namespace NFe.UI
                 {
                     ///
                     /// compara o que foi mudado
-                    /// 
+                    ///
                     bool grava = DadosMudaramDaEmpresa(true);
 
                     if (!EmpresaValidada)
@@ -603,7 +642,7 @@ namespace NFe.UI
                         /// salva a configuracao da empresa
                         /// 
 
-                        currentEmpresa.SalvarConfiguracao(true, true);
+                        currentEmpresa.SalvarConfiguracao((currentEmpresa.Servico == TipoAplicativo.SAT ? false : true), true);
 
 
                         var app = new ConfiguracaoApp();
@@ -629,7 +668,7 @@ namespace NFe.UI
                         /// 
                         for (int item = 0; item < cbEmpresas.Items.Count; ++item)
                         {
-                            NFe.Components.ComboElem empr = cbEmpresas.Items[item] as NFe.Components.ComboElem;
+                            ComboElem empr = cbEmpresas.Items[item] as ComboElem;
                             if (empr.Key.Equals(_key))
                             {
                                 cbEmpresas.SelectedIndex = item;
@@ -727,7 +766,7 @@ namespace NFe.UI
                         if (pergunta)
                         {
                             pergunta = !(MetroFramework.MetroMessageBox.Show(uninfeDummy.mainForm,
-                                                constAbandono, "", 
+                                                constAbandono, "",
                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
                         }
                         if (!pergunta)

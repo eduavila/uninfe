@@ -63,16 +63,7 @@ namespace NFe.UI.Formularios
                 #endregion
 
                 #region Montar Array DropList do Tipo de Emissão da NF-e
-                if (Propriedade.TipoAplicativo == TipoAplicativo.Todos)//.Nfe)
-                {
-                    comboBox_tpEmis.DataSource = EnumHelper.ToList(typeof(TipoEmissao), true, true);
-                }
-                else
-                {
-                    ArrayList arrTpEmis = new ArrayList();
-                    arrTpEmis.Add(new KeyValuePair<int, string>((int)NFe.Components.TipoEmissao.teNormal, EnumHelper.GetDescription(NFe.Components.TipoEmissao.teNormal)));
-                    comboBox_tpEmis.DataSource = arrTpEmis;
-                }
+                comboBox_tpEmis.DataSource = EnumHelper.ToList(typeof(TipoEmissao), true, true);
                 comboBox_tpEmis.DisplayMember = "Value";
                 comboBox_tpEmis.ValueMember = "Key";
                 #endregion
@@ -122,7 +113,10 @@ namespace NFe.UI.Formularios
                     checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Visible =
                     checkBoxCompactaNFe.Visible =
                     udTempoConsulta.Visible = lbl_udTempoConsulta.Visible =
-                    cbIndSinc.Visible = !(empresa.Servico == TipoAplicativo.Nfse);
+                    cbIndSinc.Visible = !(empresa.Servico == TipoAplicativo.Nfse || empresa.Servico == TipoAplicativo.SAT);
+
+                metroLabel10.Visible =
+                    comboBox_Ambiente.Visible = !(empresa.Servico == TipoAplicativo.SAT);
 
                 /*
 
@@ -329,7 +323,10 @@ namespace NFe.UI.Formularios
                            ufCod == 4101101 /*Andirá-PR*/||
                            ufCod == 3306305 /*Volta Redonda-RJ*/||
                            ufCod == 3522802 /*Itaporanga-SP*/||
-                           ufCod == 4201307 /*Araquari-SC*/;
+                           ufCod == 4201307 /*Araquari-SC*/||
+                           ufCod == 3205002 /*Serra-ES*/||
+                           ufCod == 3504008 /*Assis-SP*/||
+                           ufCod == 4202008 /*Balneário Camboriú-SC*/;
 
             bool visiblepass = ufCod == 3152105 || visible; /*Ponte nova*/
 

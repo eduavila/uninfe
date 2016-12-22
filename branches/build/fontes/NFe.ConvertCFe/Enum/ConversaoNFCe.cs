@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NFe.ConvertCFe.Enum
+namespace NFe.SAT.Enum
 {
     #region Tipo de pessoa
     /// <summary>
@@ -12,7 +12,13 @@ namespace NFe.ConvertCFe.Enum
     /// </summary>
     public enum TipoTpessoa
     {
+        /// <summary>
+        /// Pessoa Jurídica
+        /// </summary>
         Juridica,
+        /// <summary>
+        /// Pessoa Fisica
+        /// </summary>
         Fisica
     }
     #endregion

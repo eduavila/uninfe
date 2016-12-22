@@ -15,10 +15,10 @@ namespace NFe.Components
             {
                 Tag = "CFe",
                 ID = SchemaXML.InfSchemas.Count + 1,
-                ArquivoXSD = "CFe\\20150203_CfeRecepcaoValidador_0004.xsd",
+                //ArquivoXSD = "CFe\\20150203_CfeRecepcaoValidador_0004.xsd",
                 Descricao = "XML de Recepção do SAT",
-                TagAssinatura = "CFe",
-                TagAtributoId = "infCFe",
+                //TagAssinatura = "CFe",
+                //TagAtributoId = "infCFe",
                 //TargetNameSpace = NFeStrConstants.NAME_SPACE_CTE
             });
             #endregion

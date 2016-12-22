@@ -302,7 +302,7 @@ namespace NFe.ConvertTxt
                 nodeCurrent = rootCana;
 
                 wCampo(cana.safra, TpcnTipoCampo.tcStr, TpcnResources.safra, ObOp.Opcional);
-                wCampo(cana.Ref, TpcnTipoCampo.tcStr, TpcnResources.Ref, ObOp.Opcional);
+                wCampo(cana.Ref, TpcnTipoCampo.tcStr, TpcnResources.Ref.ToString().ToLower(), ObOp.Opcional, 0);
 
                 if (cana.fordia.Count > 31)
                     this.cMensagemErro += "Número máximo de elementos no segmento 'ZC04' excedeu" + Environment.NewLine;
@@ -664,8 +664,8 @@ namespace NFe.ConvertTxt
                     nodeCurrent = nodeArma;
 
                     wCampo(arma.tpArma, TpcnTipoCampo.tcInt, TpcnResources.tpArma);
-                    wCampo(arma.nSerie, TpcnTipoCampo.tcInt, TpcnResources.nSerie);
-                    wCampo(arma.nCano, TpcnTipoCampo.tcInt, TpcnResources.nCano);
+                    wCampo(arma.nSerie, TpcnTipoCampo.tcStr, TpcnResources.nSerie);
+                    wCampo(arma.nCano, TpcnTipoCampo.tcStr, TpcnResources.nCano);
                     wCampo(arma.descr, TpcnTipoCampo.tcStr, TpcnResources.descr);
                 }
                 #endregion

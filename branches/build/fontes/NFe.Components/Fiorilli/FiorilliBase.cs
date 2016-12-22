@@ -23,6 +23,7 @@ namespace NFe.Components.Fiorilli
                     if (tpAmb == TipoAmbiente.taHomologacao)
                         switch (CodigoMun)
                         {
+                            case 3504008: //Assis-SP
                             case 3522802: //Itaporanga-SP
                             case 3512902: //Cosmorama-SP 
                             case 3553807: //Taquarituba-SP
@@ -39,6 +40,10 @@ namespace NFe.Components.Fiorilli
                     else
                         switch (CodigoMun)
                         {
+                            case 3504008: //Assis-SP
+                                fiorilliService =  new AssisSP.p.FiorilliP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
+                                break;
+
                             case 3553807: //Taquarituba-SP
                                 fiorilliService = new TaquaraSP.p.FiorilliP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
                                 break;
