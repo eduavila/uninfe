@@ -11,21 +11,6 @@ using NFe.Settings;
 
 namespace NFe.UI
 {
-#if DEBUG
-    public class aaaa : NFe.Service.TaskAbst
-    {
-        public override void Execute()
-        {
-        }
-
-        public string nome(NFe.Components.Servicos servico, int uf, string versao)
-        {
-            this.Servico = servico;
-            return xNomeClasseWS(this.Servico, uf, versao);
-        }
-    }
-#endif
-
     public enum uninfeOpcoes
     {
         opCadastro,
@@ -124,6 +109,7 @@ namespace NFe.UI
             list.Add(new KeyValuePair<int, string>((int)TipoAplicativo.Cte, EnumHelper.GetDescription(TipoAplicativo.Cte)));
             list.Add(new KeyValuePair<int, string>((int)TipoAplicativo.MDFe, EnumHelper.GetDescription(TipoAplicativo.MDFe)));
             list.Add(new KeyValuePair<int, string>((int)TipoAplicativo.NFCe, EnumHelper.GetDescription(TipoAplicativo.NFCe)));
+            list.Add(new KeyValuePair<int, string>((int)TipoAplicativo.SAT, EnumHelper.GetDescription(TipoAplicativo.SAT)));
 
             if (includeservico)
                 list.Add(new KeyValuePair<int, string>((int)TipoAplicativo.Nfse, EnumHelper.GetDescription(TipoAplicativo.Nfse)));

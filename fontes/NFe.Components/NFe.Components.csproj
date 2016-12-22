@@ -65,15 +65,6 @@
     <Prefer32Bit>false</Prefer32Bit>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release45_x64|x64'">
-    <OutputPath>bin\Release45_x64\</OutputPath>
-    <DefineConstants>TRACE;_fw45;x64</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -101,6 +92,11 @@
     <Compile Include="Betha\Betha.cs" />
     <Compile Include="CNPJ.cs" />
     <Compile Include="ComboElemen.cs" />
+    <Compile Include="Fiorilli\AssisSP\p\FiorilliP.cs" />
+    <Compile Include="Pronin\GuarapuavaPR\h\ProninH.cs" />
+    <Compile Include="Pronin\GuarapuavaPR\p\ProninP.cs" />
+    <Compile Include="Pronin\Pronin.cs" />
+    <Compile Include="Pronin\ProninBase.cs" />
     <Compile Include="EGoverne\CuritibaPR\EGoverneSerialization.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -229,6 +225,8 @@
     <Compile Include="SimplISS\PiracicabaSP\p\SimplISSP.cs" />
     <Compile Include="SimplISS\PresidentePrudenteSP\h\SimplISSH.cs" />
     <Compile Include="SimplISS\PresidentePrudenteSP\p\SimplISSP.cs" />
+    <Compile Include="SimplISS\BalnearioCamboriu\h\SimplISSH.cs" />
+    <Compile Include="SimplISS\BalnearioCamboriu\p\SimplISSP.cs" />
     <Compile Include="SimplISS\VoltaRedondaRJ\h\SimplISSH.cs" />
     <Compile Include="SimplISS\VoltaRedondaRJ\p\SimplISSP.cs" />
     <Compile Include="SimplISS\SimplISS.cs" />
@@ -555,6 +553,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\br.com.simplissweb.wshomologacao.h\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -586,6 +589,16 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.gov.pr.guarapuava.nfse.h\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\br.gov.pr.guarapuava.nfse.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -651,6 +664,11 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\br.net.taquarituba.fiorilli.p\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\com.dyndnsserver.pmassis2.p\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -1475,6 +1493,45 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\CancelarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\ConsultarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\ConsultarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\ConsultarNfseRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\ConsultarSituacaoLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\EnviarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\GerarNovaNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\nfseservice.wsdl" />
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\nfseservice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\NfseService0.wsdl" />
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\nfseservice0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\nfseservice1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\nfseservice2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.com.simplissweb.wsbalneariocamboriu.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\br.com.simplissweb.wshomologacao.h\CancelarNfseResposta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -1722,6 +1779,28 @@
     <None Include="Web References\br.gov.pr.curitiba.pilotoisscuritiba.h\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.h\NFSeIntegracao.wsdl" />
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.h\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.h\Services.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.h\Services0.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.p\NFSeIntegracao.wsdl" />
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.p\Services.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\br.gov.pr.guarapuava.nfse.p\Services0.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web References\br.gov.pr.londrina.iss\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -2096,6 +2175,41 @@
     <None Include="Web References\br.net.taquarituba.fiorilli.p\SubstituirNfseResposta.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\CancelarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\ConsultarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\ConsultarNfseFaixaResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\ConsultarNfseRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\ConsultarNfseServicoPrestadoResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\ConsultarNfseServicoTomadoResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\EnviarLoteRpsResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\EnviarLoteRpsSincronoResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\GerarNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\IssWebWS.wsdl" />
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.dyndnsserver.pmassis2.p\SubstituirNfseResposta.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\HCorumbaMS\CancelarNfseResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -2244,6 +2358,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_simplissweb_wsitaporanga2_p_IssWebWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="C:\Users\renan\Desktop\NFSE\assis\IssWebWS.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\com.dyndnsserver.pmassis2.p\</RelPath>
+      <UpdateFromURL>C:\Users\renan\Desktop\NFSE\assis\IssWebWS.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_com_dyndnsserver_pmassis2_p_IssWebWS</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="C:\Users\Renan\Desktop\NFSE\curitiba\PCuritibaPR-EGoverne.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -2508,6 +2633,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_simplissweb_wsandira_p_NfseService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://wsbalneariocamboriu.simplissweb.com.br/nfseservice.svc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.com.simplissweb.wsbalneariocamboriu.p\</RelPath>
+      <UpdateFromURL>http://wsbalneariocamboriu.simplissweb.com.br/nfseservice.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_com_simplissweb_wsbalneariocamboriu_p_NfseService</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://wshomologacao.simplissweb.com.br/nfseservice.svc%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
@@ -2827,6 +2963,28 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>NFe_Components_br_com_etransparencia_nfehomologacao_h_ws_nfe</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://nfse.guarapuava.pr.gov.br/NFSe.Portal.Integracao.Teste/Services.svc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.gov.pr.guarapuava.nfse.h\</RelPath>
+      <UpdateFromURL>https://nfse.guarapuava.pr.gov.br/NFSe.Portal.Integracao.Teste/Services.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_gov_pr_guarapuava_nfse_h_NFSeIntegracao</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://nfse.guarapuava.pr.gov.br/NFSe.Portal.Integracao/Services.svc%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\br.gov.pr.guarapuava.nfse.p\</RelPath>
+      <UpdateFromURL>https://nfse.guarapuava.pr.gov.br/NFSe.Portal.Integracao/Services.svc%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NFe_Components_br_gov_pr_guarapuava_nfse_h_NFSeIntegracao</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://riogrande.sigiss.com.br/riogrande/ws/sigiss_ws.php%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>

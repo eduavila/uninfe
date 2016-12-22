@@ -1,4 +1,4 @@
-﻿using NFe.ConvertCFe.Data.Recepcao;
+﻿using NFe.Settings;
 using NFe.Validate;
 using System;
 using System.Collections.Generic;
@@ -9,62 +9,75 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Unimake.SAT.Servico.Envio;
 
-namespace NFe.ConvertCFe.Conversao
+namespace NFe.SAT.Conversao
 {
+    /// <summary>
+    /// Classe responsável pela conversão da NFCe em CFe
+    /// </summary>
     public class ConverterNFCe
     {
+        private Empresa DadosEmpresa;
+
         private FileStream FileStream;
 
         private XmlDocument Document;
 
-        private envCFe ObjEnvio = new envCFe();
+        private envCFeCFe ObjEnvio = new envCFeCFe();
 
         private string InputFile;
 
         private string OutputFile;
 
+        /// <summary>
+        /// Arquivo de saída
+        /// </summary>
         public string XMLOutput = "";
 
-        public ConverterNFCe(string file, string outputfile = null)
+        /// <summary>
+        /// Converter a CFe
+        /// </summary>
+        /// <param name="file">arquivo da NFCe</param>
+        /// <param name="dadosEmpresa">dados da empresa</param>
+        /// <param name="outputfile">onde será salvo o arquivo</param>
+        public ConverterNFCe(string file, Empresa dadosEmpresa, string outputfile = null)
         {
             if (outputfile == null)
                 outputfile = file;
 
             InputFile = file;
             OutputFile = outputfile;
+            DadosEmpresa = dadosEmpresa;
 
             FileStream = new FileStream(InputFile, FileMode.Open, FileAccess.ReadWrite);
 
             Document = new XmlDocument();
             Document.Load(FileStream);
+
+            FileStream.Dispose();
+            FileStream.Close();
         }
 
+        /// <summary>
+        /// Executar a conversão
+        /// </summary>
         public void ConverterSAT()
         {
-            Random r = new Random();
-
-            ObjEnvio.versao = "0.06"; //TODO: SAT por enquanto vai fixo
-            ObjEnvio.nserieSAT = "900002188"; //TODO: SAT ver se tem no aparelho sat
-
-            ObjEnvio.cUF = GetValueXML("ide", "cUF");
-            ObjEnvio.dhEnvio = GetValueXML("ide", "dhEmi").Substring(0, 19).Replace("T", "").Replace(":", "").Replace("-", "");
-            ObjEnvio.nSeg = "assinaturadigitaldonumerodesegurança"; //TODO: SAT ver de onde vai pegar isso
-            ObjEnvio.tpAmb = GetValueXML("ide", "tpAmb");
-            ObjEnvio.LoteCFe = new List<envCFeCFe>();
-            ObjEnvio.LoteCFe.Add(GerarLoteCFe());
-            ObjEnvio.idLote = r.Next(11111, 99999).ToString() + r.Next(11111, 99999).ToString() + r.Next(11111, 99999).ToString(); //TODO: SAT utilizar sequencia de lote do UniNFe?
+            ObjEnvio = GerarLoteCFe();
 
             if (File.Exists(OutputFile))
                 File.Delete(OutputFile);
-           
-            XMLOutput = ObjEnvio.Serialize(); 
+
+            XMLOutput = ObjEnvio.Serialize();
             XmlDocument xmloutput = new XmlDocument();
             xmloutput.LoadXml(XMLOutput);
-            xmloutput.Save(OutputFile);
 
-            //TODO: SAT Já foi adicionado os schema's só, que nos testes unitários não foi carregado as configurações da empresa
-            // ValidarCFe();
+            XmlElement root = xmloutput.DocumentElement;
+            root.RemoveAttribute("xmlns:xsd");
+            root.RemoveAttribute("xmlns:xsi");
+
+            xmloutput.Save(OutputFile);
         }
 
         /// <summary>
@@ -72,51 +85,25 @@ namespace NFe.ConvertCFe.Conversao
         /// </summary>
         /// <returns>Lote da CFe</returns>
         private envCFeCFe GerarLoteCFe()
-        {
-            string chave = "CFe" + CalcularChaveAcesso();
+         {
             return new envCFeCFe
             {
                 infCFe = new envCFeCFeInfCFe
                 {
-                    Id = chave,
-                    versao = ObjEnvio.versao,
-                    versaoDadosEnt = ObjEnvio.versao,
-                    versaoSB = "010100", //TODO: SAT ver de onde vai pegar isso                    
+                    versaoDadosEnt = "0.07",
                     ide = new envCFeCFeInfCFeIde
                     {
-                        cUF = ObjEnvio.cUF,
-                        cNF = GetValueXML("ide", "cNF"),
-                        mod = GetValueXML("ide", "mod"),
-                        nserieSAT = ObjEnvio.nserieSAT,
-                        nCFe = GetValueXML("ide", "nNF"),
-                        dEmi = GetValueXML("ide", "dhEmi").Substring(0, 10).Replace("-", ""),
-                        hEmi = GetValueXML("ide", "dhEmi").Substring(11, 8).Replace(":", ""),
-                        cDV = chave.Substring(chave.Length - 1),
-                        tpAmb = GetValueXML("ide", "tpAmb"),
-                        CNPJ = "06117473000150", //TODO: SAT ver de onde vai pegar isso
-                        signAC = "IUxeuAuMWtSc0VEblDhfoeo9giv1Y1cxCLqoAQqmWBELhTu7JNmJFVyflgPN9lyzjgdqCXbo9ZlhpiGGyuDOa0wbI1NfXrO39JwmyShOKsG08YDupiLGioPMi0/PabBoQ1mDAtzdAEuPblPR1Fhka8UWrHNbMBs7INi1izkMOYqaSGOO2cbifiBQVBb1P3j5/tNDQwloKODB/zsRA5cGoR0DuDs+gCRRxpzZpsCgZuKO/shVu45iwcQ4GZRx1mSP5ifAaDK1QWMej0deCi/GeK8IERAS7PwhWuIsW8+pxjnAixSg+x/55fIYuog/HApvCQBLhLoEjjoJyCcE6QpgaA==", //TODO: ver de onde vai pegar isso
-                        assinaturaQRCODE = "MvLQhTadPDGaTyjePyiPoJccKO5CIb8aIpzg41JhBxuqZyrtchebVfijQdlVamlX3cRFaPV1vGQ+CvX7aYVx+cUz9mcaIKn8EVHNH+op2BtWMHE6xo2hUZXizGsghE62QA+/oBVzMFSyDbDlOHyp9AXsUW8X50zEGAwznVkRe/6GT9cArk2V9EElSDcxxs6uXKN7ufEBNuUhRCwG8u4FgPi9H4itYYdi31H8r5MEtG7B02Hcjy39RfP+SdqP6zc3SdSnYJ+qZB+V7DyJuod6G35u3zBlgaKl3os6WBGUlkE6VM8OFphPEprvUeRk76rv0LdUK7v+vEfzaZWtMSkF/Q==", //TODO: ver de onde vai pegar isso
-                        numeroCaixa = "999" //TODO: SAT ver de onde vai pegar isso
+                        CNPJ = DadosEmpresa.CNPJSoftwareHouse,
+                        signAC = DadosEmpresa.SignACSAT,
+                        numeroCaixa = "001" //TODO: SAT ver de onde vai pegar isso
                     },
                     emit = new envCFeCFeInfCFeEmit
                     {
                         CNPJ = GetValueXML("emit", "CNPJ"),
-                        xNome = GetValueXML("emit", "xNome"),
-                        xFant = GetValueXML("emit", "xFant"),
-                        enderEmit = new envCFeCFeInfCFeEmitEnderEmit
-                        {
-                            xLgr = GetValueXML("enderEmit", "xLgr"),
-                            nro = GetValueXML("enderEmit", "nro"),
-                            xCpl = GetValueXML("enderEmit", "xCpl"),
-                            xBairro = GetValueXML("enderEmit", "xBairro"),
-                            xMun = GetValueXML("enderEmit", "xMun"),
-                            CEP = GetValueXML("enderEmit", "CEP")
-                        },
                         IE = GetValueXML("emit", "IE"),
-                        cRegTrib = GetValueXML("emit", "cRegTrib"),
-                        cRegTribISSQN = GetValueXML("emit", "cRegTribISSQN"),
                         IM = GetValueXML("emit", "IM"),
-                        indRatISSQN = GetValueXML("emit", "indRatISSQN"),
+                        cRegTribISSQN = ((int)DadosEmpresa.RegTribISSQNSAT).ToString(),
+                        indRatISSQN = DadosEmpresa.IndRatISSQNSAT.ToString(),
                     },
                     dest = new envCFeCFeInfCFeDest
                     {
@@ -127,32 +114,20 @@ namespace NFe.ConvertCFe.Conversao
                     det = PopularProdutos(),
                     total = new envCFeCFeInfCFeTotal
                     {
-                        ICMSTot = new envCFeCFeInfCFeTotalICMSTot
-                        {
-                            vICMS = GetValueXML("ICMSTot", "vICMS"),
-                            vProd = GetValueXML("ICMSTot", "vProd"),
-                            vDesc = GetValueXML("ICMSTot", "vDesc"),
-                            vPIS = GetValueXML("ICMSTot", "vPIS"),
-                            vCOFINS = GetValueXML("ICMSTot", "vCOFINS"),
-                            vPISST = GetValueXML("ICMSTot", "vPISST"),
-                            vCOFINSST = GetValueXML("ICMSTot", "vCOFINSST"),
-                            vOutro = GetValueXML("ICMSTot", "vOutro")
-                        },
-                        vCFe = GetValueXML("ICMSTot", "vNF")
+                        vCFeLei12741 = GetValueXML("ICMSTot", "vNF")
                     },
                     entrega = new envCFeCFeInfCFeEntrega
                     {
-                        xLgr = GetValueXML("enderEmit", "xLgr"),
-                        nro = GetValueXML("enderEmit", "nro"),
-                        xCpl = GetValueXML("enderEmit", "xCpl"),
-                        xBairro = GetValueXML("enderEmit", "xBairro"),
-                        xMun = GetValueXML("enderEmit", "xMun"),
-                        UF = GetValueXML("enderEmit", "UF")
+                        xLgr = GetValueXML("enderDest", "xLgr"),
+                        nro = GetValueXML("enderDest", "nro"),
+                        xCpl = GetValueXML("enderDest", "xCpl"),
+                        xBairro = GetValueXML("enderDest", "xBairro"),
+                        xMun = GetValueXML("enderDest", "xMun"),
+                        UF = GetValueXML("enderDest", "UF")
                     },
                     pgto = new envCFeCFeInfCFePgto
                     {
-                        MP = PopularMeioPagamento(),
-                        vTroco = "0.00"
+                        MP = PopularMeioPagamento()
                     }
                 }
             };
@@ -164,6 +139,7 @@ namespace NFe.ConvertCFe.Conversao
         /// <returns>Lista de Produtos</returns>
         private List<envCFeCFeInfCFeDet> PopularProdutos()
         {
+            string ValorDoItem = "";
             List<envCFeCFeInfCFeDet> result = new List<envCFeCFeInfCFeDet>();
 
             XmlNodeList nodes = Document.GetElementsByTagName("det");
@@ -186,15 +162,15 @@ namespace NFe.ConvertCFe.Conversao
                                 uCom = GetXML(itensDet.ChildNodes, "uCom"),
                                 qCom = GetXML(itensDet.ChildNodes, "qCom"),
                                 vUnCom = GetXML(itensDet.ChildNodes, "vUnCom"),
-                                vProd = GetXML(itensDet.ChildNodes, "vProd"),
-                                indRegra = "T",
-                                vItem = GetXML(itensDet.ChildNodes, "vProd")
+
+                                indRegra = "A",
                             };
+                            ValorDoItem = GetXML(itensDet.ChildNodes, "vProd");
                             break;
 
                         case "imposto":
                             det.imposto = new envCFeCFeInfCFeDetImposto();
-
+                            det.imposto.vItem12741 = ValorDoItem;
                             foreach (XmlNode n in itensDet.ChildNodes)
                             {
                                 switch (n.Name)
@@ -230,7 +206,7 @@ namespace NFe.ConvertCFe.Conversao
         }
 
         /// <summary>
-        /// Converte a tag <pag> para <MP> utilizada para formas de pagamento
+        /// Formas de pagamento
         /// </summary>
         /// <returns>lista de formas de pagamento</returns>
         private List<envCFeCFeInfCFePgtoMP> PopularMeioPagamento()
@@ -260,12 +236,37 @@ namespace NFe.ConvertCFe.Conversao
         private T ImpostoProduto<T>(XmlNodeList childs)
             where T : new()
         {
-            T result = new T();
+            T result = new T();            
 
             foreach (XmlNode tag in childs)
             {
                 switch (tag.Name)
                 {
+                    #region ICMS00
+                    case "ICMS00":
+                        envCFeCFeInfCFeDetImpostoICMSICMS00 ICMS00 = new envCFeCFeInfCFeDetImpostoICMSICMS00
+                        {
+                            Orig = GetXML(tag.ChildNodes, "orig"),
+                            CST = GetXML(tag.ChildNodes, "CST"),
+                            pICMS = GetXML(tag.ChildNodes, "pICMS"),
+                        };
+
+                        SetProperrty(result, "Item", ICMS00);
+                        break;
+                    #endregion
+
+                    #region ICMS40
+                    case "ICMS40":
+                        envCFeCFeInfCFeDetImpostoICMSICMS40 ICMS40 = new envCFeCFeInfCFeDetImpostoICMSICMS40
+                        {
+                            CST = GetXML(tag.ChildNodes, "CST"),
+                            Orig = GetXML(tag.ChildNodes, "orig"),
+                        };
+
+                        SetProperrty(result, "Item", ICMS40);
+                        break;
+                    #endregion
+
                     #region ICMSSN102
                     case "ICMSSN102":
                         envCFeCFeInfCFeDetImpostoICMSICMSSN102 ICMSSN102 = new envCFeCFeInfCFeDetImpostoICMSICMSSN102
@@ -283,7 +284,8 @@ namespace NFe.ConvertCFe.Conversao
                         envCFeCFeInfCFeDetImpostoICMSICMSSN900 ICMSSN900 = new envCFeCFeInfCFeDetImpostoICMSICMSSN900
                         {
                             CSOSN = GetXML(tag.ChildNodes, "CSOSN"),
-                            Orig = GetXML(tag.ChildNodes, "orig")
+                            Orig = GetXML(tag.ChildNodes, "orig"),
+                            pICMS = GetXML(tag.ChildNodes,"pICMS")
                         };
 
                         SetProperrty(result, "Item", ICMSSN900);
@@ -297,7 +299,6 @@ namespace NFe.ConvertCFe.Conversao
                             CST = GetXML(tag.ChildNodes, "CST"),
                             pPIS = GetXML(tag.ChildNodes, "pPIS"),
                             vBC = GetXML(tag.ChildNodes, "vBC"),
-                            vPIS = GetXML(tag.ChildNodes, "vPIS")
                         };
 
                         SetProperrty(result, "Item", PISAliq);
@@ -320,9 +321,18 @@ namespace NFe.ConvertCFe.Conversao
                         envCFeCFeInfCFeDetImpostoPISPISOutr PISOutr = new envCFeCFeInfCFeDetImpostoPISPISOutr
                         {
                             CST = GetXML(tag.ChildNodes, "CST"),
-                            vPIS = GetXML(tag.ChildNodes, "vPIS")
+                            Items = new string[]
+                            {
+                                GetXML(tag.ChildNodes, "vBC"),
+                                GetXML(tag.ChildNodes, "pPIS"),
+                            },
+                            ItemsElementName = new ItemsChoiceType[]
+                            {
+                                ItemsChoiceType.vBC,
+                                ItemsChoiceType.pPIS
+                            }
                         };
-
+                        
                         SetProperrty(result, "Item", PISOutr);
                         break;
                     #endregion
@@ -334,7 +344,6 @@ namespace NFe.ConvertCFe.Conversao
                             CST = GetXML(tag.ChildNodes, "CST"),
                             qBCProd = GetXML(tag.ChildNodes, "qBCProd"),
                             vAliqProd = GetXML(tag.ChildNodes, "vAliqProd"),
-                            vPIS = GetXML(tag.ChildNodes, "vPIS")
                         };
 
                         SetProperrty(result, "Item", PISQtde);
@@ -357,7 +366,6 @@ namespace NFe.ConvertCFe.Conversao
                         {
                             CST = GetXML(tag.ChildNodes, "CST"),
                             pCOFINS = GetXML(tag.ChildNodes, "pCOFINS"),
-                            vCOFINS = GetXML(tag.ChildNodes, "vCOFINS"),
                             vBC = GetXML(tag.ChildNodes, "vBC")
                         };
                         SetProperrty(result, "Item", COFINSAliq);
@@ -374,12 +382,21 @@ namespace NFe.ConvertCFe.Conversao
                         break;
                     #endregion
 
-                    #region COFINSNT
+                    #region COFINSOutr
                     case "COFINSOutr":
                         envCFeCFeInfCFeDetImpostoCOFINSCOFINSOutr COFINSOutr = new envCFeCFeInfCFeDetImpostoCOFINSCOFINSOutr
                         {
                             CST = GetXML(tag.ChildNodes, "CST"),
-                            vCOFINS = GetXML(tag.ChildNodes, "vCOFINS")
+                            Items = new string[]
+                            {
+                                GetXML(tag.ChildNodes, "vBC"),
+                                GetXML(tag.ChildNodes, "pCOFINS")
+                            },
+                            ItemsElementName = new ItemsChoiceType2[]
+                            {
+                                ItemsChoiceType2.vBC,
+                                ItemsChoiceType2.pCOFINS
+                            }
                         };
                         SetProperrty(result, "Item", COFINSOutr);
                         break;
@@ -391,7 +408,6 @@ namespace NFe.ConvertCFe.Conversao
                         {
                             CST = GetXML(tag.ChildNodes, "CST"),
                             qBCProd = GetXML(tag.ChildNodes, "qBCProd"),
-                            vCOFINS = GetXML(tag.ChildNodes, "vCOFINS"),
                             vAliqProd = GetXML(tag.ChildNodes, "vAliqProd")
                         };
                         SetProperrty(result, "Item", COFINSQtde);
@@ -479,46 +495,30 @@ namespace NFe.ConvertCFe.Conversao
         /// <returns></returns>
         private string GetValueXML(string groupTag, string nameTag)
         {
-            string value = "";
-            XmlNodeList nodes = Document.GetElementsByTagName(groupTag);
-            XmlNode node = nodes[0];
-
-            foreach (XmlNode n in node)
+            try
             {
-                if (n.NodeType == XmlNodeType.Element)
+                string value = "";
+                XmlNodeList nodes = Document.GetElementsByTagName(groupTag);
+                XmlNode node = nodes[0];
+
+                foreach (XmlNode n in node)
                 {
-                    if (n.Name.Equals(nameTag))
+                    if (n.NodeType == XmlNodeType.Element)
                     {
-                        value = n.InnerText;
-                        break;
+                        if (n.Name.Equals(nameTag))
+                        {
+                            value = n.InnerText;
+                            break;
+                        }
                     }
                 }
+
+                return value;
             }
-
-            return value;
-        }
-
-        /// <summary>
-        /// Calcula chave de acesso
-        /// Código UF (2) / AAMM da Emissão (4) / CNPJ emitente (14) / mod (2) / N serie SAT (9) / Numero CF-e SAT (6) / Código aleatório (6) / cDV (1)
-        /// </summary>
-        /// <returns></returns>
-        private string CalcularChaveAcesso()
-        {
-            Random r = new Random();
-
-            StringBuilder result = new StringBuilder();
-
-            result.Append(ObjEnvio.cUF);
-            result.Append(ObjEnvio.dhEnvio.Substring(2, 2) + ObjEnvio.dhEnvio.Substring(5, 2));
-            result.Append(GetValueXML("emit", "CNPJ"));
-            result.Append(GetValueXML("ide", "mod"));
-            result.Append(ObjEnvio.nserieSAT);
-            result.Append(GetValueXML("ide", "nNF"));
-            result.Append(r.Next(111111, 999999).ToString());
-            result.Append(Modulus11Digit(result.ToString()));
-
-            return result.ToString();
+            catch (Exception)
+            {
+                return String.Empty;
+            }
         }
 
         /// <summary>
@@ -557,9 +557,9 @@ namespace NFe.ConvertCFe.Conversao
         /// <summary>
         /// Realiza validação do XML a partir dos schemas
         /// </summary>
-        private void ValidarCFe()
+        public void ValidarCFe()
         {
-            ValidarXML validar = new ValidarXML(OutputFile, Convert.ToInt16(ObjEnvio.cUF), true);
+            ValidarXML validar = new ValidarXML(OutputFile, Convert.ToInt16(DadosEmpresa.UnidadeFederativaCodigo), true);
             string cResultadoValidacao = validar.ValidarArqXML(OutputFile);
             if (cResultadoValidacao != "")
             {

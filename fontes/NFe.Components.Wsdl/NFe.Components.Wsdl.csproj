@@ -46,15 +46,6 @@
     <Prefer32Bit>false</Prefer32Bit>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release45_x64|x64'">
-    <OutputPath>bin\Release45_x64\</OutputPath>
-    <DefineConstants>TRACE;_fw45;x64</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -2904,7 +2895,7 @@
     <EmbeddedResource Include="NFse\WSDL\Producao\PVenancioAires-NFSEconsulta.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Producao\PVenancioAires-NFSEremessa.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Producao\PCruzAltaRSISSNET.wsdl" />
-    <EmbeddedResource Include="NFse\WSDL\Producao\PItaporanga-SIMPLISS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PItaporangaSP-FIORILLI.wsdl" />
     <EmbeddedResource Include="NFse\schemas\NFSe\BSITBR\nfse-v2.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -2947,11 +2938,47 @@
     <EmbeddedResource Include="CFe\CFeRecepcao\CfeTeste_0007.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\DFe\distDFeInt_v1.01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\DFe\resEvento_v1.01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\DFe\resNFe_v1.01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\DFe\retDistDFeInt_v1.01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\DFe\tiposDistDFe_v1.01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="NFse\schemas\NFSe\BSITBR\xmldsig-core-schema20020212.xsd">
       <SubType>Designer</SubType>
     </None>
     <EmbeddedResource Include="NFse\WSDL\Producao\PJaraguaGO-BSITBR.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Producao\PGovernadorValarares-ACTCON.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSerraES-SMARAPDWSEntrada.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSerraES-SMARAPDWSSaida.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSerraES-SMARAPDWSUtil.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HItaporangaSP-FIORILLI.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HCandeiasBA-WEBISS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PCandeiasBA-WEBISS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PBarraMansaRJ-TIPLAN.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-CancelamentoNFSe.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-ConsultaLoteRPS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-ConsultaNFSePorFaixa.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-ConsultaNFSePorRPS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-ConsultaNFSeServicosPrestados.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HSalvadorDoSulRS-EnvioLoteRPSSincrono.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-CancelamentoNFSe.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-ConsultaLoteRPS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-ConsultaNFSePorFaixa.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-ConsultaNFSePorRPS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-ConsultaNFSeServicosPrestados.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PSalvadorDoSulRS-EnvioLoteRPSSincrono.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HBalneario-SIMPLISS.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PBalneario-SIMPLISS.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Producao\PCamacariBA.wsdl">
