@@ -47,7 +47,8 @@ namespace NFe.Settings
             SenhaConfig,
             ChecarConexaoInternet,
             GravarLogOperacaoRealizada,
-            DetectarProxyAuto
+            DetectarProxyAuto,
+            ConfirmaSaida
         }
 
         #endregion NfeConfiguracoes
@@ -114,6 +115,7 @@ namespace NFe.Settings
         #region Prorpiedades utilizadas no inicio do sistema
 
         public static Stopwatch ExecutionTime { get; set; }
+        public static bool ConfirmaSaida { get; set; }
 
         #endregion Prorpiedades utilizadas no inicio do sistema
 
@@ -262,15 +264,14 @@ namespace NFe.Settings
                             }
                         }
                     }
-                    catch 
+                    catch
                     {
                         retorna = true;
                     }
 
-
                     if (retorna)
                     {
-                        XmlWriter xtw = null; // criar instância para xmltextwriter. 
+                        XmlWriter xtw = null; // criar instância para xmltextwriter.
 
                         try
                         {
@@ -283,8 +284,8 @@ namespace NFe.Settings
                             settings.NewLineOnAttributes = false;
                             settings.OmitXmlDeclaration = false;
 
-                            xtw = XmlWriter.Create(Propriedade.XMLVersaoWSDLXSD, settings); //atribuir arquivo, caminho e codificação 
-                            xtw.WriteStartDocument(); //comaçar a escrever o documento 
+                            xtw = XmlWriter.Create(Propriedade.XMLVersaoWSDLXSD, settings); //atribuir arquivo, caminho e codificação
+                            xtw.WriteStartDocument(); //comaçar a escrever o documento
                             xtw.WriteStartElement("VersaoWSDLXSD"); //Criar elemento raiz
                             xtw.WriteElementString("dVersao", fi.LastWriteTimeUtc.ToString());
                             xtw.WriteEndElement(); //encerrar tag DocumentosNFe
@@ -568,6 +569,11 @@ namespace NFe.Settings
 
                         if (elementConfig.GetElementsByTagName(NfeConfiguracoes.GravarLogOperacaoRealizada.ToString())[0] != null)
                             ConfiguracaoApp.GravarLogOperacoesRealizadas = Convert.ToBoolean(elementConfig[NfeConfiguracoes.GravarLogOperacaoRealizada.ToString()].InnerText);
+
+                        if (elementConfig.GetElementsByTagName(NfeConfiguracoes.ConfirmaSaida.ToString())[0] != null)
+                            ConfiguracaoApp.ConfirmaSaida = Convert.ToBoolean(elementConfig[NfeConfiguracoes.ConfirmaSaida.ToString()].InnerText);
+                        else
+                            ConfiguracaoApp.ConfirmaSaida = true;
                     }
                 }
                 catch (Exception ex)
@@ -974,6 +980,10 @@ namespace NFe.Settings
                             WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.CTeRecepcaoEvento : list.LocalProducao.CTeRecepcaoEvento);
                             break;
 
+                        case Servicos.CTeDistribuicaoDFe:
+                            WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.CTeDistribuicaoDFe : list.LocalProducao.CTeDistribuicaoDFe);
+                            break;
+
                         #endregion CT-e
 
                         #region NFS-e
@@ -1218,6 +1228,7 @@ namespace NFe.Settings
             elementos.Add(new XElement(NfeConfiguracoes.ProxySenha.ToString(), Criptografia.criptografaSenha(ConfiguracaoApp.ProxySenha)));
             elementos.Add(new XElement(NfeConfiguracoes.ChecarConexaoInternet.ToString(), ConfiguracaoApp.ChecarConexaoInternet.ToString()));
             elementos.Add(new XElement(NfeConfiguracoes.GravarLogOperacaoRealizada.ToString(), ConfiguracaoApp.GravarLogOperacoesRealizadas.ToString()));
+            elementos.Add(new XElement(NfeConfiguracoes.ConfirmaSaida.ToString(), ConfiguracaoApp.ConfirmaSaida.ToString()));
             if (!string.IsNullOrEmpty(ConfiguracaoApp.SenhaConfig))
             {
                 if (ConfiguracaoApp.mSenhaConfigAlterada)
@@ -1315,6 +1326,12 @@ namespace NFe.Settings
                                         if ((erro = this.AddEmpresaNaLista(emp.PastaXmlEmLote)) == "")
                                             if ((erro = this.AddEmpresaNaLista(emp.PastaBackup)) == "")
                                                 erro = this.AddEmpresaNaLista(emp.PastaDownloadNFeDest);
+
+                if ((emp.Servico == TipoAplicativo.Nfe ||
+                    emp.Servico == TipoAplicativo.NFCe ||
+                    emp.Servico == TipoAplicativo.Todos)
+                    && emp.UnidadeFederativaCodigo == 35 && emp.IndSinc == true)
+                    erro = "Estado de São Paulo não dispõe do serviço síncrono para emissão de NFe.";
 
                 if (erro != "")
                 {
@@ -1899,6 +1916,12 @@ namespace NFe.Settings
                         {
                             ConfiguracaoApp.SenhaConfig = ConfUniNfeElemento.GetElementsByTagName(NfeConfiguracoes.SenhaConfig.ToString())[0].InnerText;
                             ConfiguracaoApp.mSenhaConfigAlterada = false;
+                            lEncontrouTag = true;
+                        }
+                        //Se a tag <ConfirmaSaida> existir ele pega novo conteúdo
+                        if (ConfUniNfeElemento.GetElementsByTagName(NfeConfiguracoes.ConfirmaSaida.ToString()).Count != 0)
+                        {
+                            ConfiguracaoApp.ConfirmaSaida = Convert.ToBoolean(ConfUniNfeElemento.GetElementsByTagName(NfeConfiguracoes.ConfirmaSaida.ToString())[0].InnerText);
                             lEncontrouTag = true;
                         }
                     }

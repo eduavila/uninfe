@@ -393,6 +393,24 @@ namespace NFe.Settings
         [AttributeTipoAplicacao(TipoAplicativo.SAT)]
         public string SignACSAT { get; set; }
 
+        private string numeroCaixa;
+
+        [AttributeTipoAplicacao(TipoAplicativo.SAT)]
+        public string NumeroCaixa
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(numeroCaixa))
+                    numeroCaixa = "001";
+
+                return numeroCaixa;
+            }
+            set
+            {
+                numeroCaixa = value;
+            }
+        }
+
         RegTribISSQN regTribISSQNSAT;
 
         [AttributeTipoAplicacao(TipoAplicativo.SAT)]
@@ -505,6 +523,9 @@ namespace NFe.Settings
 
                     t.CopyObjectTo(this);
 
+                    if (t.UnidadeFederativaCodigo == 35)
+                        t.IndSinc = false;
+                                            
                     CriarPastasDaEmpresa();
 
                     X509Certificado = BuscaConfiguracaoCertificado();

@@ -312,6 +312,7 @@ namespace NFe.UI
             oempresa.UtilizaConversaoCFe = empresa.UtilizaConversaoCFe;
             oempresa.CNPJSoftwareHouse = empresa.CNPJSoftwareHouse;
             oempresa.SignACSAT = empresa.SignACSAT;
+            oempresa.NumeroCaixa = empresa.NumeroCaixa;
             oempresa.IndRatISSQNSAT = empresa.IndRatISSQNSAT;
             oempresa.RegTribISSQNSAT = empresa.RegTribISSQNSAT;
 

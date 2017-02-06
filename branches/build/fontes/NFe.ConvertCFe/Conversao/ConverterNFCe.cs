@@ -95,7 +95,7 @@ namespace NFe.SAT.Conversao
                     {
                         CNPJ = DadosEmpresa.CNPJSoftwareHouse,
                         signAC = DadosEmpresa.SignACSAT,
-                        numeroCaixa = "001" //TODO: SAT ver de onde vai pegar isso
+                        numeroCaixa = DadosEmpresa.NumeroCaixa.Substring(0, 3)
                     },
                     emit = new envCFeCFeInfCFeEmit
                     {
@@ -128,6 +128,10 @@ namespace NFe.SAT.Conversao
                     pgto = new envCFeCFeInfCFePgto
                     {
                         MP = PopularMeioPagamento()
+                    },
+                    infAdic = new envCFeCFeInfCFeInfAdic
+                    {
+                        infCpl = GetValueXML("infAdic", "infCpl")
                     }
                 }
             };

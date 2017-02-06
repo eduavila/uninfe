@@ -656,7 +656,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultar:
-                            retorna = "";
+                            retorna = "consultarSituacaoNotaFiscal";
                             break;
 
                         case Servicos.NFSeConsultarPorRps:
@@ -1562,7 +1562,68 @@ namespace NFe.Service
                     }
                     break;
 
+                #endregion BSIT-BR
+
+                #region ABASE
+
+                case PadroesNFSe.ABASE:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "ConsultaLoteRps";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "ConsultaNfseRps";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelaNfse";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "RecepcionarLoteRps";
+                            break;
+                    }
+                    break;
+
+                #endregion ABASE
+
+                #region LEXSOM
+
+                case PadroesNFSe.LEXSOM:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "ConsultarLoteRPS";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "ConsultarNFSEPorRPS";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelamentoNFSE";
+                            break;
+
+                        case Servicos.NFSeConsultar:
+                            retorna = "ConsultaNFSE";
+                            break;
+
+                        case Servicos.NFSeConsultarSituacaoLoteRps:
+                            retorna = "ConsultarSituacaoLoteRPS";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "RecebeLoteRPS";
+                            break;
+
+                    }
+                    break;
+
                     #endregion BSIT-BR
+
+
             }
 
             return retorna;

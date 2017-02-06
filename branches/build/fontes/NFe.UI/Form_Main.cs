@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace NFe.UI
 {
@@ -403,11 +404,11 @@ namespace NFe.UI
         {
             try
             {
-                NFe.Components.Functions.ExibeDocumentacao();
+                System.Diagnostics.Process.Start(Propriedade.UrlManualUniNFe);
             }
             catch (Exception ex)
             {
-                MetroFramework.MetroMessageBox.Show(this, ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroFramework.MetroMessageBox.Show(uninfeDummy.mainForm, ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -421,9 +422,18 @@ namespace NFe.UI
 
         private void cmFechar_Click(object sender, EventArgs e)
         {
-            if (MetroFramework.MetroMessageBox.Show(this,
-                        "Confirma o encerramento do " + NFe.Components.Propriedade.NomeAplicacao + "?",
-                        "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (ConfiguracaoApp.ConfirmaSaida)
+            {
+                if (MetroFramework.MetroMessageBox.Show(this,
+                            "Confirma o encerramento do " + NFe.Components.Propriedade.NomeAplicacao + "?",
+                            "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Propriedade.EncerrarApp = true;
+                    this.notifyIcon1.Visible = false;
+                    this.Close();
+                }
+            }
+            else
             {
                 Propriedade.EncerrarApp = true;
                 this.notifyIcon1.Visible = false;
