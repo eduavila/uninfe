@@ -41,6 +41,8 @@
             this.cbindRatISSQN = new MetroFramework.Controls.MetroComboBox();
             this.lblRegTribISSQN = new MetroFramework.Controls.MetroLabel();
             this.lblIndRatISSQN = new MetroFramework.Controls.MetroLabel();
+            this.lblNumeroCaixa = new MetroFramework.Controls.MetroLabel();
+            this.txtNumeroCaixa = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
             // metroLabel39
@@ -73,7 +75,9 @@
             this.cbMacarSAT.Items.AddRange(new object[] {
             "TANCA",
             "BEMATECH",
-            "DARUMA"});
+            "DARUMA",
+            "DIMEP",
+            "ELGIN"});
             this.cbMacarSAT.Location = new System.Drawing.Point(0, 19);
             this.cbMacarSAT.Name = "cbMacarSAT";
             this.cbMacarSAT.Size = new System.Drawing.Size(310, 25);
@@ -198,11 +202,37 @@
             this.lblIndRatISSQN.TabIndex = 62;
             this.lblIndRatISSQN.Text = " Desconto subtotal rateado entre itens com ISSQN:";
             // 
+            // lblNumeroCaixa
+            // 
+            this.lblNumeroCaixa.AutoSize = true;
+            this.lblNumeroCaixa.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblNumeroCaixa.Location = new System.Drawing.Point(0, 240);
+            this.lblNumeroCaixa.Name = "lblNumeroCaixa";
+            this.lblNumeroCaixa.Size = new System.Drawing.Size(98, 15);
+            this.lblNumeroCaixa.TabIndex = 64;
+            this.lblNumeroCaixa.Text = "Numero do Caixa:";
+            // 
+            // txtNumeroCaixa
+            // 
+            this.txtNumeroCaixa.Lines = new string[0];
+            this.txtNumeroCaixa.Location = new System.Drawing.Point(0, 258);
+            this.txtNumeroCaixa.MaxLength = 3;
+            this.txtNumeroCaixa.Name = "txtNumeroCaixa";
+            this.txtNumeroCaixa.PasswordChar = '\0';
+            this.txtNumeroCaixa.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtNumeroCaixa.SelectedText = "";
+            this.txtNumeroCaixa.Size = new System.Drawing.Size(310, 23);
+            this.txtNumeroCaixa.TabIndex = 63;
+            this.txtNumeroCaixa.UseSelectable = true;
+            this.txtNumeroCaixa.TextChanged += new System.EventHandler(this.txtNumeroCaixa_TextChanged);
+            // 
             // userConfiguracao_sat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.lblNumeroCaixa);
+            this.Controls.Add(this.txtNumeroCaixa);
             this.Controls.Add(this.lblIndRatISSQN);
             this.Controls.Add(this.lblRegTribISSQN);
             this.Controls.Add(this.cbindRatISSQN);
@@ -237,5 +267,7 @@
         private MetroFramework.Controls.MetroComboBox cbindRatISSQN;
         private MetroFramework.Controls.MetroLabel lblRegTribISSQN;
         private MetroFramework.Controls.MetroLabel lblIndRatISSQN;
+        private MetroFramework.Controls.MetroLabel lblNumeroCaixa;
+        private MetroFramework.Controls.MetroTextBox txtNumeroCaixa;
     }
 }

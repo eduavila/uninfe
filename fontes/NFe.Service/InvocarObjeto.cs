@@ -137,6 +137,7 @@ namespace NFe.Service
                     }
                     break;
 
+                case Servicos.CTeDistribuicaoDFe:
                 case Servicos.DFeEnviar:
                     break;
 
@@ -562,6 +563,25 @@ namespace NFe.Service
                     break;
 
                 #endregion NA_INFORMATICA
+
+                #region ABASE
+
+                case PadroesNFSe.ABASE:
+                    if (servicoNFSe == Servicos.NFSeConsultarPorRps)
+                        goto default;
+                    else
+                    {
+                        XmlNode xmlRetorno = wsProxy.InvokeXML(servicoWS, metodo, new object[] { cabecMsg.ToString(), docXML.OuterXml });
+                        strRetorno = xmlRetorno.OuterXml;
+                    }
+                    break;
+
+                #endregion ABASE
+
+                case PadroesNFSe.LEXSOM:                    
+                    XmlNode result = wsProxy.InvokeXML(servicoWS, metodo, new object[] { docXML });
+                    strRetorno = result.OuterXml;
+                    break;
 
                 #region Demais padrões
 

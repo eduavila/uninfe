@@ -32,7 +32,8 @@ namespace NFe.UI.Formularios
             cbMacarSAT.SelectedItem = empresa.MarcaSAT;
             txtCodigoAtivacaoSAT.Text = empresa.CodigoAtivacaoSAT;
             txtSignAC.Text = empresa.SignACSAT;
-            txtCNPJSw.Text = empresa.CNPJSoftwareHouse;
+            txtCNPJSw.Text = empresa.CNPJSoftwareHouse;            
+            txtNumeroCaixa.Text = empresa.NumeroCaixa;
             ckConversaoNFCe.Checked = empresa.UtilizaConversaoCFe;
             cbRegTribISSQN.SelectedValue = (int)empresa.RegTribISSQNSAT;
             cbindRatISSQN.SelectedValue = (int)empresa.IndRatISSQNSAT;
@@ -44,7 +45,9 @@ namespace NFe.UI.Formularios
                 lblIndRatISSQN.Visible =
                 lblRegTribISSQN.Visible =
                 cbindRatISSQN.Visible =
-                cbRegTribISSQN.Visible = ckConversaoNFCe.Checked;
+                cbRegTribISSQN.Visible =
+                lblNumeroCaixa.Visible =
+                txtNumeroCaixa.Visible = ckConversaoNFCe.Checked;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -59,6 +62,7 @@ namespace NFe.UI.Formularios
             empresa.UtilizaConversaoCFe = ckConversaoNFCe.Checked;
             empresa.CNPJSoftwareHouse = txtCNPJSw.Text;
             empresa.SignACSAT = txtSignAC.Text;
+            empresa.NumeroCaixa = txtNumeroCaixa.Text;
             empresa.RegTribISSQNSAT = (RegTribISSQN)cbRegTribISSQN.SelectedValue;
             empresa.IndRatISSQNSAT = (IndRatISSQN)cbindRatISSQN.SelectedValue;
         }
@@ -95,7 +99,9 @@ namespace NFe.UI.Formularios
                 lblIndRatISSQN.Visible =
                 lblRegTribISSQN.Visible =
                 cbindRatISSQN.Visible =
-                cbRegTribISSQN.Visible = ckConversaoNFCe.Checked;
+                cbRegTribISSQN.Visible =
+                lblNumeroCaixa.Visible =
+                txtNumeroCaixa.Visible = ckConversaoNFCe.Checked;
         }
 
         private void txtSignAC_TextChanged(object sender, EventArgs e)
@@ -114,6 +120,11 @@ namespace NFe.UI.Formularios
         }
 
         private void cbindRatISSQN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            changeEvent?.Invoke(sender, e);
+        }
+
+        private void txtNumeroCaixa_TextChanged(object sender, EventArgs e)
         {
             changeEvent?.Invoke(sender, e);
         }
