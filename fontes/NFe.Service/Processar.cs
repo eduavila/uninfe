@@ -1,4 +1,4 @@
-﻿using NFe.Certificado;
+using NFe.Certificado;
 using NFe.Components;
 using NFe.Components.Info;
 using NFe.ConvertTxt;
@@ -13,7 +13,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 
-#if _fw45
+#if _fw46
 
 using NFe.SAT;
 
@@ -37,7 +37,7 @@ namespace NFe.Service
                         ValidarExtensao(arquivo);
                     }
                     // Só vou validar a extensão em homologação, pois depois que o desenvolvedor fez toda a integração, acredito que ele não vá mais gerar extensões erradas, com isso evito ficar validando todas as vezes arquivos corretos. Wandrey 17/09/2016
-                    else if (Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taProducao)
+                    else if (Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taHomologacao)
                     {
                         ValidarExtensao(arquivo);
                     }
@@ -99,9 +99,13 @@ namespace NFe.Service
                             DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskObterNotaFiscal());
                             break;
 
+                        case Servicos.NFSeConsultaSequenciaLoteNotaRPS:
+                            DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskConsultaSequenciaLoteNotaRPS(arquivo));
+                            break;
+
                         #endregion NFS-e
 
-#if _fw45
+#if _fw46
 
                         #region SAT/CF-e
 
@@ -821,6 +825,10 @@ namespace NFe.Service
                                 else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedNFSeXML).EnvioXML) >= 0)
                                 {
                                     tipoServico = Servicos.NFSeObterNotaFiscal;
+                                }
+                                else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedSeqLoteNotaRPS).EnvioXML) >= 0)
+                                {
+                                    tipoServico = Servicos.NFSeConsultaSequenciaLoteNotaRPS;
                                 }
 
                                 #endregion NFS-e
