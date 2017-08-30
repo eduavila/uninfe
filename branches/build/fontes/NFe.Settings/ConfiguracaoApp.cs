@@ -369,6 +369,14 @@ namespace NFe.Settings
                 estado.UrlCTe = inifile.Read("CT-e", uf);
                 estado.UrlNFCe = inifile.Read("NFC-e", uf);
                 estado.UrlNFCeH = inifile.Read("NFC-e(h)", uf);
+                estado.UrlNFCeM = inifile.Read("NFC-e_ConsultaManual", uf);
+                estado.UrlNFCeMH = inifile.Read("NFC-e_ConsultaManual(h)", uf);
+
+                if (String.IsNullOrEmpty(estado.UrlNFCeM))
+                    estado.UrlNFCeM = estado.UrlNFCe;
+
+                if (String.IsNullOrEmpty(estado.UrlNFCeMH))
+                    estado.UrlNFCeMH = estado.UrlNFCeH;
             }
             else
                 throw new Exception("O arquivo SEFAZ.INC não foi localizado, por favor reinstale o UniNFe.");
@@ -1065,6 +1073,22 @@ namespace NFe.Settings
                             WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.ConsultarCfse : list.LocalProducao.ConsultarCfse);
                             break;
 
+                        case Servicos.ConfigurarTerminalCfse:
+                            WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.ConfigurarTerminalCfse : list.LocalProducao.ConfigurarTerminalCfse);
+                            break;
+
+                        case Servicos.EnviarInformeManutencaoCfse:
+                            WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.EnviarInformeManutencaoCfse : list.LocalProducao.EnviarInformeManutencaoCfse);
+                            break;
+
+                        case Servicos.InformeTrasmissaoSemMovimentoCfse:
+                            WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.InformeTrasmissaoSemMovimentoCfse : list.LocalProducao.InformeTrasmissaoSemMovimentoCfse);
+                            break;
+
+                        case Servicos.ConsultarDadosCadastroCfse:
+                            WSDL = (tipoAmbiente == (int)TipoAmbiente.taHomologacao ? list.LocalHomologacao.ConsultarDadosCadastroCfse : list.LocalProducao.ConsultarDadosCadastroCfse);
+                            break;
+
                         #endregion CFS-e
 
                         #region LMC
@@ -1093,23 +1117,22 @@ namespace NFe.Settings
                 string temp = Path.Combine(Path.GetDirectoryName(WSDL), Path.GetFileNameWithoutExtension(WSDL) + "_C" + Path.GetExtension(WSDL));
                 if (File.Exists(temp))
                     WSDL = temp;
-                else
-                {
-                    temp = Path.Combine(Path.GetDirectoryName(WSDL), Path.GetFileNameWithoutExtension(WSDL) + "_C" + CodigoUF.ToString() + Path.GetExtension(WSDL));
-                    if (File.Exists(temp))
-                        WSDL = temp;
-                }
             }
 
-            ///
-            /// danasa: 4-2014
-            /// Compatibilidade com a versao 2.00
-            ///
-            if (!string.IsNullOrEmpty(versao) &&
-                (versao.Equals("2.01") || versao.Equals("2.00")) && !string.IsNullOrEmpty(WSDL) && File.Exists(WSDL))
+            if (!string.IsNullOrEmpty(versao) && !string.IsNullOrEmpty(WSDL) && File.Exists(WSDL))
             {
-                string temp = Path.Combine(Path.GetDirectoryName(WSDL), Path.GetFileNameWithoutExtension(WSDL) + "_200" + Path.GetExtension(WSDL));
-                if (File.Exists(temp))
+                string temp = string.Empty;
+
+                if (versao.Equals("4.00"))
+                {
+                    temp = Path.Combine(Path.GetDirectoryName(WSDL), Path.GetFileNameWithoutExtension(WSDL) + "_400" + Path.GetExtension(WSDL));
+                }
+                else if (versao.Equals("2.01") || versao.Equals("2.00"))
+                {
+                    temp = Path.Combine(Path.GetDirectoryName(WSDL), Path.GetFileNameWithoutExtension(WSDL) + "_200" + Path.GetExtension(WSDL));
+                }
+
+                if (!string.IsNullOrEmpty(temp) && File.Exists(temp))
                     WSDL = temp;
             }
 

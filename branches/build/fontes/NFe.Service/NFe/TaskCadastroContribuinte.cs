@@ -40,21 +40,25 @@ namespace NFe.Service
             {
                 dadosConsCad = new DadosConsCad();
                 //Ler o XML para pegar parâmetros de envio
-                ConsCad();
+                ConsCad(emp);
 
                 if (vXmlNfeDadosMsgEhXML)  //danasa 12-9-2009
                 {
                     //Definir o objeto do WebService
                     WebServiceProxy wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, dadosConsCad.cUF, dadosConsCad.tpAmb, (int)TipoEmissao.teNormal, dadosConsCad.versao, 0);
-                    System.Net.SecurityProtocolType securityProtocolType = WebServiceProxy.DefinirProtocoloSeguranca(dadosConsCad.cUF, dadosConsCad.tpAmb, (int)TipoEmissao.teNormal, PadroesNFSe.NaoIdentificado, Servico);
+                    System.Net.SecurityProtocolType securityProtocolType = WebServiceProxy.DefinirProtocoloSeguranca(dadosConsCad.cUF, dadosConsCad.tpAmb, (int)TipoEmissao.teNormal, Servico);
 
                     //Criar objetos das classes dos serviços dos webservices do SEFAZ
                     object oConsCad = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
-                    object oCabecMsg = wsProxy.CriarObjeto(NomeClasseCabecWS(dadosConsCad.cUF, Servico));
+                    object oCabecMsg = null;
 
-                    //Atribuir conteúdo para duas propriedades da classe nfeCabecMsg
-                    wsProxy.SetProp(oCabecMsg, TpcnResources.cUF.ToString(), dadosConsCad.cUF.ToString());
-                    wsProxy.SetProp(oCabecMsg, TpcnResources.versaoDados.ToString(), dadosConsCad.versao);
+                    try
+                    {
+                        oCabecMsg = wsProxy.CriarObjeto(NomeClasseCabecWS(dadosConsCad.cUF, Servico));
+                        wsProxy.SetProp(oCabecMsg, TpcnResources.cUF.ToString(), dadosConsCad.cUF.ToString());
+                        wsProxy.SetProp(oCabecMsg, TpcnResources.versaoDados.ToString(), dadosConsCad.versao);
+                    }
+                    catch { }
 
                     new AssinaturaDigital().CarregarPIN(emp, NomeArquivoXML, Servico);
 
@@ -140,12 +144,14 @@ namespace NFe.Service
         /// Faz a leitura do XML de consulta do cadastro do contribuinte e disponibiliza os valores de algumas tag´s
         /// </summary>
         /// <param name="cArquivoXML">Caminho e nome do arquivo XML da consulta do cadastro do contribuinte a ser lido</param>
-        private void ConsCad()
+        private void ConsCad(int emp)
         {
             dadosConsCad.CNPJ =
                 dadosConsCad.IE =
                 dadosConsCad.UF =
                 dadosConsCad.versao = string.Empty;
+
+            dadosConsCad.tpAmb = Empresas.Configuracoes[emp].AmbienteCodigo;
 
             if (Path.GetExtension(NomeArquivoXML).ToLower() == ".txt")
             {
