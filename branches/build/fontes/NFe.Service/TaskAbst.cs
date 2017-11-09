@@ -1018,7 +1018,7 @@ namespace NFe.Service
                     switch (servico)
                     {
                         case Servicos.NFSeConsultarLoteRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003))
+                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarLoteRps";
                             else
                                 retorna = "ConsultarLoteRPS";
@@ -1029,7 +1029,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultarPorRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003))
+                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarNfsePorRps";
                             else
                                 retorna = "ConsultarNfseRPS";
@@ -1037,7 +1037,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultarSituacaoLoteRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003))
+                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarSituacaoLoteRps";
                             else
                                 retorna = "ConsultarSituacaoLoteRPS";
@@ -2412,7 +2412,9 @@ namespace NFe.Service
             switch (padrao)
             {
                 case PadroesNFSe.PRONIN:
-                    if (cMunicipio == 4109401)
+                    if (cMunicipio == 4109401 ||
+                        cMunicipio == 3131703 ||
+                        cMunicipio == 4303004)
                         retorno = false;
                     break;
 
@@ -2430,6 +2432,7 @@ namespace NFe.Service
                 case PadroesNFSe.SYSTEMPRO:
                 case PadroesNFSe.SIGCORP_SIGISS:
                 case PadroesNFSe.FIORILLI:
+                case PadroesNFSe.TINUS:
                 case PadroesNFSe.CONAM:
                 case PadroesNFSe.SIMPLISS:
                 case PadroesNFSe.RLZ_INFORMATICA:

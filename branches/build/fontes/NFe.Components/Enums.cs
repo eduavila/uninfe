@@ -538,8 +538,26 @@ namespace NFe.Components
         /// </summary>
         [Description("SAT")]
         SAT = 5,
+        
+        /// <summary>
+        /// Aplicativo ou serviços para processamento dos XMLs do EFD Reinf
+        /// </summary>
+        [Description("EFD Reinf")]
+        EFDReinf = 6,
 
-        [Description("NF-e, NFC-e, CT-e e MDF-e")]
+        /// <summary>
+        /// Aplicativo ou serviços para processamento dos XMLs do eSocial
+        /// </summary>
+        [Description("eSocial")]
+        eSocial = 7,
+
+        /// <summary>
+        /// Aplicativo ou seviços para processamento dos XMLs de EFD Reinf e eSocial
+        /// </summary>
+        [Description("EFD Reinf e eSocial")]
+        EFDReinfeSocial = 8,
+
+        [Description("NF-e, NFC-e, CT-e, MDF-e, EFD Reinf e eSocial")]
         Todos = 10,
 
         [Description("")]
@@ -652,7 +670,7 @@ namespace NFe.Components
         /// Versão do XML 2.02
         /// </summary>
         [Description("Web ISS")]
-        WEBISS_202,        
+        WEBISS_202,
 
         /// <summary>
         /// Padrão Nota Fiscal Eletrônica Paulistana -
@@ -849,13 +867,6 @@ namespace NFe.Components
         NATALENSE,
 
         /// <summary>
-        /// Padrão ABRASF
-        /// Prefeitura de Recife - PE
-        /// </summary>
-        [Description("ABRASF")]
-        ABRASF,
-
-        /// <summary>
         /// Padrão Consist
         /// Prefeitura de Patos de Minas - MG
         /// </summary>
@@ -984,7 +995,13 @@ namespace NFe.Components
         /// Padrão utilizado pela prefeitura de Bauru-SP
         /// </summary>
         [Description("BAURU_SP")]
-        BAURU_SP
+        BAURU_SP,
+
+        /// <summary>
+        /// Padrão utilizado pela prefeitura de Jaboatão dos Guararapes-PE
+        /// </summary>
+        [Description("TINUS")]
+        TINUS
 
         ///***ATENÇÃO***
         ///o nome deste enum tem que coincidir com o nome da url, pq faço um "IndexOf" deste enum para pegar o padrao
@@ -1056,13 +1073,13 @@ namespace NFe.Components
         [Description("Normal")]
         teNormal = 1,
 
-        [Description("Contingência com formulário de segurança (FS)")]
+        [Description("Contingência com FS")]
         teFS = 2,
 
         [Description("Contingência com EPEC")]
         teEPEC = 4,
 
-        [Description("Contingência com formulário de segurança (FS-DA)")]
+        [Description("Contingência com FS-DA")]
         teFSDA = 5,
 
         [Description("Contingência com SVC-AN")]
