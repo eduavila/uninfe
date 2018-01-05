@@ -1230,5 +1230,35 @@ namespace NFe.Components.Properties {
                     "ps"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://200.240.233.10:8082/NFSe.Portal.Integracao/Services.svc")]
+        public string NFe_Components_PVacariRS_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_PVacariRS_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://200.240.233.10:8082/NFSe.Portal.Integracao.Teste/Services.svc")]
+        public string NFe_Components_HVacariRS_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_HVacariRS_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://nf-iconha-es.el.com.br:443/RpsService")]
+        public string NFe_Components_PIconhaES_RpsServiceService {
+            get {
+                return ((string)(this["NFe_Components_PIconhaES_RpsServiceService"]));
+            }
+        }
     }
 }

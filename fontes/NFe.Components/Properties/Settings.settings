@@ -359,5 +359,14 @@
     <Setting Name="NFe_Components_PJaboataoDosGuararapesPE_TINUS_RecepcionarLoteRps_RecepcionarLoteRps" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://www.tinus.com.br/csp/jaboatao/WSNFSE.RecepcionarLoteRps.cls</Value>
     </Setting>
+    <Setting Name="NFe_Components_PVacariRS_NFSeIntegracao" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://200.240.233.10:8082/NFSe.Portal.Integracao/Services.svc</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HVacariRS_NFSeIntegracao" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://200.240.233.10:8082/NFSe.Portal.Integracao.Teste/Services.svc</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PIconhaES_RpsServiceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://nf-iconha-es.el.com.br:443/RpsService</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

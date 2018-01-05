@@ -132,6 +132,8 @@ namespace NFe.UI.Formularios
 
                 this.txtSenhaWS.Text = this.empresa.SenhaWS;
                 this.txtUsuarioWS.Text = this.empresa.UsuarioWS;
+                this.txtClienteID.Text = this.empresa.ClientID;
+                this.txtClientSecret.Text = this.empresa.ClientSecret;
 
                 HabilitaUsuarioSenhaWS(this.empresa.UnidadeFederativaCodigo);
                 servicoCurrent = this.empresa.Servico;
@@ -224,6 +226,8 @@ namespace NFe.UI.Formularios
             this.empresa.UsuarioWS = this.txtUsuarioWS.Text;
             this.empresa.IdentificadorCSC = this.edtIdentificadorCSC.Text;
             this.empresa.TokenCSC = this.edtTokenCSC.Text;
+            this.empresa.ClientID = this.txtClienteID.Text;
+            this.empresa.ClientSecret = this.txtClientSecret.Text;
 
             return true;
         }
@@ -299,7 +303,10 @@ namespace NFe.UI.Formularios
                            ufCod == 3530409 /*Mirassolândia-SP*/ ||
                            ufCod == 3528809 /*Macaraí-SP*/ ||
                            ufCod == 5003207 /*Corumba-MS*/ ||
-                           ufCod == 1600303 /*Macapá-AP*/;
+                           ufCod == 1600303 /*Macapá-AP*/ ||
+                           ufCod == 3202603 /*Iconha-ES*/ ||
+                           ufCod == 4205407 /*Florianópolis-SC*/ ||
+                           ufCod == 4215802 /*São Bento do Sul-SC*/;
 
             bool visiblepass = ufCod == 3152105 || visible; /*Ponte nova*/
 
@@ -325,6 +332,22 @@ namespace NFe.UI.Formularios
 
                 edtPadrao.Text = EnumHelper.GetEnumItemDescription(Functions.PadraoNFSe(Convert.ToInt32(xuf)));
                 HabilitaUsuarioSenhaWS(Convert.ToInt32(edtCodMun.Text));
+
+                //Se o município for Florianópolis, temos que demonstrar os campos: ClientID e Client Secret
+                if (edtCodMun.Text.Equals("4205407"))
+                {
+                    lblClienteID.Visible = true;
+                    lblClientSecret.Visible = true;
+                    txtClienteID.Visible = true;
+                    txtClientSecret.Visible = true;
+                }
+                else
+                {
+                    lblClienteID.Visible = false;
+                    lblClientSecret.Visible = false;
+                    txtClienteID.Visible = false;
+                    txtClientSecret.Visible = false;
+                }
             }
             catch
             {
@@ -404,6 +427,7 @@ namespace NFe.UI.Formularios
                     checkBoxCompactaNFe.Visible = false;
                     udTempoConsulta.Visible = lbl_udTempoConsulta.Visible = false;
                     cbIndSinc.Visible = false;
+                    comboBox_Ambiente.Visible = true;
                     break;
 
                 case TipoAplicativo.SAT:
@@ -427,6 +451,10 @@ namespace NFe.UI.Formularios
                     edtCodMun.Visible = false;
                     edtPadrao.Visible = false;
                     lbl_Padrao.Visible = false;
+                    lblClienteID.Visible = false;
+                    lblClientSecret.Visible = false;
+                    txtClienteID.Visible = false;
+                    txtClientSecret.Visible = false;
                     break;
 
                 case TipoAplicativo.EFDReinf:
@@ -449,6 +477,10 @@ namespace NFe.UI.Formularios
                     edtCodMun.Visible = false;
                     edtPadrao.Visible = false;
                     lbl_Padrao.Visible = false;
+                    lblClienteID.Visible = false;
+                    lblClientSecret.Visible = false;
+                    txtClienteID.Visible = false;
+                    txtClientSecret.Visible = false;
                     break;
 
                 default:
@@ -479,6 +511,10 @@ namespace NFe.UI.Formularios
                     edtIdentificadorCSC.Visible = true;
                     metroLabel2.Visible = true;
                     metroLabel1.Visible = true;
+                    lblClienteID.Visible = false;
+                    lblClientSecret.Visible = false;
+                    txtClienteID.Visible = false;
+                    txtClientSecret.Visible = false;
                     break;
             }
         }
