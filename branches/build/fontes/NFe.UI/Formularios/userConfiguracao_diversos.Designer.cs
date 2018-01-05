@@ -65,6 +65,10 @@
             this.edtIdentificadorCSC = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.txtClienteID = new MetroFramework.Controls.MetroTextBox();
+            this.txtClientSecret = new MetroFramework.Controls.MetroTextBox();
+            this.lblClienteID = new MetroFramework.Controls.MetroLabel();
+            this.lblClientSecret = new MetroFramework.Controls.MetroLabel();
             this.grpQRCode.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,7 +199,7 @@
             // 
             // comboBox_tpEmis
             // 
-            this.comboBox_tpEmis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBox_tpEmis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_tpEmis.FontSize = MetroFramework.MetroComboBoxSize.Small;
             this.comboBox_tpEmis.FontWeight = MetroFramework.MetroComboBoxWeight.Light;
@@ -344,7 +348,7 @@
             // 
             // edtNome
             // 
-            this.edtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtNome.Lines = new string[] {
         "Styled Textbox"};
@@ -531,7 +535,7 @@
             // 
             // edtTokenCSC
             // 
-            this.edtTokenCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtTokenCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtTokenCSC.Lines = new string[] {
         "Styled Textbox"};
@@ -549,7 +553,7 @@
             // 
             // edtIdentificadorCSC
             // 
-            this.edtIdentificadorCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.edtIdentificadorCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtIdentificadorCSC.Lines = new string[] {
         "Styled Textbox"};
@@ -587,11 +591,69 @@
             this.metroLabel1.TabIndex = 16;
             this.metroLabel1.Text = "CSC:";
             // 
+            // txtClienteID
+            // 
+            this.txtClienteID.Lines = new string[] {
+        "Styled TextBox"};
+            this.txtClienteID.Location = new System.Drawing.Point(417, 220);
+            this.txtClienteID.MaxLength = 32767;
+            this.txtClienteID.Name = "txtClienteID";
+            this.txtClienteID.PasswordChar = '\0';
+            this.txtClienteID.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtClienteID.SelectedText = "";
+            this.txtClienteID.Size = new System.Drawing.Size(134, 23);
+            this.txtClienteID.TabIndex = 33;
+            this.txtClienteID.Text = "Styled TextBox";
+            this.txtClienteID.UseSelectable = true;
+            this.txtClienteID.Visible = false;
+            // 
+            // txtClientSecret
+            // 
+            this.txtClientSecret.Lines = new string[] {
+        "Styled TextBox"};
+            this.txtClientSecret.Location = new System.Drawing.Point(557, 219);
+            this.txtClientSecret.MaxLength = 32767;
+            this.txtClientSecret.Name = "txtClientSecret";
+            this.txtClientSecret.PasswordChar = '\0';
+            this.txtClientSecret.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtClientSecret.SelectedText = "";
+            this.txtClientSecret.Size = new System.Drawing.Size(134, 23);
+            this.txtClientSecret.TabIndex = 34;
+            this.txtClientSecret.Text = "Styled TextBox";
+            this.txtClientSecret.UseSelectable = true;
+            this.txtClientSecret.Visible = false;
+            // 
+            // lblClienteID
+            // 
+            this.lblClienteID.AutoSize = true;
+            this.lblClienteID.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblClienteID.Location = new System.Drawing.Point(415, 203);
+            this.lblClienteID.Name = "lblClienteID";
+            this.lblClienteID.Size = new System.Drawing.Size(45, 15);
+            this.lblClienteID.TabIndex = 35;
+            this.lblClienteID.Text = "ClientID";
+            this.lblClienteID.Visible = false;
+            // 
+            // lblClientSecret
+            // 
+            this.lblClientSecret.AutoSize = true;
+            this.lblClientSecret.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.lblClientSecret.Location = new System.Drawing.Point(555, 203);
+            this.lblClientSecret.Name = "lblClientSecret";
+            this.lblClientSecret.Size = new System.Drawing.Size(68, 15);
+            this.lblClientSecret.TabIndex = 36;
+            this.lblClientSecret.Text = "Client Secret";
+            this.lblClientSecret.Visible = false;
+            // 
             // userConfiguracao_diversos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.lblClientSecret);
+            this.Controls.Add(this.lblClienteID);
+            this.Controls.Add(this.txtClientSecret);
+            this.Controls.Add(this.txtClienteID);
             this.Controls.Add(this.grpQRCode);
             this.Controls.Add(this.lbl_Padrao);
             this.Controls.Add(this.edtPadrao);
@@ -673,5 +735,9 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroTextBox edtTokenCSC;
         private MetroFramework.Controls.MetroTextBox edtIdentificadorCSC;
+        private MetroFramework.Controls.MetroTextBox txtClienteID;
+        private MetroFramework.Controls.MetroTextBox txtClientSecret;
+        private MetroFramework.Controls.MetroLabel lblClienteID;
+        private MetroFramework.Controls.MetroLabel lblClientSecret;
     }
 }
