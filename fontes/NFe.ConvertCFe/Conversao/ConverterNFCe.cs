@@ -153,9 +153,21 @@ namespace NFe.SAT.Conversao
                     switch (itensDet.Name)
                     {
                         case "prod":
+                            string CEST = GetXML(itensDet.ChildNodes, "CEST");
+                            List<envCFeCFeInfCFeDetProdObsFiscoDet> listObsFisco = new List<envCFeCFeInfCFeDetProdObsFiscoDet>();
+                            if (!string.IsNullOrEmpty(CEST))
+                            {
+                                envCFeCFeInfCFeDetProdObsFiscoDet obsFisco = new envCFeCFeInfCFeDetProdObsFiscoDet();
+                                obsFisco.xCampoDet = "Cod. CEST";
+                                obsFisco.xTextoDet = CEST;
+
+                                listObsFisco.Add(obsFisco);
+                            }
+
                             det.prod = new envCFeCFeInfCFeDetProd
                             {
                                 cProd = GetXML(itensDet.ChildNodes, "cProd"),
+                                cEAN = GetXML(itensDet.ChildNodes, "cEAN"),
                                 xProd = GetXML(itensDet.ChildNodes, "xProd"),
                                 NCM = GetXML(itensDet.ChildNodes, "NCM"),
                                 CFOP = GetXML(itensDet.ChildNodes, "CFOP"),
@@ -163,8 +175,8 @@ namespace NFe.SAT.Conversao
                                 qCom = GetXML(itensDet.ChildNodes, "qCom"),
                                 vUnCom = GetXML(itensDet.ChildNodes, "vUnCom"),
                                 vDesc = GetXML(itensDet.ChildNodes, "vDesc"),
-
                                 indRegra = "A",
+                                obsFiscoDet = listObsFisco,
                             };
                             ValorDoItem = GetXML(itensDet.ChildNodes, "vProd");
                             break;
@@ -260,6 +272,9 @@ namespace NFe.SAT.Conversao
                     #region ICMS40
 
                     case "ICMS40":
+                    case "ICMS41":
+                    case "ICMS50":
+                    case "ICMS60":
                         envCFeCFeInfCFeDetImpostoICMSICMS40 ICMS40 = new envCFeCFeInfCFeDetImpostoICMSICMS40
                         {
                             CST = GetXML(tag.ChildNodes, "CST"),

@@ -277,6 +277,12 @@ namespace NFe.Components
         [Description("Consulta Sequencia do Lote da Nota RPS")]
         NFSeConsultaSequenciaLoteNotaRPS,
 
+        /// <summary>
+        /// Substituir NFS-e
+        /// </summary>
+        [Description("Substituir NFS-e")]
+        NFSeSubstituirNfse,
+
         #endregion NFSe
 
         #region CFSe
@@ -1027,7 +1033,24 @@ namespace NFe.Components
         /// Padrão utilizado pela prefeitura de Florianópolis-SC
         /// </summary>
         [Description("SOFTPLAN")]
-        SOFTPLAN
+        SOFTPLAN,
+
+        /// <summary>
+        /// Padrão utilizado pela prefeitura de Manaus-AM
+        /// </summary>
+        [Description("MANAUS_AM")]
+        MANAUS_AM,
+
+        /// <summary>
+        /// Padrão utilizado pela prefeitura de Joinville-SC
+        /// </summary>
+        JOINVILLE_SC,
+        
+        /// <summary>
+        /// Padrão utilizado pela prefeitura de Pelotas-RS
+        /// </summary>
+        [Description("AVMB/ASTEN")]
+        AVMB_ASTEN
 
         ///***ATENÇÃO***
         ///o nome deste enum tem que coincidir com o nome da url, pq faço um "IndexOf" deste enum para pegar o padrao
@@ -1131,7 +1154,8 @@ namespace NFe.Components
         FalhaInternet = 1,
         FalhaEnvioXmlWS = 2,
         CertificadoVencido = 3,
-        FalhaEnvioXmlNFeWS = 5
+        FalhaEnvioXmlNFeWS = 5,
+        CertificadoNaoEncontrado = 6
     }
 
     #endregion Erros Padrões

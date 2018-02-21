@@ -104,7 +104,7 @@ namespace NFe.Service
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(reinfNodeList[0].OuterXml);
 
-                    ad.Assinar(xmlDoc, emp, 991, AlgorithmType.Sha256);
+                    ad.Assinar(xmlDoc, emp, 991, AlgorithmType.Sha256, true);
 
                     XmlNode newNode = xmlDoc.ChildNodes[0];
                     eventoNode.RemoveChild(reinfNodeList[0]);

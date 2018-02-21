@@ -103,6 +103,10 @@ namespace NFe.Service
                             DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskConsultaSequenciaLoteNotaRPS(arquivo));
                             break;
 
+                        case Servicos.NFSeSubstituirNfse:
+                            DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskSubstituirNfse(arquivo));
+                            break;
+
                         #endregion NFS-e
 
                         #region CFS-e
@@ -873,6 +877,11 @@ namespace NFe.Service
                                     case "envioLoteEventos":
                                         tipoServico = Servicos.RecepcaoLoteeSocial;
                                         break;
+
+                                    default:
+                                        throw new Exception("Para envio dos eventos do eSocial gere o arquivo de lote, o que tem o prefixo final igual a -esocial-loteevt.xml\r\n"+
+                                            "Para envio da consulta do lote de eventos, gere o arquivo com o prefixo final igual a -esocial-consloteevt.xml\r\n\r\n"+
+                                            "Os modelos de arquivos do eSocial estão disponíveis no link www.unimake.com.br/uninfe/modelosxml/esocial");
                                 }
                                 break;
 
@@ -941,6 +950,10 @@ namespace NFe.Service
                                 else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedSeqLoteNotaRPS).EnvioXML) >= 0)
                                 {
                                     tipoServico = Servicos.NFSeConsultaSequenciaLoteNotaRPS;
+                                }
+                                else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedSubstNfse).EnvioXML) >= 0)
+                                {
+                                    tipoServico = Servicos.NFSeSubstituirNfse;
                                 }
 
                                 #endregion NFS-e
@@ -1894,12 +1907,12 @@ namespace NFe.Service
 
                 #region Diversos
 
-                case Servicos.UniNFeAlterarConfiguracoes:
-                case Servicos.AssinarValidar:
-                case Servicos.UniNFeConsultaInformacoes:
+                //case Servicos.UniNFeAlterarConfiguracoes:
+                //case Servicos.AssinarValidar:
+                //case Servicos.UniNFeConsultaInformacoes:
                 case Servicos.NFeConverterTXTparaXML:
-                case Servicos.EmProcessamento:
-                case Servicos.NFeGerarChave:
+                //case Servicos.EmProcessamento:
+                //case Servicos.NFeGerarChave:
                 case Servicos.UniNFeLimpezaTemporario:
                     //Não tem definição pois não gera arquivo .ERR
                     break;

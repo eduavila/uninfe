@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Xml;
-using System.Globalization;
+﻿using NFe.Components;
 using NFe.Settings;
-using System.Threading;
-using NFe.Components;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Xml;
 
 namespace NFe.ConvertTxt
 {
@@ -33,7 +32,7 @@ namespace NFe.ConvertTxt
             doc.InsertBefore(node, doc.DocumentElement);
             ///
             /// NFe
-            /// 
+            ///
             XmlNode xmlInf = doc.CreateElement("NFe");
             //if (NFe.ide.cUF != 29)  //Bahia
             //{
@@ -63,7 +62,7 @@ namespace NFe.ConvertTxt
             {
                 ///
                 /// gera codigo aleatorio
-                /// 
+                ///
                 NFe.ide.cNF = this.GerarCodigoNumerico(NFe.ide.nNF);
             }
             string ccChave = cChave +
@@ -76,7 +75,7 @@ namespace NFe.ConvertTxt
             {
                 ///
                 /// calcula digito verificador
-                /// 
+                ///
 
                 NFe.ide.cDV = this.GerarDigito(ccChave);
             }
@@ -95,7 +94,7 @@ namespace NFe.ConvertTxt
 
             ///
             /// infNFe
-            /// 
+            ///
             if (NFe.infNFe.Versao == 0) NFe.infNFe.Versao = Convert.ToDecimal(versoes.VersaoXMLNFe.Replace(".", System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator));
 
             nDecimaisPerc = (double)NFe.infNFe.Versao >= 3.10 ? TpcnTipoCampo.tcDec4 : TpcnTipoCampo.tcDec2;
@@ -124,10 +123,11 @@ namespace NFe.ConvertTxt
             GerarautXML(NFe, infNfe);
             GerarDet(NFe, infNfe);
             GerarTotal(NFe, infNfe);
-            GerarTransp(NFe.Transp, infNfe);
+            GerarTransp(NFe, infNfe);
             GerarCobr(NFe.Cobr, infNfe);
 
-            if (NFe.infNFe.Versao >= 3 && NFe.ide.mod == TpcnMod.modNFCe)
+            if ((NFe.infNFe.Versao >= 3 && NFe.ide.mod == TpcnMod.modNFCe) ||
+                (NFe.infNFe.Versao >= 4))
                 GerarPag(NFe, infNfe);
 
             GerarInfAdic(NFe.InfAdic, infNfe);
@@ -146,7 +146,7 @@ namespace NFe.ConvertTxt
                 {
                     ///
                     /// cria uma pasta temporária para armazenar o XML convertido
-                    /// 
+                    ///
                     System.IO.Directory.CreateDirectory(Path.Combine(folderDestino, "Convertidos"));
                 }
                 string strRetorno = this.cFileName;
@@ -246,29 +246,62 @@ namespace NFe.ConvertTxt
         /// </summary>
         /// <param name="nfe"></param>
         /// <param name="root"></param>
-        void GerarPag(NFe nfe, XmlElement root)
+        private void GerarPag(NFe nfe, XmlElement root)
         {
+            XmlElement nodePag = null;
+
             foreach (pag pagItem in nfe.pag)
             {
-                XmlElement nodePag = doc.CreateElement("pag"); //YA01
-                nodeCurrent = nodePag;
-                root.AppendChild(nodePag);
-
-                wCampo((int)pagItem.tPag, TpcnTipoCampo.tcInt, TpcnResources.tPag, ObOp.Obrigatorio, 2);    //YA02
-                wCampo(pagItem.vPag, TpcnTipoCampo.tcDec2, TpcnResources.vPag, ObOp.Obrigatorio);           //YA03
-                if (!string.IsNullOrEmpty(pagItem.CNPJ))
+                if (nodePag == null)
                 {
-                    XmlElement xnodePag = doc.CreateElement("card"); //YA04
-                    nodeCurrent = xnodePag;
-                    nodePag.AppendChild(xnodePag);
-
-                    wCampo((int)pagItem.tpIntegra, TpcnTipoCampo.tcInt, TpcnResources.tpIntegra, ObOp.Opcional);
-                    wCampo(pagItem.CNPJ, TpcnTipoCampo.tcStr, TpcnResources.CNPJ, ObOp.Obrigatorio); //YA05
-                    wCampo((int)pagItem.tBand, TpcnTipoCampo.tcInt, TpcnResources.tBand, ObOp.Obrigatorio, 2);          //YA06
-                    wCampo(pagItem.cAut, TpcnTipoCampo.tcStr, TpcnResources.cAut, ObOp.Obrigatorio);                    //YA07
+                    nodePag = doc.CreateElement("pag"); //YA01
+                    root.AppendChild(nodePag);
                 }
                 nodeCurrent = nodePag;
-                wCampo(pagItem.vTroco, TpcnTipoCampo.tcDec2, TpcnResources.vPag, ObOp.Opcional);
+
+                if (nfe.infNFe.Versao >= 4)
+                {
+                    XmlElement nodedetPag = doc.CreateElement("detPag");
+                    nodeCurrent = nodedetPag;
+                    nodePag.AppendChild(nodedetPag);
+
+                    wCampo((int)pagItem.tPag, TpcnTipoCampo.tcInt, TpcnResources.tPag, ObOp.Obrigatorio, 2);    //YA02
+                    wCampo(pagItem.vPag, TpcnTipoCampo.tcDec2, TpcnResources.vPag, ObOp.Obrigatorio);           //YA03
+                    if (pagItem.tpIntegra != 0)
+                    {
+                        XmlElement xnodedetPag = doc.CreateElement("card"); //YA04
+                        nodeCurrent = xnodedetPag;
+                        nodedetPag.AppendChild(xnodedetPag);
+
+                        wCampo((int)pagItem.tpIntegra, TpcnTipoCampo.tcInt, TpcnResources.tpIntegra, ObOp.Obrigatorio);
+                        wCampo(pagItem.CNPJ, TpcnTipoCampo.tcStr, TpcnResources.CNPJ, ObOp.Obrigatorio); //YA05
+                        wCampo((int)pagItem.tBand, TpcnTipoCampo.tcInt, TpcnResources.tBand, ObOp.Obrigatorio, 2);          //YA06
+                        wCampo(pagItem.cAut, TpcnTipoCampo.tcStr, TpcnResources.cAut, ObOp.Obrigatorio);                    //YA07
+                    }
+                }
+                else
+                {
+                    wCampo((int)pagItem.tPag, TpcnTipoCampo.tcInt, TpcnResources.tPag, ObOp.Obrigatorio, 2);    //YA02
+                    wCampo(pagItem.vPag, TpcnTipoCampo.tcDec2, TpcnResources.vPag, ObOp.Obrigatorio);           //YA03
+                    
+                    //Modificado Samuel 24/01/2018
+                    if ((int)pagItem.tpIntegra > 0 || !string.IsNullOrEmpty(pagItem.CNPJ) || (int)pagItem.tBand > 0 || !string.IsNullOrEmpty(pagItem.cAut))
+                    {
+                        XmlElement xnodePag = doc.CreateElement("card"); //YA04
+                        nodeCurrent = xnodePag;
+                        nodePag.AppendChild(xnodePag);
+
+                        //Modificado Samuel 24/01/2018
+                        wCampo((int)pagItem.tpIntegra, TpcnTipoCampo.tcInt, TpcnResources.tpIntegra, ObOp.Obrigatorio, 1);
+                        wCampo(pagItem.CNPJ, TpcnTipoCampo.tcStr, TpcnResources.CNPJ, ObOp.Opcional); //YA05
+                        wCampo((int)pagItem.tBand, TpcnTipoCampo.tcInt, TpcnResources.tBand, ObOp.Opcional, 2);          //YA06
+                        wCampo(pagItem.cAut, TpcnTipoCampo.tcStr, TpcnResources.cAut, ObOp.Opcional);                    //YA07
+                    }
+                }
+
+                nodeCurrent = nodePag;
+
+                wCampo(pagItem.vTroco, TpcnTipoCampo.tcDec2, TpcnResources.vTroco, ObOp.Opcional);
             }
         }
 
@@ -403,7 +436,7 @@ namespace NFe.ConvertTxt
             {
                 ///
                 /// (**)GerarDestEnderDest(UF);
-                /// 
+                ///
                 XmlElement e1 = doc.CreateElement("enderDest");
                 e0.AppendChild(e1);
                 nodeCurrent = e1;
@@ -422,7 +455,7 @@ namespace NFe.ConvertTxt
             }
             ///
             /// </enderDest">
-            /// 
+            ///
             nodeCurrent = e0;
             if (e0.HasChildNodes)
             {
@@ -484,7 +517,7 @@ namespace NFe.ConvertTxt
 
                 ///
                 /// Linha do produto
-                /// 
+                ///
                 XmlElement nodeProd = doc.CreateElement("prod");
                 rootDet.AppendChild(nodeProd);
                 nodeCurrent = nodeProd;
@@ -493,6 +526,11 @@ namespace NFe.ConvertTxt
 
                 wCampo(det.Prod.cProd, TpcnTipoCampo.tcStr, TpcnResources.cProd);
                 wCampo(det.Prod.cEAN, TpcnTipoCampo.tcStr, TpcnResources.cEAN);
+                if (NFe.ide.tpAmb == TipoAmbiente.taHomologacao &&
+                    NFe.ide.mod == TpcnMod.modNFCe &&
+                    det.Prod.nItem == 1)
+                    wCampo("NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL", TpcnTipoCampo.tcStr, TpcnResources.xProd);
+                else
                 wCampo(det.Prod.xProd, TpcnTipoCampo.tcStr, TpcnResources.xProd);
                 this.convertToOem = true;
                 wCampo(det.Prod.NCM, TpcnTipoCampo.tcStr, TpcnResources.NCM);
@@ -504,13 +542,15 @@ namespace NFe.ConvertTxt
                     switch (det.Prod.indEscala)
                     {
                         case TpcnIndicadorEscala.ieSomaTotalNFe:
-                            wCampo("N", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Obrigatorio);
+                            wCampo("S", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Opcional);
                             break;
+
                         case TpcnIndicadorEscala.ieNaoSomaTotalNFe:
-                            wCampo("S", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Obrigatorio);
+                            wCampo("N", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Opcional);
                             break;
+
                         default:
-                            wCampo("", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Obrigatorio);
+                            wCampo("", TpcnTipoCampo.tcStr, TpcnResources.indEscala, ObOp.Opcional);
                             break;
                     }
                     wCampo(det.Prod.CNPJFab, TpcnTipoCampo.tcStr, TpcnResources.CNPJFab, ObOp.Opcional);
@@ -582,9 +622,11 @@ namespace NFe.ConvertTxt
                     }
                 }
                 nodeCurrent = oldNode;
-                #endregion
+
+                #endregion /// DI
 
                 #region /// GerarDetProd->detExport
+
                 if (det.Prod.detExport.Count > 500)
                     this.cMensagemErro += "Número máximo de itens em 'prod->detExport' excedeu o máximo permitido" + Environment.NewLine;
                 foreach (detExport detx in det.Prod.detExport)
@@ -607,7 +649,8 @@ namespace NFe.ConvertTxt
                     }
                 }
                 nodeCurrent = oldNode;
-                #endregion
+
+                #endregion /// GerarDetProd->detExport
 
                 wCampo(det.Prod.xPed, TpcnTipoCampo.tcStr, TpcnResources.xPed, ObOp.Opcional);
                 wCampo(det.Prod.nItemPed, TpcnTipoCampo.tcInt, TpcnResources.nItemPed, ObOp.Opcional);
@@ -615,9 +658,10 @@ namespace NFe.ConvertTxt
                 wCampo(det.Prod.nFCI, TpcnTipoCampo.tcStr, TpcnResources.nFCI, ObOp.Opcional);
 
                 #region /// GerarDetProd->rastro
+
                 if (det.Prod.rastro.Count > 500)
                     this.cMensagemErro += "Número máximo de itens em 'rastro' excedeu o máximo permitido" + Environment.NewLine;
-                foreach(var item in det.Prod.rastro)
+                foreach (var item in det.Prod.rastro)
                 {
                     XmlElement e0 = doc.CreateElement("rastro");
                     nodeProd.AppendChild(e0);
@@ -629,9 +673,11 @@ namespace NFe.ConvertTxt
                     wCampo(item.dVal, TpcnTipoCampo.tcDatYYYY_MM_DD, TpcnResources.dVal);
                     wCampo(item.cAgreg, TpcnTipoCampo.tcStr, TpcnResources.cAgreg);
                 }
-                #endregion
+
+                #endregion /// GerarDetProd->rastro
 
                 #region /// veiculos
+
                 if (!string.IsNullOrEmpty(det.Prod.veicProd.chassi))
                 {
                     oldNode = nodeCurrent;
@@ -666,9 +712,11 @@ namespace NFe.ConvertTxt
 
                     nodeCurrent = oldNode;
                 }
-                #endregion
+
+                #endregion /// veiculos
 
                 #region /// medicamentos
+
                 if (det.Prod.med.Count > 500)
                     this.cMensagemErro += "Número máximo de itens em 'med' excedeu o máximo permitido" + Environment.NewLine;
                 foreach (Med med in det.Prod.med)
@@ -690,9 +738,11 @@ namespace NFe.ConvertTxt
                     }
                     wCampo(med.vPMC, TpcnTipoCampo.tcDec2, TpcnResources.vPMC);
                 }
-                #endregion
+
+                #endregion /// medicamentos
 
                 #region /// armamento
+
                 if (det.Prod.arma.Count > 500)
                     this.cMensagemErro += "Número máximo de itens em 'arma' excedeu o máximo permitido" + Environment.NewLine;
                 foreach (Arma arma in det.Prod.arma)
@@ -706,9 +756,11 @@ namespace NFe.ConvertTxt
                     wCampo(arma.nCano, TpcnTipoCampo.tcStr, TpcnResources.nCano);
                     wCampo(arma.descr, TpcnTipoCampo.tcStr, TpcnResources.descr);
                 }
-                #endregion
+
+                #endregion /// armamento
 
                 #region /// combustiveis
+
                 if (det.Prod.comb.cProdANP > 0)
                 {
                     XmlElement e0 = doc.CreateElement("comb");
@@ -764,7 +816,8 @@ namespace NFe.ConvertTxt
                         nodeCurrent = e0;
                     }
                 }
-                #endregion
+
+                #endregion /// combustiveis
 
                 wCampo(det.Prod.nRECOPI, TpcnTipoCampo.tcStr, TpcnResources.nRECOPI, ObOp.Opcional);
 
@@ -1310,6 +1363,7 @@ namespace NFe.ConvertTxt
                         wCampo(imposto.ICMS.pCredSN, TpcnTipoCampo.tcDec2, TpcnResources.pCredSN);
                         wCampo(imposto.ICMS.vCredICMSSN, TpcnTipoCampo.tcDec2, TpcnResources.vCredICMSSN);
                         break;
+
                     case 201:
                         wCampo(imposto.ICMS.modBCST, TpcnTipoCampo.tcInt, TpcnResources.modBCST);
                         wCampo(imposto.ICMS.pMVAST, this.nDecimaisPerc, TpcnResources.pMVAST, ObOp.Opcional);
@@ -1317,7 +1371,7 @@ namespace NFe.ConvertTxt
                         wCampo(imposto.ICMS.vBCST, TpcnTipoCampo.tcDec2, TpcnResources.vBCST);
                         wCampo(imposto.ICMS.pICMSST, this.nDecimaisPerc, TpcnResources.pICMSST);
                         wCampo(imposto.ICMS.vICMSST, TpcnTipoCampo.tcDec2, TpcnResources.vICMSST);
-                        if (nfe.infNFe.Versao >= 4) 
+                        if (nfe.infNFe.Versao >= 4)
                         {
                             wCampo(imposto.ICMS.vBCFCPST, TpcnTipoCampo.tcDec2, TpcnResources.vBCFCPST, ObOp.Opcional);
                             wCampo(imposto.ICMS.pFCPST, this.nDecimaisPerc, TpcnResources.pFCPST, ObOp.Opcional);
@@ -1326,6 +1380,7 @@ namespace NFe.ConvertTxt
                         wCampo(imposto.ICMS.pCredSN, this.nDecimaisPerc, TpcnResources.pCredSN);
                         wCampo(imposto.ICMS.vCredICMSSN, TpcnTipoCampo.tcDec2, TpcnResources.vCredICMSSN);
                         break;
+
                     case 202:
                     case 203:
                         wCampo(imposto.ICMS.modBCST, TpcnTipoCampo.tcInt, TpcnResources.modBCST);
@@ -1341,6 +1396,7 @@ namespace NFe.ConvertTxt
                             wCampo(imposto.ICMS.vFCPST, TpcnTipoCampo.tcDec2, TpcnResources.vFCPST, ObOp.Opcional);
                         }
                         break;
+
                     case 500:
                         wCampo(imposto.ICMS.vBCSTRet, TpcnTipoCampo.tcDec2, TpcnResources.vBCSTRet);
                         if (nfe.infNFe.Versao >= 4)
@@ -1353,6 +1409,7 @@ namespace NFe.ConvertTxt
                             wCampo(imposto.ICMS.vFCPSTRet, TpcnTipoCampo.tcDec2, TpcnResources.vFCPSTRet, ObOp.Opcional);
                         }
                         break;
+
                     case 900:
                         wCampo(imposto.ICMS.modBC, TpcnTipoCampo.tcInt, TpcnResources.modBC);
                         wCampo(imposto.ICMS.vBC, TpcnTipoCampo.tcDec2, TpcnResources.vBC);
@@ -1694,7 +1751,7 @@ namespace NFe.ConvertTxt
             wCampo(NFe.emit.xFant, TpcnTipoCampo.tcStr, TpcnResources.xFant, ObOp.Opcional);
             ///
             /// <enderEmit>
-            /// 
+            ///
             XmlElement el = doc.CreateElement("enderEmit");
             nodeCurrent.AppendChild(el);
             nodeCurrent = el;
@@ -1711,7 +1768,7 @@ namespace NFe.ConvertTxt
             wCampo(NFe.emit.enderEmit.fone, TpcnTipoCampo.tcStr, TpcnResources.fone, ObOp.Opcional);
             ///
             /// </enderEmit>
-            /// 
+            ///
             nodeCurrent = ELemit;
             wCampo(NFe.emit.IE, TpcnTipoCampo.tcStr, TpcnResources.IE);
             wCampo(NFe.emit.IEST, TpcnTipoCampo.tcStr, TpcnResources.IEST, ObOp.Opcional);
@@ -1752,6 +1809,7 @@ namespace NFe.ConvertTxt
                 wCampo(NFe.entrega.UF, TpcnTipoCampo.tcStr, TpcnResources.UF);
             }
         }
+
         /// <summary>
         /// GerarautoXML
         /// </summary>
@@ -1792,7 +1850,6 @@ namespace NFe.ConvertTxt
                 wCampo(impostoDevol.vIPIDevol, TpcnTipoCampo.tcDec2, TpcnResources.vIPIDevol);
             }
         }
-
 
         /// <summary>
         /// GerarExporta
@@ -1955,9 +2012,8 @@ namespace NFe.ConvertTxt
         /// </summary>
         /// <param name="Nfe"></param>
         /// <param name="ELide"></param>
-        void GerarIdeNFref(NFe Nfe, XmlElement ELide)
+        private void GerarIdeNFref(NFe Nfe, XmlElement ELide)
         {
-
             // Gera TAGs referentes a NFe referência
             foreach (NFref refNFe in Nfe.ide.NFref)
             {
@@ -2084,8 +2140,10 @@ namespace NFe.ConvertTxt
         /// </summary>
         /// <param name="Transp"></param>
         /// <param name="root"></param>
-        private void GerarTransp(Transp Transp, XmlElement root)
+        private void GerarTransp(NFe NFe, XmlElement root)
         {
+            Transp Transp = NFe.Transp;
+
             XmlElement nodeTransp = doc.CreateElement("transp");
             root.AppendChild(nodeTransp);
             nodeCurrent = nodeTransp;
@@ -2156,8 +2214,9 @@ namespace NFe.ConvertTxt
             //
             //(**)GerarTranspReboque;
             //
-            if (Transp.Reboque.Count > 2)
-                this.cMensagemErro += "Transp.reboque: Excedeu o máximo permitido de 2" + Environment.NewLine;
+            int mr = ((double)NFe.infNFe.Versao <= 3.10) ? 2 : 5;
+            if (Transp.Reboque.Count > mr)
+                this.cMensagemErro += $"Transp.reboque: Excedeu o máximo permitido de {mr}" + Environment.NewLine;
 
             foreach (Reboque Reboque in Transp.Reboque)
             {
@@ -2211,6 +2270,7 @@ namespace NFe.ConvertTxt
             root.AppendChild(nodeTotal);
 
             #region --ICMSTot
+
             nodeCurrent = doc.CreateElement("ICMSTot");
             nodeTotal.AppendChild(nodeCurrent);
 
@@ -2249,9 +2309,11 @@ namespace NFe.ConvertTxt
             wCampo(NFe.Total.ICMSTot.vOutro, TpcnTipoCampo.tcDec2, TpcnResources.vOutro);
             wCampo(NFe.Total.ICMSTot.vNF, TpcnTipoCampo.tcDec2, TpcnResources.vNF);
             wCampo(NFe.Total.ICMSTot.vTotTrib, TpcnTipoCampo.tcDec2, TpcnResources.vTotTrib, ObOp.Opcional);
-            #endregion
+
+            #endregion --ICMSTot
 
             #region --ISSQNtot
+
             if ((NFe.Total.ISSQNtot.vServ > 0) ||
                 (NFe.Total.ISSQNtot.vBC > 0) ||
                 (NFe.Total.ISSQNtot.vISS > 0) ||
@@ -2289,9 +2351,11 @@ namespace NFe.ConvertTxt
                     //wCampo(NFe.Total.ISSQNtot.indIncentivo ? 1:2 , TpcnTipoCampo.tcInt, TpcnResources.indIncentivo);
                 }
             }
-            #endregion
+
+            #endregion --ISSQNtot
 
             #region --retTrib
+
             if ((NFe.Total.retTrib.vRetPIS > 0) ||
                 (NFe.Total.retTrib.vRetCOFINS > 0) ||
                 (NFe.Total.retTrib.vRetCSLL > 0) ||
@@ -2311,7 +2375,8 @@ namespace NFe.ConvertTxt
                 wCampo(NFe.Total.retTrib.vBCRetPrev, TpcnTipoCampo.tcDec2, TpcnResources.vBCRetPrev, ObOp.Opcional);
                 wCampo(NFe.Total.retTrib.vRetPrev, TpcnTipoCampo.tcDec2, TpcnResources.vRetPrev, ObOp.Opcional);
             }
-            #endregion
+
+            #endregion --retTrib
         }
 
         /// <summary>
@@ -2349,6 +2414,7 @@ namespace NFe.ConvertTxt
         {
             wCampo(obj, Tipo, TAG.ToString(), Obrigatorio, nAlign);
         }
+
         private void wCampo(object obj, TpcnTipoCampo Tipo, string TAG, ObOp Obrigatorio, int nAlign)
         {
             TAG = TAG.Trim();
@@ -2450,6 +2516,7 @@ namespace NFe.ConvertTxt
         }
 
         #region ConverToOEM
+
         /// <summary>
         /// ConvertToOEM
         /// </summary>
@@ -2533,16 +2600,18 @@ namespace NFe.ConvertTxt
                         case 179: c = '3'; break; ///³
                         case 185: c = '1'; break; ///¹
                         case 186: c = 'o'; break; ///º
-                        case 732: c = 'Ø'; break; ///˜                          
+                        case 732: c = 'Ø'; break; ///˜
                     }
                     stringBuilder.Append(c);
                 }
             }
             return stringBuilder.ToString();
         }
-        #endregion
+
+        #endregion ConverToOEM
 
         #region GerarChaveNFe
+
         /// <summary>
         /// MontaChave
         /// Cria a chave de acesso da NFe
@@ -2677,24 +2746,31 @@ namespace NFe.ConvertTxt
                                 case "uf":
                                     cUF = Convert.ToInt32("0" + dados[1].Trim());
                                     break;
+
                                 case "tpemis":
                                     tpEmis = Convert.ToInt32("0" + dados[1].Trim());
                                     break;
+
                                 case "nnf":
                                     nNF = Convert.ToInt32("0" + dados[1].Trim());
                                     break;
+
                                 case "cnf":
                                     cNF = Convert.ToInt32("0" + dados[1].Trim());
                                     break;
+
                                 case "serie":
                                     serie = Convert.ToInt32("0" + dados[1].Trim());
                                     break;
+
                                 case "aamm":
                                     cAAMM = dados[1].Trim();
                                     break;
+
                                 case "cnpj":
                                     cCNPJ = dados[1].Trim();
                                     break;
+
                                 case "mod":
                                     cMod = dados[1].Trim();
                                     break;
@@ -2724,15 +2800,19 @@ namespace NFe.ConvertTxt
                         case TipoAplicativo.Cte:
                             cMod = ((int)TpcnMod.modCTe).ToString();
                             break;
+
                         case TipoAplicativo.MDFe:
                             cMod = ((int)TpcnMod.modMDFe).ToString();
                             break;
+
                         case TipoAplicativo.NFCe:
                             cMod = ((int)TpcnMod.modNFCe).ToString();
                             break;
+
                         case TipoAplicativo.Nfe:
                             cMod = ((int)TpcnMod.modNFe).ToString();
                             break;
+
                         default:
 
                             if (!("55,57,58,65").Contains(cMod))
@@ -2740,7 +2820,6 @@ namespace NFe.ConvertTxt
                             break;
                     }
                 }
-
 
                 if (cError != "")
                     throw new Exception(cError);
@@ -2752,29 +2831,29 @@ namespace NFe.ConvertTxt
                 {
                     ///
                     /// gera codigo aleatorio
-                    /// 
+                    ///
                     cNF = GerarCodigoNumerico(nNF);
                 }
 
                 ///
                 /// calcula do digito verificador
-                /// 
+                ///
                 string ccChave = cChave + serie.ToString("000") + nNF.ToString("000000000") + tpEmis.ToString("0") + cNF.ToString("00000000");
                 int cDV = GerarDigito(ccChave);
                 ///
                 /// monta a chave da NFe
-                /// 
+                ///
                 cChave += serie.ToString("000") + nNF.ToString("000000000") + tpEmis.ToString("0") + cNF.ToString("00000000") + cDV.ToString("0");
 
                 ///
                 /// grava o XML/TXT de resposta
-                /// 
+                ///
                 string vMsgRetorno = (xml ? "<?xml version=\"1.0\" encoding=\"UTF-8\"?><retGerarChave><chaveNFe>" + cChave + "</chaveNFe></retGerarChave>" : cChave);
                 File.WriteAllText(ArqXMLRetorno, vMsgRetorno);//, Encoding.Default);
 
                 ///
                 /// exclui o XML/TXT de pedido
-                /// 
+                ///
                 Functions.DeletarArquivo(ArqPedido);
             }
             catch (Exception ex)
@@ -2787,11 +2866,12 @@ namespace NFe.ConvertTxt
                 }
                 catch
                 {
-                    //Se der algum erro na hora de gravar o arquivo de erro para o ERP, infelizmente não vamos poder fazer nada, visto que 
+                    //Se der algum erro na hora de gravar o arquivo de erro para o ERP, infelizmente não vamos poder fazer nada, visto que
                     //pode ser algum problema com a rede, hd, permissões, etc... Wandrey 22/03/2010
                 }
             }
         }
-        #endregion
+
+        #endregion GerarChaveNFe
     }
 }

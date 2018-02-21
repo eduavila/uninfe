@@ -246,6 +246,9 @@ namespace NFe.Settings
         [AttributeTipoAplicacao(TipoAplicativo.Nfe)]
         public bool CompactarNfe { get; set; }
 
+        [AttributeTipoAplicacao(TipoAplicativo.Nfe | TipoAplicativo.Todos)]
+        public bool ArqNSU { get; set; }
+
         /// <summary>
         /// Enviar NFe utilizando o processo síncrono (true or false)
         /// </summary>

@@ -745,7 +745,8 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultar:
-                            if (cMunicipio.Equals(3300308))
+                            if (cMunicipio.Equals(3300308) ||
+                                cMunicipio.Equals(3303302))
                                 retorna = "ConsultarNfsePorFaixa";
                             else
                                 retorna = "ConsultarNfse";
@@ -959,7 +960,9 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeRecepcionarLoteRps:
-                            if (taHomologacao)
+                            if (taHomologacao &&
+                                cMunicipio.ToString() != "2111300") //São Luiz - MA
+
                                 if (cMunicipio.ToString().Equals("5002704")) // Campo grande - MS não tem web service de teste
                                     throw new NFe.Components.Exceptions.ServicoInexistenteHomologacaoException(servico);
                                 else
@@ -1018,7 +1021,7 @@ namespace NFe.Service
                     switch (servico)
                     {
                         case Servicos.NFSeConsultarLoteRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
+                            if (cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarLoteRps";
                             else
                                 retorna = "ConsultarLoteRPS";
@@ -1029,7 +1032,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultarPorRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
+                            if (cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarNfsePorRps";
                             else
                                 retorna = "ConsultarNfseRPS";
@@ -1037,7 +1040,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultarSituacaoLoteRps:
-                            if (cMunicipio.Equals(3304201) || cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
+                            if (cMunicipio.Equals(3301702) || cMunicipio.Equals(3300407) || cMunicipio.Equals(3304003) || cMunicipio.Equals(2611606))
                                 retorna = "ConsultarSituacaoLoteRps";
                             else
                                 retorna = "ConsultarSituacaoLoteRPS";
@@ -1828,7 +1831,81 @@ namespace NFe.Service
                     }
                     break;
 
-                    #endregion INTERSOL
+                #endregion INTERSOL
+
+                #region MANAUS_AM
+
+                case PadroesNFSe.MANAUS_AM:
+                    retorna = "Execute";
+                    break;
+
+                #endregion MANAUS_AM
+
+                #region JOINVILLE_SC
+
+                case PadroesNFSe.JOINVILLE_SC:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "EnviarLoteRpsEnvio";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelarNfseEnvio";
+                            break;
+
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "ConsultarLoteRpsEnvio";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "ConsultarNfseRpsEnvio";
+                            break;
+                    }
+                    break;
+
+                #endregion JOINVILLE_SC
+
+                #region AVMB_ASTEN
+
+                case PadroesNFSe.AVMB_ASTEN:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "ConsultarLoteRps";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "ConsultarNfsePorRps";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "RecepcionarLoteRps";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelarNfse";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRpsSincrono:
+                            retorna = "RecepcionarLoteRpsSincrono";
+                            break;
+
+                        case Servicos.NFSeConsultar:
+                            retorna = "ConsultarNfsePorFaixa";
+                            break;
+
+                        case Servicos.NFSeGerarNfse:
+                            retorna = "GerarNfse";
+                            break;
+
+                        case Servicos.NFSeSubstituirNfse:
+                            retorna = "SubstituirNfse";
+                            break;
+                    }
+                    break;
+
+                    #endregion AVMB_ASTEN
             }
 
             return retorna;
@@ -2488,6 +2565,8 @@ namespace NFe.Service
                 case PadroesNFSe.METROPOLIS:
                 case PadroesNFSe.BAURU_SP:
                 case PadroesNFSe.SOFTPLAN:
+                case PadroesNFSe.JOINVILLE_SC:
+                case PadroesNFSe.AVMB_ASTEN:
                     retorno = false;
                     break;
 
@@ -2529,6 +2608,8 @@ namespace NFe.Service
                 case PadroesNFSe.PAULISTANA:
                 case PadroesNFSe.NA_INFORMATICA:
                 case PadroesNFSe.BSITBR:
+                case PadroesNFSe.JOINVILLE_SC:
+                case PadroesNFSe.AVMB_ASTEN:
                     invocar = true;
                     break;
             }
@@ -2565,6 +2646,7 @@ namespace NFe.Service
 
             switch (padrao)
             {
+                case PadroesNFSe.AVMB_ASTEN:
                 case PadroesNFSe.WEBISS_202:
                     if (servico == Servicos.NFSeRecepcionarLoteRps)
                     {
@@ -2576,6 +2658,10 @@ namespace NFe.Service
 
                             case "EnviarLoteRpsSincronoEnvio":
                                 result = Servicos.NFSeRecepcionarLoteRpsSincrono;
+                                break;
+
+                            case "GerarNfseEnvio":
+                                result = Servicos.NFSeGerarNfse;
                                 break;
                         }
                     }

@@ -1,4 +1,5 @@
 using NFe.Components;
+using NFe.Exceptions;
 using NFe.Settings;
 using System;
 using System.IO;
@@ -42,13 +43,13 @@ namespace NFe.Certificado
             string tagAtributoId,
             X509Certificate2 x509Cert,
             int empresa,
-            AlgorithmType algorithmType = AlgorithmType.Sha1)
+            AlgorithmType algorithmType = AlgorithmType.Sha1, bool comURI = true)
         {
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = false;
             doc.Load(arqXMLAssinar);
 
-            Assinar(doc, tagAssinatura, tagAtributoId, x509Cert, empresa, algorithmType);
+            Assinar(doc, tagAssinatura, tagAtributoId, x509Cert, empresa, algorithmType, comURI);
 
             try
             {
@@ -86,10 +87,14 @@ namespace NFe.Certificado
             string tagAtributoId,
             X509Certificate2 x509Cert,
             int empresa,
-            AlgorithmType algorithmType)
+            AlgorithmType algorithmType,
+            bool comURI)
         {
             try
             {
+                if (x509Cert == null)
+                    throw new ExceptionCertificadoDigital(ErroPadrao.CertificadoNaoEncontrado);
+
                 if (conteudoXML.GetElementsByTagName(tagAssinatura).Count == 0)
                 {
                     throw new Exception("A tag de assinatura " + tagAssinatura.Trim() + " não existe no XML. (Código do Erro: 5)");
@@ -142,7 +147,7 @@ namespace NFe.Certificado
                             // pega o uri que deve ser assinada
                             XmlElement childElemen = (XmlElement)childNodes;
 
-                            if (algorithmType.Equals(AlgorithmType.Sha1))
+                            if (comURI)
                             {
                                 if (childElemen.GetAttributeNode("Id") != null)
                                 {
@@ -286,22 +291,28 @@ namespace NFe.Certificado
         /// <param name="emp">Código da empresa</param>
         /// <param name="UFCod">Codigo da UF</param>
         /// <param name="algorithmType">Tipo de algoritimo para assinatura do XML.</param>
-        public void Assinar(string arqXMLAssinar, int emp, int UFCod, AlgorithmType algorithmType = AlgorithmType.Sha1)
+        public void Assinar(string arqXMLAssinar, int emp, int UFCod, AlgorithmType algorithmType = AlgorithmType.Sha1, bool comURI = true)
         {
             if (Empresas.Configuracoes[emp].UsaCertificado)
             {
                 TipoArquivoXML v = new TipoArquivoXML(arqXMLAssinar, UFCod, false);
 
+                if (!string.IsNullOrEmpty(v.TagAssinatura0))
+                {
+                    if (!Assinado(arqXMLAssinar, v.TagAssinatura0))
+                        Assinar(arqXMLAssinar, v.TagAssinatura0, v.TagAtributoId0, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType, comURI);
+                }
+
                 if (!string.IsNullOrEmpty(v.TagAssinatura))
                 {
                     if (!Assinado(arqXMLAssinar, v.TagAssinatura))
-                        Assinar(arqXMLAssinar, v.TagAssinatura, v.TagAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType);
+                        Assinar(arqXMLAssinar, v.TagAssinatura, v.TagAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType, comURI);
                 }
 
                 //Assinar o lote
                 if (!string.IsNullOrEmpty(v.TagLoteAssinatura))
                     if (!Assinado(arqXMLAssinar, v.TagLoteAssinatura))
-                        Assinar(arqXMLAssinar, v.TagLoteAssinatura, v.TagLoteAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType);
+                        Assinar(arqXMLAssinar, v.TagLoteAssinatura, v.TagLoteAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType, comURI);
             }
         }
 
@@ -316,7 +327,7 @@ namespace NFe.Certificado
         /// <param name="emp">Código da empresa</param>
         /// <param name="UFCod">Codigo da UF</param>
         /// <param name="algorithmType">Tipo de algoritimo para assinatura do XML.</param>
-        public void Assinar(XmlDocument conteudoXML, int emp, int UFCod, AlgorithmType algorithmType = AlgorithmType.Sha1)
+        public void Assinar(XmlDocument conteudoXML, int emp, int UFCod, AlgorithmType algorithmType = AlgorithmType.Sha1, bool comURI = true)
         {
             if (Empresas.Configuracoes[emp].UsaCertificado)
             {
@@ -325,13 +336,13 @@ namespace NFe.Certificado
                 if (!string.IsNullOrEmpty(v.TagAssinatura))
                 {
                     if (!Assinado(conteudoXML, v.TagAssinatura))
-                        Assinar(conteudoXML, v.TagAssinatura, v.TagAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType);
+                        Assinar(conteudoXML, v.TagAssinatura, v.TagAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType, comURI);
                 }
 
                 //Assinar o lote
                 if (!string.IsNullOrEmpty(v.TagLoteAssinatura))
                     if (!Assinado(conteudoXML, v.TagLoteAssinatura))
-                        Assinar(conteudoXML, v.TagLoteAssinatura, v.TagLoteAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType);
+                        Assinar(conteudoXML, v.TagLoteAssinatura, v.TagLoteAtributoId, Empresas.Configuracoes[emp].X509Certificado, emp, algorithmType, comURI);
             }
         }
 
@@ -382,9 +393,7 @@ namespace NFe.Certificado
             string tagAtributo,
             X509Certificate2 certificado,
             int codEmp,
-            string pin,
-            string provider,
-            string type)
+            string pin)
         {
             string _pin = Empresas.Configuracoes[codEmp].CertificadoPIN;
 

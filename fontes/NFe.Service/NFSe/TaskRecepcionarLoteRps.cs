@@ -7,7 +7,6 @@ using NFe.Components.Coplan;
 using NFe.Components.EGoverne;
 using NFe.Components.EGoverneISS;
 using NFe.Components.EL;
-using NFe.Components.EloTech;
 using NFe.Components.Fiorilli;
 using NFe.Components.GovDigital;
 using NFe.Components.Memory;
@@ -17,7 +16,6 @@ using NFe.Components.Pronin;
 using NFe.Components.RLZ_INFORMATICA;
 using NFe.Components.SigCorp;
 using NFe.Components.SimplISS;
-using NFe.Components.SOFTPLAN;
 using NFe.Components.SystemPro;
 using NFe.Components.Tinus;
 using NFe.Settings;
@@ -422,25 +420,6 @@ namespace NFe.Service.NFSe
                         Servico = GetTipoServicoSincrono(Servico, NomeArquivoXML, PadroesNFSe.VVISS);
                         break;
 
-                    case PadroesNFSe.ELOTECH:
-
-                        #region EloTech
-
-                        EloTech elotech = new EloTech((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                                                      Empresas.Configuracoes[emp].PastaXmlRetorno,
-                                                      oDadosEnvLoteRps.cMunicipio,
-                                                      Empresas.Configuracoes[emp].UsuarioWS,
-                                                      Empresas.Configuracoes[emp].SenhaWS,
-                                                      ConfiguracaoApp.ProxyUsuario,
-                                                      ConfiguracaoApp.ProxySenha,
-                                                      ConfiguracaoApp.ProxyServidor,
-                                                      Empresas.Configuracoes[emp].X509Certificado);
-
-                        elotech.EmiteNF(NomeArquivoXML);
-                        break;
-
-                    #endregion EloTech
-
                     case PadroesNFSe.METROPOLIS:
 
                         #region METROPOLIS
@@ -624,8 +603,9 @@ namespace NFe.Service.NFSe
                         break;
 
                     #endregion BAURU_SP
-                    
-                        #region Tinus
+
+                    #region Tinus
+
                     case PadroesNFSe.TINUS:
                         Tinus tinus = new Tinus((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
                             Empresas.Configuracoes[emp].PastaXmlRetorno,
@@ -643,14 +623,26 @@ namespace NFe.Service.NFSe
 
                     #endregion Tinus
 
+#if _fw46
+
                     #region SOFTPLAN
+
                     case PadroesNFSe.SOFTPLAN:
-                        SOFTPLAN softplan = new SOFTPLAN((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                        Components.SOFTPLAN.SOFTPLAN softplan = new Components.SOFTPLAN.SOFTPLAN((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
                                                         Empresas.Configuracoes[emp].PastaXmlRetorno,
                                                         Empresas.Configuracoes[emp].UsuarioWS,
                                                         Empresas.Configuracoes[emp].SenhaWS,
                                                         Empresas.Configuracoes[emp].ClientID,
                                                         Empresas.Configuracoes[emp].ClientSecret);
+
+                        AssinaturaDigital softplanAssinatura = new AssinaturaDigital();
+                        softplanAssinatura.Assinar(NomeArquivoXML, emp, oDadosEnvLoteRps.cMunicipio);
+
+                        // Validar o Arquivo XML
+                        ValidarXML softplanValidar = new ValidarXML(NomeArquivoXML, Empresas.Configuracoes[emp].UnidadeFederativaCodigo, false);
+                        string validacao = softplanValidar.ValidarArqXML(NomeArquivoXML);
+                        if (validacao != "")
+                            throw new Exception(validacao);
 
                         if (ConfiguracaoApp.Proxy)
                             softplan.Proxy = Proxy.DefinirProxy(ConfiguracaoApp.ProxyServidor, ConfiguracaoApp.ProxyUsuario, ConfiguracaoApp.ProxySenha, ConfiguracaoApp.ProxyPorta);
@@ -660,10 +652,38 @@ namespace NFe.Service.NFSe
 
                         softplan.EmiteNF(NomeArquivoXML);
                         break;
-                        #endregion SOFTPLAN
-       
+
+                    #endregion SOFTPLAN
+
+#endif
+
                     case PadroesNFSe.INTERSOL:
                         cabecMsg = "<?xml version=\"1.0\" encoding=\"utf-8\"?><p:cabecalho versao=\"1\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\" xmlns:p=\"http://ws.speedgov.com.br/cabecalho_v1.xsd\" xmlns:p1=\"http://ws.speedgov.com.br/tipos_v1.xsd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://ws.speedgov.com.br/cabecalho_v1.xsd cabecalho_v1.xsd \"><versaoDados>1</versaoDados></p:cabecalho>";
+                        break;
+
+                    case PadroesNFSe.MANAUS_AM:
+                        cabecMsg = "<cabecalho versao=\"201001\"><versaoDados>V2010</versaoDados></cabecalho>";
+                        break;
+
+                    case PadroesNFSe.JOINVILLE_SC:
+                        wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
+
+                        if (oDadosEnvLoteRps.tpAmb == 2)
+                            envLoteRps = new Components.HJoinvilleSC.Servicos();                        
+                        else
+                            throw new Exception("Ambiente de produção de Joinville-SC ainda não foi implementado no UniNFe.");
+                        break;
+
+                    case PadroesNFSe.AVMB_ASTEN:
+                        Servico = GetTipoServicoSincrono(Servico, NomeArquivoXML, PadroesNFSe.AVMB_ASTEN);
+
+                        cabecMsg = "<cabecalho versao=\"2.02\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><versaoDados>2.02</versaoDados></cabecalho>";
+                        wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
+
+                        if (oDadosEnvLoteRps.tpAmb == 2)
+                            envLoteRps = new Components.HPelotasRS.INfseservice();                        
+                        else
+                            envLoteRps = new Components.PPelotasRS.INfseservice();
                         break;
                 }
 

@@ -140,6 +140,7 @@ namespace NFe.ConvertTxt
                             minhaCultura.NumberFormat.NumberDecimalSeparator = ".";
 
                             var data = nodeinfNFe.InnerText.Replace("<![CDATA[", "").Replace("]]>", "");
+                            nfe.qrCode.Link = data;
                             var split = data.Split(new char[] { '&' });
                             foreach (var s in split)
                             {
@@ -641,7 +642,18 @@ namespace NFe.ConvertTxt
                 detInfo.Prod.CEST = this.readInt32(ele, TpcnResources.CEST);
                 if (nfe.infNFe.Versao >= 4)
                 {
-                    detInfo.Prod.indEscala = (TpcnIndicadorEscala)this.readInt32(ele, TpcnResources.indEscala);
+                    switch (this.readValue(ele, TpcnResources.indEscala))
+                    {
+                        case "S":
+                            detInfo.Prod.indEscala = TpcnIndicadorEscala.ieSomaTotalNFe;
+                            break;
+                        case "N":
+                            detInfo.Prod.indEscala = TpcnIndicadorEscala.ieNaoSomaTotalNFe;
+                            break;
+                        default:
+                            detInfo.Prod.indEscala = TpcnIndicadorEscala.ieNenhum;
+                            break;
+                    }
                     detInfo.Prod.CNPJFab = this.readValue(ele, TpcnResources.CNPJFab);
                     detInfo.Prod.cBenef = this.readValue(ele, TpcnResources.cBenef);
                 }

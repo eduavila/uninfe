@@ -152,7 +152,9 @@ namespace NFe.ConvertTxt
                     _LayoutTXT.Add("NA_400",    prefix + "NA|vBCUFDest|vBCFCPUFDest|pFCPUFDest|pICMSUFDest|pICMSInter|pICMSInterPart|vFCPUFDest|vICMSUFDest|vICMSUFRemet|");
                     /// "O"
                     _LayoutTXT.Add("O",         prefix + "O|clEnq|CNPJProd|cSelo|qSelo|cEnq|");
+                    _LayoutTXT.Add("O_400",     prefix + "O|CNPJProd|cSelo|qSelo|cEnq|");
                     _LayoutTXT.Add("O07",       prefix + "O07|CST|vIPI|");
+
                     _LayoutTXT.Add("O08",       prefix + "O08|CST|");
                     _LayoutTXT.Add("O10",       prefix + "O10|vBC|pIPI|");
                     _LayoutTXT.Add("O11_200",   prefix + "O11|qUnid|vUnid|");
@@ -497,7 +499,7 @@ namespace NFe.ConvertTxt
         /// <summary>
         /// RetornarConteudoTag
         /// </summary>
-        private string RetornarConteudoTag(string TAG, bool trim)
+        private string RetornarConteudoTag(string TAG, bool trim, ObOp optional)
         {
             ///
             /// "§B14|cUF|AAMM|CNPJ|Mod|serie|nNF"); //ok
@@ -511,7 +513,10 @@ namespace NFe.ConvertTxt
             if (!layout.EndsWith("|")) layout += "|";
             string fValue = layout.Substring(0, layout.ToUpper().IndexOf("|" + TAG.ToUpper().Trim() + "|") + 1);
             if (fValue == "")
+                if (optional == ObOp.Obrigatorio)
                 throw new Exception("Segmento: " + this.FSegmento + " - Tag: " + TAG + " não encontrada");
+                else
+                    return "";
 
             string[] pipes = fValue.Split(new char[] { '|' });
             int j = pipes.GetLength(0) - 1;
@@ -594,7 +599,7 @@ namespace NFe.ConvertTxt
             string ConteudoTag = "";
             try
             {
-                ConteudoTag = RetornarConteudoTag(tag.ToString(), trim);
+                ConteudoTag = RetornarConteudoTag(tag.ToString(), trim, optional);
 
                 if (ConteudoTag != "")
                     if (ConteudoTag.StartsWith(prefix))
@@ -1295,7 +1300,18 @@ namespace NFe.ConvertTxt
                         NFe.det[nProd].Prod.CEST = this.LerInt32(TpcnResources.CEST, ObOp.Opcional, 0, 7);
                         if (NFe.infNFe.Versao >= 4)
                         {
-                            NFe.det[nProd].Prod.indEscala = (TpcnIndicadorEscala)this.LerInt32(TpcnResources.indEscala, ObOp.Opcional, 1, 1);
+                            switch(this.LerString(TpcnResources.indEscala, ObOp.Opcional, 1, 1))
+                            {
+                                case "S":
+                                    NFe.det[nProd].Prod.indEscala = TpcnIndicadorEscala.ieSomaTotalNFe;
+                                    break;
+                                case "N":
+                                    NFe.det[nProd].Prod.indEscala = TpcnIndicadorEscala.ieNaoSomaTotalNFe;
+                                    break;
+                                default:
+                                    NFe.det[nProd].Prod.indEscala = TpcnIndicadorEscala.ieNenhum;
+                                    break;
+                            }
                             NFe.det[nProd].Prod.CNPJFab = this.LerString(TpcnResources.CNPJFab, ObOp.Opcional, 0, 14);
                             NFe.det[nProd].Prod.cBenef = this.LerString(TpcnResources.cBenef, ObOp.Opcional, 0, 10);
                         }
@@ -1805,6 +1821,9 @@ namespace NFe.ConvertTxt
                         NFe.det[nProd].Imposto.ICMS.vBCFCP = this.LerDouble(TpcnTipoCampo.tcDec2, TpcnResources.vBCFCP, ObOp.Opcional, 15);
                         NFe.det[nProd].Imposto.ICMS.pFCP = this.LerDouble(TpcnTipoCampo.tcDec4, TpcnResources.pFCP, ObOp.Opcional, 15);
                         NFe.det[nProd].Imposto.ICMS.vFCP = this.LerDouble(TpcnTipoCampo.tcDec2, TpcnResources.vFCP, ObOp.Opcional, 15);
+                        NFe.det[nProd].Imposto.ICMS.vBCFCPST = this.LerDouble(TpcnTipoCampo.tcDec2, TpcnResources.vBCFCPST, ObOp.Opcional, 15);
+                        NFe.det[nProd].Imposto.ICMS.pFCPST = this.LerDouble(TpcnTipoCampo.tcDec4, TpcnResources.pFCPST, ObOp.Opcional, 15);
+                        NFe.det[nProd].Imposto.ICMS.vFCPST = this.LerDouble(TpcnTipoCampo.tcDec2, TpcnResources.vFCPST, ObOp.Opcional, 15);
                     }
 
                     #endregion
@@ -1993,6 +2012,7 @@ namespace NFe.ConvertTxt
                     /// Grupo da TAG <det><imposto><IPI>
                     /// 
                     #region <det><imposto><IPI>
+                    if (NFe.infNFe.Versao < 4)
                     NFe.det[nProd].Imposto.IPI.clEnq = this.LerString(TpcnResources.clEnq, ObOp.Opcional, 5, 5);
                     NFe.det[nProd].Imposto.IPI.CNPJProd = this.LerString(TpcnResources.CNPJProd, ObOp.Opcional, 14, 14);
                     NFe.det[nProd].Imposto.IPI.cSelo = this.LerString(TpcnResources.cSelo, ObOp.Opcional, 1, 60);
@@ -2539,7 +2559,7 @@ namespace NFe.ConvertTxt
                     break;
 
                 ///
-                /// NFC-e
+                /// NFC-e e NF-e
                 /// 
                 case "YA":
                     #region YA
