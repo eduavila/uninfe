@@ -6,14 +6,16 @@ namespace NFe.Components.Fiorilli
     public abstract class FiorilliBase : EmiteNFSeBase
     {
         #region locais/ protegidos
-        int CodigoMun = 0;
-        string Usuario = "";
-        string SenhaWs = "";
-        string ProxyUser = "";
-        string ProxyPass = "";
-        string ProxyServer = "";
-        X509Certificate2 Certificado;
-        EmiteNFSeBase fiorilliService;
+
+        private int CodigoMun = 0;
+        private string Usuario = "";
+        private string SenhaWs = "";
+        private string ProxyUser = "";
+        private string ProxyPass = "";
+        private string ProxyServer = "";
+        private X509Certificate2 Certificado;
+        private EmiteNFSeBase fiorilliService;
+
         protected EmiteNFSeBase FiorilliService
         {
             get
@@ -24,7 +26,7 @@ namespace NFe.Components.Fiorilli
                         switch (CodigoMun)
                         {
                             case 3522802: //Itaporanga-SP
-                            case 3512902: //Cosmorama-SP 
+                            case 3512902: //Cosmorama-SP
                             case 3553807: //Taquarituba-SP
                                 fiorilliService = new TaquaraSP.h.FiorilliH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
                                 break;
@@ -45,6 +47,14 @@ namespace NFe.Components.Fiorilli
 
                             case 1600303: //Macapá-AP
                                 fiorilliService = new MacapaAP.h.FiorilliH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
+                                break;
+
+                            case 3540804: //Potirendaba-SP
+                                fiorilliService = new PotirendabaSP.h.FiorilliH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
+                                break;
+
+                            case 4320404: //Serafina Corrêa-RS
+                                fiorilliService = new SerafinaCorreaRS.h.FiorilliH(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
                                 break;
 
                             default:
@@ -88,6 +98,15 @@ namespace NFe.Components.Fiorilli
                             case 1600303: //Macapá-AP
                                 fiorilliService = new MacapaAP.p.FiorilliP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
                                 break;
+
+                            case 3540804: //Potirendaba-SP
+                                fiorilliService = new PotirendabaSP.p.FiorilliP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
+                                break;
+
+                            case 4320404: //Serafina Corrêa-RS
+                                fiorilliService = new SerafinaCorreaRS.p.FiorilliP(tpAmb, PastaRetorno, Usuario, SenhaWs, ProxyUser, ProxyPass, ProxyServer, Certificado);
+                                break;
+
                             default:
                                 throw new Exceptions.ServicoInexistenteException();
                         }
@@ -95,9 +114,11 @@ namespace NFe.Components.Fiorilli
                 return fiorilliService;
             }
         }
-        #endregion
+
+        #endregion locais/ protegidos
 
         #region Construtores
+
         public FiorilliBase(TipoAmbiente tpAmb, string pastaRetorno, int codMun, string usuario, string senhaWs, string proxyuser, string proxypass, string proxyserver, X509Certificate2 certificado)
             : base(tpAmb, pastaRetorno)
         {
@@ -109,9 +130,11 @@ namespace NFe.Components.Fiorilli
             ProxyServer = proxyserver;
             Certificado = certificado;
         }
-        #endregion
+
+        #endregion Construtores
 
         #region Métodos
+
         public override void EmiteNF(string file)
         {
             FiorilliService.EmiteNF(file);
@@ -141,6 +164,7 @@ namespace NFe.Components.Fiorilli
         {
             FiorilliService.ConsultarNfsePorRps(file);
         }
-        #endregion
+
+        #endregion Métodos
     }
 }

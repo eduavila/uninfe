@@ -69,6 +69,7 @@
             this.txtClientSecret = new MetroFramework.Controls.MetroTextBox();
             this.lblClienteID = new MetroFramework.Controls.MetroLabel();
             this.lblClientSecret = new MetroFramework.Controls.MetroLabel();
+            this.checkBoxArqNSU = new MetroFramework.Controls.MetroCheckBox();
             this.grpQRCode.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,7 +111,7 @@
             this.checkBoxCompactaNFe.AutoSize = true;
             this.checkBoxCompactaNFe.Location = new System.Drawing.Point(3, 341);
             this.checkBoxCompactaNFe.Name = "checkBoxCompactaNFe";
-            this.checkBoxCompactaNFe.Size = new System.Drawing.Size(212, 15);
+            this.checkBoxCompactaNFe.Size = new System.Drawing.Size(211, 15);
             this.checkBoxCompactaNFe.TabIndex = 31;
             this.checkBoxCompactaNFe.Text = "Compactar NFe para enviar a SEFAZ";
             this.checkBoxCompactaNFe.UseSelectable = true;
@@ -199,7 +200,7 @@
             // 
             // comboBox_tpEmis
             // 
-            this.comboBox_tpEmis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBox_tpEmis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_tpEmis.FontSize = MetroFramework.MetroComboBoxSize.Small;
             this.comboBox_tpEmis.FontWeight = MetroFramework.MetroComboBoxWeight.Light;
@@ -294,7 +295,7 @@
             this.checkBoxGravarEventosNaPastaEnviadosNFe.AutoSize = true;
             this.checkBoxGravarEventosNaPastaEnviadosNFe.Location = new System.Drawing.Point(3, 236);
             this.checkBoxGravarEventosNaPastaEnviadosNFe.Name = "checkBoxGravarEventosNaPastaEnviadosNFe";
-            this.checkBoxGravarEventosNaPastaEnviadosNFe.Size = new System.Drawing.Size(543, 15);
+            this.checkBoxGravarEventosNaPastaEnviadosNFe.Size = new System.Drawing.Size(542, 15);
             this.checkBoxGravarEventosNaPastaEnviadosNFe.TabIndex = 26;
             this.checkBoxGravarEventosNaPastaEnviadosNFe.Text = "Gravar os eventos na mesma pasta dos arquivos de NFe/NFCe/MDFe/CTe autorizados/de" +
     "negados?";
@@ -306,7 +307,7 @@
             this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.AutoSize = true;
             this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Location = new System.Drawing.Point(3, 257);
             this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Name = "checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe";
-            this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Size = new System.Drawing.Size(637, 15);
+            this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Size = new System.Drawing.Size(636, 15);
             this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.TabIndex = 27;
             this.checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Text = "Gravar os eventos de cancelamento na mesma pasta dos arquivos da NFe/NFCe/MDFe/CT" +
     "e autorizados/denegados?";
@@ -348,7 +349,7 @@
             // 
             // edtNome
             // 
-            this.edtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.edtNome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtNome.Lines = new string[] {
         "Styled Textbox"};
@@ -398,7 +399,7 @@
             this.checkBoxGravarEventosDeTerceiros.AutoSize = true;
             this.checkBoxGravarEventosDeTerceiros.Location = new System.Drawing.Point(3, 278);
             this.checkBoxGravarEventosDeTerceiros.Name = "checkBoxGravarEventosDeTerceiros";
-            this.checkBoxGravarEventosDeTerceiros.Size = new System.Drawing.Size(385, 15);
+            this.checkBoxGravarEventosDeTerceiros.Size = new System.Drawing.Size(384, 15);
             this.checkBoxGravarEventosDeTerceiros.TabIndex = 28;
             this.checkBoxGravarEventosDeTerceiros.Text = "Gravar os eventos na consulta de NFe/NFCe/MDFe/CTe de terceiros?";
             this.checkBoxGravarEventosDeTerceiros.UseSelectable = true;
@@ -525,7 +526,7 @@
             this.grpQRCode.Controls.Add(this.edtIdentificadorCSC);
             this.grpQRCode.Controls.Add(this.metroLabel2);
             this.grpQRCode.Controls.Add(this.metroLabel1);
-            this.grpQRCode.Location = new System.Drawing.Point(3, 362);
+            this.grpQRCode.Location = new System.Drawing.Point(3, 382);
             this.grpQRCode.Name = "grpQRCode";
             this.grpQRCode.Size = new System.Drawing.Size(681, 67);
             this.grpQRCode.TabIndex = 32;
@@ -535,7 +536,7 @@
             // 
             // edtTokenCSC
             // 
-            this.edtTokenCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.edtTokenCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtTokenCSC.Lines = new string[] {
         "Styled Textbox"};
@@ -553,7 +554,7 @@
             // 
             // edtIdentificadorCSC
             // 
-            this.edtIdentificadorCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.edtIdentificadorCSC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.edtIdentificadorCSC.Lines = new string[] {
         "Styled Textbox"};
@@ -645,11 +646,24 @@
             this.lblClientSecret.Text = "Client Secret";
             this.lblClientSecret.Visible = false;
             // 
+            // checkBoxArqNSU
+            // 
+            this.checkBoxArqNSU.AutoSize = true;
+            this.checkBoxArqNSU.Location = new System.Drawing.Point(3, 361);
+            this.checkBoxArqNSU.Name = "checkBoxArqNSU";
+            this.checkBoxArqNSU.Size = new System.Drawing.Size(553, 15);
+            this.checkBoxArqNSU.TabIndex = 37;
+            this.checkBoxArqNSU.Text = "Gravar o nome dos XML da NFe/CTe retornados na manifestação no formato com o núme" +
+    "ro do NSU";
+            this.checkBoxArqNSU.UseSelectable = true;
+            this.checkBoxArqNSU.CheckedChanged += new System.EventHandler(this.comboBox_Ambiente_SelectedIndexChanged);
+            // 
             // userConfiguracao_diversos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.checkBoxArqNSU);
             this.Controls.Add(this.lblClientSecret);
             this.Controls.Add(this.lblClienteID);
             this.Controls.Add(this.txtClientSecret);
@@ -688,7 +702,7 @@
             this.Controls.Add(this.edtCNPJ);
             this.Controls.Add(this.checkBoxGravarEventosDeTerceiros);
             this.Name = "userConfiguracao_diversos";
-            this.Size = new System.Drawing.Size(701, 433);
+            this.Size = new System.Drawing.Size(701, 453);
             this.grpQRCode.ResumeLayout(false);
             this.grpQRCode.PerformLayout();
             this.ResumeLayout(false);
@@ -739,5 +753,6 @@
         private MetroFramework.Controls.MetroTextBox txtClientSecret;
         private MetroFramework.Controls.MetroLabel lblClienteID;
         private MetroFramework.Controls.MetroLabel lblClientSecret;
+        private MetroFramework.Controls.MetroCheckBox checkBoxArqNSU;
     }
 }

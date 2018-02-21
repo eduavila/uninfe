@@ -458,6 +458,36 @@ namespace NFe.Service.NFSe
                     case PadroesNFSe.INTERSOL:
                         cabecMsg = "<?xml version=\"1.0\" encoding=\"utf-8\"?><p:cabecalho versao=\"1\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\" xmlns:p=\"http://ws.speedgov.com.br/cabecalho_v1.xsd\" xmlns:p1=\"http://ws.speedgov.com.br/tipos_v1.xsd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://ws.speedgov.com.br/cabecalho_v1.xsd cabecalho_v1.xsd \"><versaoDados>1</versaoDados></p:cabecalho>";
                         break;
+
+#if _fw46
+                    case PadroesNFSe.SOFTPLAN:
+                        NFe.Components.SOFTPLAN.SOFTPLAN softplan = new NFe.Components.SOFTPLAN.SOFTPLAN((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
+                                                        Empresas.Configuracoes[emp].PastaXmlRetorno,
+                                                        Empresas.Configuracoes[emp].UsuarioWS,
+                                                        Empresas.Configuracoes[emp].SenhaWS,
+                                                        Empresas.Configuracoes[emp].ClientID,
+                                                        Empresas.Configuracoes[emp].ClientSecret);
+
+                        if (ConfiguracaoApp.Proxy)
+                            softplan.Proxy = Proxy.DefinirProxy(ConfiguracaoApp.ProxyServidor, ConfiguracaoApp.ProxyUsuario, ConfiguracaoApp.ProxySenha, ConfiguracaoApp.ProxyPorta);
+
+                        softplan.ConsultarNfse(NomeArquivoXML);
+                        break;
+#endif
+
+                    case PadroesNFSe.MANAUS_AM:
+                        cabecMsg = "<cabecalho versao=\"201001\"><versaoDados>V2010</versaoDados></cabecalho>";
+                        break;
+
+                    case PadroesNFSe.AVMB_ASTEN:
+                        cabecMsg = "<cabecalho versao=\"2.02\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><versaoDados>2.02</versaoDados></cabecalho>";
+                        wsProxy = new WebServiceProxy(Empresas.Configuracoes[emp].X509Certificado);
+
+                        if (oDadosPedSitNfse.tpAmb == 2)
+                            pedLoteRps = new Components.HPelotasRS.INfseservice();
+                        else
+                            pedLoteRps = new Components.PPelotasRS.INfseservice();
+                        break;
                 }
 
                 if (IsInvocar(padraoNFSe, Servico, oDadosPedSitNfse.cMunicipio))

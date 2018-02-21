@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿#if _fw46
+using Newtonsoft.Json;
 using NFe.Components.Abstract;
 using NFSe.Components;
 using System;
@@ -27,7 +28,13 @@ namespace NFe.Components.SOFTPLAN
 
         public string URLAPIBase
         {
-            get { return @"https://nfps-e-hml.pmf.sc.gov.br/api/v1/"; }
+            get
+            {
+                if (tpAmb.Equals(TipoAmbiente.taHomologacao))
+                    return @"https://nfps-e-hml.pmf.sc.gov.br/api/v1/";
+                else
+                    return @"https://nfps-e.pmf.sc.gov.br/api/v1/";
+            }
         }
         private string _token;
         public string Token
@@ -71,11 +78,11 @@ namespace NFe.Components.SOFTPLAN
                     $"Authorization: bearer {Token}"
                 };
 
-                result = post.PostForm(Path.Combine(URLAPIBase, "cancelamento/notas/cancela"), 
+                result = post.PostForm(Path.Combine(URLAPIBase, "cancelamento/notas/cancela"),
                     new Dictionary<string, string>
                     {
                         {"f1", file}
-                    }, 
+                    },
                     autorizations);
             }
 
@@ -87,7 +94,34 @@ namespace NFe.Components.SOFTPLAN
         { }
 
         public override void ConsultarNfse(string file)
-        { }
+        {
+            string result = "";
+            string codigoVerificacao = "";
+            string cmc = "";
+
+            XmlDocument xmlConsulta = new XmlDocument();
+            xmlConsulta.Load(file);
+
+            XmlNode consultaNFSe = xmlConsulta?.GetElementsByTagName("ConsultarNfseEnvio")[0];
+            codigoVerificacao = consultaNFSe?.FirstChild?.InnerText;
+            cmc = consultaNFSe?.LastChild?.InnerText;
+
+            using (GetRequest get = new GetRequest
+            {
+                Proxy = Proxy
+            })
+            {
+                result = get.GetForm($"{Path.Combine(URLAPIBase, $"consultas/notas/codigo/{codigoVerificacao}/{cmc}")}");
+            }
+
+            result = result?.Replace("{", "");
+            result = "{" + "\"nota\":{" + result + "}";
+
+            XmlDocument consultaResult = JsonConvert.DeserializeXmlNode(result);
+
+            GerarRetorno(file, consultaResult.InnerXml, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).EnvioXML,
+                                       Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSe).RetornoXML);
+        }
 
         public override void ConsultarNfsePorRps(string file)
         { }
@@ -109,11 +143,11 @@ namespace NFe.Components.SOFTPLAN
                     $"Authorization: bearer {Token}"
                 };
 
-                result = post.PostForm(Path.Combine(URLAPIBase, "processamento/notas/processa"), 
+                result = post.PostForm(Path.Combine(URLAPIBase, "processamento/notas/processa"),
                     new Dictionary<string, string>
                     {
                         { "f1", file}
-                    }, 
+                    },
                     autorizations);
             }
 
@@ -127,7 +161,7 @@ namespace NFe.Components.SOFTPLAN
             string nomearq = PastaRetorno + "\\" + fi.Name.Replace(extEnvio, extRetorno);
 
             Encoding iso = Encoding.GetEncoding("UTF-8");
-            StreamWriter write = new StreamWriter(nomearq, true, iso);
+            StreamWriter write = new StreamWriter(nomearq, false, iso);
             write.Write(result);
             write.Flush();
             write.Close();
@@ -168,3 +202,5 @@ namespace NFe.Components.SOFTPLAN
         #endregion Public Methods
     }
 }
+
+#endif

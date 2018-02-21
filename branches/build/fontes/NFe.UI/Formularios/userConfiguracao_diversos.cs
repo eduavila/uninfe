@@ -12,7 +12,7 @@ namespace NFe.UI.Formularios
     public partial class userConfiguracao_diversos : MetroFramework.Controls.MetroUserControl
     {
         private ArrayList arrServico = new ArrayList();
-        private NFe.Settings.Empresa empresa;
+        private Empresa empresa;
         private TipoAplicativo servicoCurrent;
         private bool loading;
         private string cnpjCurrent = "";
@@ -112,6 +112,7 @@ namespace NFe.UI.Formularios
                 checkBoxGravarEventosNaPastaEnviadosNFe.Checked = this.empresa.GravarEventosNaPastaEnviadosNFe;
                 checkBoxGravarEventosCancelamentoNaPastaEnviadosNFe.Checked = this.empresa.GravarEventosCancelamentoNaPastaEnviadosNFe;
                 checkBoxCompactaNFe.Checked = this.empresa.CompactarNfe;
+                checkBoxArqNSU.Checked = this.empresa.ArqNSU;
 
                 // São Paulo não possui processo síncrono
                 if (this.empresa.UnidadeFederativaCodigo == 35)
@@ -210,6 +211,7 @@ namespace NFe.UI.Formularios
             this.empresa.AmbienteCodigo = (int)comboBox_Ambiente.SelectedValue;
             this.empresa.CNPJ = cnpj;
             this.empresa.CompactarNfe = checkBoxCompactaNFe.Checked;
+            this.empresa.ArqNSU = checkBoxArqNSU.Checked;
             this.empresa.DiasLimpeza = Math.Abs(Convert.ToInt32("0" + this.udDiasLimpeza.Text));
             this.empresa.DiretorioSalvarComo = cboDiretorioSalvarComo.Text;
             this.empresa.GravarRetornoTXTNFe = checkBoxRetornoNFETxt.Checked;
@@ -306,7 +308,11 @@ namespace NFe.UI.Formularios
                            ufCod == 1600303 /*Macapá-AP*/ ||
                            ufCod == 3202603 /*Iconha-ES*/ ||
                            ufCod == 4205407 /*Florianópolis-SC*/ ||
-                           ufCod == 4215802 /*São Bento do Sul-SC*/;
+                           ufCod == 4215802 /*São Bento do Sul-SC*/ ||
+                           ufCod == 3540804 /*Potirendaba-SP*/ ||
+                           ufCod == 4320404 /*Serafina Corrêa-RS*/ ||
+                           ufCod == 4307807 /*Estrela-RS*/ ||
+                           ufCod == 4211900 /*Palhoça-SC*/;
 
             bool visiblepass = ufCod == 3152105 || visible; /*Ponte nova*/
 
@@ -428,6 +434,7 @@ namespace NFe.UI.Formularios
                     udTempoConsulta.Visible = lbl_udTempoConsulta.Visible = false;
                     cbIndSinc.Visible = false;
                     comboBox_Ambiente.Visible = true;
+                    checkBoxArqNSU.Visible = false;
                     break;
 
                 case TipoAplicativo.SAT:
@@ -455,6 +462,7 @@ namespace NFe.UI.Formularios
                     lblClientSecret.Visible = false;
                     txtClienteID.Visible = false;
                     txtClientSecret.Visible = false;
+                    checkBoxArqNSU.Visible = false;
                     break;
 
                 case TipoAplicativo.EFDReinf:
@@ -481,6 +489,7 @@ namespace NFe.UI.Formularios
                     lblClientSecret.Visible = false;
                     txtClienteID.Visible = false;
                     txtClientSecret.Visible = false;
+                    checkBoxArqNSU.Visible = false;
                     break;
 
                 default:
@@ -515,6 +524,7 @@ namespace NFe.UI.Formularios
                     lblClientSecret.Visible = false;
                     txtClienteID.Visible = false;
                     txtClientSecret.Visible = false;
+                    checkBoxArqNSU.Visible = true;
                     break;
             }
         }

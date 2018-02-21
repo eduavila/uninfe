@@ -109,7 +109,7 @@ namespace NFe.Service
                         XmlDocument xmlDoc = new XmlDocument();
                         xmlDoc.LoadXml(eSocialNodeList[0].OuterXml);
 
-                        ad.Assinar(xmlDoc, emp, 991, AlgorithmType.Sha256);
+                        ad.Assinar(xmlDoc, emp, 991, AlgorithmType.Sha256, false);
 
                         XmlNode newNode = xmlDoc.ChildNodes[0];
                         eventoNode.RemoveChild(eSocialNodeList[0]);
