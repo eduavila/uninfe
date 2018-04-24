@@ -1097,11 +1097,14 @@ namespace NFe.Settings
                     }
                     doneThread_FTP(Thread.CurrentThread);
                 }));
+
                 this.threads.Add(t);
                 t.IsBackground = true;
                 //t.Name = name;
                 t.Start();
-                t.Join();
+                //Não retornar o Join pois causa travamento no envio de arquivos quando com certificado A3: Wandrey/André-28/03/2018
+                //t.Join();
+
             }
         }
 

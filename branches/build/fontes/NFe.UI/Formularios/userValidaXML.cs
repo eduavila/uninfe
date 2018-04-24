@@ -107,6 +107,13 @@ namespace NFe.UI
                                 Propriedade.Extensao(Propriedade.TipoEnvio.EnvCancelamento).EnvioXML,
                                 Propriedade.Extensao(Propriedade.TipoEnvio.EnvDownload).EnvioXML,
                                 Propriedade.Extensao(Propriedade.TipoEnvio.EnvManifestacao).EnvioXML);
+                            dlg.Filter += string.Format("|Arquivos do eSocial (*.*{0},*.*{1},*.*{2})|*{0};*{1};*{2}", 
+                                Propriedade.Extensao(Propriedade.TipoEnvio.eSocial_evt).EnvioXML,
+                                Propriedade.Extensao(Propriedade.TipoEnvio.eSocial_consloteevt).EnvioXML,
+                                Propriedade.Extensao(Propriedade.TipoEnvio.eSocial_loteevt).EnvioXML);
+                            dlg.Filter += string.Format("|Arquivos do EFDReinf (*.*{0},*.*{1})|*{0};*{1}",
+                                Propriedade.Extensao(Propriedade.TipoEnvio.Reinf_evt).EnvioXML,
+                                Propriedade.Extensao(Propriedade.TipoEnvio.Reinf_loteevt).EnvioXML);
                         }
 
                         if (!string.IsNullOrEmpty(path))
@@ -203,9 +210,19 @@ namespace NFe.UI
                         codUF = 202;
                 }
                 Validate.ValidarXML validarXML = new Validate.ValidarXML(cArquivo, codUF, false);
-                XmlDocument conteudoXML = new XmlDocument();
+
                 string resultValidacao = "";
-                conteudoXML.Load(cArquivo);
+
+                XmlDocument conteudoXML = new XmlDocument();
+                try
+                {
+                    conteudoXML.Load(cArquivo);
+                }
+                catch
+                {
+                    conteudoXML.LoadXml(File.ReadAllText(cArquivo, System.Text.Encoding.UTF8));
+                }
+
                 if (conteudoXML.DocumentElement.Name.Equals("CTe") ||
                     conteudoXML.DocumentElement.Name.Equals("MDFe"))
                 {
@@ -236,10 +253,10 @@ namespace NFe.UI
                     AssinaturaDigital oAD = new AssinaturaDigital();
                     try
                     {
-                        validarXML.EncryptAssinatura(cArquivo); 
-                        oAD.Assinar(cArquivo, 
-                            Emp, 
-                            Empresas.Configuracoes[Emp].UnidadeFederativaCodigo, 
+                        validarXML.EncryptAssinatura(cArquivo);
+                        oAD.Assinar(cArquivo,
+                            Emp,
+                            Empresas.Configuracoes[Emp].UnidadeFederativaCodigo,
                             (conteudoXML.DocumentElement.Name.Equals("Reinf") || conteudoXML.DocumentElement.Name.Equals("eSocial") ? AlgorithmType.Sha256 : AlgorithmType.Sha1));
 
                         lValidar = true;
@@ -292,6 +309,7 @@ namespace NFe.UI
                         wb.Dock = DockStyle.Fill;
                         wb.DocumentCompleted += webBrowser1_DocumentCompleted;
                     }
+                    wb.Visible = true;
                     wb.Navigate(cArquivo);
                 }
                 catch
@@ -302,6 +320,9 @@ namespace NFe.UI
             catch (Exception ex)
             {
                 this.textBox_resultado.Text = ex.Message + "\r\n" + ex.StackTrace;
+
+                if (wb != null)
+                    wb.Visible = false;
             }
         }
 

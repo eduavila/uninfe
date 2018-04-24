@@ -1866,9 +1866,10 @@ namespace NFe.Service
 
                 #endregion JOINVILLE_SC
 
-                #region AVMB_ASTEN
+                #region AVMB_ASTEN e EMBRAS
 
                 case PadroesNFSe.AVMB_ASTEN:
+                case PadroesNFSe.EMBRAS:
                     switch (servico)
                     {
                         case Servicos.NFSeConsultarLoteRps:
@@ -1905,7 +1906,41 @@ namespace NFe.Service
                     }
                     break;
 
+                #endregion AVMB_ASTEN
+
+                #region DESENVOLVECIDADE
+
+                case PadroesNFSe.DESENVOLVECIDADE:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "consultarLoteRpsEnvio";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "consultarNfseRpsEnvio";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "enviarLoteRpsEnvio";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "cancelarNfseEnvio";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRpsSincrono:
+                            retorna = "enviarLoteRpsSincronoEnvio";
+                            break;
+
+                        case Servicos.NFSeGerarNfse:
+                            retorna = "gerarNfseEnvio";
+                            break;
+                    }
+                    break;
+
                     #endregion AVMB_ASTEN
+
             }
 
             return retorna;
@@ -1958,7 +1993,14 @@ namespace NFe.Service
         public void AssinarValidarXMLNFe()
         {
             XmlDocument conteudoXML = new XmlDocument();
-            conteudoXML.Load(NomeArquivoXML);
+            try
+            {
+                conteudoXML.Load(NomeArquivoXML);
+            }
+            catch
+            {
+                conteudoXML.LoadXml(File.ReadAllText(NomeArquivoXML, System.Text.Encoding.UTF8));
+            }
 
             AssinarValidarXMLNFe(conteudoXML);
 
@@ -2214,6 +2256,9 @@ namespace NFe.Service
                 case (int)TipoEmissao.teSVCAN:
                 case (int)TipoEmissao.teSVCRS:
                     var se = Propriedade.Estados.First(s => s.CodigoMunicipio.Equals(Convert.ToInt32(dadosNFe.cUF)));
+                    if (se.UF == "SP" && dadosNFe.mod == "57") // São Paulo para CTe é SVC-RS, então não dá para pegar o que está no Websevice.XML pois está definido o da NFe. Wandrey 12/03/2018
+                        se.svc = TipoEmissao.teSVCRS;
+
                     if (se.svc != (TipoEmissao)tpEmis && se.svc != TipoEmissao.teNone)
                     {
                         throw new Exception("UF: " + Functions.CodigoParaUF(Convert.ToInt32(dadosNFe.cUF)) + " não está sendo atendida pelo WebService do SVC: " +
@@ -2536,7 +2581,8 @@ namespace NFe.Service
                     if (cMunicipio == 4109401 ||
                         cMunicipio == 3131703 ||
                         cMunicipio == 4303004 ||
-                        cMunicipio == 4322509)
+                        cMunicipio == 4322509 ||
+                        cMunicipio == 3556602)
                         retorno = false;
                     break;
 
@@ -2648,6 +2694,8 @@ namespace NFe.Service
             {
                 case PadroesNFSe.AVMB_ASTEN:
                 case PadroesNFSe.WEBISS_202:
+                case PadroesNFSe.EMBRAS:
+                case PadroesNFSe.DESENVOLVECIDADE:
                     if (servico == Servicos.NFSeRecepcionarLoteRps)
                     {
                         switch (doc.DocumentElement.Name)
