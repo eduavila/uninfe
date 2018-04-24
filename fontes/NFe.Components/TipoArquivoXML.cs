@@ -45,7 +45,14 @@ namespace NFe.Components
         public TipoArquivoXML(string rotaArqXML, int UFCod, bool soValidar)
         {
             XmlDocument conteudoXML = new XmlDocument();
-            conteudoXML.Load(rotaArqXML);
+            try
+            {
+                conteudoXML.Load(rotaArqXML);
+            }
+            catch
+            {
+                conteudoXML.LoadXml(File.ReadAllText(rotaArqXML, System.Text.Encoding.UTF8));
+            }
 
             DefinirTipoArq(rotaArqXML, conteudoXML, UFCod, soValidar);
         }
@@ -118,6 +125,10 @@ namespace NFe.Components
 
                             case 4322509: //Vacari-RS
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-4322509-";
+                                break;
+
+                            case 3556602: //Vera Cruz-RS
+                                padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-3556602-";
                                 break;
 
                             default:

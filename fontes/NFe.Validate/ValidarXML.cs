@@ -17,6 +17,7 @@ namespace NFe.Validate
     {
         #region Construtores
 
+
         public ValidarXML(string arquivoXML, int UFCod, bool soValidar)
         {
             TipoArqXml = new TipoArquivoXML(arquivoXML, UFCod, soValidar);
@@ -149,7 +150,14 @@ namespace NFe.Validate
             if (File.Exists(rotaArqXML))
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(rotaArqXML);
+                try
+                {
+                    doc.Load(rotaArqXML);
+                }
+                catch
+                {
+                    doc.LoadXml(System.IO.File.ReadAllText(rotaArqXML, System.Text.Encoding.UTF8));
+                }
                 Validar(doc, rotaArqXML);
             }
             else
@@ -339,7 +347,15 @@ namespace NFe.Validate
                 {
                     EncryptAssinatura(Arquivo);
 
-                    if (TipoArqXml.TagAssinatura == "eSocial" || TipoArqXml.TagAssinatura == "Reinf")
+                    if (TipoArqXml.TargetNameSpace.Contains("envioLoteEventos") && TipoArqXml.TargetNameSpace.Contains("reinf")) //Lote de eventos do EFDReinf
+                    {
+                        oAD.AssinarLoteEFDReinf(Arquivo, emp);
+                    }
+                    else if (TipoArqXml.TargetNameSpace.Contains("lote/eventos") && TipoArqXml.TargetNameSpace.Contains("esocial")) //Lote de eventos do eSocial
+                    {
+                        oAD.AssinarLoteESocial(Arquivo, emp);
+                    }
+                    else if (TipoArqXml.TagAssinatura == "eSocial" || TipoArqXml.TagAssinatura == "Reinf")
                     {
                         oAD.Assinar(Arquivo, emp, Empresas.Configuracoes[emp].UnidadeFederativaCodigo, AlgorithmType.Sha256);
                     }
@@ -347,8 +363,6 @@ namespace NFe.Validate
                     {
                         oAD.Assinar(Arquivo, emp, Empresas.Configuracoes[emp].UnidadeFederativaCodigo);
                     }
-
-                    
 
                     Assinou = true;
                 }
@@ -397,7 +411,7 @@ namespace NFe.Validate
                             url = Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taHomologacao ? Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCeH : Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCe;
                         }
 
-                        string linkUFManual = Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taHomologacao ? Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCeH : Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCe;
+                        string linkUFManual = Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taHomologacao ? Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCeMH : Empresas.Configuracoes[emp].URLConsultaDFe.UrlNFCeM;
 
                         qrCode.GerarLinkConsulta(url, Empresas.Configuracoes[emp].IdentificadorCSC, Empresas.Configuracoes[emp].TokenCSC, linkUFManual);
 

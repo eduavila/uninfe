@@ -857,7 +857,7 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://pmassis.dyndns-server.com/IssWeb-ejb/IssWebWS/IssWebWS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://nfsews.assis.sp.gov.br/IssWeb-ejb/IssWebWS/IssWebWS")]
         public string NFe_Components_com_dyndnsserver_pmassis2_p_IssWebWS {
             get {
                 return ((string)(this["NFe_Components_com_dyndnsserver_pmassis2_p_IssWebWS"]));
@@ -1358,6 +1358,36 @@ namespace NFe.Components.Properties {
         public string NFe_Components_PPelotasRS_INfseservice {
             get {
                 return ((string)(this["NFe_Components_PPelotasRS_INfseservice"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://187.60.188.222:8086/NFSe.Portal.Integracao/Services.svc")]
+        public string NFe_Components_PVeraCruzRS_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_PVeraCruzRS_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://wsastorga.simplissweb.com.br/nfseservice.svc")]
+        public string NFe_Components_PAstorgaPR_NfseService {
+            get {
+                return ((string)(this["NFe_Components_PAstorgaPR_NfseService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://189.56.68.34:8080/ws_araras/nfseservice.svc")]
+        public string NFe_Components_PArarasSP_NfseService {
+            get {
+                return ((string)(this["NFe_Components_PArarasSP_NfseService"]));
             }
         }
     }
