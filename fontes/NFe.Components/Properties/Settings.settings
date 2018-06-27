@@ -419,5 +419,35 @@
     <Setting Name="NFe_Components_PGovernadorValadaresMG_WebService_SigISS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://valadares.sigiss.com.br:443/valadares/ws/sigiss_ws.php</Value>
     </Setting>
+    <Setting Name="NFe_Components_PItaitubaPA_IssWebWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://187.108.203.210:8110/IssWeb-ejb/IssWebWS/IssWebWS</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HItaitubaPA_IssWebWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://fi1.fiorilli.com.br:5663/IssWeb-ejb/IssWebWS/IssWebWS</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PGuaxupeMG_NfseServiceImplGuaxService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ws.govdigital.com.br:443/ws/guax</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HGuaxupeMG_NfseServiceImplGuaxService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://homolog.govdigital.com.br:443/ws/guax</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HAndradasMG_NfseServiceImpleAndradasService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://homolog.govdigital.com.br:443/ws/andradas</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PAndradasMG_NfseServiceImpleAndradasService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://ws.govdigital.com.br:443/ws/andradas</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HBastosSP_NFSeIntegracao" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://189.56.95.154/NFSe.Portal.Integracao.Teste/Services.svc</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PBastosSP_NFSeIntegracao" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://189.56.95.154/NFSe.Portal.Integracao/Services.svc</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PBarraDeSaoFranciscoES_RpsServiceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://nf-barradesaofrancisco-es.el.com.br:443/RpsService</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PMirassolSP_NFSeIntegracao" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://nfse.mirassol.sp.gov.br:5557/NFSe.Portal.Integracao/Services.svc</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

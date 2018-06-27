@@ -242,6 +242,7 @@ namespace NFe.Components
             AltCon,
             ConsCertificado,
             ConsInf,
+            Update,
             GerarChaveNFe,
 
             /// <summary>
@@ -396,6 +397,12 @@ namespace NFe.Components
                         "-ret-cons-inf.xml", "-ret-cons-inf.txt",
                         "",
                         "Consulta as configurações do UniNFe"));
+
+                    ListaExtensoes.Add(TipoEnvio.Update, new ExtensaoClass(
+                        "-upd.xml", "-upd.txt",
+                        "-ret-upd.xml", "-ret-upd.txt",
+                        "",
+                        "Atualização do UniNFe"));
 
                     #endregion Extensões gerais
 

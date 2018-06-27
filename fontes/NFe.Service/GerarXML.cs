@@ -1060,7 +1060,6 @@ namespace NFe.Service
             switch (Servico)
             {
                 case Servicos.NFeEnviarLote:
-                case Servicos.NFeEnviarLoteZip:
                     {
                         #region Servicos.EnviarLoteNfe
 
