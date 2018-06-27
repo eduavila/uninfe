@@ -1303,10 +1303,6 @@
     <EmbeddedResource Include="NFse\WSDL\Producao\PPortoVelhoPO.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NFse\WSDL\Homologacao\HMirassolSP.wsdl" />
-    <EmbeddedResource Include="NFse\WSDL\Producao\PMirassolSP.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Producao\PPenapoisSPIssOnLine.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -4174,6 +4170,35 @@
     <EmbeddedResource Include="NFse\WSDL\Producao\PHarmonia-EnvioLoteRPSSincrono.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HGovernadorValadaresMG-SIGCORP.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Producao\PGovernadorValadaresMG-SIGCORP.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HNovaFriburgoRJ-MODERNIZACAO_PUBLICA.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PNovaFriburgoRJ-MODERNIZACAO_PUBLICA.wsdl" />
+    <EmbeddedResource Include="NFse\schemas\NFSe\MODERNIZACAO_PUBLICA\nfse v2 01.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\schemas\NFSe\MODERNIZACAO_PUBLICA\nfse v2 02.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\schemas\NFSe\MODERNIZACAO_PUBLICA\xmldsig-core-schema20020212.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HItaitubaPA-FIORILLI.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PItaitubaPA-FIORILLI.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HGuaxupeMG-GOVDIGITAL.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PGuaxupeMG-GOVDIGITAL.wsdl" />
+    <EmbeddedResource Include="NFse\schemas\NFSe\E_RECEITA\nfse v2 02.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\schemas\NFSe\E_RECEITA\xmldsig-core-schema20020212.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFse\WSDL\Producao\PMontesClarosMG-E_RECEITA.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HMontesClarosMG-E_RECEITA.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HAndradasMG-GOVDIGITAL.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PAndradasMG-GOVDIGITAL.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HBastosSP-PRONIN.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PBastosSP-PRONIN.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PBarraDeSaoFranciscoES-EL.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PMirassolSP-PRONIN.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Producao\PCamacariBA.wsdl">

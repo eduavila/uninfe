@@ -466,6 +466,10 @@ namespace NFe.Service
                             ConsultarGeral(arquivo);
                             break;
 
+                        case Servicos.UniNFeUpdate:
+
+                            break;
+
                         case Servicos.UniNFeConsultaInformacoes:
                             ConsultaInformacoesUniNFe(arquivo);
                             break;
@@ -593,6 +597,11 @@ namespace NFe.Service
                      arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.EnvDanfeReport).EnvioTXT) >= 0)
             {
                 tipoServico = Servicos.DANFERelatorio;
+            }
+            else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.Update).EnvioXML) >= 0 ||
+                     arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.Update).EnvioTXT) >= 0)
+            {
+                tipoServico = Servicos.UniNFeUpdate;
             }
 
             #endregion Serviços que funcionam tanto na pasta Geral como na pasta da Empresa
@@ -1839,7 +1848,6 @@ namespace NFe.Service
                 case Servicos.CTeEnviarLote:
                 case Servicos.NFeEnviarLote:
                 case Servicos.MDFeEnviarLote:
-                case Servicos.NFeEnviarLoteZip:
                     extRet = Propriedade.Extensao(Propriedade.TipoEnvio.EnvLot).EnvioXML;
                     extRetERR = Propriedade.ExtRetorno.Rec_ERR;
                     break;
