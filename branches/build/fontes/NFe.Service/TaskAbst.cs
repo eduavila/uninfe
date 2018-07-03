@@ -1006,6 +1006,35 @@ namespace NFe.Service
 
                 #region TIPLAN
 
+                case PadroesNFSe.TIPLAN_203:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultarLoteRps:
+                            retorna = "ConsultarLoteRps";
+                            break;
+
+                        case Servicos.NFSeConsultar:
+                            retorna = "ConsultarNfsePorFaixa";
+                            break;
+
+                        case Servicos.NFSeConsultarPorRps:
+                            retorna = "ConsultarNfsePorRps";
+                            break;
+
+                        case Servicos.NFSeConsultarSituacaoLoteRps:
+                            retorna = "ConsultarSituacaoLoteRps";
+                            break;
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelarNfse";
+                            break;
+
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            retorna = "RecepcionarLoteRps";
+                            break;
+                    }
+                    break;
+
                 case PadroesNFSe.TIPLAN:
                     switch (servico)
                     {
@@ -1021,7 +1050,10 @@ namespace NFe.Service
                             break;
 
                         case Servicos.NFSeConsultar:
-                            retorna = "ConsultarNfse";
+                            if (cMunicipio.Equals(3303302))
+                                retorna = "ConsultarNfsePorFaixa";
+                            else
+                                retorna = "ConsultarNfse";
                             break;
 
                         case Servicos.NFSeConsultarPorRps:

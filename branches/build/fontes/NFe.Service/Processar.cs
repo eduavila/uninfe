@@ -284,10 +284,6 @@ namespace NFe.Service
                             ConverterTXTparaXML(arquivo);
                             break;
 
-                        case Servicos.NFeDownload:
-                            DirecionarArquivo(emp, true, true, arquivo, new TaskNFeDownload(arquivo));
-                            break;
-
                         case Servicos.NFeEnviarLote:
                             DirecionarArquivo(emp, false, true, arquivo, new TaskNFeRecepcao(arquivo));
                             break;
@@ -467,7 +463,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.UniNFeUpdate:
-
+                            new UniNFeUpdate().Instalar();
                             break;
 
                         case Servicos.UniNFeConsultaInformacoes:
@@ -509,6 +505,7 @@ namespace NFe.Service
                         case Servicos.SATEnviarDadosVenda:
                         case Servicos.SATConverterNFCe:
                         case Servicos.NFeConsultaStatusServico:
+                        case Servicos.UniNFeUpdate:
                         case Servicos.Nulo:
                             /// 7/2012 <<< danasa
                             ///o erp nao precisa esperar pelo tempo excedido, então retornamos um arquivo .err
@@ -668,10 +665,6 @@ namespace NFe.Service
                                 arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.EnvManifestacao).EnvioTXT) >= 0)
                         {
                             tipoServico = Servicos.EventoRecepcao;
-                        }
-                        else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.EnvDownload).EnvioTXT) >= 0)
-                        {
-                            tipoServico = Servicos.NFeDownload;
                         }
                         else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.EnvDFe).EnvioTXT) >= 0)
                         {
@@ -854,10 +847,6 @@ namespace NFe.Service
 
                             case "gerarChave":
                                 tipoServico = Servicos.NFeGerarChave;
-                                break;
-
-                            case "downloadNFe":
-                                tipoServico = Servicos.NFeDownload;
                                 break;
 
                             #endregion NFe
@@ -1888,11 +1877,6 @@ namespace NFe.Service
                 case Servicos.EventoCancelamento:
                     extRet = Propriedade.Extensao(Propriedade.TipoEnvio.EnvCancelamento).EnvioXML;
                     extRetERR = Propriedade.ExtRetorno.retCancelamento_ERR;
-                    break;
-
-                case Servicos.NFeDownload:
-                    extRet = Propriedade.Extensao(Propriedade.TipoEnvio.EnvDownload).EnvioXML;
-                    extRetERR = Propriedade.ExtRetorno.retDownload_ERR;
                     break;
 
                 #endregion NFe / CTe / MDFe
