@@ -15,7 +15,6 @@ namespace NFe.ConvertTxt
         public static string VersaoXMLConsCad = "2.00";
         public static string VersaoXMLEvento = "1.00";
         public static string VersaoXMLEnvConsultaNFeDest = "1.01";
-        public static string VersaoXMLEnvDownload = "1.00";
         public static string VersaoXMLEnvDFe = "1.00";
         #endregion
 
@@ -329,7 +328,8 @@ namespace NFe.ConvertTxt
     internal enum ObOp
     {
         Obrigatorio,
-        Opcional
+        Opcional, 
+        None
     }
 
     public enum TpcnindIEDest {

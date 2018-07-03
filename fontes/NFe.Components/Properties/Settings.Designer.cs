@@ -1528,5 +1528,67 @@ namespace NFe.Components.Properties {
                 return ((string)(this["NFe_Components_PMirassolSP_NFSeIntegracao"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_cancelarnfse")]
+        public string NFe_Components_PLucasDoRioVerdeMTCancelarNfse_WS_CancelarNfse {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTCancelarNfse_WS_CancelarNfse"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_consultaloterps")]
+        public string NFe_Components_PLucasDoRioVerdeMTConsultaLoteRps_WS_ConsultaLoteRps {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTConsultaLoteRps_WS_ConsultaLoteRps"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_consultanfse")]
+        public string NFe_Components_PLucasDoRioVerdeMTConsultaNFse_WS_ConsultaNfse {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTConsultaNFse_WS_ConsultaNfse"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_consultanfseporrps")]
+        public string NFe_Components_PLucasDoRioVerdeMTConsultaNfsePorRps_WS_ConsultaNfsePorRps {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTConsultaNfsePorRps_WS_ConsultaNfsePorRps"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_recepcionarloterps")]
+        public string NFe_Components_PLucasDoRioVerdeMTRecepcionarLoteRps_WS_RecepcionarLoteRps {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTRecepcionarLoteRps_WS_RecepcionarLoteRps"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_consultarsituacaoloter" +
+            "ps")]
+        public string NFe_Components_PLucasDoRioVerdeMTConsultarSituacaoLoteRps_WS_ConsultarSituacaoLoteRps {
+            get {
+                return ((string)(this["NFe_Components_PLucasDoRioVerdeMTConsultarSituacaoLoteRps_WS_ConsultarSituacaoLot" +
+                    "eRps"]));
+            }
+        }
     }
 }

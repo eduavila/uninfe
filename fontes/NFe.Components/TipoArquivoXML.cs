@@ -146,7 +146,7 @@ namespace NFe.Components
                             case 3530300: //Mirassol-SP
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-3530300-";
                                 break;
-
+                            
                             default:
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-";
                                 break;

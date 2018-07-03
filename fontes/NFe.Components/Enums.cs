@@ -100,11 +100,6 @@ namespace NFe.Components
         NFeAssinarValidarEnvioEmLote,
 
         /// <summary>
-        /// Enviar solicitacao de download de nfe
-        /// </summary>
-        NFeDownload,
-
-        /// <summary>
         /// Monta chave de acesso
         /// </summary>
         NFeGerarChave,
@@ -754,6 +749,12 @@ namespace NFe.Components
         /// </summary>
         [Description("Tiplan")]
         TIPLAN,
+
+        /// <summary>
+        /// Preifetura de Niterói - RJ
+        /// </summary>
+        [Description("Tiplan")]
+        TIPLAN_203,
 
         /// <summary>
         /// Prefeitura do Rio de Janeiro - RJ
