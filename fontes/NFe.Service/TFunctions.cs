@@ -1553,6 +1553,12 @@ namespace NFe.Service
                         "net stop UniNFeServico" +
                         "\r\npause");
 
+                    File.WriteAllText(Path.Combine(Propriedade.PastaExecutavel, "servico_reiniciar.bat"),
+                        "net stop UniNFeServico" +
+                        "\r\n" +
+                        "net start UniNFeServico" +
+                        "\r\npause");
+
                     File.WriteAllText(Path.Combine(Propriedade.PastaExecutavel, "servico_remover.bat"),
                         "sc delete UniNFeServico" +
                         "\r\npause");

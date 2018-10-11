@@ -707,6 +707,14 @@ namespace NFe.Service
                     strRetorno = wsProxy.InvokeStr(servicoWS, metodo, new object[] { docXML.OuterXml, cabecMsg.ToString() });
                     break;
 
+                case PadroesNFSe.CECAM:
+                    string cnpjcpfprestador = docXML.GetElementsByTagName("CNPJCPFPrestador")[0].InnerText;
+                
+                    string versaoXml = docXML.GetElementsByTagName("Versao")[0].InnerText;
+                 
+                    strRetorno = wsProxy.InvokeStr(servicoWS, metodo, new object[] { cnpjcpfprestador, docXML.OuterXml, versaoXml });
+                    break;
+
                 default:
 
                     #region Demais padrões

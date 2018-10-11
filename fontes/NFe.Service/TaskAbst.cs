@@ -2197,7 +2197,31 @@ namespace NFe.Service
                             break;
                     }
                     break;
-                    #endregion MEGASOFT
+                #endregion MEGASOFT
+
+                #region CECAM
+
+                case PadroesNFSe.CECAM:
+                    switch (servico)
+                    {
+                        case Servicos.NFSeConsultar:
+                            retorna = "ConsultarNotaFiscal";
+                            break;
+                   
+                        case Servicos.NFSeRecepcionarLoteRps:
+                            if (Empresas.Configuracoes[Empresas.FindEmpresaByThread()].AmbienteCodigo == (int)NFe.Components.TipoAmbiente.taHomologacao)
+                                retorna = "EnviarLoteNotaFiscalDeTeste";
+                            else
+                                retorna = "EnviarLoteNotaFiscal";
+                            break;
+
+
+                        case Servicos.NFSeCancelar:
+                            retorna = "CancelarNotaFiscalEletronica";
+                            break;
+                    }
+                    break;
+                    #endregion CECAM
             }
 
             return retorna;

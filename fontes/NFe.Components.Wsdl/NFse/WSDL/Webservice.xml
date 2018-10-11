@@ -1587,24 +1587,24 @@
       <CancelarNfse>wsdl\producao\PMirassolSP-PRONIN.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="3526100" Nome="Juquiá - SP" UF="SP" Padrao="ISSONLINE4R">
+  <Estado ID="3526100" Nome="Juquiá - SP" UF="SP" Padrao="CECAM">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\HSistemaISSOnLine4rJuquiaRecepcionarLoteRpsSincrono.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps></ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\HSistemaISSOnLine4rJuquiaConsultarNfsePorRps.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse></ConsultarNfse>
-      <ConsultarLoteRps></ConsultarLoteRps>
+      <RecepcionarLoteRps>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</ConsultarLoteRps>
       <ConsultarURLNfse></ConsultarURLNfse>
-      <CancelarNfse>wsdl\homologacao\HSistemaISSOnLine4rJuquiaCancelarNfse.wsdl</CancelarNfse>
+      <CancelarNfse>wsdl\homologacao\HJuquiaSP-CECAM.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PSistemaISSOnLine4rJuquiaRecepcionarLoteRpsSincrono.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps></ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PSistemaISSOnLine4rJuquiaConsultarNfsePorRps.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse></ConsultarNfse>
-      <ConsultarLoteRps></ConsultarLoteRps>
+      <RecepcionarLoteRps>wsdl\producao\PJuquiaSP-CECAM.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PJuquiaSP-CECAM.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PJuquiaSP-CECAM.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PJuquiaSP-CECAM.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PJuquiaSP-CECAM.wsdl</ConsultarLoteRps>
       <ConsultarURLNfse></ConsultarURLNfse>
-      <CancelarNfse>wsdl\producao\PSistemaISSOnLine4rJuquiaCancelarNfse.wsdl</CancelarNfse>
+      <CancelarNfse>wsdl\producao\PJuquiaSP-CECAM.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="3170206" Nome="Uberlândia - MG" UF="MG" Padrao="DSF">
@@ -6826,6 +6826,58 @@
       <ConsultarLoteRps>wsdl\producao\PCangucuRS-PRONIN.wsdl</ConsultarLoteRps>
       <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PCangucuRS-PRONIN.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="2933307" Nome="Vitória da Conquista - BA" UF="BA" Padrao="WEBISS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>wsdl\homologacao\HVitoriaDaConquistaBA-WebISS.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>wsdl\producao\PVitoriaDaConquistaBA-WebISS.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="2602902" Nome="Cabo de Santo Agostinho - PE " UF="PE" Padrao="TINUS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HCaboSantoAgostinhoPE-RecepcionarLoteRps-TINUS.wsdl.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarSituacaoLoteRps-TINUS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarNfsePorRps-TINUS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarNfse-TINUS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarLoteRps-TINUS.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>wsdl\homologacao\HCaboSantoAgostinhoPE-CancelarNfse-TINUS.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_RecepcionarLoteRps.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarSituacaoLoteRps.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarNfsePorRps.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarNfse.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarLoteRps.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse></ConsultarURLNfse>
+      <CancelarNfse>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_CancelarNfse.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4301701" Nome="Barão de Cotegipe - RS" UF="RS" Padrao="SYSTEMPRO">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HBaraoDeCotegipeRS-SystemPro.wsdl</RecepcionarLoteRps>
+      <ConsultarNfse>wsdl\homologacao\HBaraoDeCotegipeRS-SystemPro.wsdl</ConsultarNfse>
+      <CancelarNfse>wsdl\homologacao\HBaraoDeCotegipeRS-SystemPro.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</RecepcionarLoteRps>
+      <ConsultarNfse>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</ConsultarNfse>
+      <CancelarNfse>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
 </Webservice>
