@@ -251,7 +251,7 @@ namespace NFe.Service.NFSe
                         #region SystemPro
 
                         SystemPro syspro = new SystemPro((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
-                            Empresas.Configuracoes[emp].PastaXmlRetorno, Empresas.Configuracoes[emp].X509Certificado);
+                            Empresas.Configuracoes[emp].PastaXmlRetorno, Empresas.Configuracoes[emp].X509Certificado, oDadosEnvLoteRps.cMunicipio);
                         AssinaturaDigital ad = new AssinaturaDigital();
                         ad.Assinar(NomeArquivoXML, emp, oDadosEnvLoteRps.cMunicipio);
                         syspro.EmiteNF(NomeArquivoXML);

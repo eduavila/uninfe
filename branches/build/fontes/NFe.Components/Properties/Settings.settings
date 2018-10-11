@@ -467,5 +467,29 @@
     <Setting Name="NFe_Components_PLucasDoRioVerdeMTConsultarSituacaoLoteRps_WS_ConsultarSituacaoLoteRps" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://lucasdorioverde.fisslex.com.br/fiss-lex/servlet/aws_consultarsituacaoloterps</Value>
     </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_RecepcionarLoteRps_RecepcionarLoteRps" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.RecepcionarLoteRps.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_ConsultarLoteRps_ConsultarLoteRps" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.ConsultarLoteRps.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_ConsultarSituacaoLoteRps_ConsultarSituacaoLoteRps" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.ConsultarSituacaoLoteRps.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_ConsultarNfsePorRps_ConsultarNfsePorRps" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.ConsultarNfsePorRps.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_ConsultarNfse_ConsultarNfse" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.ConsultarNfse.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HCaboDeSantoAgostinhoPE_TINUS_CancelarNfse_CancelarNfse" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www2.tinus.com.br/csp/testecab/WSNFSE.CancelarNfse.cls</Value>
+    </Setting>
+    <Setting Name="NFe_Components_HBaraoDeCotegipeRS_NfseService_Homolog" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://portal.baraodecotegipe.rs.gov.br:8182/NfseService_Homolog/NfseService_Homolog</Value>
+    </Setting>
+    <Setting Name="NFe_Components_PBaraoDeCotegipeRS_NfseService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://portal.baraodecotegipe.rs.gov.br:8182/NfseService/NfseService</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

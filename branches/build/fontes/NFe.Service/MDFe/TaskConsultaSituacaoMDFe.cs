@@ -149,8 +149,28 @@ namespace NFe.Service
                 bool notDaEmpresa = (ChaveMDFe.Substring(6, 14) != Empresas.Configuracoes[emp].CNPJ ||
                                     ChaveMDFe.Substring(0, 2) != Empresas.Configuracoes[emp].UnidadeFederativaCodigo.ToString());
 
-                if (!File.Exists(strArquivoNFe) && notDaEmpresa)
-                    return;
+                if (!File.Exists(strArquivoNFe))
+                {
+                    if (notDaEmpresa)
+                        return;
+
+                    var arquivos = Directory.GetFiles(Empresas.Configuracoes[emp].PastaXmlEnviado + "\\" + PastaEnviados.EmProcessamento.ToString(), "*-mdfe.*");
+
+                    foreach (var arquivo in arquivos)
+                    {
+                        XmlDocument arqXML = new XmlDocument();
+                        arqXML.Load(arquivo);
+
+                        string chave = ((XmlElement)arqXML.GetElementsByTagName("infMDFe")[0]).GetAttribute("Id").Substring(4);
+
+                        if (chave.Equals(ChaveMDFe))
+                        {
+                            strNomeArqNfe = Path.GetFileName(arquivo);
+                            strArquivoNFe = arquivo;
+                            break;
+                        }
+                    }
+                }
 
                 #endregion CNPJ da chave não é de uma empresa Uninfe
 

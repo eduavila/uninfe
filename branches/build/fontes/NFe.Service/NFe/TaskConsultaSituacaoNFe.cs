@@ -239,6 +239,23 @@ namespace NFe.Service
                 {
                     if (notDaEmpresa)
                         return;
+
+                    var arquivos = Directory.GetFiles(Empresas.Configuracoes[emp].PastaXmlEnviado + "\\" + PastaEnviados.EmProcessamento.ToString(), "*-nfe.*");
+
+                    foreach (var arquivo in arquivos)
+                    {
+                        XmlDocument arqXML = new XmlDocument();
+                        arqXML.Load(arquivo);
+
+                        string chave = ((XmlElement)arqXML.GetElementsByTagName("infNFe")[0]).GetAttribute("Id").Substring(3);
+
+                        if (chave.Equals(ChaveNFe))
+                        {
+                            strNomeArqNfe = Path.GetFileName(arquivo);
+                            strArquivoNFe = arquivo;
+                            break;
+                        }
+                    }
                 }
 
                 #endregion CNPJ da chave não é de uma empresa Uninfe
