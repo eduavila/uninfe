@@ -1734,7 +1734,6 @@
       <ConsultarNfsePorRps>wsdl\homologacao\HPatoBrancoPR-PRONIN.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\homologacao\HPatoBrancoPR-PRONIN.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\homologacao\HPatoBrancoPR-PRONIN.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\homologacao\HPatoBrancoPR-PRONIN.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
@@ -1743,7 +1742,6 @@
       <ConsultarNfsePorRps>wsdl\producao\PPatoBrancoPR-PRONIN.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\producao\PPatoBrancoPR-PRONIN.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\producao\PPatoBrancoPR-PRONIN.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PPatoBrancoPR-PRONIN.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
@@ -4373,40 +4371,40 @@
       <CancelarNfse>WSDL\Producao\PPiracicabaSP-SIMPLISS.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="2900702" Nome="Alagoinhas - BA" UF="BA" Padrao="FREIRE_INFORMATICA">
+  <Estado ID="2900702" Nome="Alagoinhas - BA" UF="BA" Padrao="WEBISS_202">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\HAlagoinhasBA-FREIRE.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HAlagoinhasBA-WebISS.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\PAlagoinhasBA-FREIRE.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PAlagoinhasBA-WebISS.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="3152105" Nome="Ponte Nova - MG" UF="MG" Padrao="MEMORY">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\HPonteNovaMG-Memory.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\HMemory.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HMemory.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HMemory.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HMemory.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HMemory.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HMemory.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PPonteNovaMG-Memory.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PPonteNovaMG-Memory.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PPonteNovaMG-Memory.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\PPonteNovaMG-Memory.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\PPonteNovaMG-Memory.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\PPonteNovaMG-Memory.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\PMemory.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PMemory.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PMemory.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PMemory.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PMemory.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PMemory.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="2905701" Nome="Camaçari - BA" UF="BA" Padrao="CAMACARI_BA">
@@ -6878,6 +6876,89 @@
       <RecepcionarLoteRps>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</RecepcionarLoteRps>
       <ConsultarNfse>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</ConsultarNfse>
       <CancelarNfse>wsdl\producao\PBaraoDeCotegipeRS-SystemPro.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4308904" Nome="Getúlio Vargas - RS" UF="RS" Padrao="PRONIN">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HGetulioVargasRS-PRONIN.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PGetulioVargasRS-PRONIN.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3536703" Nome="Pederneiras - SP" UF="SP" Padrao="SMARAPD">
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PPederneirasSP-WSEntrada.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PPederneirasSP-WSEntrada.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfse>WSDL\Producao\PPederneirasSP-WSSaida.wsdl</ConsultarNfse>
+      <ConsultarURLNfse>WSDL\Producao\PPederneirasSP-WSUtil.wsdl</ConsultarURLNfse>
+      <CancelarNfse>WSDL\Producao\PPederneirasSP-WSEntrada.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4319000" Nome="São Marcos - RS" UF="RS" Padrao="TECNOSISTEMAS">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>WSDL\Homologacao\HSaoMarcos-EnvioLoteRPSSincrono.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Homologacao\HSaoMarcos-ConsultaNFSePorFaixa.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Homologacao\HSaoMarcos-ConsultaNFSePorRPS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Homologacao\HSaoMarcos-ConsultaNFSeServicosPrestados.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Homologacao\HSaoMarcos-ConsultaLoteRPS.wsdl</ConsultarLoteRps>
+      <CancelarNfse>WSDL\Homologacao\HSaoMarcos-CancelamentoNFSe.wsdl</CancelarNfse>
+      <ConsultaSequenciaLoteNotaRPS>WSDL\Homologacao\HSaoMarcos-ConsultaSequenciaLoteNotaRPS.wsdl</ConsultaSequenciaLoteNotaRPS>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PSaoMarcos-EnvioLoteRPSSincrono.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PSaoMarcos-ConsultaNFSePorFaixa.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PSaoMarcos-ConsultaNFSePorRPS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PSaoMarcos-ConsultaNFSeServicosPrestados.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PSaoMarcos-ConsultaLoteRPS.wsdl</ConsultarLoteRps>
+      <CancelarNfse>WSDL\Producao\PSaoMarcos-CancelamentoNFSe.wsdl</CancelarNfse>
+      <ConsultaSequenciaLoteNotaRPS>WSDL\producao\PSaoMarcos-ConsultaSequenciaLoteNotaRPS.wsdl</ConsultaSequenciaLoteNotaRPS>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3120904" Nome="Curvelo - MG" UF="MG" Padrao="MEMORY">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HMemory.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HMemory.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HMemory.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HMemory.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HMemory.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HMemory.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PMemory.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PMemory.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PMemory.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PMemory.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PMemory.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PMemory.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3529302" Nome="Matão - SP" UF="SP" Padrao="GINFES">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\hginfes.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\hginfes.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\hginfes.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\hginfes.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\pginfes.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\pginfes.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\pginfes.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\pginfes.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\pginfes.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\pginfes.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
 </Webservice>

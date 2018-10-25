@@ -279,6 +279,19 @@ namespace NFe.Service
                                             conteudoXML.Load(strArquivoNFe);
                                             oLerXml.Mdfe(conteudoXML);
 
+                                            if (Empresas.Configuracoes[emp].CompararDigestValueDFeRetornadoSEFAZ)
+                                            {
+                                                var digestValueConsultaSituacao = infConsSitElemento.GetElementsByTagName("digVal")[0].InnerText;
+                                                var digestValueMDFe = conteudoXML.GetElementsByTagName("DigestValue")[0].InnerText;
+
+                                                if (!string.IsNullOrEmpty(digestValueConsultaSituacao) && !string.IsNullOrEmpty(digestValueMDFe))
+                                                    if (!digestValueConsultaSituacao.Equals(digestValueMDFe))
+                                                    {
+                                                        oAux.MoveArqErro(strArquivoNFe);
+                                                        throw new Exception("O valor do DigestValue da consulta situação é diferente do DigestValue do MDFe.");
+                                                    }
+                                            }
+
                                             //Verificar se a -nfe.xml existe na pasta de autorizados
                                             bool NFeJaNaAutorizada = oAux.EstaAutorizada(strArquivoNFe, oLerXml.oDadosNfe.dEmi, Propriedade.Extensao(Propriedade.TipoEnvio.MDFe).EnvioXML, Propriedade.Extensao(Propriedade.TipoEnvio.MDFe).EnvioXML);
 

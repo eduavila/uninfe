@@ -444,6 +444,10 @@ namespace NFe.Service
                             DirecionarArquivo(emp, true, true, arquivo, new TaskConsultarLoteeSocial(arquivo));
                             break;
 
+                        case Servicos.ConsultarIdentificadoresEventoseSocial:
+                            DirecionarArquivo(emp, true, true, arquivo, new TaskConsultarIdentificadoresEventoseSocial(arquivo));
+                            break;
+
                             #endregion eSocial
                     }
 
@@ -457,7 +461,7 @@ namespace NFe.Service
                             break;
 
                         case Servicos.UniNFeAlterarConfiguracoes:
-                            AlterarConfiguracoesUniNFe(arquivo);
+                            ReconfigurarUniNFe(arquivo, emp);
                             break;
 
                         case Servicos.UniNFeConsultaGeral:
@@ -897,6 +901,10 @@ namespace NFe.Service
                                         tipoServico = Servicos.RecepcaoLoteeSocial;
                                         break;
 
+                                    case "consultaIdentificadoresEvts":
+                                        tipoServico = Servicos.ConsultarIdentificadoresEventoseSocial;
+                                        break;
+
                                     default:
                                         throw new Exception("Para envio dos eventos do eSocial gere o arquivo de lote, o que tem o prefixo final igual a -esocial-loteevt.xml\r\n" +
                                             "Para envio da consulta do lote de eventos, gere o arquivo com o prefixo final igual a -esocial-consloteevt.xml\r\n\r\n" +
@@ -1104,25 +1112,6 @@ namespace NFe.Service
         }
 
         #endregion AssinarValidarMDFe()
-
-        #region AlterarConfiguracoesUniNFe()
-
-        /// <summary>
-        /// Executa as tarefas pertinentes a consulta das informações do UniNFe
-        /// </summary>
-        /// <param name="arquivo">Arquivo a ser tratado/param>
-        protected void AlterarConfiguracoesUniNFe(string arquivo)
-        {
-            try
-            {
-                ReconfigurarUniNFe(arquivo);
-            }
-            catch
-            {
-            }
-        }
-
-        #endregion AlterarConfiguracoesUniNFe()
 
         #region AssinarValidar()
 
@@ -1491,7 +1480,8 @@ namespace NFe.Service
                         nfe is TaskRecepcaoLoteReinf ||
                         nfe is TaskRecepcaoLoteeSocial ||
                         nfe is TaskConsultarLoteeSocial ||
-                        nfe is TaskConsultarLoteReinf)
+                        nfe is TaskConsultarLoteReinf ||
+                        nfe is TaskConsultarIdentificadoresEventoseSocial)
                     {
                         doExecute = true;
                     }
@@ -1562,7 +1552,7 @@ namespace NFe.Service
         /// Reconfigura o UniNFe, gravando as novas informações na tela de configuração
         /// </summary>
         /// <param name="cArquivo">Nome do arquivo XML contendo as novas configurações</param>
-        protected void ReconfigurarUniNFe(string cArquivo)
+        protected void ReconfigurarUniNFe(string cArquivo, int emp)
         {
             try
             {
