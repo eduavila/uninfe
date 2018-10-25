@@ -675,26 +675,6 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://web1.memory.com.br:81/nfse/ws/lote_rps_service.php")]
-        public string NFe_Components_br_com_memory_pontenovamg_h_loterpswsdl {
-            get {
-                return ((string)(this["NFe_Components_br_com_memory_pontenovamg_h_loterpswsdl"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://nfsebrasil.net.br/nfse/ws/lote_rps_service.php")]
-        public string NFe_Components_br_com_memory_pontenovamg_p_loterpswsdl {
-            get {
-                return ((string)(this["NFe_Components_br_com_memory_pontenovamg_p_loterpswsdl"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://mogiguacu.sigiss.com.br:443/mogiguacu/ws/sigiss_ws.php")]
         public string NFe_Components_br_com_sigiss_mogiguacu_p_WebService_SigISS {
             get {
@@ -1672,6 +1652,66 @@ namespace NFe.Components.Properties {
         public string NFe_Components_PBaraoDeCotegipeRS_NfseService {
             get {
                 return ((string)(this["NFe_Components_PBaraoDeCotegipeRS_NfseService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sistemaspmgv.no-ip.info:8083/NFSe.Portal.Integracao.Teste/Services.svc")]
+        public string NFe_Components_HGetulioVargasRS_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_HGetulioVargasRS_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sistemaspmgv.no-ip.info:8083/NFSe.Portal.Integracao/Services.svc")]
+        public string NFe_Components_PGetulioVargasRS_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_PGetulioVargasRS_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://web1.memory.com.br:81/nfse/ws/lote_rps_service.php")]
+        public string NFe_Components_HMemory_loterpswsdl {
+            get {
+                return ((string)(this["NFe_Components_HMemory_loterpswsdl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://nfsebrasil.net.br/nfse/ws/lote_rps_service.php")]
+        public string NFe_Components_PMemory_loterpswsdl {
+            get {
+                return ((string)(this["NFe_Components_PMemory_loterpswsdl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://nfse2.patobranco.pr.gov.br/NFSe.Portal.Integracao.Teste/Services.svc")]
+        public string NFe_Components_HPatoBrancoPR_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_HPatoBrancoPR_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://nfse2.patobranco.pr.gov.br/NFSe.Portal.Integracao/Services.svc")]
+        public string NFe_Components_PPatoBrancoPR_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_PPatoBrancoPR_NFSeIntegracao"]));
             }
         }
     }

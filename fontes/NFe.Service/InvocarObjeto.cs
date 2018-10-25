@@ -178,6 +178,10 @@ namespace NFe.Service
                     reciboEFD
                 });
             }
+            else if (servico == Servicos.ConsultarIdentificadoresEventoseSocial)
+            {
+                XmlRetorno = wsProxy.InvokeElement(servicoWS, metodo, new object[] { docXML.DocumentElement });
+            }
             else
                 XmlRetorno = wsProxy.InvokeXML(servicoWS, metodo, new object[] { docXML });
 

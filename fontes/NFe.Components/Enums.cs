@@ -502,6 +502,7 @@ namespace NFe.Components
 
         RecepcaoLoteeSocial,
         ConsultarLoteeSocial,
+        ConsultarIdentificadoresEventoseSocial,
 
         #endregion eSocial
 
@@ -913,13 +914,6 @@ namespace NFe.Components
         /// </summary>
         [Description("Nota Inteligente")]
         NOTAINTELIGENTE,
-
-        /// <summary>
-        /// Padrão Freire Informática
-        /// Prefeitura de Alagoinhas - BA
-        /// </summary>
-        [Description("Freire Informática")]
-        FREIRE_INFORMATICA,
 
         /// <summary>
         /// Padrão Memory
