@@ -329,10 +329,13 @@ namespace NFe.UI.Formularios
                            ufCod == 3535507 /*Paraguaçu Paulista-SP*/ ||
                            ufCod == 1503606 /*Itaituba-PA*/ ||
                            ufCod == 3200904 /*Barra de São Francisco-ES*/ ||
-                           ufCod == 2901007 /*Amargosa/ BA*/ ||
+                           ufCod == 2901007 /*Amargosa-BA*/ ||
                            ufCod == 3152105 /*Ponte Nova-MG*/ ||
                            ufCod == 3536703 /*Pederneiras-SP*/ ||
-                           ufCod == 3120904 /*Curvelo-MG*/;
+                           ufCod == 3120904 /*Curvelo-MG*/ ||
+                           ufCod == 3162708 /*São João do Paraíso-MG*/ ||
+                           ufCod == 3168002 /*Taiobeiras-MG*/ ||
+                           ufCod == 3530607 /*Mogi das Cruzes-SP*/;
 
             lbl_UsuarioWS.Visible = txtUsuarioWS.Visible = lbl_SenhaWS.Visible = txtSenhaWS.Visible = visible;
         }
@@ -423,6 +426,18 @@ namespace NFe.UI.Formularios
         }
 
         private void txtSenhaWS_TextChanged(object sender, EventArgs e)
+        {
+            if (this.changeEvent != null)
+                this.changeEvent(sender, e);
+        }
+
+        private void txtClienteID_TextChanged(object sender, EventArgs e)
+        {
+            if (this.changeEvent != null)
+                this.changeEvent(sender, e);
+        }
+
+        private void txtClientSecret_TextChanged(object sender, EventArgs e)
         {
             if (this.changeEvent != null)
                 this.changeEvent(sender, e);
