@@ -273,6 +273,12 @@ namespace NFe.Components
         [Description("Substituir NFS-e")]
         NFSeSubstituirNfse,
 
+        /// <summary>
+        /// Consultar as notas fiscais de serviço recebidas
+        /// </summary>
+        [Description("Consultar NFS-e recebidas")]
+        NFSeConsultarNFSeRecebidas,
+
         #endregion NFSe
 
         #region CFSe
@@ -503,6 +509,7 @@ namespace NFe.Components
         RecepcaoLoteeSocial,
         ConsultarLoteeSocial,
         ConsultarIdentificadoresEventoseSocial,
+        DownloadEventoseSocial,
 
         #endregion eSocial
 
@@ -1105,7 +1112,13 @@ namespace NFe.Components
         /// Padrão CECAM
         /// </summary>
         [Description("CECAM")]
-        CECAM
+        CECAM,
+
+        /// <summary>
+        /// Padrão utilizado pela prefeitura de Camboriú-SC
+        /// </summary>
+        [Description("SIMPLE")]
+        SIMPLE
 
         ///***ATENÇÃO***
         ///o nome deste enum tem que coincidir com o nome da url, pq faço um "IndexOf" deste enum para pegar o padrao

@@ -808,6 +808,10 @@ namespace NFe.Service
                             else
                                 retorna = "EnvioLoteRPS";
                             break;
+
+                        case Servicos.NFSeConsultarNFSeRecebidas:
+                            retorna = "ConsultaNFeRecebidas";
+                            break;
                     }
                     break;
 
@@ -2175,7 +2179,7 @@ namespace NFe.Service
                         case Servicos.NFSeConsultar:
                             retorna = "ConsultarNotaFiscal";
                             break;
-                   
+
                         case Servicos.NFSeRecepcionarLoteRps:
                             if (Empresas.Configuracoes[Empresas.FindEmpresaByThread()].AmbienteCodigo == (int)NFe.Components.TipoAmbiente.taHomologacao)
                                 retorna = "EnviarLoteNotaFiscalDeTeste";
@@ -2685,6 +2689,14 @@ namespace NFe.Service
             #endregion Verificar se os valores das tag´s que compõe a chave da nfe estão batendo com as informadas na chave
         }
 
+        private bool ValidarInformacaoContingencia(DadosNFeClass dadosNFe)
+        {
+            if (String.IsNullOrEmpty(dadosNFe.dhCont) || String.IsNullOrEmpty(dadosNFe.xJust))
+                return false;
+
+            return true;
+        }
+
         #endregion ValidacoesGerais()
 
         #region LoteNfe()
@@ -2892,6 +2904,7 @@ namespace NFe.Service
                 case PadroesNFSe.JOINVILLE_SC:
                 case PadroesNFSe.AVMB_ASTEN:
                 case PadroesNFSe.ADM_SISTEMAS:
+                case PadroesNFSe.SIMPLE:
                     retorno = false;
                     break;
 
