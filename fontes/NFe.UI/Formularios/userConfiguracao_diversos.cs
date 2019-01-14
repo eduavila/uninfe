@@ -1,8 +1,14 @@
 ﻿using NFe.Components;
+
+#if _fw46
+using NFe.Components.SOFTPLAN;
+#endif
+
 using NFe.Settings;
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Net;
 using System.Windows.Forms;
 
 namespace NFe.UI.Formularios
@@ -234,9 +240,46 @@ namespace NFe.UI.Formularios
             this.empresa.UsuarioWS = this.txtUsuarioWS.Text;
             this.empresa.IdentificadorCSC = this.edtIdentificadorCSC.Text;
             this.empresa.TokenCSC = this.edtTokenCSC.Text;
-            this.empresa.ClientID = this.txtClienteID.Text;
-            this.empresa.ClientSecret = this.txtClientSecret.Text;
             this.empresa.CompararDigestValueDFeRetornadoSEFAZ = checkBoxValidarDigestValue.Checked;
+
+            //Configurações para o município de Florianópolis-SC
+#if _fw46
+            if (edtCodMun.Text.Equals("4205407") &&
+                (!String.IsNullOrEmpty(txtUsuarioWS.Text) &&
+                !String.IsNullOrEmpty(txtSenhaWS.Text) &&
+                !String.IsNullOrEmpty(txtClienteID.Text) &&
+                !String.IsNullOrEmpty(txtClientSecret.Text)))
+            {
+                IWebProxy proxy = null;
+
+                if (ConfiguracaoApp.Proxy)
+                {
+                    if (ConfiguracaoApp.Proxy)
+                        proxy = Proxy.DefinirProxy(ConfiguracaoApp.ProxyServidor,
+                            ConfiguracaoApp.ProxyUsuario,
+                            ConfiguracaoApp.ProxySenha,
+                            ConfiguracaoApp.ProxyPorta,
+                            ConfiguracaoApp.DetectarConfiguracaoProxyAuto);
+                }
+
+                string url = "";
+
+                if ((TipoAmbiente)comboBox_Ambiente.SelectedValue == TipoAmbiente.taHomologacao)
+                    url = @"https://nfps-e-hml.pmf.sc.gov.br/api/v1/";
+                else
+                    url = @"https://nfps-e.pmf.sc.gov.br/api/v1/";
+
+                this.empresa.SenhaWS = txtSenhaWS.Text;
+                this.empresa.ClientID = txtClienteID.Text;
+                this.empresa.ClientSecret = txtClientSecret.Text;
+                this.empresa.TokenNFse = Token.GerarToken(proxy,
+                                                          txtUsuarioWS.Text,
+                                                          Functions.GerarMD5(txtSenhaWS.Text).ToUpper(),
+                                                          txtClienteID.Text,
+                                                          txtClientSecret.Text,
+                                                          url);
+            }
+#endif
 
             return true;
         }
@@ -335,7 +378,8 @@ namespace NFe.UI.Formularios
                            ufCod == 3120904 /*Curvelo-MG*/ ||
                            ufCod == 3162708 /*São João do Paraíso-MG*/ ||
                            ufCod == 3168002 /*Taiobeiras-MG*/ ||
-                           ufCod == 3530607 /*Mogi das Cruzes-SP*/;
+                           ufCod == 3530607 /*Mogi das Cruzes-SP*/ ||
+                           ufCod == 3515509 /*Fernandópolis-SP*/;
 
             lbl_UsuarioWS.Visible = txtUsuarioWS.Visible = lbl_SenhaWS.Visible = txtSenhaWS.Visible = visible;
         }
@@ -468,6 +512,8 @@ namespace NFe.UI.Formularios
                     comboBox_Ambiente.Visible = true;
                     checkBoxArqNSU.Visible = false;
                     checkBoxValidarDigestValue.Visible = false;
+                    lbl_udDiasLimpeza.Location = new System.Drawing.Point(3, 247);
+                    udDiasLimpeza.Location = new System.Drawing.Point(3, 266);
                     break;
 
                 case TipoAplicativo.SAT:
@@ -496,6 +542,8 @@ namespace NFe.UI.Formularios
                     txtClientSecret.Visible = false;
                     checkBoxArqNSU.Visible = false;
                     checkBoxValidarDigestValue.Visible = false;
+                    lbl_udDiasLimpeza.Location = new System.Drawing.Point(3, 147);
+                    udDiasLimpeza.Location = new System.Drawing.Point(3, 166);
                     break;
 
                 case TipoAplicativo.EFDReinf:
@@ -523,6 +571,8 @@ namespace NFe.UI.Formularios
                     txtClientSecret.Visible = false;
                     checkBoxArqNSU.Visible = false;
                     checkBoxValidarDigestValue.Visible = false;
+                    lbl_udDiasLimpeza.Location = new System.Drawing.Point(3, 147);
+                    udDiasLimpeza.Location = new System.Drawing.Point(3, 166);
                     break;
 
                 default:
@@ -556,6 +606,8 @@ namespace NFe.UI.Formularios
                     txtClientSecret.Visible = false;
                     checkBoxArqNSU.Visible = true;
                     checkBoxValidarDigestValue.Visible = true;
+                    lbl_udDiasLimpeza.Location = new System.Drawing.Point(3, 147);
+                    udDiasLimpeza.Location = new System.Drawing.Point(3, 166);
                     break;
             }
         }

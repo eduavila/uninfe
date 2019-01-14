@@ -1119,7 +1119,7 @@
       <ConsultarNfsePorRps>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
+      <ConsultarURLNfse></ConsultarURLNfse>ita
       <CancelarNfse>wsdl\homologacao\HThemaCancelamento.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
@@ -1523,8 +1523,8 @@
       <ConsultarNfsePorRps>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</CancelarNfse>
+      <ConsultaNFSeRecebidas>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultaNFSeRecebidas>
     </LocalHomologacao>
     <LocalProducao>
       <RecepcionarLoteRps>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</RecepcionarLoteRps>
@@ -1532,8 +1532,8 @@
       <ConsultarNfsePorRps>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</CancelarNfse>
+      <ConsultaNFSeRecebidas>wsdl\producao\PSaoPauloSP-PAULISTANA.wsdl</ConsultaNFSeRecebidas>
     </LocalProducao>
   </Estado>
   <Estado ID="1100205" Nome="Porto Velho - RO" UF="RO" Padrao="PORTOVELHENSE">
@@ -7036,7 +7036,7 @@
       <CancelarNfse>wsdl\producao\PTaiobeirasMG-EL.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-<Estado ID="2606200" Nome="Goiana - PE" UF="PE" Padrao="TINUS">
+  <Estado ID="2606200" Nome="Goiana - PE" UF="PE" Padrao="TINUS">
     <LocalHomologacao>
       <RecepcionarLoteRps>wsdl\homologacao\HGoianaPE_TINUS_RecepcionarLoteRps.wsdl</RecepcionarLoteRps>
       <ConsultarSituacaoLoteRps>wsdl\homologacao\HGoianaPE_TINUS_ConsultarSituacaoLoteRps.wsdl</ConsultarSituacaoLoteRps>
@@ -7054,6 +7054,52 @@
       <ConsultarLoteRps>wsdl\producao\PGoianaPE_TINUS_ConsultarLoteRps.wsdl</ConsultarLoteRps>
       <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\producao\PGoianaPE_TINUS_CancelarNfse.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4203204" Nome="Camboriú - SC" UF="SC" Padrao="SIMPLE">
+    <LocalHomologacao>
+      <RecepcionarLoteRps></RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps></ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps></ConsultarNfsePorRps>
+      <ConsultarNfse></ConsultarNfse>
+      <ConsultarLoteRps></ConsultarLoteRps>
+      <CancelarNfse></CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</ConsultarLoteRps>
+      <CancelarNfse>WSDL\Producao\PCamboriuSC-SIMPLE.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3515509" Nome="Fernandópolis - SP" UF="SP" Padrao="FIORILLI">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HFernandopolisSP-FIORILLI.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="3527108" Nome="Lins - SP" UF="SP" Padrao="ISSONLINE_ASSESSORPUBLICO">
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\PLinsSP-ISSONLINE.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PLinsSP-ISSONLINE.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PLinsSP-ISSONLINE.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PLinsSP-ISSONLINE.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PLinsSP-ISSONLINE.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PLinsSP-ISSONLINE.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
 </Webservice>

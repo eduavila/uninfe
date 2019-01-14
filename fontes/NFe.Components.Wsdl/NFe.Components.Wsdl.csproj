@@ -3777,6 +3777,14 @@
     <EmbeddedResource Include="NFe\schemas\EFDReinf\retornoTotalizadorEvento-v1_04_00.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="NFe\WSDL\Homologacao\AN\eSocial_DownloadEventos.wsdl" />
+    <EmbeddedResource Include="NFe\WSDL\Producao\AN\eSocial_DownloadEventos.wsdl" />
+    <EmbeddedResource Include="NFe\schemas\eSocial\SolicitacaoDownloadEventosPorId-v1_0_0.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NFe\schemas\eSocial\SolicitacaoDownloadEventosPorNrRecibo-v1_0_0.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="NFse\schemas\NFSe\BETHA\nfse_v202.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -4383,6 +4391,10 @@
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HMogidasCruzesSP-SMARAPDWSEntrada.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HMogidasCruzesSP-SMARAPDWSSaida.wsdl" />
     <EmbeddedResource Include="NFse\WSDL\Homologacao\HMogidasCruzesSP-SMARAPDWSUtil.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PCamboriuSC-SIMPLE.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Homologacao\HFernandopolisSP-FIORILLI.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PFernandopolisSP-FIORILLI.wsdl" />
+    <EmbeddedResource Include="NFse\WSDL\Producao\PLinsSP-ISSONLINE.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NFse\WSDL\Producao\PCamacariBA.wsdl">

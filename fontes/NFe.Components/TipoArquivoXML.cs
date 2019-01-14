@@ -189,7 +189,8 @@ namespace NFe.Components
                         #region eSocial
 
                         case "eSocial":
-                            if (conteudoXML.DocumentElement.FirstChild.Name.Equals("consultaIdentificadoresEvts"))
+                            if (conteudoXML.DocumentElement.FirstChild.Name.Equals("consultaIdentificadoresEvts") ||
+                                conteudoXML.DocumentElement.FirstChild.Name.Equals("download"))
                                 chave = nome + "-" + conteudoXML.DocumentElement.FirstChild.Name + "-" + conteudoXML.DocumentElement.FirstChild.FirstChild.NextSibling.Name;
                             else
                                 chave = nome + "-" + conteudoXML.DocumentElement.FirstChild.Name;

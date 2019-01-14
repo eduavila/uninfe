@@ -10,9 +10,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
-using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Services.Description;
+using System.Security.Authentication;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -1205,6 +1205,11 @@ namespace NFe.Components
         /// </summary>
         public string SubstituirNfse { get; set; }
 
+        /// <summary>
+        /// Consultar as NFS-e que foram recebidas
+        /// </summary>
+        public string ConsultaNFSeRecebidas { get; set; }
+
         #endregion NFS-e
 
         #region CFS-e
@@ -1369,6 +1374,11 @@ namespace NFe.Components
         /// Consulta dos identificadores dos eventos do eSocial: Empregador, Tabela e Trabalhador
         /// </summary>
         public string ConsultarIdentificadoresEventoseSocial { get; set; }
+
+        /// <summary>
+        /// Download dos eventos por Id e Número do recibo
+        /// </summary>
+        public string DownloadEventoseSocial { get; set; }
 
         #endregion eSocial
 
