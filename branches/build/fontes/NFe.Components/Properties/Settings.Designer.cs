@@ -1079,7 +1079,7 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://187.60.188.82:8091/NFSe.Portal.Integracao.Teste/Services.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://177.84.147.222:8091/NFSe.Portal.Integracao/Services.svc")]
         public string NFe_Components_PCachoeiraSulRS_NFSeIntegracao {
             get {
                 return ((string)(this["NFe_Components_PCachoeiraSulRS_NFSeIntegracao"]));
@@ -1089,7 +1089,7 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://187.60.188.82:8091/NFSe.Portal.Integracao/Services.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://177.84.147.222:8091/NFSe.Portal.Integracao.Teste/Services.svc")]
         public string NFe_Components_HCachoeiraSulRS_NFSeIntegracao {
             get {
                 return ((string)(this["NFe_Components_HCachoeiraSulRS_NFSeIntegracao"]));
@@ -1302,7 +1302,7 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://187.60.188.222:8086/NFSe.Portal.Integracao/Services.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://srvwebveracruz.ddns.com.br:8086/NFSe.Portal.Integracao/Services.svc")]
         public string NFe_Components_PVeraCruzRS_NFSeIntegracao {
             get {
                 return ((string)(this["NFe_Components_PVeraCruzRS_NFSeIntegracao"]));
@@ -1903,6 +1903,56 @@ namespace NFe.Components.Properties {
         public string NFe_Components_PFernandopolisSP_IssWebWS {
             get {
                 return ((string)(this["NFe_Components_PFernandopolisSP_IssWebWS"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://201.91.25.66/NFSe.Portal.Integracao.Teste/Services.svc")]
+        public string NFe_Components_HTeodoroSampaioSP_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_HTeodoroSampaioSP_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://201.91.25.66/NFSe.Portal.Integracao/Services.svc")]
+        public string NFe_Components_PTeodoroSampaioSP_NFSeIntegracao {
+            get {
+                return ((string)(this["NFe_Components_PTeodoroSampaioSP_NFSeIntegracao"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.gp.srv.br/tributario_matupa/servlet/anfse_web_service")]
+        public string NFe_Components_PMatupaMT_nfse_web_service {
+            get {
+                return ((string)(this["NFe_Components_PMatupaMT_nfse_web_service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://fi1.fiorilli.com.br:5663/IssWeb-ejb/IssWebWS/IssWebWS")]
+        public string NFe_Components_HRioPedrasSP_IssWebWS {
+            get {
+                return ((string)(this["NFe_Components_HRioPedrasSP_IssWebWS"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://riodaspedras.brgov.com.br:5661/IssWeb-ejb/IssWebWS/IssWebWS")]
+        public string NFe_Components_PRioPedrasSP_IssWebWS {
+            get {
+                return ((string)(this["NFe_Components_PRioPedrasSP_IssWebWS"]));
             }
         }
     }

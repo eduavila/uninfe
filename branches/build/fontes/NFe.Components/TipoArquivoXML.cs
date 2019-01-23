@@ -155,6 +155,10 @@ namespace NFe.Components
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-4118501-";
                                 break;
 
+                            case 3554300: //Teodoro Sampaio-SP
+                                padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-3554300-";
+                                break;
+
                             default:
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-";
                                 break;

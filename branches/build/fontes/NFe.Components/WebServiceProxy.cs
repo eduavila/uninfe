@@ -170,7 +170,8 @@ namespace NFe.Components
                                     cMunicipio == 3505807 ||
                                     cMunicipio == 3530300 ||
                                     cMunicipio == 4308904 ||
-                                    cMunicipio == 4118501)
+                                    cMunicipio == 4118501 ||
+                                    cMunicipio == 3554300)
                                     return "BasicHttpBinding_INFSEGeracao";
                                 else
                                     return "basic_INFSEGeracao";
@@ -182,7 +183,8 @@ namespace NFe.Components
                                     cMunicipio == 4322509 ||
                                     cMunicipio == 3512803 ||
                                     cMunicipio == 4308904 ||
-                                    cMunicipio == 4118501)
+                                    cMunicipio == 4118501 || 
+                                    cMunicipio == 3554300)
                                     return "BasicHttpBinding_INFSEGeracao";
                                 else
                                     return "basic_INFSEGeracao";
@@ -1209,6 +1211,11 @@ namespace NFe.Components
         /// Consultar as NFS-e que foram recebidas
         /// </summary>
         public string ConsultaNFSeRecebidas { get; set; }
+
+        /// <summary>
+        /// Consultar as NFS-e tomados
+        /// </summary>
+        public string ConsultaNFSeTomados { get; set; }
 
         #endregion NFS-e
 

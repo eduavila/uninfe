@@ -113,6 +113,10 @@ namespace NFe.Service
                             DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskConsultarNfseRecebidas(arquivo));
                             break;
 
+                        case Servicos.NFSeConsultarNFSeTomados:
+                            DirecionarArquivo(emp, true, true, arquivo, new NFSe.TaskConsultarNfseTomados(arquivo));
+                            break;
+
                         #endregion NFS-e
 
                         #region CFS-e
@@ -1002,6 +1006,10 @@ namespace NFe.Service
                                 else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeRec).EnvioXML) >= 0)
                                 {
                                     tipoServico = Servicos.NFSeConsultarNFSeRecebidas;
+                                }
+                                else if (arq.IndexOf(Propriedade.Extensao(Propriedade.TipoEnvio.PedSitNFSeTom).EnvioXML) >= 0)
+                                {
+                                    tipoServico = Servicos.NFSeConsultarNFSeTomados;
                                 }
 
                                 #endregion NFS-e
