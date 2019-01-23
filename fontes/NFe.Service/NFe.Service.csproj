@@ -190,6 +190,7 @@
     <Compile Include="InvocarObjeto.cs" />
     <Compile Include="LerXML.cs" />
     <Compile Include="NFeEmProcessamento.cs" />
+    <Compile Include="NFSe\TaskConsultarNfseTomados.cs" />
     <Compile Include="NFSe\TaskConsultarNfseRecebidas.cs" />
     <Compile Include="NFSe\TaskSubstituirNfse.cs" />
     <Compile Include="NFSe\TaskConsultaSequenciaLoteNotaRPS.cs" />
