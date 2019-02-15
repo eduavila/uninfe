@@ -538,22 +538,22 @@
       <CancelarNfse>wsdl\producao\PFortaleza-Ginfes.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="2507507" Nome="João Pessoa - PB" UF="PB" Padrao="GINFES">
+  <Estado ID="2507507" Nome="João Pessoa - PB" UF="PB" Padrao="SISPMJP">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\hginfes.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\hginfes.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\hginfes.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\hginfes.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HJoaoPessoaPB_SISPMJP.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\pginfes.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\pginfes.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\pginfes.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\pginfes.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\pginfes.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\pginfes.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PJoaoPessoaPB_SISPMJP.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="2704302" Nome="Maceió - AL" UF="AL" Padrao="GINFES">
@@ -992,22 +992,24 @@
       <CancelarNfse>wsdl\producao\PBethaCancelarNFSe.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="4302105" Nome="Bento Gonçalves - RS" UF="RS" Padrao="BETHA">
+  <Estado ID="4302105" Nome="Bento Gonçalves - RS" UF="RS" Padrao="IPM">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\HBethaRecepcionarLoteRps.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\HBethaConsultarSituacaoLoteRPS.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\HBethaConsultarNFSePorRPS.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\HBethaConsultarNFSe.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\HBethaConsultarLoteRPS.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\HBethaCancelarNFSe.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\hipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\hipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\hipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\homologacao\hipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\homologacao\hipm.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PBethaRecepcionarLoteRPS.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PBethaConsultarSituacaoLoteRPS.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PBethaConsultarNFSePorRPS.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\PBethaConsultarNFSe.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\PBethaConsultarLoteRPS.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\PBethaCancelarNFSe.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\pipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\pipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\pipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\pipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\pipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\producao\pipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\producao\pipm.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="4202404" Nome="Blumenau - SC" UF="SC" Padrao="BLUMENAU_SC">
@@ -1137,7 +1139,7 @@
       <ConsultarNfsePorRps>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\homologacao\HThemaConsulta.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>ita
+      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\homologacao\HThemaCancelamento.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
@@ -5320,22 +5322,22 @@
       <CancelarNfse>WSDL\Producao\PMirassolandiaSP-FIORILLI.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="3518404" Nome="Guaratinguetá - SP" UF="SP" Padrao="GINFES">
+  <Estado ID="3518404" Nome="Guaratinguetá - SP" UF="SP" Padrao="EMBRAS">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\hginfes.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\hginfes.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\hginfes.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\hginfes.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\hginfes.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\hguarasp.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\hguarasp.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\hguarasp.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\hguarasp.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\hguarasp.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\hguarasp.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\pginfes.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\pginfes.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\pginfes.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\pginfes.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\pginfes.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\pginfes.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\pguarasp.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\pguarasp.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\pguarasp.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\pguarasp.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\pguarasp.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\pguarasp.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="4313508" Nome="Osório - RS" UF="RS" Padrao="DBSELLER">
@@ -5436,22 +5438,22 @@
       <CancelarNfse>wsdl\producao\PBethaCancelarNFSe.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
-  <Estado ID="4318002" Nome="São Borja - RS" UF="RS" Padrao="BETHA">
+  <Estado ID="4318002" Nome="São Borja - RS" UF="RS" Padrao="DBSELLER">
     <LocalHomologacao>
-      <RecepcionarLoteRps>wsdl\homologacao\HBethaRecepcionarLoteRps.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\homologacao\HBethaConsultarSituacaoLoteRPS.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\homologacao\HBethaConsultarNFSePorRPS.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\homologacao\HBethaConsultarNFSe.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\homologacao\HBethaConsultarLoteRPS.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\homologacao\HBethaCancelarNFSe.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\homologacao\HSaoBorjaRS-DBSELLER.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PBethaRecepcionarLoteRPS.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PBethaConsultarSituacaoLoteRPS.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PBethaConsultarNFSePorRPS.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\PBethaConsultarNFSe.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\PBethaConsultarLoteRPS.wsdl</ConsultarLoteRps>
-      <CancelarNfse>wsdl\producao\PBethaCancelarNFSe.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PSaoBorjaRS-DBSELLER.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="4110706" Nome="Irati - PR" UF="PR" Padrao="FINTEL">
@@ -6870,17 +6872,15 @@
       <ConsultarNfsePorRps>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarNfsePorRps-TINUS.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarNfse-TINUS.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\homologacao\HCaboSantoAgostinhoPE-ConsultarLoteRps-TINUS.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
       <CancelarNfse>wsdl\homologacao\HCaboSantoAgostinhoPE-CancelarNfse-TINUS.wsdl</CancelarNfse>
     </LocalHomologacao>
     <LocalProducao>
-      <RecepcionarLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_RecepcionarLoteRps.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarSituacaoLoteRps.wsdl</ConsultarSituacaoLoteRps>
-      <ConsultarNfsePorRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarNfsePorRps.wsdl</ConsultarNfsePorRps>
-      <ConsultarNfse>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarNfse.wsdl</ConsultarNfse>
-      <ConsultarLoteRps>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_ConsultarLoteRps.wsdl</ConsultarLoteRps>
-      <ConsultarURLNfse></ConsultarURLNfse>
-      <CancelarNfse>wsdl\producao\PJaboataoDosGuararapesPE_TINUS_CancelarNfse.wsdl</CancelarNfse>
+      <RecepcionarLoteRps>wsdl\producao\PCaboDeSantoAgostinhoPE-RecepcionarLoteRps-TINUS.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\PCaboDeSantoAgostinhoPE-ConsultarSituacaoLoteRps-TINUS.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\PCaboDeSantoAgostinhoPE-ConsultarNfsePorRps-TINUS.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\PCaboDeSantoAgostinhoPE-ConsultarNfse-TINUS.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\PCaboDeSantoAgostinhoPE-ConsultarLoteRps-TINUS.wsdl</ConsultarLoteRps>
+      <CancelarNfse>wsdl\producao\PCaboDeSantoAgostinhoPE-CancelarNfse-TINUS.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
   <Estado ID="4301701" Nome="Barão de Cotegipe - RS" UF="RS" Padrao="SYSTEMPRO">
@@ -7103,7 +7103,7 @@
     </LocalHomologacao>
     <LocalProducao>
       <RecepcionarLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>Pato
+      <ConsultarSituacaoLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>
       <ConsultarNfsePorRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\producao\PFernandopolisSP-FIORILLI.wsdl</ConsultarLoteRps>
@@ -7216,7 +7216,7 @@
     </LocalHomologacao>
     <LocalProducao>
       <RecepcionarLoteRps>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</RecepcionarLoteRps>
-      <ConsultarSituacaoLoteRps>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>Pato
+      <ConsultarSituacaoLoteRps>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</ConsultarSituacaoLoteRps>
       <ConsultarNfsePorRps>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</ConsultarNfsePorRps>
       <ConsultarNfse>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</ConsultarNfse>
       <ConsultarLoteRps>wsdl\producao\PRioPedrasSP-FIORILLI.wsdl</ConsultarLoteRps>
@@ -7231,6 +7231,56 @@
     <LocalProducao>
       <RecepcionarLoteRps>wsdl\producao\PPontalinaGO-MEGASOFT.wsdl</RecepcionarLoteRps>
       <ConsultarNfsePorRps>wsdl\producao\PPontalinaGO-MEGASOFT.wsdl</ConsultarNfsePorRps>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4207502" Nome="Indaial - SC" UF="SC" Padrao="IPM">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\hipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\hipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\hipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\homologacao\hipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\homologacao\hipm.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\pipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\pipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\pipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\pipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\pipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\producao\pipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\producao\pipm.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="5220454" Nome="Senador Canedo - GO" UF="GO" Padrao="BSITBR">
+    <LocalProducao>
+      <RecepcionarLoteRps>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</ConsultarLoteRps>
+      <CancelarNfse>WSDL\Producao\PSenadorCanedoGO-BSITBR.wsdl</CancelarNfse>
+    </LocalProducao>
+  </Estado>
+  <Estado ID="4211801" Nome="Ouro - SC" UF="SC" Padrao="IPM">
+    <LocalHomologacao>
+      <RecepcionarLoteRps>wsdl\homologacao\hipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\homologacao\hipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\homologacao\hipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\homologacao\hipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\homologacao\hipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\homologacao\hipm.wsdl</CancelarNfse>
+    </LocalHomologacao>
+    <LocalProducao>
+      <RecepcionarLoteRps>wsdl\producao\pipm.wsdl</RecepcionarLoteRps>
+      <ConsultarSituacaoLoteRps>wsdl\producao\pipm.wsdl</ConsultarSituacaoLoteRps>
+      <ConsultarNfsePorRps>wsdl\producao\pipm.wsdl</ConsultarNfsePorRps>
+      <ConsultarNfse>wsdl\producao\pipm.wsdl</ConsultarNfse>
+      <ConsultarLoteRps>wsdl\producao\pipm.wsdl</ConsultarLoteRps>
+      <ConsultarURLNfse>wsdl\producao\pipm.wsdl</ConsultarURLNfse>
+      <CancelarNfse>wsdl\producao\pipm.wsdl</CancelarNfse>
     </LocalProducao>
   </Estado>
 </Webservice>
