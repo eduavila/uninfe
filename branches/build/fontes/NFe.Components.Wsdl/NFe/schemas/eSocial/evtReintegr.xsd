@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_04_02" targetNamespace="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_04_02" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_05_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtReintegr/v02_05_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
   <xs:element name="eSocial">
-    <xs:annotation>
-      <xs:documentation>eSocial</xs:documentation>
-    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="evtReintegr">
-          <xs:annotation>
-            <xs:documentation>Evento Reintegração</xs:documentation>
-          </xs:annotation>
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ideEvento" type="TIdeEveTrab">
@@ -29,15 +23,18 @@
                 </xs:annotation>
               </xs:element>
               <xs:element name="infoReintegr">
-                <xs:annotation>
-                  <xs:documentation>Reintegração</xs:documentation>
-                </xs:annotation>
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="tpReint">
                       <xs:simpleType>
                         <xs:annotation>
-                          <xs:documentation>Tipo de Reintegração</xs:documentation>
+                          <xs:documentation>Tipo de Reintegração:
+                          1 - Reintegração por Decisão Judicial;
+                          2 - Reintegração por Anistia Legal;
+                          3 - Reversão de Servidor Público;
+                          4 - Recondução de Servidor Público;
+                          5 - Reinclusão de Militar;
+                          9 - Outros</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:byte">
                           <xs:pattern value="\d"/>
@@ -50,15 +47,14 @@
                           <xs:documentation>Nr Processo Judicial</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
-                          <xs:minLength value="3"/>
-                          <xs:maxLength value="21"/>
+                          <xs:length value="20"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
                     <xs:element name="nrLeiAnistia" minOccurs="0">
                       <xs:simpleType>
                         <xs:annotation>
-                          <xs:documentation>Leis de Anistia</xs:documentation>
+                          <xs:documentation>Preencher com uma das opções relativas a Leis de Anistia</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
                           <xs:pattern value="\w{5,13}"/>
@@ -86,7 +82,9 @@
                     <xs:element name="indPagtoJuizo">
                       <xs:simpleType>
                         <xs:annotation>
-                          <xs:documentation>Indicar se ocorreu pgto em juízo</xs:documentation>
+                          <xs:documentation>Indicar se as remunerações e correspondentes contribuições do período compreendido entre o desligamento e a reintegração foram pagas em juízo:
+                          S- Sim;
+                          N - Não</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
                           <xs:pattern value="[N|S]"/>
@@ -122,7 +120,7 @@
       <xs:element name="nrRecibo" minOccurs="0">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Recibo arquivo a ser retificado</xs:documentation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
@@ -153,7 +151,7 @@
       <xs:element name="verProc">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+            <xs:documentation>Versão do processo de emissão do evento</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
@@ -168,7 +166,7 @@
       <xs:element name="tpInsc">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+            <xs:documentation>Tipo de Inscrição, conforme Tabela 05</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:byte">
             <xs:pattern value="\d"/>
@@ -181,7 +179,7 @@
             <xs:documentation>Número de Inscrição</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
-            <xs:pattern value="\d{8,15}"/>
+            <xs:pattern value="\d{8,14}"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>

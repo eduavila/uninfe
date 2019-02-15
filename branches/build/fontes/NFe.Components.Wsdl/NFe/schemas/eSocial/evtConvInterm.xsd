@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtConvInterm/v02_04_02" targetNamespace="http://www.esocial.gov.br/schema/evt/evtConvInterm/v02_04_02" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.esocial.gov.br/schema/evt/evtConvInterm/v02_05_00" targetNamespace="http://www.esocial.gov.br/schema/evt/evtConvInterm/v02_05_00" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
   <xs:element name="eSocial">
-    <xs:annotation>
-      <xs:documentation>eSocial</xs:documentation>
-    </xs:annotation>
     <xs:complexType>
       <xs:sequence>
         <xs:element name="evtConvInterm">
@@ -40,8 +37,9 @@
                           <xs:documentation>Código que identifica a convocação para trabalho intermitente</xs:documentation>
                         </xs:annotation>
                         <xs:restriction base="xs:string">
-                          <xs:minLength value="1"/>
+                          <xs:minLength value="2"/>
                           <xs:maxLength value="30"/>
+                          <xs:whiteSpace value="preserve"/>
                         </xs:restriction>
                       </xs:simpleType>
                     </xs:element>
@@ -92,11 +90,12 @@
                           <xs:element name="dscJornada" minOccurs="0">
                             <xs:simpleType>
                               <xs:annotation>
-                                <xs:documentation>Descrição das jornadas e dos dias da prestação de trabalho intermitente.</xs:documentation>
+                                <xs:documentation>Descrição das jornadas de trabalho intermitente</xs:documentation>
                               </xs:annotation>
                               <xs:restriction base="xs:string">
-                                <xs:minLength value="3"/>
+                                <xs:minLength value="2"/>
                                 <xs:maxLength value="999"/>
+                                <xs:whiteSpace value="preserve"/>
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
@@ -121,7 +120,7 @@
                           </xs:element>
                           <xs:element name="localTrabInterm" minOccurs="0">
                             <xs:annotation>
-                              <xs:documentation>Informações do local de trabalho intermitente, quando prestado em apenas um local e fora do estabelecimento do empregador cadastrado no S-2200/S-2206</xs:documentation>
+                              <xs:documentation>Informações do local de trabalho intermitente</xs:documentation>
                             </xs:annotation>
                             <xs:complexType>
                               <xs:sequence>
@@ -143,7 +142,8 @@
                                     </xs:annotation>
                                     <xs:restriction base="xs:string">
                                       <xs:minLength value="1"/>
-                                      <xs:maxLength value="80"/>
+                                      <xs:maxLength value="100"/>
+                                      <xs:whiteSpace value="preserve"/>
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>
@@ -164,6 +164,7 @@
                                       <xs:documentation>Complemento</xs:documentation>
                                     </xs:annotation>
                                     <xs:restriction base="xs:string">
+                                      <xs:minLength value="1"/>
                                       <xs:maxLength value="30"/>
                                     </xs:restriction>
                                   </xs:simpleType>
@@ -171,11 +172,12 @@
                                 <xs:element name="bairro" minOccurs="0">
                                   <xs:simpleType>
                                     <xs:annotation>
-                                      <xs:documentation>Nome do bairro/distrito.</xs:documentation>
+                                      <xs:documentation>Nome do bairro/distrito</xs:documentation>
                                     </xs:annotation>
                                     <xs:restriction base="xs:string">
                                       <xs:minLength value="1"/>
-                                      <xs:maxLength value="60"/>
+                                      <xs:maxLength value="90"/>
+                                      <xs:whiteSpace value="preserve"/>
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>
@@ -195,6 +197,7 @@
                                       <xs:documentation>Código do Município</xs:documentation>
                                     </xs:annotation>
                                     <xs:restriction base="xs:integer">
+                                      <xs:pattern value="\d{7}"/>
                                     </xs:restriction>
                                   </xs:simpleType>
                                 </xs:element>
@@ -269,7 +272,7 @@
       <xs:element name="nrRecibo" minOccurs="0">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Recibo arquivo a ser retificado</xs:documentation>
+            <xs:documentation>Número do recibo do arquivo a ser retificado</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
@@ -300,7 +303,7 @@
       <xs:element name="verProc">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Versão do processo de emissão do evento. </xs:documentation>
+            <xs:documentation>Versão do processo de emissão do evento</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
@@ -315,7 +318,7 @@
       <xs:element name="tpInsc">
         <xs:simpleType>
           <xs:annotation>
-            <xs:documentation>Tipo de Inscrição, conforme tabela 5.</xs:documentation>
+            <xs:documentation>Tipo de Inscrição, conforme Tabela 05</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:byte">
             <xs:pattern value="\d"/>
@@ -328,7 +331,7 @@
             <xs:documentation>Número de Inscrição</xs:documentation>
           </xs:annotation>
           <xs:restriction base="xs:string">
-            <xs:pattern value="\d{8,15}"/>
+            <xs:pattern value="\d{8,14}"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
