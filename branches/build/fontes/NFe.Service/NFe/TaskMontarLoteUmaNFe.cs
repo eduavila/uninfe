@@ -24,6 +24,9 @@ namespace NFe.Service
             try
             {
                 int emp = Empresas.FindEmpresaByThread();
+
+                DadosNFeClass oDadosNfe = LerXMLNFe(ConteudoXML);
+
                 AssinarValidarXMLNFe(ConteudoXML);
 
                 //Montar lote de nfe
@@ -32,7 +35,6 @@ namespace NFe.Service
                 string cError = "";
                 try
                 {
-                    DadosNFeClass oDadosNfe = LerXMLNFe(ConteudoXML);
                     if (!oFluxoNfe.NFeComLote(oDadosNfe.chavenfe))
                     {
                         XmlDocument xmlLote = LoteNfe(ConteudoXML, NomeArquivoXML, oDadosNfe.versao);
