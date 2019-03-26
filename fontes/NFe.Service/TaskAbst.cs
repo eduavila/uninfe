@@ -1366,6 +1366,14 @@ namespace NFe.Service
                         case Servicos.NFSeConsultarURLSerie:
                             retorna = "";
                             break;
+
+                        case Servicos.NFSeGerarNfse:
+                            retorna = "GerarNfse";
+                            break;
+
+                        case Servicos.NFSeConsultarNFSePDF:
+                            retorna = "ConsultarNotapdf";
+                            break;
                     }
                     break;
 
@@ -1757,6 +1765,10 @@ namespace NFe.Service
 
                         case Servicos.NFSeRecepcionarLoteRps:
                             retorna = "RecepcionarLoteRps";
+                            break;
+
+                        case Servicos.NFSeConsultarNFSeTomados:
+                            retorna = "ConsultarNfseServicoTomado";
                             break;
                     }
                     break;
@@ -2241,7 +2253,7 @@ namespace NFe.Service
                     }
                     break;
 
-                    #endregion INDAIATUBA_SP
+                #endregion INDAIATUBA_SP
 
                 #region SISPMJP
 
@@ -2369,6 +2381,11 @@ namespace NFe.Service
             {
                 //Fazer uma leitura de algumas tags do XML
                 DadosNFeClass dadosNFe = LerXMLNFe(conteudoXML);
+
+                if ((dadosNFe.mod == "55" || dadosNFe.mod == "65"))
+                    if (dadosNFe.tpAmb == "2" || (dadosNFe.tpAmb == "1" && dadosNFe.dEmi >= new DateTime(2019, 5, 7)))
+                        AdicionarResponsavelTecnico(emp, dadosNFe.chavenfe.Substring(3, 44), conteudoXML);
+
                 string ChaveNfe = dadosNFe.chavenfe;
                 string TpEmis = dadosNFe.tpEmis;
 
@@ -2959,7 +2976,8 @@ namespace NFe.Service
                         cMunicipio == 3530300 ||
                         cMunicipio == 4308904 ||
                         cMunicipio == 4118501 ||
-                        cMunicipio == 3554300)
+                        cMunicipio == 3554300 ||
+                        cMunicipio == 3542404)
                         retorno = false;
                     break;
 
@@ -3131,6 +3149,7 @@ namespace NFe.Service
                     break;
 
                 case PadroesNFSe.CARIOCA:
+                case PadroesNFSe.PRODATA:
                     if (servico == Servicos.NFSeRecepcionarLoteRps)
                     {
                         switch (doc.DocumentElement.Name)
@@ -3565,5 +3584,59 @@ namespace NFe.Service
         }
 
         #endregion XmlLMC()
+
+        private void AdicionarResponsavelTecnico(int empresa, string chaveNFe, XmlDocument conteudoXML)
+        {
+            var infRespTec = conteudoXML.GetElementsByTagName("infRespTec")[0];
+
+            if (infRespTec != null)
+                return;
+
+            if (String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecCNPJ) ||
+                String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecXContato) ||
+                String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecEmail) ||
+                String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecTelefone))
+                return;
+
+            var infNFe = conteudoXML.GetElementsByTagName("infNFe")[0];
+
+            XmlElement infRespTecnico = conteudoXML.CreateElement("infRespTec", infNFe.NamespaceURI);
+            XmlNode cnpj = conteudoXML.CreateElement("CNPJ", infNFe.NamespaceURI);
+            XmlNode contato = conteudoXML.CreateElement("xContato", infNFe.NamespaceURI);
+            XmlNode email = conteudoXML.CreateElement("email", infNFe.NamespaceURI);
+            XmlNode fone = conteudoXML.CreateElement("fone", infNFe.NamespaceURI);
+            XmlNode idCSRT = conteudoXML.CreateElement("idCSRT", infNFe.NamespaceURI);
+            XmlNode csrt = conteudoXML.CreateElement("hashCSRT", infNFe.NamespaceURI);
+
+            cnpj.InnerText = Empresas.Configuracoes[empresa].RespTecCNPJ;
+            contato.InnerText = Empresas.Configuracoes[empresa].RespTecXContato;
+            email.InnerText = Empresas.Configuracoes[empresa].RespTecEmail;
+            fone.InnerText = Empresas.Configuracoes[empresa].RespTecTelefone;
+
+            infRespTecnico.AppendChild(cnpj);
+            infRespTecnico.AppendChild(contato);
+            infRespTecnico.AppendChild(email);
+            infRespTecnico.AppendChild(fone);
+
+            if (!String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecIdCSRT) &&
+                !String.IsNullOrEmpty(Empresas.Configuracoes[empresa].RespTecCSRT))
+            {
+                idCSRT.InnerText = Empresas.Configuracoes[empresa].RespTecIdCSRT;
+                csrt.InnerText = GerarHashCSRT(Empresas.Configuracoes[empresa].RespTecCSRT, chaveNFe);
+
+                infRespTecnico.AppendChild(idCSRT);
+                infRespTecnico.AppendChild(csrt);
+            }
+
+            infNFe.AppendChild(infRespTecnico);
+        }
+
+        private string GerarHashCSRT(string csrt, string chaveNFe)
+        {
+            var result = Criptografia.GetSHA1HashData(csrt + chaveNFe);
+            result = Functions.ToBase64Hex(result);
+
+            return result;
+        }
     }
 }

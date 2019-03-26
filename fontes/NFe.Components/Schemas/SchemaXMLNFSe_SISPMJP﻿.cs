@@ -1,4 +1,9 @@
-﻿namespace NFe.Components.Schemas
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace NFe.Components.Schemas
 {
     public class SchemaXMLNFSe_SISPMJP﻿
     {
