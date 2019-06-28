@@ -375,7 +375,8 @@ namespace NFe.Service
                                                 //Atualizar a situação para que eu só mova o arquivo com final -NFe.xml para a pasta autorizado se
                                                 //a procnfe já estiver lá, ou vai ficar na pasta emProcessamento para tentar gerar novamente.
                                                 //Isso vai dar uma maior segurança para não deixar sem gerar o -procnfe.xml. Wandrey 13/12/2012
-                                                procNFeJaNaAutorizada = oAux.EstaAutorizada(strArquivoNFe, oLerXml.oDadosNfe.dEmi, Propriedade.Extensao(Propriedade.TipoEnvio.MDFe).EnvioXML, Propriedade.ExtRetorno.ProcMDFe);
+                                                if (!Empresas.Configuracoes[emp].SalvarSomenteXMLDistribuicao)
+                                                    procNFeJaNaAutorizada = oAux.EstaAutorizada(strArquivoNFe, oLerXml.oDadosNfe.dEmi, Propriedade.Extensao(Propriedade.TipoEnvio.MDFe).EnvioXML, Propriedade.ExtRetorno.ProcMDFe);
                                             }
 
                                             if (!NFeJaNaAutorizada && procNFeJaNaAutorizada)
