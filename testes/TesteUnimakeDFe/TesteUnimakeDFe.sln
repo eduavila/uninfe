@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteUnimakeDFe", "TesteUnimakeDFe.csproj", "{B95A2C27-D1D3-4288-9B27-18B229B4BB2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unimake.Business.DFe", "..\..\trunk\fontes\.NET Standard\Unimake.Business.DFe\Unimake.Business.DFe.csproj", "{9D301A90-4C1D-4BC6-90D4-65A7723F091F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unimake.Security.Platform", "..\..\trunk\fontes\.NET Framework\Unimake.Security.Platform\Unimake.Security.Platform.csproj", "{C57F555F-3C39-45D3-B759-8091C9304882}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net Framework", ".Net Framework", "{6E856C2E-EABB-4054-A17F-3BD4857164D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net Standard", ".Net Standard", "{49075807-121F-42B4-AA9B-84C45E18E7F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B95A2C27-D1D3-4288-9B27-18B229B4BB2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95A2C27-D1D3-4288-9B27-18B229B4BB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95A2C27-D1D3-4288-9B27-18B229B4BB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95A2C27-D1D3-4288-9B27-18B229B4BB2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D301A90-4C1D-4BC6-90D4-65A7723F091F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D301A90-4C1D-4BC6-90D4-65A7723F091F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D301A90-4C1D-4BC6-90D4-65A7723F091F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D301A90-4C1D-4BC6-90D4-65A7723F091F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57F555F-3C39-45D3-B759-8091C9304882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57F555F-3C39-45D3-B759-8091C9304882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57F555F-3C39-45D3-B759-8091C9304882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57F555F-3C39-45D3-B759-8091C9304882}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B95A2C27-D1D3-4288-9B27-18B229B4BB2F} = {6E856C2E-EABB-4054-A17F-3BD4857164D5}
+		{9D301A90-4C1D-4BC6-90D4-65A7723F091F} = {49075807-121F-42B4-AA9B-84C45E18E7F9}
+		{C57F555F-3C39-45D3-B759-8091C9304882} = {6E856C2E-EABB-4054-A17F-3BD4857164D5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CCB1BD5-436E-4CDA-A58F-1C6F2E73C59F}
+	EndGlobalSection
+EndGlobal
