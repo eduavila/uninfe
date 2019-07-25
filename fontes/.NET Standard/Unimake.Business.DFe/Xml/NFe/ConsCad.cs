@@ -11,26 +11,23 @@ namespace Unimake.Business.DFe.Xml.NFe
         public string Versao { get; set; }
 
         [XmlElement(ElementName = "infCons")]
-        public ConsCadInfCons InfCons = new ConsCadInfCons();
+        public InfCons InfCons = new InfCons();
     }
-    public class ConsCadInfCons
-    {
-        private UFBrasil UFField;
 
+    public class InfCons
+    {
         [XmlElement("xServ")]
         public string XServ { get; set; } = "CONS-CAD";
 
         [XmlElement("UF")]
-        public UFBrasil UF
-        {
-            get => UFField;
-            set => UFField = value;
-        }
+        public UFBrasil UF { get; set; }
 
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
+
         [XmlElement("CPF")]
         public string CPF { get; set; }
+
         [XmlElement("IE")]
         public string IE { get; set; }
 
