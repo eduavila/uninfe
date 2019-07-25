@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using Unimake.Business.DFe.Servicos;
 using Unimake.Business.DFe.Servicos.NFe;
 using Unimake.Business.DFe.Xml.NFe;
@@ -9,43 +9,50 @@ using Unimake.Security.Platform;
 
 namespace TesteDLL_Unimake.Business.DFe
 {
-    public partial class FormTestarNFe : Form
+    public partial class FormTestarNFe: Form
     {
-        private readonly X509Certificate2 CertificadoSelecionado;
-        public FormTestarNFe()
-        {
-            InitializeComponent();
+        #region Private Fields
 
-            CertificadoDigital cert = new CertificadoDigital();
-            CertificadoSelecionado = cert.Selecionar();
-        }
+        private readonly X509Certificate2 CertificadoSelecionado;
+        private readonly UFBrasil CUF = UFBrasil.GO;
+
+        private readonly TipoAmbiente TpAmb = TipoAmbiente.Producao;
+
+        #endregion Private Fields
+
+        #region Private Properties
+
+        private string UF => ((int)CUF).ToString();
+
+        #endregion Private Properties
+
+        #region Private Methods
 
         private void Button1_Click(object sender, EventArgs e)
         {
             try
             {
-                ConsStatServ xml = new ConsStatServ
+                var xml = new ConsStatServ
                 {
                     Versao = "4.00",
-                    CUF = UFBrasil.MT,
-                    TpAmb = TipoAmbiente.Homologacao
+                    CUF = CUF,
+                    TpAmb = TpAmb
                 };
 
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-                StatusServico statusServico = new StatusServico(xml, configuracao);
+                var statusServico = new StatusServico(xml, configuracao);
                 statusServico.Executar();
                 MessageBox.Show(statusServico.RetornoWSString);
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(statusServico.Result.XMotivo);
-
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                CatchException(ex);
             }
         }
 
@@ -53,27 +60,27 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                ConsSitNFe xml = new ConsSitNFe
+                var xml = new ConsSitNFe
                 {
                     Versao = "4.00",
-                    TpAmb = TipoAmbiente.Homologacao,
-                    ChNFe = "51170701761135000132550010000186931903758906"
+                    TpAmb = TpAmb,
+                    ChNFe = ((int)CUF).ToString() + "170701761135000132550010000186931903758906"
                 };
 
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-                ConsultaProtocolo consultaProtocolo = new ConsultaProtocolo(xml, configuracao);
+                var consultaProtocolo = new ConsultaProtocolo(xml, configuracao);
                 consultaProtocolo.Executar();
                 MessageBox.Show(consultaProtocolo.RetornoWSString);
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(consultaProtocolo.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                CatchException(ex);
             }
         }
 
@@ -81,38 +88,36 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                InutNFe xml = new InutNFe
+                var xml = new InutNFe
                 {
                     Versao = "4.00",
                     InfInut = new InutNFeInfInut
                     {
                         Ano = "19",
                         CNPJ = "06117473000150",
-                        CUF = UFBrasil.MT,
+                        CUF = CUF,
                         Mod = ModeloDFe.NFe,
                         NNFIni = 1,
                         NNFFin = 2,
                         Serie = 1,
-                        TpAmb = TipoAmbiente.Homologacao,
+                        TpAmb = TpAmb,
                         XJust = "Justificativa da inutilizacao"
                     }
                 };
 
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-
-                Inutilizacao inutilizacao = new Inutilizacao(xml, configuracao);
+                var inutilizacao = new Inutilizacao(xml, configuracao);
                 inutilizacao.Executar();
                 MessageBox.Show(inutilizacao.RetornoWSString);
                 MessageBox.Show(inutilizacao.Result.infInut.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-
-                MessageBox.Show("Erro: " + ex.Message);
+                CatchException(ex);
             }
         }
 
@@ -120,31 +125,29 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                ConsCad xml = new ConsCad
+                var xml = new ConsCad
                 {
                     Versao = "2.00",
                     InfCons = new InfCons()
                     {
                         CNPJ = "06117473000150",
-                        UF = UFBrasil.MT
+                        UF = CUF
                     }
                 };
 
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-                ConsultaCadastro consultaCad = new ConsultaCadastro(xml, configuracao);
+                var consultaCad = new ConsultaCadastro(xml, configuracao);
                 consultaCad.Executar();
                 MessageBox.Show(consultaCad.RetornoWSString);
                 MessageBox.Show(consultaCad.Result.InfCons.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-
-                MessageBox.Show("Erro: " + ex.Message);
-
+                CatchException(ex);
             }
         }
 
@@ -152,7 +155,7 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                EnvEvento xml = new EnvEvento
+                var xml = new EnvEvento
                 {
                     Versao = "1.00",
                     IdLote = "000000000000001",
@@ -160,7 +163,11 @@ namespace TesteDLL_Unimake.Business.DFe
                         new Evento
                         {
                             Versao = "1.00",
-                            InfEvento = new InfEvento
+                            InfEvento = new InfEvento(new DetEventoCanc {
+                                NProt = "123456789012345",
+                                Versao = "1.00",
+                                XJust = "Justificativa para cancelamento da NFe"
+                            })
                             {
                                 COrgao = UFBrasil.MT,
                                 ChNFe = "51170701761135000132550010000186931903758906",
@@ -170,32 +177,24 @@ namespace TesteDLL_Unimake.Business.DFe
                                 NSeqEvento = 1,
                                 VerEvento = "1.00",
                                 TpAmb = TipoAmbiente.Homologacao,
-                                DetEvento = new DetEvento()
-                                {
-                                    NProt = "123456789012345",
-                                    Versao = "1.00",
-                                    XJust = "Justificativa para cancelamento da NFe"
-                                }
                             }
                         }
                     }
                 };
 
-
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-                RecepcaoEvento recepcaoEvento = new RecepcaoEvento(xml, configuracao);
+                var recepcaoEvento = new RecepcaoEvento(xml, configuracao);
                 recepcaoEvento.Executar();
                 MessageBox.Show(recepcaoEvento.RetornoWSString);
                 //MessageBox.Show(recepcaoEvento.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-
-                MessageBox.Show("Erro: " + ex.Message);
+                CatchException(ex);
             }
         }
 
@@ -203,7 +202,7 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                EnviNFe xml = new EnviNFe
+                var xml = new EnviNFe
                 {
                     Versao = "4.00",
                     IdLote = "000000000000001",
@@ -218,7 +217,7 @@ namespace TesteDLL_Unimake.Business.DFe
 
                                     Ide = new Ide
                                     {
-                                        CUF = UFBrasil.MT,
+                                        CUF = CUF,
                                         NatOp = "VENDA PRODUC.DO ESTABELEC",
                                         Mod = ModeloDFe.NFe,
                                         Serie = 1,
@@ -230,7 +229,7 @@ namespace TesteDLL_Unimake.Business.DFe
                                         CMunFG = 4118402,
                                         TpImp = FormatoImpressaoDANFE.NormalPaisagem,
                                         TpEmis = TipoEmissao.Normal,
-                                        TpAmb = TipoAmbiente.Homologacao,
+                                        TpAmb = TpAmb,
                                         FinNFe = FinalidadeNFe.Normal,
                                         IndFinal = SimNao.Sim,
                                         IndPres = IndicadorPresenca.OperacaoOutros,
@@ -249,7 +248,7 @@ namespace TesteDLL_Unimake.Business.DFe
                                             XBairro = "CENTRO",
                                             CMun = 4118402,
                                             XMun = "PARANAVAI",
-                                            UF = UFBrasil.MT,
+                                            UF = CUF,
                                             CEP = "87704030",
                                             Fone = "04431414900"
                                         },
@@ -345,7 +344,6 @@ namespace TesteDLL_Unimake.Business.DFe
                                                         }
                                                     }
                                                 },
-
                                             }
                                         },
                                         new Det
@@ -399,7 +397,6 @@ namespace TesteDLL_Unimake.Business.DFe
                                                         }
                                                     }
                                                 },
-
                                             }
                                         }
                                     },
@@ -488,21 +485,73 @@ namespace TesteDLL_Unimake.Business.DFe
                     }
                 };
 
-                Configuracao configuracao = new Configuracao
+                var configuracao = new Configuracao
                 {
                     CertificadoDigital = CertificadoSelecionado
                 };
 
-                Autorizacao recepcaoEvento = new Autorizacao(xml, configuracao);
+                var recepcaoEvento = new Autorizacao(xml, configuracao);
                 recepcaoEvento.Executar();
                 MessageBox.Show(recepcaoEvento.RetornoWSString);
                 MessageBox.Show(recepcaoEvento.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-
-                MessageBox.Show("Erro: " + ex.Message);
+                CatchException(ex);
             }
         }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var xml = new ConsReciNFe
+                {
+                    Versao = "4.00",
+                    TpAmb = TpAmb,
+                    NRec = UF + "3456789012345"
+                };
+
+                var configuracao = new Configuracao
+                {
+                    CertificadoDigital = CertificadoSelecionado
+                };
+
+                var retAutorizacao = new RetAutorizacao(xml, configuracao);
+                retAutorizacao.Executar();
+                MessageBox.Show(retAutorizacao.RetornoWSString);
+                MessageBox.Show(retAutorizacao.Result.XMotivo);
+            }
+            catch(Exception ex)
+            {
+                CatchException(ex);
+            }
+        }
+
+        private void CatchException(Exception ex)
+        {
+            var message = new StringBuilder();
+
+            do
+            {
+                message.AppendLine($"{ex.Message}\r\n");
+                ex = ex.InnerException;
+            } while(ex != null);
+
+            MessageBox.Show(message.ToString(), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        #endregion Private Methods
+        #region Public Constructors
+
+        public FormTestarNFe()
+        {
+            InitializeComponent();
+
+            var cert = new CertificadoDigital();
+            CertificadoSelecionado = cert.Selecionar();
+        }
+
+        #endregion Public Constructors
     }
 }
