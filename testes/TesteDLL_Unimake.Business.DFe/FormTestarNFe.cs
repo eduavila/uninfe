@@ -2,6 +2,8 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using Unimake.Business.DFe.Security;
 using Unimake.Business.DFe.Servicos;
 using Unimake.Business.DFe.Servicos.NFe;
 using Unimake.Business.DFe.Xml.NFe;
@@ -14,9 +16,9 @@ namespace TesteDLL_Unimake.Business.DFe
         #region Private Fields
 
         private readonly X509Certificate2 CertificadoSelecionado;
-        private readonly UFBrasil CUF = UFBrasil.GO;
+        private readonly UFBrasil CUF = UFBrasil.AM;
 
-        private readonly TipoAmbiente TpAmb = TipoAmbiente.Producao;
+        private readonly TipoAmbiente TpAmb = TipoAmbiente.Homologacao;
 
         #endregion Private Fields
 
@@ -553,5 +555,15 @@ namespace TesteDLL_Unimake.Business.DFe
         }
 
         #endregion Public Constructors
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(@"C:\Users\Wandrey\Downloads\NFe Paraguai\FE_v150.xml");
+            
+            AssinaturaDigital assinaturaDigital = new AssinaturaDigital();
+
+            assinaturaDigital.Assinar(xml, "rDE", "DE", CertificadoSelecionado, AlgorithmType.Sha256, true, "", "Id");
+        }
     }
 }
