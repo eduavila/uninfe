@@ -1202,46 +1202,6 @@ namespace NFe.Components.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sinop.fisslex.com.br/fiss-lex/servlet/aws_consultaloterps")]
-        public string NFe_Components_PMogiMirimSPConsultaLoteRps_WS_ConsultaLoteRps {
-            get {
-                return ((string)(this["NFe_Components_PMogiMirimSPConsultaLoteRps_WS_ConsultaLoteRps"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://mogimirim.fisslex.com.br/fiss-lex/servlet/aws_consultanfse")]
-        public string NFe_Components_PMogiMirimSPConsultaNfse_WS_ConsultaNfse {
-            get {
-                return ((string)(this["NFe_Components_PMogiMirimSPConsultaNfse_WS_ConsultaNfse"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://mogimirim.fisslex.com.br/fiss-lex/servlet/aws_consultanfseporrps")]
-        public string NFe_Components_PMogiMirimSPConsultaNfsePorRps_WS_ConsultaNfsePorRps {
-            get {
-                return ((string)(this["NFe_Components_PMogiMirimSPConsultaNfsePorRps_WS_ConsultaNfsePorRps"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://mogimirim.fisslex.com.br/fiss-lex/servlet/aws_consultarsituacaoloterps")]
-        public string NFe_Components_PMogiMirimSPConsultarSituacaoLoteRps_WS_ConsultarSituacaoLoteRps {
-            get {
-                return ((string)(this["NFe_Components_PMogiMirimSPConsultarSituacaoLoteRps_WS_ConsultarSituacaoLoteRps"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("https://nfewshomologacao.joinville.sc.gov.br/NotaFiscal/Servicos.asmx")]
         public string NFe_Components_HJoinvilleSC_Servicos {
             get {

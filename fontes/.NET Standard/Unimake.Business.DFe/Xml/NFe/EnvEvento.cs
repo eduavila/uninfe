@@ -9,7 +9,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 {
     [Serializable()]
     [XmlRoot("envEvento", Namespace = "http://www.portalfiscal.inf.br/nfe", IsNullable = false)]
-    public class EnvEvento : XMLBase
+    public class EnvEvento: XMLBase
     {
         #region Public Properties
 
@@ -28,10 +28,10 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         public override XmlDocument GerarXML()
         {
-            XmlDocument xmlDocument = base.GerarXML();
+            var xmlDocument = base.GerarXML();
 
-            XmlRootAttribute attribute = GetType().GetCustomAttribute<XmlRootAttribute>();
-            XmlElement xmlElement = (XmlElement)xmlDocument.GetElementsByTagName("evento")[0];
+            var attribute = GetType().GetCustomAttribute<XmlRootAttribute>();
+            var xmlElement = (XmlElement)xmlDocument.GetElementsByTagName("evento")[0];
             xmlElement.SetAttribute("xmlns", attribute.Namespace);
 
             return xmlDocument;
@@ -92,7 +92,7 @@ namespace Unimake.Business.DFe.Xml.NFe
             get => _detEvento;
             set
             {
-                switch (TpEvento)
+                switch(TpEvento)
                 {
                     case 0:
                         _detEvento = value;
@@ -119,7 +119,6 @@ namespace Unimake.Business.DFe.Xml.NFe
 
                 _detEvento.XmlReader = value.XmlReader;
                 _detEvento.ProcessReader();
-                _detEvento.Versao = VerEvento;
             }
         }
 
@@ -158,48 +157,33 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         public InfEvento()
         {
-            throw new ArgumentNullException("Utilize, de forma obrigatória, o construtor com parâmetro!");
+
         }
 
-        public InfEvento(EventoDetalhe detEvento)
-        {
-            DetEvento = detEvento ?? throw new ArgumentNullException(nameof(detEvento));
-        }
+        public InfEvento(EventoDetalhe detEvento) => DetEvento = detEvento ?? throw new ArgumentNullException(nameof(detEvento));
 
         #endregion Public Constructors
 
         #region Public Methods
 
-        public bool ShouldSerializeCNPJ()
-        {
-            return !string.IsNullOrWhiteSpace(CNPJ);
-        }
+        public bool ShouldSerializeCNPJ() => !string.IsNullOrWhiteSpace(CNPJ);
 
-        public bool ShouldSerializeCPF()
-        {
-            return !string.IsNullOrWhiteSpace(CPF);
-        }
+        public bool ShouldSerializeCPF() => !string.IsNullOrWhiteSpace(CPF);
 
         #endregion Public Methods
     }
 
     [Serializable]
     [XmlRoot(ElementName = "detEvento")]
-    public class DetEventoCanc : EventoDetalhe
+    public class DetEventoCanc: EventoDetalhe
     {
         #region Internal Methods
 
-        internal override void ProcessReader()
-        {
-            base.ProcessReader();
-        }
+        internal override void ProcessReader() => base.ProcessReader();
 
         #endregion Internal Methods
 
         #region Public Properties
-
-        [XmlAttribute(AttributeName = "versao", DataType = "token")]
-        public override string Versao { get; set; }
 
         [XmlElement("descEvento", Order = 0)]
         public override string DescEvento { get; set; } = "Cancelamento";
@@ -216,10 +200,12 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         public override void WriteXml(XmlWriter writer)
         {
+            base.WriteXml(writer);
+
             writer.WriteRaw($@"
-        <descEvento>{DescEvento}</descEvento>
-        <nProt>{NProt}</nProt>
-        <xJust>{XJust}</xJust>");
+            <descEvento>{DescEvento}</descEvento>
+            <nProt>{NProt}</nProt>
+            <xJust>{XJust}</xJust>");
         }
 
         #endregion Public Methods
@@ -227,21 +213,15 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable]
     [XmlRoot(ElementName = "detEvento")]
-    public class DetEventoCCE : EventoDetalhe
+    public class DetEventoCCE: EventoDetalhe
     {
         #region Internal Methods
 
-        internal override void ProcessReader()
-        {
-            base.ProcessReader();
-        }
+        internal override void ProcessReader() => base.ProcessReader();
 
         #endregion Internal Methods
 
         #region Public Properties
-
-        [XmlAttribute(AttributeName = "versao", DataType = "token")]
-        public override string Versao { get; set; }
 
         [XmlElement("descEvento", Order = 0)]
         public override string DescEvento { get; set; } = "Carta de Correcao";
@@ -256,17 +236,14 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         #region Public Methods
 
-        public override void WriteXml(XmlWriter writer)
-        {
-            base.WriteXml(writer);
-        }
+        public override void WriteXml(XmlWriter writer) => base.WriteXml(writer);
 
         #endregion Public Methods
     }
 
     [XmlInclude(typeof(DetEventoCanc))]
     [XmlInclude(typeof(DetEventoCCE))]
-    public class EventoDetalhe : IXmlSerializable
+    public class EventoDetalhe: IXmlSerializable
     {
         #region Internal Properties
 
@@ -278,23 +255,23 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         internal virtual void ProcessReader()
         {
-            if (XmlReader == null)
+            if(XmlReader == null)
             {
                 return;
             }
 
-            PropertyInfo pi = default(PropertyInfo);
-            Type type = GetType();
+            var pi = default(PropertyInfo);
+            var type = GetType();
 
-            while (XmlReader.Read())
+            while(XmlReader.Read())
             {
-                if (XmlReader.NodeType == XmlNodeType.Element)
+                if(XmlReader.NodeType == XmlNodeType.Element)
                 {
                     pi = type.GetProperty(XmlReader.Name, BindingFlags.Public |
                                                           BindingFlags.Instance |
                                                           BindingFlags.IgnoreCase);
                 }
-                else if (XmlReader.NodeType == XmlNodeType.Text)
+                else if(XmlReader.NodeType == XmlNodeType.Text)
                 {
                     pi?.SetValue(this, XmlReader.Value);
                 }
@@ -315,19 +292,11 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         #region Public Methods
 
-        public XmlSchema GetSchema()
-        {
-            return default;
-        }
+        public XmlSchema GetSchema() => default;
 
-        public void ReadXml(XmlReader reader)
-        {
-            XmlReader = reader;
-        }
+        public void ReadXml(XmlReader reader) => XmlReader = reader;
 
-        public virtual void WriteXml(XmlWriter writer)
-        {
-        }
+        public virtual void WriteXml(XmlWriter writer) => writer.WriteAttributeString("versao", Versao);
 
         #endregion Public Methods
     }

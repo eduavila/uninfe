@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.IO;
+using System.Xml;
 using Unimake.Business.DFe.Security;
 using Unimake.Business.DFe.Utility;
 using Unimake.Business.DFe.Xml.NFe;
@@ -41,6 +42,15 @@ namespace Unimake.Business.DFe.Servicos.NFe
             base.Executar();
         }
 
+        /// <summary>
+        /// Gravar o XML de distribuição em uma pasta no HD
+        /// </summary>
+        /// <param name="pasta">Pasta onde deve ser gravado o XML</param>
+        public void GravarXmlDistribuicao(string pasta)
+        {
+            GravarXmlDistribuicao(pasta, ProcInutNFeResult.NomeArquivoDistribuicao, ProcInutNFeResult.GerarXML().OuterXml);
+        }
+
         public RetInutNFe Result
         {
             get
@@ -61,8 +71,29 @@ namespace Unimake.Business.DFe.Servicos.NFe
             }
         }
 
+        /// <summary>
+        /// Propriedade contendo o XML da inutilização com o protocolo de autorização anexado
+        /// </summary>
+        public ProcInutNFe ProcInutNFeResult
+        {
+            get
+            {
+                return new ProcInutNFe
+                {
+                    Versao = InutNFe.Versao,
+                    InutNFe = InutNFe,
+                    RetInutNFe = Result
+                };
+            }
+        }
+
+        private InutNFe InutNFe;
+
         public Inutilizacao(InutNFe inutNFe, Configuracao configuracao)
-                    : this(inutNFe.GerarXML(), configuracao) { }
+                    : this(inutNFe.GerarXML(), configuracao)
+        {
+            InutNFe = inutNFe;
+        }
 
     }
 }

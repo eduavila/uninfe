@@ -1,17 +1,22 @@
 ﻿using System.Xml;
 using Unimake.Business.DFe.Security;
 using Unimake.Business.DFe.Utility;
-using Unimake.Business.DFe.Xml;
 using Unimake.Business.DFe.Xml.NFe;
 
 namespace Unimake.Business.DFe.Servicos.NFe
 {
     public class Autorizacao: ServicoBase
     {
+        #region Private Fields
+
+        private EnviNFe EnviNFe;
+
+        #endregion Private Fields
+
         #region Private Constructors
 
         private Autorizacao(XmlDocument conteudoXML, Configuracao configuracao)
-            : base(conteudoXML, configuracao) { }
+                    : base(conteudoXML, configuracao) { }
 
         #endregion Private Constructors
 
@@ -42,6 +47,32 @@ namespace Unimake.Business.DFe.Servicos.NFe
 
         #region Public Properties
 
+        /// <summary>
+        /// Propriedade contendo o XML da NFe com o protocolo de autorização anexado
+        /// </summary>
+        public NfeProc NfeProcResult
+        {
+            get
+            {
+                if(EnviNFe.IndSinc == SimNao.Sim) //Envio síncrono
+                {
+                    return new NfeProc
+                    {
+                        Versao = EnviNFe.Versao,
+                        NFe = EnviNFe.NFe[0],
+                        ProtNFe = Result.ProtNFe
+                    };
+                }
+                else //TODO: Ainda tenho que ver como vai ficar o envio assincrono, pois tem a consulta recibo para fazer.
+                {
+                    return null;
+                    //if (Result.CStat == 103)
+                    //{
+                    //}
+                }
+            }
+        }
+
         public RetEnviNFe Result
         {
             get
@@ -64,9 +95,7 @@ namespace Unimake.Business.DFe.Servicos.NFe
         #region Public Constructors
 
         public Autorizacao(EnviNFe enviNFe, Configuracao configuracao)
-                            : this(enviNFe.GerarXML(), configuracao)
-        {
-        }
+                            : this(enviNFe.GerarXML(), configuracao) => EnviNFe = enviNFe;
 
         #endregion Public Constructors
 
@@ -78,8 +107,21 @@ namespace Unimake.Business.DFe.Servicos.NFe
         public override void Executar()
         {
             new AssinaturaDigital().Assinar(ConteudoXML, Configuracoes.TagAssinatura, Configuracoes.TagAtributoID, Configuracoes.CertificadoDigital, AlgorithmType.Sha1, true, "", "Id");
+            EnviNFe = EnviNFe.LerXML<EnviNFe>(ConteudoXML);
+
+            //Atualizar a assinatura no objeto da NFe
+            //XmlDocument xmlSignature = new XmlDocument();
+            //xmlSignature.LoadXml(ConteudoXML.GetElementsByTagName("Signature")[0].OuterXml);
+            //EnviNFe.NFe[0].Signature = XMLUtility.Deserializar<Signature>(xmlSignature);
+
             base.Executar();
         }
+
+        /// <summary>
+        /// Gravar o XML de distribuição em uma pasta no HD
+        /// </summary>
+        /// <param name="pasta">Pasta onde deve ser gravado o XML</param>
+        public void GravarXmlDistribuicao(string pasta) => GravarXmlDistribuicao(pasta, NfeProcResult.NomeArquivoDistribuicao, NfeProcResult.GerarXML().OuterXml);
 
         #endregion Public Methods
     }
