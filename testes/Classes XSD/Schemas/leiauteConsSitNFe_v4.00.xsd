@@ -155,6 +155,7 @@
 					<xs:attribute name="Id" type="xs:ID" use="optional"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerNFe" use="required"/>
 	</xs:complexType>
@@ -215,6 +216,7 @@
 					<xs:attribute name="Id" type="xs:ID" use="optional"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerCancNFe" use="required"/>
 	</xs:complexType>
@@ -320,6 +322,7 @@
 					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TVerEvento" use="required"/>
 	</xs:complexType>
@@ -442,6 +445,7 @@
 					</xs:attribute>
 				</xs:complexType>
 			</xs:element>
+			<xs:element ref="ds:Signature" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="versao" type="TRetVerEvento" use="required"/>
 	</xs:complexType>
