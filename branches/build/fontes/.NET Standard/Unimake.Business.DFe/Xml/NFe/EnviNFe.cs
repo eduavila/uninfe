@@ -46,7 +46,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class NFe
+    public class NFe
     {
         [XmlElement("infNFe")]
         public InfNFe[] InfNFe { get; set; }
@@ -60,7 +60,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class InfNFe
+    public class InfNFe
     {
         private string IdField;
 
@@ -163,7 +163,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Ide
+    public class Ide
     {
         private string CNFField;
 
@@ -300,7 +300,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class NFref
+    public class NFref
     {
         [XmlElement("refCTe")]
         public string RefCTe { get; set; }
@@ -330,7 +330,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Emit
+    public class Emit
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -374,7 +374,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class EnderEmit
+    public class EnderEmit
     {
         [XmlElement("xLgr")]
         public string XLgr { get; set; }
@@ -421,7 +421,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Avulsa
+    public class Avulsa
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -473,7 +473,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Dest
+    public class Dest
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -537,7 +537,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class EnderDest
+    public class EnderDest
     {
         [XmlElement("xLgr")]
         public string XLgr { get; set; }
@@ -651,15 +651,15 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Retirada: LocalBase { }
+    public class Retirada: LocalBase { }
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Entrega: LocalBase { }
+    public class Entrega: LocalBase { }
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class AutXML
+    public class AutXML
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -677,7 +677,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Det
+    public class Det
     {
         #region Private Fields
 
@@ -703,7 +703,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Prod
+    public class Prod
     {
         [XmlElement("cProd")]
         public string CProd { get; set; }
@@ -867,7 +867,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class DI
+    public class DI
     {
         [XmlElement("nDI")]
         public ulong NDI { get; set; }
@@ -937,7 +937,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Adi
+    public class Adi
     {
         [XmlElement("nAdicao")]
         public int NAdicao { get; set; }
@@ -971,7 +971,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class DetExport
+    public class DetExport
     {
         [XmlElement("nDraw")]
         public ulong NDraw { get; set; }
@@ -988,7 +988,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ExportInd
+    public class ExportInd
     {
         [XmlElement("nRE")]
         public ulong NRE { get; set; }
@@ -1009,7 +1009,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Rastro
+    public class Rastro
     {
         [XmlElement("nLote")]
         public string NLote { get; set; }
@@ -1056,7 +1056,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Comb
+    public class Comb
     {
         [XmlElement("cProdANP")]
         public string CProdANP { get; set; }
@@ -1141,7 +1141,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class CIDE
+    public class CIDE
     {
         [XmlElement("qBCProd")]
         public double QBCProd { get; set; }
@@ -1169,7 +1169,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Encerrante
+    public class Encerrante
     {
         [XmlElement("nBico")]
         public int NBico { get; set; }
@@ -1209,7 +1209,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Med
+    public class Med
     {
         [XmlElement("cProdANVISA")]
         public string CProdANVISA { get; set; }
@@ -1230,7 +1230,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Imposto
+    public class Imposto
     {
         [XmlIgnore]
         public double VTotTrib { get; set; }
@@ -1245,16 +1245,14 @@ namespace Unimake.Business.DFe.Xml.NFe
         [XmlElement("ICMS")]
         public ICMS[] ICMS { get; set; }
 
-        //TODO: WANDREY - Encerrar Serialização
-        //[XmlElement("II")]
-        //public EnviNFeNFeInfNFeDetImpostoII[] II { get; set; }
+        [XmlElement("II")]
+        public II[] II { get; set; }
 
         [XmlElement("IPI")]
         public IPI IPI { get; set; }
 
-        //TODO: WANDREY - Encerrar Serialização
-        //[XmlElement("ISSQN")]
-        //public EnviNFeNFeInfNFeDetImpostoISSQN[] ISSQN { get; set; }
+        [XmlElement("ISSQN")]
+        public ISSQN[] ISSQN { get; set; }
 
         [XmlElement("PIS")]
         public PIS PIS { get; set; }
@@ -1274,7 +1272,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS
+    public class ICMS
     {
         [XmlElement("ICMS00")]
         public ICMS00 ICMS00 { get; set; }
@@ -1330,7 +1328,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS00
+    public class ICMS00
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -1401,7 +1399,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS10
+    public class ICMS10
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -1571,7 +1569,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS20
+    public class ICMS20
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -1678,7 +1676,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS30
+    public class ICMS30
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -1797,7 +1795,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS40
+    public class ICMS40
     {
         private string CSTField;
 
@@ -1844,7 +1842,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS51
+    public class ICMS51
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -1974,7 +1972,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS60
+    public class ICMS60
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -2100,7 +2098,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS70
+    public class ICMS70
     {
         [XmlElement("orig")]
         public OrigemMercadoria Orig { get; set; }
@@ -2295,7 +2293,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMS90: ICMS70
+    public class ICMS90: ICMS70
     {
         [XmlElement("CST")]
         public override string CST { get; set; } = "90";
@@ -2303,7 +2301,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSPart
+    public class ICMSPart
     {
         private string CSTField;
 
@@ -2447,7 +2445,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN101
+    public class ICMSSN101
     {
         private string CSOSNField = "101";
 
@@ -2494,7 +2492,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN102
+    public class ICMSSN102
     {
         private string CSOSNField;
 
@@ -2521,7 +2519,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN201
+    public class ICMSSN201
     {
         private string CSOSNField = "201";
 
@@ -2658,7 +2656,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN202
+    public class ICMSSN202
     {
         private string CSOSNField;
 
@@ -2775,7 +2773,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN500
+    public class ICMSSN500
     {
         private string CSOSNField = "500";
 
@@ -2928,7 +2926,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSSN900
+    public class ICMSSN900
     {
         private string CSOSNField = "900";
 
@@ -3122,7 +3120,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSST
+    public class ICMSST
     {
         private string CSTField;
 
@@ -3188,8 +3186,54 @@ namespace Unimake.Business.DFe.Xml.NFe
     }
 
     [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
+    public class II
+    {
+        [XmlIgnore]
+        public double VBC { get; set; }
+
+        [XmlElement("vBC")]
+        public string VBCField
+        {
+            get => VBC.ToString("F2", CultureInfo.InvariantCulture);
+            set => VBC = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VDespAdu { get; set; }
+
+        [XmlElement("vDespAdu")]
+        public string VDespAduField
+        {
+            get => VDespAdu.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDespAdu = Utility.Converter.ToDouble(value);
+        }
+
+
+        [XmlIgnore]
+        public double VII { get; set; }
+
+        [XmlElement("vII")]
+        public string VIIField
+        {
+            get => VII.ToString("F2", CultureInfo.InvariantCulture);
+            set => VII = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VIOF { get; set; }
+
+        [XmlElement("vIOF")]
+        public string VIOFField
+        {
+            get => VIOF.ToString("F2", CultureInfo.InvariantCulture);
+            set => VIOF = Utility.Converter.ToDouble(value);
+        }
+    }
+
+    [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class IPI
+    public class IPI
     {
         [XmlElement("CNPJProd")]
         public string CNPJProd { get; set; }
@@ -3220,7 +3264,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class IPINT
+    public class IPINT
     {
         private string CSTField;
 
@@ -3247,7 +3291,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class IPITrib
+    public class IPITrib
     {
         private string CSTField;
 
@@ -3331,7 +3375,130 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PIS
+    public class ISSQN
+    {
+        [XmlIgnore]
+        public double VBC { get; set; }
+
+        [XmlElement("vBC")]
+        public string VBCField
+        {
+            get => VBC.ToString("F2", CultureInfo.InvariantCulture);
+            set => VBC = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VAliq { get; set; }
+
+        [XmlElement("vAliq")]
+        public string VAliqField
+        {
+            get => VAliq.ToString("F4", CultureInfo.InvariantCulture);
+            set => VAliq = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VISSQN { get; set; }
+
+        [XmlElement("vISSQN")]
+        public string VISSQNField
+        {
+            get => VISSQN.ToString("F2", CultureInfo.InvariantCulture);
+            set => VISSQN = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlElement("cMunFG")]
+        public int CMunFG { get; set; }
+
+        [XmlElement("cListServ")]
+        public ListaServicoISSQN CListServ { get; set; }
+
+        [XmlIgnore]
+        public double VDeducao { get; set; }
+
+        [XmlElement("vDeducao")]
+        public string VDeducaoField
+        {
+            get => VDeducao.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDeducao = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VOutro { get; set; }
+
+        [XmlElement("vOutro")]
+        public string VOutroField
+        {
+            get => VOutro.ToString("F2", CultureInfo.InvariantCulture);
+            set => VOutro = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VDescIncond { get; set; }
+
+        [XmlElement("vDescIncond")]
+        public string VDescIncondField
+        {
+            get => VDescIncond.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDescIncond = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VDescCond { get; set; }
+
+        [XmlElement("vDescCond")]
+        public string VDescCondField
+        {
+            get => VDescCond.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDescCond = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VISSRet { get; set; }
+
+        [XmlElement("vISSRet")]
+        public string VISSRetField
+        {
+            get => VISSRet.ToString("F2", CultureInfo.InvariantCulture);
+            set => VISSRet = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlElement("indISS")]
+        public IndicadorExigibilidadeISSQN IndISS { get; set; }
+
+        [XmlElement("cServico")]
+        public string CServico { get; set; }
+
+        [XmlElement("cMun")]
+        public int CMun { get; set; }
+
+        [XmlElement("cPais")]
+        public int CPais { get; set; } = 1058;
+
+        [XmlElement("nProcesso")]
+        public string NProcesso { get; set;  }
+
+        [XmlElement("indIncentivo")]
+        public SimNao IndIncentivo { get; set; }
+
+        #region ShouldSerialize
+
+        public bool ShouldSerializeVDeducaoField() => VDeducao > 0;
+        public bool ShouldSerializeVOutroField() => VOutro > 0;
+        public bool ShouldSerializeVDescIncondField() => VDescIncond > 0;
+        public bool ShouldSerializeVDescCondField() => VDescCond > 0;
+        public bool ShouldSerializeVISSRetField() => VISSRet > 0;
+        public bool ShouldSerializeCServico() => string.IsNullOrWhiteSpace(CServico);
+        public bool ShouldSerializeCMun() => CMun > 0;
+        public bool ShouldSerializeCPais() => CPais > 0;
+        public bool ShouldSerializeNProcesso() => string.IsNullOrWhiteSpace(NProcesso);
+
+        #endregion
+    }
+
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
+    public class PIS
     {
         [XmlElement("PISAliq")]
         public PISAliq PISAliq { get; set; }
@@ -3348,7 +3515,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PISAliq
+    public class PISAliq
     {
         private string CSTField;
 
@@ -3402,7 +3569,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PISNT
+    public class PISNT
     {
         private string CSTField;
 
@@ -3426,7 +3593,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PISOutr
+    public class PISOutr
     {
         private string CSTField;
 
@@ -3496,7 +3663,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PISQtde
+    public class PISQtde
     {
         private string CSTField;
 
@@ -3539,7 +3706,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class PISST
+    public class PISST
     {
         [XmlIgnore]
         public double VBC { get; set; }
@@ -3590,7 +3757,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINS
+    public class COFINS
     {
         [XmlElement("COFINSAliq")]
         public COFINSAliq COFINSAliq { get; set; }
@@ -3607,7 +3774,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINSAliq
+    public class COFINSAliq
     {
         private string CSTField;
 
@@ -3661,7 +3828,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINSNT
+    public class COFINSNT
     {
         private string CSTField;
 
@@ -3685,7 +3852,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINSOutr
+    public class COFINSOutr
     {
         private string CSTField;
 
@@ -3755,7 +3922,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINSQtde
+    public class COFINSQtde
     {
         private string CSTField;
 
@@ -3798,7 +3965,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class COFINSST
+    public class COFINSST
     {
         [XmlIgnore]
         public double VBC { get; set; }
@@ -3848,7 +4015,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSUFDest
+    public class ICMSUFDest
     {
         [XmlIgnore]
         public double VBCUFDest { get; set; }
@@ -3967,7 +4134,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ImpostoDevol
+    public class ImpostoDevol
     {
         [XmlIgnore]
         public double PDevol { get; set; }
@@ -3985,7 +4152,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class IPIDevol
+    public class IPIDevol
     {
         [XmlIgnore]
         public double VIPIDevol { get; set; }
@@ -4000,23 +4167,21 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Total
+    public class Total
     {
         [XmlElement("ICMSTot")]
         public ICMSTot ICMSTot { get; set; }
 
-        //TODO: WANDREY - Encerrar Serialização
-        //[XmlElement("ISSQNtot")]
-        //public EnviNFeNFeInfNFeTotalISSQNtot ISSQNtot { get; set; }
+        [XmlElement("ISSQNtot")]
+        public ISSQNtot ISSQNtot { get; set; }
 
-        //TODO: WANDREY - Encerrar Serialização
-        //[XmlElement("retTrib")]
-        //public EnviNFeNFeInfNFeTotalRetTrib RetTrib { get; set; }
+        [XmlElement("retTrib")]
+        public RetTrib RetTrib { get; set; }
     }
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ICMSTot
+    public class ICMSTot
     {
         [XmlIgnore]
         public double VBC { get; set; }
@@ -4238,7 +4403,230 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Transp
+    public class ISSQNtot
+    {
+        [XmlIgnore]
+        public double VServ { get; set; }
+
+        [XmlElement("vServ")]
+        public string VServField
+        {
+            get => VServ.ToString("F2", CultureInfo.InvariantCulture);
+            set => VServ = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VBC { get; set; }
+
+        [XmlElement("vBC")]
+        public string VBCField
+        {
+            get => VBC.ToString("F2", CultureInfo.InvariantCulture);
+            set => VBC = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VISS { get; set; }
+
+        [XmlElement("vISS")]
+        public string VISSField
+        {
+            get => VISS.ToString("F2", CultureInfo.InvariantCulture);
+            set => VISS = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VPIS { get; set; }
+
+        [XmlElement("vPIS")]
+        public string VPISField
+        {
+            get => VPIS.ToString("F2", CultureInfo.InvariantCulture);
+            set => VPIS = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VCOFINS { get; set; }
+
+        [XmlElement("vCOFINS")]
+        public string VCOFINSField
+        {
+            get => VCOFINS.ToString("F2", CultureInfo.InvariantCulture);
+            set => VCOFINS = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public DateTime DCompet { get; set; }
+
+        [XmlElement("dCompet")]
+        public string DCompetField
+        {
+            get => DCompet.ToString("yyyy-MM-dd");
+            set => DCompet = DateTime.Parse(value);
+        }
+
+        [XmlIgnore]
+        public double VDeducao { get; set; }
+
+        [XmlElement("vDeducao")]
+        public string VDeducaoField
+        {
+            get => VDeducao.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDeducao = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VOutro { get; set; }
+
+        [XmlElement("vOutro")]
+        public string VOutroField
+        {
+            get => VOutro.ToString("F2", CultureInfo.InvariantCulture);
+            set => VOutro = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VDescIncond { get; set; }
+
+        [XmlElement("vDescIncond")]
+        public string VDescIncondField
+        {
+            get => VDescIncond.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDescIncond = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VDescCond { get; set; }
+
+        [XmlElement("vDescCond")]
+        public string VDescCondField
+        {
+            get => VDescCond.ToString("F2", CultureInfo.InvariantCulture);
+            set => VDescCond = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VISSRet { get; set; }
+
+        [XmlElement("vISSRet")]
+        public string VISSRetField
+        {
+            get => VISSRet.ToString("F2", CultureInfo.InvariantCulture);
+            set => VISSRet = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlElement("cRegTrib")]
+        public CodigoRegimeEspecialTributacao CRegTrib { get; set; }
+
+        #region ShouldSerialize
+
+        public bool ShouldSerializeVServField() => VServ > 0;
+        public bool ShouldSerializeVBCField() => VBC > 0;
+        public bool ShouldSerializeVISSField() => VISS > 0;
+        public bool ShouldSerializeVPISField() => VPIS > 0;
+        public bool ShouldSerializeVCOFINSField() => VCOFINS > 0;
+        public bool ShouldSerializeVDeducaoField() => VDeducao > 0;
+        public bool ShouldSerializeVOutroField() => VOutro > 0;
+        public bool ShouldSerializeVDescIncondField() => VDescIncond > 0;
+        public bool ShouldSerializeVDescCondField() => VDescCond > 0;
+        public bool ShouldSerializeVISSRetField() => VISSRet > 0;
+        public bool ShouldSerializeCRegTrib() => Enum.IsDefined(typeof(CodigoRegimeEspecialTributacao), CRegTrib);
+
+        #endregion
+
+    }
+
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
+    public class RetTrib
+    {
+        [XmlIgnore]
+        public double VRetPIS { get; set; }
+
+        [XmlElement("vRetPIS")]
+        public string VRetPISField
+        {
+            get => VRetPIS.ToString("F2", CultureInfo.InvariantCulture);
+            set => VRetPIS = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VRetCOFINS { get; set; }
+
+        [XmlElement("vRetCOFINS")]
+        public string VRetCOFINSField
+        {
+            get => VRetCOFINS.ToString("F2", CultureInfo.InvariantCulture);
+            set => VRetCOFINS = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VRetCSLL { get; set; }
+
+        [XmlElement("vRetCSLL")]
+        public string VRetCSLLField
+        {
+            get => VRetCSLL.ToString("F2", CultureInfo.InvariantCulture);
+            set => VRetCSLL = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VBCIRRF { get; set; }
+
+        [XmlElement("vBCIRRF")]
+        public string VBCIRRFField
+        {
+            get => VBCIRRF.ToString("F2", CultureInfo.InvariantCulture);
+            set => VBCIRRF = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VIRRF { get; set; }
+
+        [XmlElement("vIRRF")]
+        public string VIRRFField
+        {
+            get => VIRRF.ToString("F2", CultureInfo.InvariantCulture);
+            set => VIRRF = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VBCRetPrev { get; set; }
+
+        [XmlElement("vBCRetPrev")]
+        public string VBCRetPrevField
+        {
+            get => VBCRetPrev.ToString("F2", CultureInfo.InvariantCulture);
+            set => VBCRetPrev = Utility.Converter.ToDouble(value);
+        }
+
+        [XmlIgnore]
+        public double VRetPrev { get; set; }
+
+        [XmlElement("vRetPrev")]
+        public string VRetPrevField
+        {
+            get => VRetPrev.ToString("F2", CultureInfo.InvariantCulture);
+            set => VRetPrev = Utility.Converter.ToDouble(value);
+        }
+
+        #region ShouldSerialize
+
+        public bool ShouldSerializeVRetPISField() => VRetPIS > 0;
+        public bool ShouldSerializeVRetCOFINSField() => VRetCOFINS > 0;
+        public bool ShouldSerializeVRetCSLLField() => VRetCSLL > 0;
+        public bool ShouldSerializeVBCIRRFField() => VBCIRRF > 0;
+        public bool ShouldSerializeVIRRFField() => VIRRF > 0;
+        public bool ShouldSerializeVBCRetPrevField() => VBCRetPrev > 0;
+        public bool ShouldSerializeVRetPrevField() => VRetPrev > 0;
+
+        #endregion
+
+    }
+
+    [Serializable()]
+    [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
+    public class Transp
     {
         [XmlElement("modFrete")]
         public ModalidadeFrete ModFrete { get; set; }
@@ -4274,7 +4662,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Transporta
+    public class Transporta
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -4312,7 +4700,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class RetTransp
+    public class RetTransp
     {
         [XmlIgnore]
         public double VServ { get; set; }
@@ -4381,14 +4769,14 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class VeicTransp: VeiculoBase { }
+    public class VeicTransp: VeiculoBase { }
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Reboque: VeiculoBase { }
+    public class Reboque: VeiculoBase { }
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Vol
+    public class Vol
     {
         [XmlElement("qVol")]
         public double QVol { get; set; }
@@ -4440,7 +4828,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Lacres
+    public class Lacres
     {
         [XmlElement("nLacre")]
         public string NLacre { get; set; }
@@ -4448,7 +4836,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Cobr
+    public class Cobr
     {
         [XmlElement("fat")]
         public Fat Fat { get; set; }
@@ -4459,7 +4847,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Fat
+    public class Fat
     {
         [XmlElement("nFat")]
         public string NFat { get; set; }
@@ -4497,7 +4885,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Dup
+    public class Dup
     {
         [XmlElement("nDup")]
         public string NDup { get; set; }
@@ -4525,7 +4913,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Pag
+    public class Pag
     {
         [XmlElement("detPag")]
         public DetPag[] DetPag { get; set; }
@@ -4543,7 +4931,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class DetPag
+    public class DetPag
     {
         [XmlElement("indPag")]
         public IndicadorPagamento? IndPag { get; set; }
@@ -4569,7 +4957,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Card
+    public class Card
     {
         [XmlElement("tpIntegra")]
         public TipoIntegracaoPagamento TpIntegra { get; set; }
@@ -4594,7 +4982,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class InfAdic
+    public class InfAdic
     {
         [XmlElement("infAdFisco")]
         public string InfAdFisco { get; set; }
@@ -4624,7 +5012,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ObsCont
+    public class ObsCont
     {
         [XmlElement("xTexto")]
         public string XTexto { get; set; }
@@ -4635,7 +5023,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ObsFisco
+    public class ObsFisco
     {
         [XmlElement("xTexto")]
         public string XTexto { get; set; }
@@ -4646,7 +5034,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ProcRef
+    public class ProcRef
     {
         [XmlElement("nProc")]
         public string NProc { get; set; }
@@ -4657,7 +5045,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Exporta
+    public class Exporta
     {
         private UFBrasil UFSaidaPaisField;
 
@@ -4693,7 +5081,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Compra
+    public class Compra
     {
         [XmlElement("xNEmp")]
         public string XNEmp { get; set; }
@@ -4715,7 +5103,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Cana
+    public class Cana
     {
         [XmlElement("safra")]
         public string Safra { get; set; }
@@ -4792,7 +5180,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class ForDia
+    public class ForDia
     {
         [XmlIgnore]
         public double Qtde { get; set; }
@@ -4810,7 +5198,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class Deduc
+    public class Deduc
     {
         [XmlElement("xDed")]
         public string XDed { get; set; }
@@ -4828,7 +5216,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class InfRespTec
+    public class InfRespTec
     {
         [XmlElement("CNPJ")]
         public string CNPJ { get; set; }
@@ -4858,7 +5246,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable()]
     [XmlType(AnonymousType = true, Namespace = "http://www.portalfiscal.inf.br/nfe")]
-    public partial class InfNFeSupl
+    public class InfNFeSupl
     {
         [XmlElement("qrCode")]
         public string QrCode { get; set; }
