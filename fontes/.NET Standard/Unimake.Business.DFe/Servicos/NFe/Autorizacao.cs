@@ -27,8 +27,13 @@ namespace Unimake.Business.DFe.Servicos.NFe
         /// </summary>
         protected override void DefinirConfiguracao()
         {
-            var xml = new EnviNFe();
-            xml = xml.LerXML<EnviNFe>(ConteudoXML);
+            if(EnviNFe == null)
+            {
+                Configuracoes.Definida = false;
+                return;
+            }
+
+            var xml = EnviNFe;
 
             if(!Configuracoes.Definida)
             {
@@ -95,7 +100,11 @@ namespace Unimake.Business.DFe.Servicos.NFe
         #region Public Constructors
 
         public Autorizacao(EnviNFe enviNFe, Configuracao configuracao)
-                            : this(enviNFe.GerarXML(), configuracao) => EnviNFe = enviNFe;
+                            : this(enviNFe.GerarXML(), configuracao)
+        {
+            EnviNFe = enviNFe;
+            Inicializar();
+        }
 
         #endregion Public Constructors
 
@@ -109,11 +118,6 @@ namespace Unimake.Business.DFe.Servicos.NFe
             new AssinaturaDigital().Assinar(ConteudoXML, Configuracoes.TagAssinatura, Configuracoes.TagAtributoID, Configuracoes.CertificadoDigital, AlgorithmType.Sha1, true, "", "Id");
             EnviNFe = EnviNFe.LerXML<EnviNFe>(ConteudoXML);
 
-            //Atualizar a assinatura no objeto da NFe
-            //XmlDocument xmlSignature = new XmlDocument();
-            //xmlSignature.LoadXml(ConteudoXML.GetElementsByTagName("Signature")[0].OuterXml);
-            //EnviNFe.NFe[0].Signature = XMLUtility.Deserializar<Signature>(xmlSignature);
-
             base.Executar();
         }
 
@@ -122,6 +126,12 @@ namespace Unimake.Business.DFe.Servicos.NFe
         /// </summary>
         /// <param name="pasta">Pasta onde deve ser gravado o XML</param>
         public void GravarXmlDistribuicao(string pasta) => GravarXmlDistribuicao(pasta, NfeProcResult.NomeArquivoDistribuicao, NfeProcResult.GerarXML().OuterXml);
+
+        /// <summary>
+        /// Grava o XML de dsitribuição no stream
+        /// </summary>
+        /// <param name="stream">Stream que vai receber o XML de distribuição</param>
+        public void GravarXmlDistribuicao(System.IO.Stream stream) => GravarXmlDistribuicao(stream, NfeProcResult.GerarXML().OuterXml);
 
         #endregion Public Methods
     }

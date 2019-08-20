@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Xml;
+﻿using System.Xml;
 using Unimake.Business.DFe.Security;
 using Unimake.Business.DFe.Utility;
 using Unimake.Business.DFe.Xml.NFe;
@@ -16,8 +15,7 @@ namespace Unimake.Business.DFe.Servicos.NFe
         /// </summary>
         protected override void DefinirConfiguracao()
         {
-            InutNFe xml = new InutNFe();
-            xml = xml.LerXML<InutNFe>(ConteudoXML);
+            InutNFe xml = InutNFe;
 
             if (!Configuracoes.Definida)
             {
@@ -38,6 +36,7 @@ namespace Unimake.Business.DFe.Servicos.NFe
         public override void Executar()
         {
             new AssinaturaDigital().Assinar(ConteudoXML, Configuracoes.TagAssinatura, Configuracoes.TagAtributoID, Configuracoes.CertificadoDigital, AlgorithmType.Sha1, true, "", "Id");
+            InutNFe = InutNFe.LerXML<InutNFe>(ConteudoXML);
 
             base.Executar();
         }
@@ -62,7 +61,7 @@ namespace Unimake.Business.DFe.Servicos.NFe
 
                 return new RetInutNFe
                 {
-                    infInut = new InfInut
+                    InfInut = new InfInut
                     {
                         CStat = 0,
                         XMotivo = "Ocorreu uma falha ao tentar criar o objeto a partir do XML retornado da SEFAZ."
@@ -74,26 +73,18 @@ namespace Unimake.Business.DFe.Servicos.NFe
         /// <summary>
         /// Propriedade contendo o XML da inutilização com o protocolo de autorização anexado
         /// </summary>
-        public ProcInutNFe ProcInutNFeResult
+        public ProcInutNFe ProcInutNFeResult => new ProcInutNFe
         {
-            get
-            {
-                return new ProcInutNFe
-                {
-                    Versao = InutNFe.Versao,
-                    InutNFe = InutNFe,
-                    RetInutNFe = Result
-                };
-            }
-        }
+            Versao = InutNFe.Versao,
+            InutNFe = InutNFe,
+            RetInutNFe = Result
+        };
 
         private InutNFe InutNFe;
 
-        public Inutilizacao(InutNFe inutNFe, Configuracao configuracao)
-                    : this(inutNFe.GerarXML(), configuracao)
+        public Inutilizacao(InutNFe inutNFe, Configuracao configuracao) : this(inutNFe.GerarXML(), configuracao)
         {
             InutNFe = inutNFe;
         }
-
     }
 }

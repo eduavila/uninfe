@@ -51,7 +51,7 @@ namespace Unimake.Business.DFe.Xml.NFe
         [XmlElement("protNFe")]
         public ProtNFe ProtNFe { get; set; }
     }
-    public partial class RetEnviNFeInfRec
+    public class RetEnviNFeInfRec
     {
         [XmlElement("nRec")]
         public string NRec { get; set; }
@@ -60,7 +60,7 @@ namespace Unimake.Business.DFe.Xml.NFe
         public string TMed { get; set; }
     }
 
-    public partial class ProtNFe
+    public class ProtNFe
     {
         [XmlAttribute(AttributeName = "versao", DataType = "token")]
         public string Versao { get; set; }
@@ -69,7 +69,7 @@ namespace Unimake.Business.DFe.Xml.NFe
         public InfProt InfProt { get; set; }
     }
 
-    public partial class InfProt
+    public class InfProt
     {
         [XmlElement("tpAmb")]
         public TipoAmbiente TpAmb { get; set; }

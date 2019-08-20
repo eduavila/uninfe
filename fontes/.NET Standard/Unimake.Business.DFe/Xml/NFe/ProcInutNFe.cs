@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -21,11 +22,17 @@ namespace Unimake.Business.DFe.Xml.NFe
         /// Nome do arquivo de distribuição
         /// </summary>
         [XmlIgnore]
-        public string NomeArquivoDistribuicao => RetInutNFe.infInut.Id + "-procinutnfe.xml";
+        public string NomeArquivoDistribuicao => InutNFe.InfInut.Id.Substring(2, InutNFe.InfInut.Id.Length - 2) + "-procinutnfe.xml";
 
         public override XmlDocument GerarXML()
         {
             XmlDocument xmlDocument = base.GerarXML();
+
+            XmlRootAttribute attribute = GetType().GetCustomAttribute<XmlRootAttribute>();
+            XmlElement xmlElementNFe = (XmlElement)xmlDocument.GetElementsByTagName("inutNFe")[0];
+            xmlElementNFe.SetAttribute("xmlns", attribute.Namespace);
+            XmlElement xmlElementProtNFe = (XmlElement)xmlDocument.GetElementsByTagName("retInutNFe")[0];
+            xmlElementProtNFe.SetAttribute("xmlns", attribute.Namespace);
 
             return xmlDocument;
         }

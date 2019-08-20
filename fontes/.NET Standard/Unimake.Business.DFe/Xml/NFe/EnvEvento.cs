@@ -4,12 +4,13 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 using Unimake.Business.DFe.Servicos;
+using Unimake.Business.DFe.Utility;
 
 namespace Unimake.Business.DFe.Xml.NFe
 {
     [Serializable()]
     [XmlRoot("envEvento", Namespace = "http://www.portalfiscal.inf.br/nfe", IsNullable = false)]
-    public class EnvEvento: XMLBase
+    public class EnvEvento : XMLBase
     {
         #region Public Properties
 
@@ -37,6 +38,21 @@ namespace Unimake.Business.DFe.Xml.NFe
             return xmlDocument;
         }
 
+        public override T LerXML<T>(XmlDocument doc)
+        {
+            var retornar = base.LerXML<T>(doc);
+
+            if (doc.GetElementsByTagName("Signature")[0] != null)
+            {
+                var signatureEvento = new XmlDocument();
+
+                signatureEvento.LoadXml(doc.GetElementsByTagName("Signature")[0].OuterXml);
+                ((EnvEvento)(object)retornar).Evento[0].Signature = XMLUtility.Deserializar<Signature>(signatureEvento);
+            }
+
+            return retornar;
+        }
+
         #endregion Public Methods
     }
 
@@ -48,6 +64,9 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         [XmlElement("infEvento", Order = 0)]
         public InfEvento InfEvento { get; set; }
+
+        [XmlElement("Signature", Namespace = "http://www.w3.org/2000/09/xmldsig#", Order = 1)]
+        public Signature Signature { get; set; }
 
         [XmlAttribute(AttributeName = "versao", DataType = "token")]
         public string Versao { get; set; }
@@ -92,7 +111,7 @@ namespace Unimake.Business.DFe.Xml.NFe
             get => _detEvento;
             set
             {
-                switch(TpEvento)
+                switch (TpEvento)
                 {
                     case 0:
                         _detEvento = value;
@@ -155,31 +174,40 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         #region Public Constructors
 
-        public InfEvento()
+        public InfEvento() { }
+
+        public InfEvento(EventoDetalhe detEvento)
         {
-
+            DetEvento = detEvento ?? throw new ArgumentNullException(nameof(detEvento));
         }
-
-        public InfEvento(EventoDetalhe detEvento) => DetEvento = detEvento ?? throw new ArgumentNullException(nameof(detEvento));
 
         #endregion Public Constructors
 
         #region Public Methods
 
-        public bool ShouldSerializeCNPJ() => !string.IsNullOrWhiteSpace(CNPJ);
+        public bool ShouldSerializeCNPJ()
+        {
+            return !string.IsNullOrWhiteSpace(CNPJ);
+        }
 
-        public bool ShouldSerializeCPF() => !string.IsNullOrWhiteSpace(CPF);
+        public bool ShouldSerializeCPF()
+        {
+            return !string.IsNullOrWhiteSpace(CPF);
+        }
 
         #endregion Public Methods
     }
 
     [Serializable]
     [XmlRoot(ElementName = "detEvento")]
-    public class DetEventoCanc: EventoDetalhe
+    public class DetEventoCanc : EventoDetalhe
     {
         #region Internal Methods
 
-        internal override void ProcessReader() => base.ProcessReader();
+        internal override void ProcessReader()
+        {
+            base.ProcessReader();
+        }
 
         #endregion Internal Methods
 
@@ -213,11 +241,14 @@ namespace Unimake.Business.DFe.Xml.NFe
 
     [Serializable]
     [XmlRoot(ElementName = "detEvento")]
-    public class DetEventoCCE: EventoDetalhe
+    public class DetEventoCCE : EventoDetalhe
     {
         #region Internal Methods
 
-        internal override void ProcessReader() => base.ProcessReader();
+        internal override void ProcessReader()
+        {
+            base.ProcessReader();
+        }
 
         #endregion Internal Methods
 
@@ -236,14 +267,17 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         #region Public Methods
 
-        public override void WriteXml(XmlWriter writer) => base.WriteXml(writer);
+        public override void WriteXml(XmlWriter writer)
+        {
+            base.WriteXml(writer);
+        }
 
         #endregion Public Methods
     }
 
     [XmlInclude(typeof(DetEventoCanc))]
     [XmlInclude(typeof(DetEventoCCE))]
-    public class EventoDetalhe: IXmlSerializable
+    public class EventoDetalhe : IXmlSerializable
     {
         #region Internal Properties
 
@@ -255,7 +289,7 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         internal virtual void ProcessReader()
         {
-            if(XmlReader == null)
+            if (XmlReader == null)
             {
                 return;
             }
@@ -263,15 +297,24 @@ namespace Unimake.Business.DFe.Xml.NFe
             var pi = default(PropertyInfo);
             var type = GetType();
 
-            while(XmlReader.Read())
+            if (XmlReader.HasAttributes)
             {
-                if(XmlReader.NodeType == XmlNodeType.Element)
+                if (XmlReader.GetAttribute("versao") != "")
+                {
+                    pi = type.GetProperty("versao", BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+                    pi?.SetValue(this, XmlReader.GetAttribute("versao"));
+                }
+            }
+
+            while (XmlReader.Read())
+            {
+                if (XmlReader.NodeType == XmlNodeType.Element)
                 {
                     pi = type.GetProperty(XmlReader.Name, BindingFlags.Public |
                                                           BindingFlags.Instance |
                                                           BindingFlags.IgnoreCase);
                 }
-                else if(XmlReader.NodeType == XmlNodeType.Text)
+                else if (XmlReader.NodeType == XmlNodeType.Text)
                 {
                     pi?.SetValue(this, XmlReader.Value);
                 }
@@ -292,11 +335,20 @@ namespace Unimake.Business.DFe.Xml.NFe
 
         #region Public Methods
 
-        public XmlSchema GetSchema() => default;
+        public XmlSchema GetSchema()
+        {
+            return default;
+        }
 
-        public void ReadXml(XmlReader reader) => XmlReader = reader;
+        public void ReadXml(XmlReader reader)
+        {
+            XmlReader = reader;
+        }
 
-        public virtual void WriteXml(XmlWriter writer) => writer.WriteAttributeString("versao", Versao);
+        public virtual void WriteXml(XmlWriter writer)
+        {
+            writer.WriteAttributeString("versao", Versao);
+        }
 
         #endregion Public Methods
     }
