@@ -23,19 +23,19 @@ namespace NFe.Components.HJoinvilleSC {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="ServicosSoap", Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="ServicosSoap", Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class Servicos : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback EnviarLoteRpsEnvioOperationCompleted;
+        private System.Threading.SendOrPostCallback RecepcionarLoteRpsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback CancelarNfseEnvioOperationCompleted;
+        private System.Threading.SendOrPostCallback CancelarNfseOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ConsultarLoteRpsEnvioOperationCompleted;
+        private System.Threading.SendOrPostCallback ConsultarLoteRpsOperationCompleted;
         
-        private System.Threading.SendOrPostCallback ConsultarNfseRpsEnvioOperationCompleted;
+        private System.Threading.SendOrPostCallback ConsultarNfsePorRpsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -76,140 +76,140 @@ namespace NFe.Components.HJoinvilleSC {
         }
         
         /// <remarks/>
-        public event EnviarLoteRpsEnvioCompletedEventHandler EnviarLoteRpsEnvioCompleted;
+        public event RecepcionarLoteRpsCompletedEventHandler RecepcionarLoteRpsCompleted;
         
         /// <remarks/>
-        public event CancelarNfseEnvioCompletedEventHandler CancelarNfseEnvioCompleted;
+        public event CancelarNfseCompletedEventHandler CancelarNfseCompleted;
         
         /// <remarks/>
-        public event ConsultarLoteRpsEnvioCompletedEventHandler ConsultarLoteRpsEnvioCompleted;
+        public event ConsultarLoteRpsCompletedEventHandler ConsultarLoteRpsCompleted;
         
         /// <remarks/>
-        public event ConsultarNfseRpsEnvioCompletedEventHandler ConsultarNfseRpsEnvioCompleted;
+        public event ConsultarNfsePorRpsCompletedEventHandler ConsultarNfsePorRpsCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfewshomologacao.joinville.sc.gov.br/EnviarLoteRpsEnvio", RequestNamespace="https://nfewshomologacao.joinville.sc.gov.br/", ResponseNamespace="https://nfewshomologacao.joinville.sc.gov.br/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfemwshomologacao.joinville.sc.gov.br/EnviarLoteRpsEnvio", RequestElementName="EnviarLoteRpsEnvio", RequestNamespace="https://nfemwshomologacao.joinville.sc.gov.br", ResponseElementName="EnviarLoteRpsEnvioResponse", ResponseNamespace="https://nfemwshomologacao.joinville.sc.gov.br", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("EnviarLoteRpsResposta", IsNullable=true)]
-        public EnviarLoteRpsResposta EnviarLoteRpsEnvio(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature) {
-            object[] results = this.Invoke("EnviarLoteRpsEnvio", new object[] {
+        public EnviarLoteRpsResposta RecepcionarLoteRps(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature) {
+            object[] results = this.Invoke("RecepcionarLoteRps", new object[] {
                         LoteRps,
                         Signature});
             return ((EnviarLoteRpsResposta)(results[0]));
         }
         
         /// <remarks/>
-        public void EnviarLoteRpsEnvioAsync(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature) {
-            this.EnviarLoteRpsEnvioAsync(LoteRps, Signature, null);
+        public void RecepcionarLoteRpsAsync(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature) {
+            this.RecepcionarLoteRpsAsync(LoteRps, Signature, null);
         }
         
         /// <remarks/>
-        public void EnviarLoteRpsEnvioAsync(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature, object userState) {
-            if ((this.EnviarLoteRpsEnvioOperationCompleted == null)) {
-                this.EnviarLoteRpsEnvioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnEnviarLoteRpsEnvioOperationCompleted);
+        public void RecepcionarLoteRpsAsync(System.Xml.XmlNode LoteRps, System.Xml.XmlNode Signature, object userState) {
+            if ((this.RecepcionarLoteRpsOperationCompleted == null)) {
+                this.RecepcionarLoteRpsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRecepcionarLoteRpsOperationCompleted);
             }
-            this.InvokeAsync("EnviarLoteRpsEnvio", new object[] {
+            this.InvokeAsync("RecepcionarLoteRps", new object[] {
                         LoteRps,
-                        Signature}, this.EnviarLoteRpsEnvioOperationCompleted, userState);
+                        Signature}, this.RecepcionarLoteRpsOperationCompleted, userState);
         }
         
-        private void OnEnviarLoteRpsEnvioOperationCompleted(object arg) {
-            if ((this.EnviarLoteRpsEnvioCompleted != null)) {
+        private void OnRecepcionarLoteRpsOperationCompleted(object arg) {
+            if ((this.RecepcionarLoteRpsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.EnviarLoteRpsEnvioCompleted(this, new EnviarLoteRpsEnvioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.RecepcionarLoteRpsCompleted(this, new RecepcionarLoteRpsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfewshomologacao.joinville.sc.gov.br/CancelarNfseEnvio", RequestNamespace="https://nfewshomologacao.joinville.sc.gov.br/", ResponseNamespace="https://nfewshomologacao.joinville.sc.gov.br/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfemwshomologacao.joinville.sc.gov.br/CancelarNfseEnvio", RequestElementName="CancelarNfseEnvio", RequestNamespace="https://nfemwshomologacao.joinville.sc.gov.br", ResponseElementName="CancelarNfseEnvioResponse", ResponseNamespace="https://nfemwshomologacao.joinville.sc.gov.br", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("CancelarNfseResposta", IsNullable=true)]
-        public CancelarNfseResposta CancelarNfseEnvio(System.Xml.XmlNode Pedido) {
-            object[] results = this.Invoke("CancelarNfseEnvio", new object[] {
+        public CancelarNfseResposta CancelarNfse(System.Xml.XmlNode Pedido) {
+            object[] results = this.Invoke("CancelarNfse", new object[] {
                         Pedido});
             return ((CancelarNfseResposta)(results[0]));
         }
         
         /// <remarks/>
-        public void CancelarNfseEnvioAsync(System.Xml.XmlNode Pedido) {
-            this.CancelarNfseEnvioAsync(Pedido, null);
+        public void CancelarNfseAsync(System.Xml.XmlNode Pedido) {
+            this.CancelarNfseAsync(Pedido, null);
         }
         
         /// <remarks/>
-        public void CancelarNfseEnvioAsync(System.Xml.XmlNode Pedido, object userState) {
-            if ((this.CancelarNfseEnvioOperationCompleted == null)) {
-                this.CancelarNfseEnvioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCancelarNfseEnvioOperationCompleted);
+        public void CancelarNfseAsync(System.Xml.XmlNode Pedido, object userState) {
+            if ((this.CancelarNfseOperationCompleted == null)) {
+                this.CancelarNfseOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCancelarNfseOperationCompleted);
             }
-            this.InvokeAsync("CancelarNfseEnvio", new object[] {
-                        Pedido}, this.CancelarNfseEnvioOperationCompleted, userState);
+            this.InvokeAsync("CancelarNfse", new object[] {
+                        Pedido}, this.CancelarNfseOperationCompleted, userState);
         }
         
-        private void OnCancelarNfseEnvioOperationCompleted(object arg) {
-            if ((this.CancelarNfseEnvioCompleted != null)) {
+        private void OnCancelarNfseOperationCompleted(object arg) {
+            if ((this.CancelarNfseCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CancelarNfseEnvioCompleted(this, new CancelarNfseEnvioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.CancelarNfseCompleted(this, new CancelarNfseCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfewshomologacao.joinville.sc.gov.br/ConsultarLoteRpsEnvio", RequestNamespace="https://nfewshomologacao.joinville.sc.gov.br/", ResponseNamespace="https://nfewshomologacao.joinville.sc.gov.br/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfemwshomologacao.joinville.sc.gov.br/ConsultarLoteRpsEnvio", RequestElementName="ConsultarLoteRpsEnvio", RequestNamespace="https://nfemwshomologacao.joinville.sc.gov.br", ResponseElementName="ConsultarLoteRpsEnvioResponse", ResponseNamespace="https://nfemwshomologacao.joinville.sc.gov.br", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("ConsultarLoteRpsResposta", IsNullable=true)]
-        public ConsultarLoteRpsResposta ConsultarLoteRpsEnvio([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa, string Protocolo) {
-            object[] results = this.Invoke("ConsultarLoteRpsEnvio", new object[] {
-                        IdentificacaoPessoaEmpresa,
+        public ConsultarLoteRpsResposta ConsultarLoteRps(Prestador Prestador, string Protocolo) {
+            object[] results = this.Invoke("ConsultarLoteRps", new object[] {
+                        Prestador,
                         Protocolo});
             return ((ConsultarLoteRpsResposta)(results[0]));
         }
         
         /// <remarks/>
-        public void ConsultarLoteRpsEnvioAsync(IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa, string Protocolo) {
-            this.ConsultarLoteRpsEnvioAsync(IdentificacaoPessoaEmpresa, Protocolo, null);
+        public void ConsultarLoteRpsAsync(Prestador Prestador, string Protocolo) {
+            this.ConsultarLoteRpsAsync(Prestador, Protocolo, null);
         }
         
         /// <remarks/>
-        public void ConsultarLoteRpsEnvioAsync(IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa, string Protocolo, object userState) {
-            if ((this.ConsultarLoteRpsEnvioOperationCompleted == null)) {
-                this.ConsultarLoteRpsEnvioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarLoteRpsEnvioOperationCompleted);
+        public void ConsultarLoteRpsAsync(Prestador Prestador, string Protocolo, object userState) {
+            if ((this.ConsultarLoteRpsOperationCompleted == null)) {
+                this.ConsultarLoteRpsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarLoteRpsOperationCompleted);
             }
-            this.InvokeAsync("ConsultarLoteRpsEnvio", new object[] {
-                        IdentificacaoPessoaEmpresa,
-                        Protocolo}, this.ConsultarLoteRpsEnvioOperationCompleted, userState);
+            this.InvokeAsync("ConsultarLoteRps", new object[] {
+                        Prestador,
+                        Protocolo}, this.ConsultarLoteRpsOperationCompleted, userState);
         }
         
-        private void OnConsultarLoteRpsEnvioOperationCompleted(object arg) {
-            if ((this.ConsultarLoteRpsEnvioCompleted != null)) {
+        private void OnConsultarLoteRpsOperationCompleted(object arg) {
+            if ((this.ConsultarLoteRpsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ConsultarLoteRpsEnvioCompleted(this, new ConsultarLoteRpsEnvioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.ConsultarLoteRpsCompleted(this, new ConsultarLoteRpsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfewshomologacao.joinville.sc.gov.br/ConsultarNfseRpsEnvio", RequestNamespace="https://nfewshomologacao.joinville.sc.gov.br/", ResponseNamespace="https://nfewshomologacao.joinville.sc.gov.br/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("https://nfemwshomologacao.joinville.sc.gov.br/ConsultarNfseRpsEnvio", RequestElementName="ConsultarNfseRpsEnvio", RequestNamespace="https://nfemwshomologacao.joinville.sc.gov.br", ResponseElementName="ConsultarNfseRpsEnvioResponse", ResponseNamespace="https://nfemwshomologacao.joinville.sc.gov.br", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("ConsultarNfseRpsResposta", IsNullable=true)]
-        public ConsultarNfseRpsResposta ConsultarNfseRpsEnvio([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] IdentificacaoRps IdentificacaoRps, [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa) {
-            object[] results = this.Invoke("ConsultarNfseRpsEnvio", new object[] {
+        public ConsultarNfseRpsResposta ConsultarNfsePorRps([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] IdentificacaoRps IdentificacaoRps, Prestador Prestador) {
+            object[] results = this.Invoke("ConsultarNfsePorRps", new object[] {
                         IdentificacaoRps,
-                        IdentificacaoPessoaEmpresa});
+                        Prestador});
             return ((ConsultarNfseRpsResposta)(results[0]));
         }
         
         /// <remarks/>
-        public void ConsultarNfseRpsEnvioAsync(IdentificacaoRps IdentificacaoRps, IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa) {
-            this.ConsultarNfseRpsEnvioAsync(IdentificacaoRps, IdentificacaoPessoaEmpresa, null);
+        public void ConsultarNfsePorRpsAsync(IdentificacaoRps IdentificacaoRps, Prestador Prestador) {
+            this.ConsultarNfsePorRpsAsync(IdentificacaoRps, Prestador, null);
         }
         
         /// <remarks/>
-        public void ConsultarNfseRpsEnvioAsync(IdentificacaoRps IdentificacaoRps, IdentificacaoPessoaEmpresa IdentificacaoPessoaEmpresa, object userState) {
-            if ((this.ConsultarNfseRpsEnvioOperationCompleted == null)) {
-                this.ConsultarNfseRpsEnvioOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarNfseRpsEnvioOperationCompleted);
+        public void ConsultarNfsePorRpsAsync(IdentificacaoRps IdentificacaoRps, Prestador Prestador, object userState) {
+            if ((this.ConsultarNfsePorRpsOperationCompleted == null)) {
+                this.ConsultarNfsePorRpsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarNfsePorRpsOperationCompleted);
             }
-            this.InvokeAsync("ConsultarNfseRpsEnvio", new object[] {
+            this.InvokeAsync("ConsultarNfsePorRps", new object[] {
                         IdentificacaoRps,
-                        IdentificacaoPessoaEmpresa}, this.ConsultarNfseRpsEnvioOperationCompleted, userState);
+                        Prestador}, this.ConsultarNfsePorRpsOperationCompleted, userState);
         }
         
-        private void OnConsultarNfseRpsEnvioOperationCompleted(object arg) {
-            if ((this.ConsultarNfseRpsEnvioCompleted != null)) {
+        private void OnConsultarNfsePorRpsOperationCompleted(object arg) {
+            if ((this.ConsultarNfsePorRpsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ConsultarNfseRpsEnvioCompleted(this, new ConsultarNfseRpsEnvioCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.ConsultarNfsePorRpsCompleted(this, new ConsultarNfsePorRpsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -233,11 +233,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class EnviarLoteRpsResposta {
         
         private System.Nullable<int> numeroLoteField;
@@ -292,11 +292,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class MensagemRetorno {
         
         private string codigoField;
@@ -337,426 +337,464 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosFornecedor {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class IdentificacaoDocumentoDeducao {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class ConsultarNfseRpsResposta {
         
-        private string identificacaoNfseField;
+        private CompNfseTc compNfseField;
         
-        private string identificacaoNfeField;
-        
-        private string outroDocumentoDeducaoField;
+        private MensagemRetorno[] listaMensagemRetornoField;
         
         /// <remarks/>
-        public string IdentificacaoNfse {
+        public CompNfseTc CompNfse {
             get {
-                return this.identificacaoNfseField;
+                return this.compNfseField;
             }
             set {
-                this.identificacaoNfseField = value;
+                this.compNfseField = value;
             }
         }
         
         /// <remarks/>
-        public string IdentificacaoNfe {
+        public MensagemRetorno[] ListaMensagemRetorno {
             get {
-                return this.identificacaoNfeField;
+                return this.listaMensagemRetornoField;
             }
             set {
-                this.identificacaoNfeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OutroDocumentoDeducao {
-            get {
-                return this.outroDocumentoDeducaoField;
-            }
-            set {
-                this.outroDocumentoDeducaoField = value;
+                this.listaMensagemRetornoField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosDeducao {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class CompNfseTc {
         
-        private string tipoDeducaoField;
-        
-        private string descricaoDeducaoField;
-        
-        private IdentificacaoDocumentoDeducao identificacaoDocumentoDeducaoField;
-        
-        private DadosFornecedor dadosFornecedorField;
-        
-        private System.DateTime dateEmissaoField;
-        
-        private double valorDedutivelField;
-        
-        private double valorUtilizadoDeducaoField;
+        private Nfse nfseField;
         
         /// <remarks/>
-        public string TipoDeducao {
+        public Nfse Nfse {
             get {
-                return this.tipoDeducaoField;
+                return this.nfseField;
             }
             set {
-                this.tipoDeducaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string DescricaoDeducao {
-            get {
-                return this.descricaoDeducaoField;
-            }
-            set {
-                this.descricaoDeducaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public IdentificacaoDocumentoDeducao IdentificacaoDocumentoDeducao {
-            get {
-                return this.identificacaoDocumentoDeducaoField;
-            }
-            set {
-                this.identificacaoDocumentoDeducaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DadosFornecedor DadosFornecedor {
-            get {
-                return this.dadosFornecedorField;
-            }
-            set {
-                this.dadosFornecedorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime DateEmissao {
-            get {
-                return this.dateEmissaoField;
-            }
-            set {
-                this.dateEmissaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double ValorDedutivel {
-            get {
-                return this.valorDedutivelField;
-            }
-            set {
-                this.valorDedutivelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double ValorUtilizadoDeducao {
-            get {
-                return this.valorUtilizadoDeducaoField;
-            }
-            set {
-                this.valorUtilizadoDeducaoField = value;
+                this.nfseField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosEvento {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class Nfse {
         
-        private string identificacaoEventoField;
+        private InfNfse infNfseField;
         
-        private string descricaoEventoField;
+        private string signatureField;
+        
+        private string versaoField;
         
         /// <remarks/>
-        public string IdentificacaoEvento {
+        public InfNfse InfNfse {
             get {
-                return this.identificacaoEventoField;
+                return this.infNfseField;
             }
             set {
-                this.identificacaoEventoField = value;
+                this.infNfseField = value;
             }
         }
         
         /// <remarks/>
-        public string DescricaoEvento {
+        public string Signature {
             get {
-                return this.descricaoEventoField;
+                return this.signatureField;
             }
             set {
-                this.descricaoEventoField = value;
+                this.signatureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string versao {
+            get {
+                return this.versaoField;
+            }
+            set {
+                this.versaoField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosConstrucaoCivil {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class InfNfse {
         
-        private string codigoObraField;
+        private int numeroField;
         
-        private string artField;
+        private int numeroRpsField;
+        
+        private string codigoVerificacaoField;
+        
+        private System.DateTime dataEmissaoField;
+        
+        private int nfseSubstituidaField;
+        
+        private string outrasInformacoesField;
+        
+        private ValoresNfse valoresNfseField;
+        
+        private string descricaoCodigoTributacaoMunicípioField;
+        
+        private double valorCreditoField;
+        
+        private DadosPrestador prestadorServicoField;
+        
+        private IdentificacaoOrgaoGerador orgaoGeradorField;
+        
+        private DeclaracaoPrestacaoServico declaracaoPrestacaoServicoField;
+        
+        private string idField;
         
         /// <remarks/>
-        public string CodigoObra {
+        public int Numero {
             get {
-                return this.codigoObraField;
+                return this.numeroField;
             }
             set {
-                this.codigoObraField = value;
+                this.numeroField = value;
             }
         }
         
         /// <remarks/>
-        public string Art {
+        public int NumeroRps {
             get {
-                return this.artField;
+                return this.numeroRpsField;
             }
             set {
-                this.artField = value;
+                this.numeroRpsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CodigoVerificacao {
+            get {
+                return this.codigoVerificacaoField;
+            }
+            set {
+                this.codigoVerificacaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DataEmissao {
+            get {
+                return this.dataEmissaoField;
+            }
+            set {
+                this.dataEmissaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int NfseSubstituida {
+            get {
+                return this.nfseSubstituidaField;
+            }
+            set {
+                this.nfseSubstituidaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OutrasInformacoes {
+            get {
+                return this.outrasInformacoesField;
+            }
+            set {
+                this.outrasInformacoesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ValoresNfse ValoresNfse {
+            get {
+                return this.valoresNfseField;
+            }
+            set {
+                this.valoresNfseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DescricaoCodigoTributacaoMunicípio {
+            get {
+                return this.descricaoCodigoTributacaoMunicípioField;
+            }
+            set {
+                this.descricaoCodigoTributacaoMunicípioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorCredito {
+            get {
+                return this.valorCreditoField;
+            }
+            set {
+                this.valorCreditoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DadosPrestador PrestadorServico {
+            get {
+                return this.prestadorServicoField;
+            }
+            set {
+                this.prestadorServicoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public IdentificacaoOrgaoGerador OrgaoGerador {
+            get {
+                return this.orgaoGeradorField;
+            }
+            set {
+                this.orgaoGeradorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DeclaracaoPrestacaoServico DeclaracaoPrestacaoServico {
+            get {
+                return this.declaracaoPrestacaoServicoField;
+            }
+            set {
+                this.declaracaoPrestacaoServicoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosIntermediario {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class ValoresNfse {
         
-        private IdentificacaoPessoaEmpresa identificacaoIntermediarioField;
+        private double valorIssField;
+        
+        private double aliquotaField;
+        
+        private double valorLiquidoNfseField;
+        
+        private double baseCalculoField;
+        
+        private double aliquotaIrField;
+        
+        private double aliquotaInssField;
+        
+        private double aliquotaPisField;
+        
+        private double aliquotaCofinsField;
+        
+        private double aliquotaCsllField;
+        
+        private double valorIrField;
+        
+        private double valorInssField;
+        
+        private double valorPisField;
+        
+        private double valorCofinsField;
+        
+        private double valorCsllField;
+        
+        /// <remarks/>
+        public double ValorIss {
+            get {
+                return this.valorIssField;
+            }
+            set {
+                this.valorIssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Aliquota {
+            get {
+                return this.aliquotaField;
+            }
+            set {
+                this.aliquotaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorLiquidoNfse {
+            get {
+                return this.valorLiquidoNfseField;
+            }
+            set {
+                this.valorLiquidoNfseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double BaseCalculo {
+            get {
+                return this.baseCalculoField;
+            }
+            set {
+                this.baseCalculoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double AliquotaIr {
+            get {
+                return this.aliquotaIrField;
+            }
+            set {
+                this.aliquotaIrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double AliquotaInss {
+            get {
+                return this.aliquotaInssField;
+            }
+            set {
+                this.aliquotaInssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double AliquotaPis {
+            get {
+                return this.aliquotaPisField;
+            }
+            set {
+                this.aliquotaPisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double AliquotaCofins {
+            get {
+                return this.aliquotaCofinsField;
+            }
+            set {
+                this.aliquotaCofinsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double AliquotaCsll {
+            get {
+                return this.aliquotaCsllField;
+            }
+            set {
+                this.aliquotaCsllField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorIr {
+            get {
+                return this.valorIrField;
+            }
+            set {
+                this.valorIrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorInss {
+            get {
+                return this.valorInssField;
+            }
+            set {
+                this.valorInssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorPis {
+            get {
+                return this.valorPisField;
+            }
+            set {
+                this.valorPisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorCofins {
+            get {
+                return this.valorCofinsField;
+            }
+            set {
+                this.valorCofinsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorCsll {
+            get {
+                return this.valorCsllField;
+            }
+            set {
+                this.valorCsllField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosPrestador {
         
         private string razaoSocialField;
         
-        private string codigoMunicipioField;
-        
-        /// <remarks/>
-        public IdentificacaoPessoaEmpresa IdentificacaoIntermediario {
-            get {
-                return this.identificacaoIntermediarioField;
-            }
-            set {
-                this.identificacaoIntermediarioField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string RazaoSocial {
-            get {
-                return this.razaoSocialField;
-            }
-            set {
-                this.razaoSocialField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CodigoMunicipio {
-            get {
-                return this.codigoMunicipioField;
-            }
-            set {
-                this.codigoMunicipioField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class IdentificacaoPessoaEmpresa {
-        
-        private CpfCnpj cpfCnpjField;
-        
-        private string inscricaoMunicipalField;
-        
-        /// <remarks/>
-        public CpfCnpj CpfCnpj {
-            get {
-                return this.cpfCnpjField;
-            }
-            set {
-                this.cpfCnpjField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string InscricaoMunicipal {
-            get {
-                return this.inscricaoMunicipalField;
-            }
-            set {
-                this.inscricaoMunicipalField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class CpfCnpj {
-        
-        private string cpfField;
-        
-        private string cnpjField;
-        
-        /// <remarks/>
-        public string Cpf {
-            get {
-                return this.cpfField;
-            }
-            set {
-                this.cpfField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Cnpj {
-            get {
-                return this.cnpjField;
-            }
-            set {
-                this.cnpjField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class EnderecoExterior {
-        
-        private string codigoPaisField;
-        
-        private string enderecoCompletoExteriorField;
-        
-        /// <remarks/>
-        public string CodigoPais {
-            get {
-                return this.codigoPaisField;
-            }
-            set {
-                this.codigoPaisField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EnderecoCompletoExterior {
-            get {
-                return this.enderecoCompletoExteriorField;
-            }
-            set {
-                this.enderecoCompletoExteriorField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class IdentificacaoTomador {
-        
-        private CpfCnpj cpfCnpjField;
-        
-        private string inscricaoMunicipalField;
-        
-        /// <remarks/>
-        public CpfCnpj CpfCnpj {
-            get {
-                return this.cpfCnpjField;
-            }
-            set {
-                this.cpfCnpjField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string InscricaoMunicipal {
-            get {
-                return this.inscricaoMunicipalField;
-            }
-            set {
-                this.inscricaoMunicipalField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class TomadorWs {
-        
-        private IdentificacaoTomador identificacaoTomadorField;
-        
-        private string razaoSocialField;
-        
-        private string nifTomadorField;
+        private string nomeFantasiaField;
         
         private Endereco enderecoField;
-        
-        private EnderecoExterior enderecoExteriorField;
         
         private Contato contatoField;
         
         /// <remarks/>
-        public IdentificacaoTomador IdentificacaoTomador {
-            get {
-                return this.identificacaoTomadorField;
-            }
-            set {
-                this.identificacaoTomadorField = value;
-            }
-        }
-        
-        /// <remarks/>
         public string RazaoSocial {
             get {
                 return this.razaoSocialField;
@@ -767,12 +805,12 @@ namespace NFe.Components.HJoinvilleSC {
         }
         
         /// <remarks/>
-        public string NifTomador {
+        public string NomeFantasia {
             get {
-                return this.nifTomadorField;
+                return this.nomeFantasiaField;
             }
             set {
-                this.nifTomadorField = value;
+                this.nomeFantasiaField = value;
             }
         }
         
@@ -783,16 +821,6 @@ namespace NFe.Components.HJoinvilleSC {
             }
             set {
                 this.enderecoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public EnderecoExterior EnderecoExterior {
-            get {
-                return this.enderecoExteriorField;
-            }
-            set {
-                this.enderecoExteriorField = value;
             }
         }
         
@@ -808,11 +836,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class Endereco {
         
         private string endereco1Field;
@@ -902,11 +930,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class Contato {
         
         private string telefoneField;
@@ -935,260 +963,16 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class Valores {
-        
-        private double valorServicosField;
-        
-        private System.Nullable<double> valorDeducoesField;
-        
-        private System.Nullable<double> valorPisField;
-        
-        private System.Nullable<double> valorCofinsField;
-        
-        private System.Nullable<double> valorInssField;
-        
-        private System.Nullable<double> valorIrField;
-        
-        private System.Nullable<double> valorCsllField;
-        
-        private System.Nullable<double> valTotTributosField;
-        
-        private System.Nullable<double> valorIssField;
-        
-        private System.Nullable<double> aliquotaField;
-        
-        private System.Nullable<double> descontoIncondicionadoField;
-        
-        private System.Nullable<double> descontoCondicionadoField;
-        
-        /// <remarks/>
-        public double ValorServicos {
-            get {
-                return this.valorServicosField;
-            }
-            set {
-                this.valorServicosField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorDeducoes {
-            get {
-                return this.valorDeducoesField;
-            }
-            set {
-                this.valorDeducoesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorPis {
-            get {
-                return this.valorPisField;
-            }
-            set {
-                this.valorPisField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorCofins {
-            get {
-                return this.valorCofinsField;
-            }
-            set {
-                this.valorCofinsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorInss {
-            get {
-                return this.valorInssField;
-            }
-            set {
-                this.valorInssField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorIr {
-            get {
-                return this.valorIrField;
-            }
-            set {
-                this.valorIrField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorCsll {
-            get {
-                return this.valorCsllField;
-            }
-            set {
-                this.valorCsllField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValTotTributos {
-            get {
-                return this.valTotTributosField;
-            }
-            set {
-                this.valTotTributosField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> ValorIss {
-            get {
-                return this.valorIssField;
-            }
-            set {
-                this.valorIssField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> Aliquota {
-            get {
-                return this.aliquotaField;
-            }
-            set {
-                this.aliquotaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> DescontoIncondicionado {
-            get {
-                return this.descontoIncondicionadoField;
-            }
-            set {
-                this.descontoIncondicionadoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> DescontoCondicionado {
-            get {
-                return this.descontoCondicionadoField;
-            }
-            set {
-                this.descontoCondicionadoField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class Servico {
-        
-        private Valores valoresField;
-        
-        private int issRetidoField;
-        
-        private string responsavelRetencaoField;
-        
-        private string itemListaServicoField;
-        
-        private string codigoCnaeField;
-        
-        private string discriminacaoField;
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class IdentificacaoOrgaoGerador {
         
         private int codigoMunicipioField;
         
-        private string codigoPaisField;
-        
-        private string exigibilidadeISSField;
-        
-        private int identifNaoExigibilidadeField;
-        
-        private int municipioIncidenciaField;
-        
-        private System.Nullable<int> numeroProcessoField;
-        
-        /// <remarks/>
-        public Valores Valores {
-            get {
-                return this.valoresField;
-            }
-            set {
-                this.valoresField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int IssRetido {
-            get {
-                return this.issRetidoField;
-            }
-            set {
-                this.issRetidoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ResponsavelRetencao {
-            get {
-                return this.responsavelRetencaoField;
-            }
-            set {
-                this.responsavelRetencaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ItemListaServico {
-            get {
-                return this.itemListaServicoField;
-            }
-            set {
-                this.itemListaServicoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CodigoCnae {
-            get {
-                return this.codigoCnaeField;
-            }
-            set {
-                this.codigoCnaeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Discriminacao {
-            get {
-                return this.discriminacaoField;
-            }
-            set {
-                this.discriminacaoField = value;
-            }
-        }
+        private string ufField;
         
         /// <remarks/>
         public int CodigoMunicipio {
@@ -1201,178 +985,55 @@ namespace NFe.Components.HJoinvilleSC {
         }
         
         /// <remarks/>
-        public string CodigoPais {
+        public string Uf {
             get {
-                return this.codigoPaisField;
+                return this.ufField;
             }
             set {
-                this.codigoPaisField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ExigibilidadeISS {
-            get {
-                return this.exigibilidadeISSField;
-            }
-            set {
-                this.exigibilidadeISSField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int IdentifNaoExigibilidade {
-            get {
-                return this.identifNaoExigibilidadeField;
-            }
-            set {
-                this.identifNaoExigibilidadeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int MunicipioIncidencia {
-            get {
-                return this.municipioIncidenciaField;
-            }
-            set {
-                this.municipioIncidenciaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> NumeroProcesso {
-            get {
-                return this.numeroProcessoField;
-            }
-            set {
-                this.numeroProcessoField = value;
+                this.ufField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class InfRps {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DeclaracaoPrestacaoServico {
         
-        private IdentificacaoRps identificacaoRpsField;
+        private InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServicoField;
         
-        private System.DateTime dataEmissaoField;
-        
-        private int statusField;
-        
-        private IdentificacaoRps rpsSubstituidoField;
-        
-        private string idField;
+        private string signatureField;
         
         /// <remarks/>
-        public IdentificacaoRps IdentificacaoRps {
+        public InfDeclaracaoPrestacaoServico InfDeclaracaoPrestacaoServico {
             get {
-                return this.identificacaoRpsField;
+                return this.infDeclaracaoPrestacaoServicoField;
             }
             set {
-                this.identificacaoRpsField = value;
+                this.infDeclaracaoPrestacaoServicoField = value;
             }
         }
         
         /// <remarks/>
-        public System.DateTime DataEmissao {
+        public string Signature {
             get {
-                return this.dataEmissaoField;
+                return this.signatureField;
             }
             set {
-                this.dataEmissaoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Status {
-            get {
-                return this.statusField;
-            }
-            set {
-                this.statusField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public IdentificacaoRps RpsSubstituido {
-            get {
-                return this.rpsSubstituidoField;
-            }
-            set {
-                this.rpsSubstituidoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
+                this.signatureField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class IdentificacaoRps {
-        
-        private int numeroField;
-        
-        private string serieField;
-        
-        private int tipoField;
-        
-        /// <remarks/>
-        public int Numero {
-            get {
-                return this.numeroField;
-            }
-            set {
-                this.numeroField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Serie {
-            get {
-                return this.serieField;
-            }
-            set {
-                this.serieField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Tipo {
-            get {
-                return this.tipoField;
-            }
-            set {
-                this.tipoField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class InfDeclaracaoPrestacaoServico {
         
         private InfRps rpsField;
@@ -1558,234 +1219,30 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DeclaracaoPrestacaoServico {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class InfRps {
         
-        private InfDeclaracaoPrestacaoServico infDeclaracaoPrestacaoServicoField;
-        
-        private string signatureField;
-        
-        /// <remarks/>
-        public InfDeclaracaoPrestacaoServico InfDeclaracaoPrestacaoServico {
-            get {
-                return this.infDeclaracaoPrestacaoServicoField;
-            }
-            set {
-                this.infDeclaracaoPrestacaoServicoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Signature {
-            get {
-                return this.signatureField;
-            }
-            set {
-                this.signatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class IdentificacaoOrgaoGerador {
-        
-        private int codigoMunicipioField;
-        
-        private string ufField;
-        
-        /// <remarks/>
-        public int CodigoMunicipio {
-            get {
-                return this.codigoMunicipioField;
-            }
-            set {
-                this.codigoMunicipioField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Uf {
-            get {
-                return this.ufField;
-            }
-            set {
-                this.ufField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class DadosPrestador {
-        
-        private string razaoSocialField;
-        
-        private string nomeFantasiaField;
-        
-        private Endereco enderecoField;
-        
-        private Contato contatoField;
-        
-        /// <remarks/>
-        public string RazaoSocial {
-            get {
-                return this.razaoSocialField;
-            }
-            set {
-                this.razaoSocialField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NomeFantasia {
-            get {
-                return this.nomeFantasiaField;
-            }
-            set {
-                this.nomeFantasiaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public Endereco Endereco {
-            get {
-                return this.enderecoField;
-            }
-            set {
-                this.enderecoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public Contato Contato {
-            get {
-                return this.contatoField;
-            }
-            set {
-                this.contatoField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class ValoresNfse {
-        
-        private double valorIssField;
-        
-        private double aliquotaField;
-        
-        private double valorLiquidoNfseField;
-        
-        private double baseCalculoField;
-        
-        /// <remarks/>
-        public double ValorIss {
-            get {
-                return this.valorIssField;
-            }
-            set {
-                this.valorIssField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double Aliquota {
-            get {
-                return this.aliquotaField;
-            }
-            set {
-                this.aliquotaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double ValorLiquidoNfse {
-            get {
-                return this.valorLiquidoNfseField;
-            }
-            set {
-                this.valorLiquidoNfseField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double BaseCalculo {
-            get {
-                return this.baseCalculoField;
-            }
-            set {
-                this.baseCalculoField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class InfNfse {
-        
-        private int numeroField;
-        
-        private string codigoVerificacaoField;
+        private IdentificacaoRps identificacaoRpsField;
         
         private System.DateTime dataEmissaoField;
         
-        private int tsNumeroNfseField;
+        private int statusField;
         
-        private string outrasInformacoesField;
-        
-        private ValoresNfse valoresNfseField;
-        
-        private string descricaoCodigoTributacaoMunicípioField;
-        
-        private double valorCreditoField;
-        
-        private DadosPrestador prestadorServicoField;
-        
-        private IdentificacaoOrgaoGerador orgaoGeradorField;
-        
-        private DeclaracaoPrestacaoServico declaracaoPrestacaoServicoField;
+        private IdentificacaoRps rpsSubstituidoField;
         
         private string idField;
         
         /// <remarks/>
-        public int Numero {
+        public IdentificacaoRps IdentificacaoRps {
             get {
-                return this.numeroField;
+                return this.identificacaoRpsField;
             }
             set {
-                this.numeroField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CodigoVerificacao {
-            get {
-                return this.codigoVerificacaoField;
-            }
-            set {
-                this.codigoVerificacaoField = value;
+                this.identificacaoRpsField = value;
             }
         }
         
@@ -1800,82 +1257,22 @@ namespace NFe.Components.HJoinvilleSC {
         }
         
         /// <remarks/>
-        public int tsNumeroNfse {
+        public int Status {
             get {
-                return this.tsNumeroNfseField;
+                return this.statusField;
             }
             set {
-                this.tsNumeroNfseField = value;
+                this.statusField = value;
             }
         }
         
         /// <remarks/>
-        public string OutrasInformacoes {
+        public IdentificacaoRps RpsSubstituido {
             get {
-                return this.outrasInformacoesField;
+                return this.rpsSubstituidoField;
             }
             set {
-                this.outrasInformacoesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ValoresNfse ValoresNfse {
-            get {
-                return this.valoresNfseField;
-            }
-            set {
-                this.valoresNfseField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string DescricaoCodigoTributacaoMunicípio {
-            get {
-                return this.descricaoCodigoTributacaoMunicípioField;
-            }
-            set {
-                this.descricaoCodigoTributacaoMunicípioField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double ValorCredito {
-            get {
-                return this.valorCreditoField;
-            }
-            set {
-                this.valorCreditoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DadosPrestador PrestadorServico {
-            get {
-                return this.prestadorServicoField;
-            }
-            set {
-                this.prestadorServicoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public IdentificacaoOrgaoGerador OrgaoGerador {
-            get {
-                return this.orgaoGeradorField;
-            }
-            set {
-                this.orgaoGeradorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DeclaracaoPrestacaoServico DeclaracaoPrestacaoServico {
-            get {
-                return this.declaracaoPrestacaoServicoField;
-            }
-            set {
-                this.declaracaoPrestacaoServicoField = value;
+                this.rpsSubstituidoField = value;
             }
         }
         
@@ -1892,83 +1289,929 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class Nfse {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class IdentificacaoRps {
         
-        private InfNfse infNfseField;
+        private int numeroField;
         
-        private string signatureField;
+        private string serieField;
         
-        private string versaoField;
+        private int tipoField;
         
         /// <remarks/>
-        public InfNfse InfNfse {
+        public int Numero {
             get {
-                return this.infNfseField;
+                return this.numeroField;
             }
             set {
-                this.infNfseField = value;
+                this.numeroField = value;
             }
         }
         
         /// <remarks/>
-        public string Signature {
+        public string Serie {
             get {
-                return this.signatureField;
+                return this.serieField;
             }
             set {
-                this.signatureField = value;
+                this.serieField = value;
             }
         }
         
         /// <remarks/>
-        public string versao {
+        public int Tipo {
             get {
-                return this.versaoField;
+                return this.tipoField;
             }
             set {
-                this.versaoField = value;
+                this.tipoField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class CompNfseTc {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class Servico {
         
-        private Nfse nfseField;
+        private Valores valoresField;
+        
+        private int issRetidoField;
+        
+        private string responsavelRetencaoField;
+        
+        private string itemListaServicoField;
+        
+        private string codigoCnaeField;
+        
+        private string discriminacaoField;
+        
+        private int codigoMunicipioField;
+        
+        private string codigoPaisField;
+        
+        private string exigibilidadeISSField;
+        
+        private int identifNaoExigibilidadeField;
+        
+        private int municipioIncidenciaField;
+        
+        private System.Nullable<int> numeroProcessoField;
         
         /// <remarks/>
-        public Nfse Nfse {
+        public Valores Valores {
             get {
-                return this.nfseField;
+                return this.valoresField;
             }
             set {
-                this.nfseField = value;
+                this.valoresField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IssRetido {
+            get {
+                return this.issRetidoField;
+            }
+            set {
+                this.issRetidoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ResponsavelRetencao {
+            get {
+                return this.responsavelRetencaoField;
+            }
+            set {
+                this.responsavelRetencaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemListaServico {
+            get {
+                return this.itemListaServicoField;
+            }
+            set {
+                this.itemListaServicoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CodigoCnae {
+            get {
+                return this.codigoCnaeField;
+            }
+            set {
+                this.codigoCnaeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Discriminacao {
+            get {
+                return this.discriminacaoField;
+            }
+            set {
+                this.discriminacaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodigoMunicipio {
+            get {
+                return this.codigoMunicipioField;
+            }
+            set {
+                this.codigoMunicipioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CodigoPais {
+            get {
+                return this.codigoPaisField;
+            }
+            set {
+                this.codigoPaisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ExigibilidadeISS {
+            get {
+                return this.exigibilidadeISSField;
+            }
+            set {
+                this.exigibilidadeISSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdentifNaoExigibilidade {
+            get {
+                return this.identifNaoExigibilidadeField;
+            }
+            set {
+                this.identifNaoExigibilidadeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MunicipioIncidencia {
+            get {
+                return this.municipioIncidenciaField;
+            }
+            set {
+                this.municipioIncidenciaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> NumeroProcesso {
+            get {
+                return this.numeroProcessoField;
+            }
+            set {
+                this.numeroProcessoField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class CompNfseClass {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class Valores {
         
-        private CompNfseTc compNfseField;
+        private double valorServicosField;
+        
+        private System.Nullable<double> valorDeducoesField;
+        
+        private System.Nullable<double> valorPisField;
+        
+        private System.Nullable<double> valorCofinsField;
+        
+        private System.Nullable<double> valorInssField;
+        
+        private System.Nullable<double> valorIrField;
+        
+        private System.Nullable<double> valorCsllField;
+        
+        private System.Nullable<double> aliquotaPisField;
+        
+        private System.Nullable<double> aliquotaCofinsField;
+        
+        private System.Nullable<double> aliquotaInssField;
+        
+        private System.Nullable<double> aliquotaIrField;
+        
+        private System.Nullable<double> aliquotaCsllField;
+        
+        private System.Nullable<double> valTotTributosField;
+        
+        private System.Nullable<double> valorIssField;
+        
+        private System.Nullable<double> aliquotaField;
+        
+        private System.Nullable<double> descontoIncondicionadoField;
+        
+        private System.Nullable<double> descontoCondicionadoField;
         
         /// <remarks/>
-        public CompNfseTc CompNfse {
+        public double ValorServicos {
+            get {
+                return this.valorServicosField;
+            }
+            set {
+                this.valorServicosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorDeducoes {
+            get {
+                return this.valorDeducoesField;
+            }
+            set {
+                this.valorDeducoesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorPis {
+            get {
+                return this.valorPisField;
+            }
+            set {
+                this.valorPisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorCofins {
+            get {
+                return this.valorCofinsField;
+            }
+            set {
+                this.valorCofinsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorInss {
+            get {
+                return this.valorInssField;
+            }
+            set {
+                this.valorInssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorIr {
+            get {
+                return this.valorIrField;
+            }
+            set {
+                this.valorIrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorCsll {
+            get {
+                return this.valorCsllField;
+            }
+            set {
+                this.valorCsllField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> AliquotaPis {
+            get {
+                return this.aliquotaPisField;
+            }
+            set {
+                this.aliquotaPisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> AliquotaCofins {
+            get {
+                return this.aliquotaCofinsField;
+            }
+            set {
+                this.aliquotaCofinsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> AliquotaInss {
+            get {
+                return this.aliquotaInssField;
+            }
+            set {
+                this.aliquotaInssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> AliquotaIr {
+            get {
+                return this.aliquotaIrField;
+            }
+            set {
+                this.aliquotaIrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> AliquotaCsll {
+            get {
+                return this.aliquotaCsllField;
+            }
+            set {
+                this.aliquotaCsllField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValTotTributos {
+            get {
+                return this.valTotTributosField;
+            }
+            set {
+                this.valTotTributosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> ValorIss {
+            get {
+                return this.valorIssField;
+            }
+            set {
+                this.valorIssField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> Aliquota {
+            get {
+                return this.aliquotaField;
+            }
+            set {
+                this.aliquotaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> DescontoIncondicionado {
+            get {
+                return this.descontoIncondicionadoField;
+            }
+            set {
+                this.descontoIncondicionadoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> DescontoCondicionado {
+            get {
+                return this.descontoCondicionadoField;
+            }
+            set {
+                this.descontoCondicionadoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Prestador))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class IdentificacaoPessoaEmpresa {
+        
+        private CpfCnpj cpfCnpjField;
+        
+        private string inscricaoMunicipalField;
+        
+        /// <remarks/>
+        public CpfCnpj CpfCnpj {
+            get {
+                return this.cpfCnpjField;
+            }
+            set {
+                this.cpfCnpjField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InscricaoMunicipal {
+            get {
+                return this.inscricaoMunicipalField;
+            }
+            set {
+                this.inscricaoMunicipalField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class CpfCnpj {
+        
+        private string cpfField;
+        
+        private string cnpjField;
+        
+        /// <remarks/>
+        public string Cpf {
+            get {
+                return this.cpfField;
+            }
+            set {
+                this.cpfField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Cnpj {
+            get {
+                return this.cnpjField;
+            }
+            set {
+                this.cnpjField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class Prestador : IdentificacaoPessoaEmpresa {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class TomadorWs {
+        
+        private IdentificacaoTomador identificacaoTomadorField;
+        
+        private string razaoSocialField;
+        
+        private string nifTomadorField;
+        
+        private Endereco enderecoField;
+        
+        private EnderecoExterior enderecoExteriorField;
+        
+        private Contato contatoField;
+        
+        /// <remarks/>
+        public IdentificacaoTomador IdentificacaoTomador {
+            get {
+                return this.identificacaoTomadorField;
+            }
+            set {
+                this.identificacaoTomadorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RazaoSocial {
+            get {
+                return this.razaoSocialField;
+            }
+            set {
+                this.razaoSocialField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NifTomador {
+            get {
+                return this.nifTomadorField;
+            }
+            set {
+                this.nifTomadorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Endereco Endereco {
+            get {
+                return this.enderecoField;
+            }
+            set {
+                this.enderecoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public EnderecoExterior EnderecoExterior {
+            get {
+                return this.enderecoExteriorField;
+            }
+            set {
+                this.enderecoExteriorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Contato Contato {
+            get {
+                return this.contatoField;
+            }
+            set {
+                this.contatoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class IdentificacaoTomador {
+        
+        private CpfCnpj cpfCnpjField;
+        
+        private string inscricaoMunicipalField;
+        
+        /// <remarks/>
+        public CpfCnpj CpfCnpj {
+            get {
+                return this.cpfCnpjField;
+            }
+            set {
+                this.cpfCnpjField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InscricaoMunicipal {
+            get {
+                return this.inscricaoMunicipalField;
+            }
+            set {
+                this.inscricaoMunicipalField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class EnderecoExterior {
+        
+        private string codigoPaisField;
+        
+        private string enderecoCompletoExteriorField;
+        
+        /// <remarks/>
+        public string CodigoPais {
+            get {
+                return this.codigoPaisField;
+            }
+            set {
+                this.codigoPaisField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EnderecoCompletoExterior {
+            get {
+                return this.enderecoCompletoExteriorField;
+            }
+            set {
+                this.enderecoCompletoExteriorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosIntermediario {
+        
+        private IdentificacaoPessoaEmpresa identificacaoIntermediarioField;
+        
+        private string razaoSocialField;
+        
+        private string codigoMunicipioField;
+        
+        /// <remarks/>
+        public IdentificacaoPessoaEmpresa IdentificacaoIntermediario {
+            get {
+                return this.identificacaoIntermediarioField;
+            }
+            set {
+                this.identificacaoIntermediarioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RazaoSocial {
+            get {
+                return this.razaoSocialField;
+            }
+            set {
+                this.razaoSocialField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CodigoMunicipio {
+            get {
+                return this.codigoMunicipioField;
+            }
+            set {
+                this.codigoMunicipioField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosConstrucaoCivil {
+        
+        private string codigoObraField;
+        
+        private string artField;
+        
+        /// <remarks/>
+        public string CodigoObra {
+            get {
+                return this.codigoObraField;
+            }
+            set {
+                this.codigoObraField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Art {
+            get {
+                return this.artField;
+            }
+            set {
+                this.artField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosEvento {
+        
+        private string identificacaoEventoField;
+        
+        private string descricaoEventoField;
+        
+        /// <remarks/>
+        public string IdentificacaoEvento {
+            get {
+                return this.identificacaoEventoField;
+            }
+            set {
+                this.identificacaoEventoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DescricaoEvento {
+            get {
+                return this.descricaoEventoField;
+            }
+            set {
+                this.descricaoEventoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosDeducao {
+        
+        private string tipoDeducaoField;
+        
+        private string descricaoDeducaoField;
+        
+        private IdentificacaoDocumentoDeducao identificacaoDocumentoDeducaoField;
+        
+        private DadosFornecedor dadosFornecedorField;
+        
+        private System.DateTime dateEmissaoField;
+        
+        private double valorDedutivelField;
+        
+        private double valorUtilizadoDeducaoField;
+        
+        /// <remarks/>
+        public string TipoDeducao {
+            get {
+                return this.tipoDeducaoField;
+            }
+            set {
+                this.tipoDeducaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DescricaoDeducao {
+            get {
+                return this.descricaoDeducaoField;
+            }
+            set {
+                this.descricaoDeducaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public IdentificacaoDocumentoDeducao IdentificacaoDocumentoDeducao {
+            get {
+                return this.identificacaoDocumentoDeducaoField;
+            }
+            set {
+                this.identificacaoDocumentoDeducaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DadosFornecedor DadosFornecedor {
+            get {
+                return this.dadosFornecedorField;
+            }
+            set {
+                this.dadosFornecedorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateEmissao {
+            get {
+                return this.dateEmissaoField;
+            }
+            set {
+                this.dateEmissaoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorDedutivel {
+            get {
+                return this.valorDedutivelField;
+            }
+            set {
+                this.valorDedutivelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double ValorUtilizadoDeducao {
+            get {
+                return this.valorUtilizadoDeducaoField;
+            }
+            set {
+                this.valorUtilizadoDeducaoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class IdentificacaoDocumentoDeducao {
+        
+        private string identificacaoNfseField;
+        
+        private string identificacaoNfeField;
+        
+        private string outroDocumentoDeducaoField;
+        
+        /// <remarks/>
+        public string IdentificacaoNfse {
+            get {
+                return this.identificacaoNfseField;
+            }
+            set {
+                this.identificacaoNfseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdentificacaoNfe {
+            get {
+                return this.identificacaoNfeField;
+            }
+            set {
+                this.identificacaoNfeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OutroDocumentoDeducao {
+            get {
+                return this.outroDocumentoDeducaoField;
+            }
+            set {
+                this.outroDocumentoDeducaoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class DadosFornecedor {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
+    public partial class ListaNfse {
+        
+        private CompNfseTc[] compNfseField;
+        
+        private MensagemRetorno[] listaMensagemAlertaRetornoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CompNfse")]
+        public CompNfseTc[] CompNfse {
             get {
                 return this.compNfseField;
             }
@@ -1976,47 +2219,25 @@ namespace NFe.Components.HJoinvilleSC {
                 this.compNfseField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
-    public partial class ConsultarNfseRpsResposta {
-        
-        private CompNfseClass compNfseField;
-        
-        private MensagemRetorno[] listaMensagemRetornoField;
         
         /// <remarks/>
-        public CompNfseClass CompNfse {
+        [System.Xml.Serialization.XmlElementAttribute("ListaMensagemAlertaRetorno")]
+        public MensagemRetorno[] ListaMensagemAlertaRetorno {
             get {
-                return this.compNfseField;
+                return this.listaMensagemAlertaRetornoField;
             }
             set {
-                this.compNfseField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public MensagemRetorno[] ListaMensagemRetorno {
-            get {
-                return this.listaMensagemRetornoField;
-            }
-            set {
-                this.listaMensagemRetornoField = value;
+                this.listaMensagemAlertaRetornoField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class MensagemRetornoLote {
         
         private IdentificacaoRps identificacaoRpsField;
@@ -2057,11 +2278,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class ConsultarLoteRpsResposta {
         
         private int situacaoField;
@@ -2069,6 +2290,8 @@ namespace NFe.Components.HJoinvilleSC {
         private MensagemRetorno[] listaMensagemRetornoField;
         
         private MensagemRetornoLote[] listaMensagemRetornoLoteField;
+        
+        private ListaNfse listaNfseField;
         
         /// <remarks/>
         public int Situacao {
@@ -2099,14 +2322,24 @@ namespace NFe.Components.HJoinvilleSC {
                 this.listaMensagemRetornoLoteField = value;
             }
         }
+        
+        /// <remarks/>
+        public ListaNfse ListaNfse {
+            get {
+                return this.listaNfseField;
+            }
+            set {
+                this.listaNfseField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class IdentificacaoNfse {
         
         private int numeroField;
@@ -2159,11 +2392,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class InfPedidoCancelamento {
         
         private IdentificacaoNfse identificacaoNfseField;
@@ -2205,11 +2438,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class PedidoCancelamento {
         
         private InfPedidoCancelamento infPedidoCancelamentoField;
@@ -2238,11 +2471,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class ConfirmacaoCancelamento {
         
         private PedidoCancelamento pedidoField;
@@ -2271,11 +2504,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class NfseCancelamento {
         
         private ConfirmacaoCancelamento confirmacaoField;
@@ -2304,11 +2537,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class RetCancelamento {
         
         private NfseCancelamento nfseCancelamentoField;
@@ -2325,11 +2558,11 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfewshomologacao.joinville.sc.gov.br/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://nfemwshomologacao.joinville.sc.gov.br")]
     public partial class CancelarNfseResposta {
         
         private RetCancelamento retCancelamentoField;
@@ -2359,18 +2592,18 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void EnviarLoteRpsEnvioCompletedEventHandler(object sender, EnviarLoteRpsEnvioCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void RecepcionarLoteRpsCompletedEventHandler(object sender, RecepcionarLoteRpsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class EnviarLoteRpsEnvioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class RecepcionarLoteRpsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal EnviarLoteRpsEnvioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal RecepcionarLoteRpsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2385,18 +2618,18 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void CancelarNfseEnvioCompletedEventHandler(object sender, CancelarNfseEnvioCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void CancelarNfseCompletedEventHandler(object sender, CancelarNfseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class CancelarNfseEnvioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class CancelarNfseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal CancelarNfseEnvioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal CancelarNfseCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2411,18 +2644,18 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void ConsultarLoteRpsEnvioCompletedEventHandler(object sender, ConsultarLoteRpsEnvioCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ConsultarLoteRpsCompletedEventHandler(object sender, ConsultarLoteRpsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ConsultarLoteRpsEnvioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class ConsultarLoteRpsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ConsultarLoteRpsEnvioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal ConsultarLoteRpsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -2437,18 +2670,18 @@ namespace NFe.Components.HJoinvilleSC {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void ConsultarNfseRpsEnvioCompletedEventHandler(object sender, ConsultarNfseRpsEnvioCompletedEventArgs e);
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
+    public delegate void ConsultarNfsePorRpsCompletedEventHandler(object sender, ConsultarNfsePorRpsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3752.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ConsultarNfseRpsEnvioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class ConsultarNfsePorRpsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ConsultarNfseRpsEnvioCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal ConsultarNfsePorRpsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
