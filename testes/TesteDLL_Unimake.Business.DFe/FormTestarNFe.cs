@@ -11,7 +11,7 @@ using Unimake.Security.Platform;
 
 namespace TesteDLL_Unimake.Business.DFe
 {
-    public partial class FormTestarNFe : Form
+    public partial class FormTestarNFe: Form
     {
         #region Private Fields
 
@@ -41,7 +41,7 @@ namespace TesteDLL_Unimake.Business.DFe
             ofd.ShowDialog();
             path = ofd.FileName;
 
-            if (string.IsNullOrWhiteSpace(path))
+            if(string.IsNullOrWhiteSpace(path))
             {
                 MessageBox.Show("Arquivo é obrigatório!", "Arquivo é requerido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -49,7 +49,7 @@ namespace TesteDLL_Unimake.Business.DFe
 
             var password = Microsoft.VisualBasic.Interaction.InputBox("Informe a senha do certificado.", "Certificado");
 
-            if (string.IsNullOrWhiteSpace(password))
+            if(string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Senha é obrigatória!", "Senha requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -61,7 +61,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 CertificadoSelecionado = certificadoDigital.CarregarCertificadoDigitalA1(bytes, password);
                 MessageBox.Show("O certificado foi selecionado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -89,7 +89,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(statusServico.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -200,7 +200,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(consultaProtocolo.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -238,7 +238,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(inutilizacao.Result.InfInut.XMotivo);
 
                 //Gravar o XML de distribuição se a inutilização foi homologada
-                switch (inutilizacao.Result.InfInut.CStat)
+                switch(inutilizacao.Result.InfInut.CStat)
                 {
                     case 102: //Inutilização homologada
                         inutilizacao.GravarXmlDistribuicao(@"c:\testenfe\");
@@ -249,7 +249,7 @@ namespace TesteDLL_Unimake.Business.DFe
                         break;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -279,7 +279,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(consultaCad.RetornoWSString);
                 MessageBox.Show(consultaCad.Result.InfCons.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -328,9 +328,9 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(recepcaoEvento.Result.XMotivo);
 
                 //Gravar o XML de distribuição se a inutilização foi homologada
-                if (recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
+                if(recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
                 {
-                    switch (recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
+                    switch(recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
                     {
                         case 135: //Evento homologado com vinculação da respectiva NFe
                         case 136: //Evento homologado sem vinculação com a respectiva NFe (SEFAZ não encontrou a NFe na base dela)
@@ -344,7 +344,7 @@ namespace TesteDLL_Unimake.Business.DFe
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -354,275 +354,338 @@ namespace TesteDLL_Unimake.Business.DFe
         {
             try
             {
-                var xml = new EnviNFe();
-                //--------------------------------------------------------------------------------
-                //Definir valor das tags do Lote de NFe
-                //--------------------------------------------------------------------------------
-                xml.Versao = "4.00";
-                xml.IdLote = "000000000000001";
-                xml.IndSinc = SimNao.Sim;
+                var xml = new EnviNFe
+                {
+                    //--------------------------------------------------------------------------------
+                    //Definir valor das tags do Lote de NFe
+                    //--------------------------------------------------------------------------------
+                    Versao = "4.00",
+                    IdLote = "000000000000001",
+                    IndSinc = SimNao.Sim,
 
-                //--------------------------------------------------------------------------------
-                //Inserir a primeira nota fiscal no lote
-                //--------------------------------------------------------------------------------
+                    //--------------------------------------------------------------------------------
+                    //Inserir a primeira nota fiscal no lote
+                    //--------------------------------------------------------------------------------
 
-                xml.NFe = new[] { new NFe() };
+                    NFe = new[] { new NFe() }
+                };
 
                 //Abrir a tag InfNFe
                 xml.NFe[0].InfNFe = new[] { new InfNFe() };
 
                 //Abrir a tag IDE e criar as tags filhas da IDE
-                xml.NFe[0].InfNFe[0].Ide = new Ide();
-                xml.NFe[0].InfNFe[0].Ide.CUF = CUF;
-                xml.NFe[0].InfNFe[0].Ide.NatOp = "VENDA PRODUC.DO ESTABELEC";
-                xml.NFe[0].InfNFe[0].Ide.Mod = ModeloDFe.NFe;
-                xml.NFe[0].InfNFe[0].Ide.Serie = 1;
-                xml.NFe[0].InfNFe[0].Ide.NNF = 57915;
-                xml.NFe[0].InfNFe[0].Ide.DhEmi = DateTime.Now;
-                xml.NFe[0].InfNFe[0].Ide.DhSaiEnt = DateTime.Now;
-                xml.NFe[0].InfNFe[0].Ide.TpNF = TipoOperacao.Saida;
-                xml.NFe[0].InfNFe[0].Ide.IdDest = DestinoOperacao.OperacaoInterestadual;
-                xml.NFe[0].InfNFe[0].Ide.CMunFG = 4118402;
-                xml.NFe[0].InfNFe[0].Ide.TpImp = FormatoImpressaoDANFE.NormalRetrato;
-                xml.NFe[0].InfNFe[0].Ide.TpEmis = TipoEmissao.Normal;
-                xml.NFe[0].InfNFe[0].Ide.TpAmb = TpAmb;
-                xml.NFe[0].InfNFe[0].Ide.FinNFe = FinalidadeNFe.Normal;
-                xml.NFe[0].InfNFe[0].Ide.IndFinal = SimNao.Sim;
-                xml.NFe[0].InfNFe[0].Ide.IndPres = IndicadorPresenca.OperacaoOutros;
-                xml.NFe[0].InfNFe[0].Ide.ProcEmi = ProcessoEmissao.AplicativoContribuinte;
-                xml.NFe[0].InfNFe[0].Ide.VerProc = "TESTE 1.00";
+                xml.NFe[0].InfNFe[0].Ide = new Ide
+                {
+                    CUF = CUF,
+                    NatOp = "VENDA PRODUC.DO ESTABELEC",
+                    Mod = ModeloDFe.NFe,
+                    Serie = 1,
+                    NNF = 57915,
+                    DhEmi = DateTime.Now,
+                    DhSaiEnt = DateTime.Now,
+                    TpNF = TipoOperacao.Saida,
+                    IdDest = DestinoOperacao.OperacaoInterestadual,
+                    CMunFG = 4118402,
+                    TpImp = FormatoImpressaoDANFE.NormalRetrato,
+                    TpEmis = TipoEmissao.Normal,
+                    TpAmb = TpAmb,
+                    FinNFe = FinalidadeNFe.Normal,
+                    IndFinal = SimNao.Sim,
+                    IndPres = IndicadorPresenca.OperacaoOutros,
+                    ProcEmi = ProcessoEmissao.AplicativoContribuinte,
+                    VerProc = "TESTE 1.00"
+                };
 
                 //Abrir a tag Emit e criar as tags Filhas de Emit
-                xml.NFe[0].InfNFe[0].Emit = new Emit();
+                xml.NFe[0].InfNFe[0].Emit = new Emit
+                {
+                    CNPJ = "06117473000150",
+                    XNome = "UNIMAKE SOLUCOES CORPORATIVAS LTDA",
+                    XFant = "UNIMAKE - PARANAVAI",
 
-                xml.NFe[0].InfNFe[0].Emit.CNPJ = "06117473000150";
-                xml.NFe[0].InfNFe[0].Emit.XNome = "UNIMAKE SOLUCOES CORPORATIVAS LTDA";
-                xml.NFe[0].InfNFe[0].Emit.XFant = "UNIMAKE - PARANAVAI";
+                    EnderEmit = new EnderEmit
+                    {
+                        XLgr = "RUA ANTONIO FELIPE",
+                        Nro = "1500",
+                        XBairro = "CENTRO",
+                        CMun = 4118402,
+                        XMun = "PARANAVAI",
+                        UF = CUF,
+                        CEP = "87704030",
+                        Fone = "04431414900"
+                    },
 
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit = new EnderEmit();
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.XLgr = "RUA ANTONIO FELIPE";
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.Nro = "1500";
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.XBairro = "CENTRO";
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.CMun = 4118402;
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.XMun = "PARANAVAI";
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.UF = CUF;
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.CEP = "87704030";
-                xml.NFe[0].InfNFe[0].Emit.EnderEmit.Fone = "04431414900";
-
-                xml.NFe[0].InfNFe[0].Emit.IE = "9032000301";
-                xml.NFe[0].InfNFe[0].Emit.IM = "14018";
-                xml.NFe[0].InfNFe[0].Emit.CNAE = "6202300";
-                xml.NFe[0].InfNFe[0].Emit.CRT = CRT.SimplesNacional;
+                    IE = "9032000301",
+                    IM = "14018",
+                    CNAE = "6202300",
+                    CRT = CRT.SimplesNacional
+                };
 
                 // Abrir a tag Dest
-                xml.NFe[0].InfNFe[0].Dest = new Dest();
+                xml.NFe[0].InfNFe[0].Dest = new Dest
+                {
+                    CNPJ = "04218457000128",
+                    XNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
 
-                xml.NFe[0].InfNFe[0].Dest.CNPJ = "04218457000128";
-                xml.NFe[0].InfNFe[0].Dest.XNome = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL";
+                    EnderDest = new EnderDest
+                    {
+                        XLgr = "AVENIDA DA SAUDADE",
+                        Nro = "1555",
+                        XBairro = "CAMPOS ELISEOS",
+                        CMun = 3543402,
+                        XMun = "RIBEIRAO PRETO",
+                        UF = UFBrasil.SP,
+                        CEP = "14080000",
+                        Fone = "01639611500"
+                    },
 
-                xml.NFe[0].InfNFe[0].Dest.EnderDest = new EnderDest();
-
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.XLgr = "AVENIDA DA SAUDADE";
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.Nro = "1555";
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.XBairro = "CAMPOS ELISEOS";
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.CMun = 3543402;
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.XMun = "RIBEIRAO PRETO";
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.UF = UFBrasil.SP;
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.CEP = "14080000";
-                xml.NFe[0].InfNFe[0].Dest.EnderDest.Fone = "01639611500";
-
-                xml.NFe[0].InfNFe[0].Dest.IndIEDest = IndicadorIEDestinatario.ContribuinteICMS;
-                xml.NFe[0].InfNFe[0].Dest.IE = "582614838110";
-                xml.NFe[0].InfNFe[0].Dest.Email = "janelaorp@janelaorp.com.br";
+                    IndIEDest = IndicadorIEDestinatario.ContribuinteICMS,
+                    IE = "582614838110",
+                    Email = "janelaorp@janelaorp.com.br"
+                };
 
                 //Abrir a tag Det para 2 produtos/itens
                 xml.NFe[0].InfNFe[0].Det = new Det[2]; //2 produtos
 
-                xml.NFe[0].InfNFe[0].Det[0] = new Det(); // Item/produto 1
-                xml.NFe[0].InfNFe[0].Det[0].NItem = 1;
+                xml.NFe[0].InfNFe[0].Det[0] = new Det
+                {
+                    NItem = 1,
 
-                xml.NFe[0].InfNFe[0].Det[0].Prod = new Prod();
-                xml.NFe[0].InfNFe[0].Det[0].Prod.CProd = "01042";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.CEAN = "SEM GTIN";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.XProd = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.NCM = "84714900";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.CFOP = "6101";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.UCom = "LU";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.QCom = 1.00;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.VUnCom = 84.9000000000;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.VProd = 84.90;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.CEANTrib = "SEM GTIN";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.UTrib = "LU";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.QTrib = 1.00;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.VUnTrib = 84.9000000000;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.IndTot = SimNao.Sim;
-                xml.NFe[0].InfNFe[0].Det[0].Prod.XPed = "300474";
-                xml.NFe[0].InfNFe[0].Det[0].Prod.NItemPed = 1;
+                    Prod = new Prod
+                    {
+                        CProd = "01042",
+                        CEAN = "SEM GTIN",
+                        XProd = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+                        NCM = "84714900",
+                        CFOP = "6101",
+                        UCom = "LU",
+                        QCom = 1.00,
+                        VUnCom = 84.9000000000,
+                        VProd = 84.90,
+                        CEANTrib = "SEM GTIN",
+                        UTrib = "LU",
+                        QTrib = 1.00,
+                        VUnTrib = 84.9000000000,
+                        IndTot = SimNao.Sim,
+                        XPed = "300474",
+                        NItemPed = 1
+                    },
 
-                //Abrir a tag de imposto do item inserido anteriormente.
-                xml.NFe[0].InfNFe[0].Det[0].Imposto = new Imposto();
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.VTotTrib = 12.63;
+                    //Abrir a tag de imposto do item inserido anteriormente.
+                    Imposto = new Imposto
+                    {
+                        VTotTrib = 12.63,
 
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS = new[] { new ICMS() };
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS[0].ICMSSN101 = new ICMSSN101();
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS[0].ICMSSN101.Orig = OrigemMercadoria.Nacional;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS[0].ICMSSN101.PCredSN = 2.8255;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS[0].ICMSSN101.VCredICMSSN = 2.40;
+                        ICMS = new[] { new ICMS() }
+                    }
+                }; // Item/produto 1
+                xml.NFe[0].InfNFe[0].Det[0].Imposto.ICMS[0].ICMSSN101 = new ICMSSN101
+                {
+                    Orig = OrigemMercadoria.Nacional,
+                    PCredSN = 2.8255,
+                    VCredICMSSN = 2.40
+                };
 
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS = new PIS();
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS.PISOutr = new PISOutr();
+                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS = new PIS
+                {
+                    PISOutr = new PISOutr
+                    {
+                        CST = "99",
+                        VBC = 0.00,
+                        PPIS = 0.00,
+                        VPIS = 0.00
+                    }
+                };
 
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS.PISOutr.CST = "99";
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS.PISOutr.VBC = 0.00;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS.PISOutr.PPIS = 0.00;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.PIS.PISOutr.VPIS = 0.00;
+                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS = new COFINS
+                {
+                    COFINSOutr = new COFINSOutr
+                    {
+                        CST = "99",
+                        VBC = 0.00,
+                        PCOFINS = 0.00,
+                        VCOFINS = 0.00
+                    }
+                };
 
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS = new COFINS();
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS.COFINSOutr = new COFINSOutr();
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS.COFINSOutr.CST = "99";
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS.COFINSOutr.VBC = 0.00;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS.COFINSOutr.PCOFINS = 0.00;
-                xml.NFe[0].InfNFe[0].Det[0].Imposto.COFINS.COFINSOutr.VCOFINS = 0.00;
+                xml.NFe[0].InfNFe[0].Det[1] = new Det
+                {
+                    NItem = 2,
 
-                xml.NFe[0].InfNFe[0].Det[1] = new Det(); // Item/produto 2
-                xml.NFe[0].InfNFe[0].Det[1].NItem = 2;
+                    Prod = new Prod
+                    {
+                        CProd = "01042",
+                        CEAN = "SEM GTIN",
+                        XProd = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+                        NCM = "84714900",
+                        CFOP = "6101",
+                        UCom = "LU",
+                        QCom = 1.00,
+                        VUnCom = 84.9000000000,
+                        VProd = 84.90,
+                        CEANTrib = "SEM GTIN",
+                        UTrib = "LU",
+                        QTrib = 1.00,
+                        VUnTrib = 84.9000000000,
+                        IndTot = SimNao.Sim,
+                        XPed = "300474",
+                        NItemPed = 1
+                    },
 
-                xml.NFe[0].InfNFe[0].Det[1].Prod = new Prod();
-                xml.NFe[0].InfNFe[0].Det[1].Prod.CProd = "01042";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.CEAN = "SEM GTIN";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.XProd = "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.NCM = "84714900";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.CFOP = "6101";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.UCom = "LU";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.QCom = 1.00;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.VUnCom = 84.9000000000;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.VProd = 84.90;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.CEANTrib = "SEM GTIN";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.UTrib = "LU";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.QTrib = 1.00;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.VUnTrib = 84.9000000000;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.IndTot = SimNao.Sim;
-                xml.NFe[0].InfNFe[0].Det[1].Prod.XPed = "300474";
-                xml.NFe[0].InfNFe[0].Det[1].Prod.NItemPed = 1;
+                    //Abrir a tag de imposto do item inserido anteriormente.
+                    Imposto = new Imposto
+                    {
+                        VTotTrib = 12.63,
 
-                //Abrir a tag de imposto do item inserido anteriormente.
-                xml.NFe[0].InfNFe[0].Det[1].Imposto = new Imposto();
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.VTotTrib = 12.63;
+                        ICMS = new[] { new ICMS() }
+                    }
+                }; // Item/produto 2
+                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS[0].ICMSSN101 = new ICMSSN101
+                {
+                    Orig = OrigemMercadoria.Nacional,
+                    PCredSN = 2.8255,
+                    VCredICMSSN = 2.40
+                };
 
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS = new[] { new ICMS() };
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS[0].ICMSSN101 = new ICMSSN101();
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS[0].ICMSSN101.Orig = OrigemMercadoria.Nacional;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS[0].ICMSSN101.PCredSN = 2.8255;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.ICMS[0].ICMSSN101.VCredICMSSN = 2.40;
+                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS = new PIS
+                {
+                    PISOutr = new PISOutr
+                    {
+                        CST = "99",
+                        VBC = 0.00,
+                        PPIS = 0.00,
+                        VPIS = 0.00
+                    }
+                };
 
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS = new PIS();
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS.PISOutr = new PISOutr();
-
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS.PISOutr.CST = "99";
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS.PISOutr.VBC = 0.00;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS.PISOutr.PPIS = 0.00;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.PIS.PISOutr.VPIS = 0.00;
-
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS = new COFINS();
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS.COFINSOutr = new COFINSOutr();
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS.COFINSOutr.CST = "99";
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS.COFINSOutr.VBC = 0.00;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS.COFINSOutr.PCOFINS = 0.00;
-                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS.COFINSOutr.VCOFINS = 0.00;
+                xml.NFe[0].InfNFe[0].Det[1].Imposto.COFINS = new COFINS
+                {
+                    COFINSOutr = new COFINSOutr
+                    {
+                        CST = "99",
+                        VBC = 0.00,
+                        PCOFINS = 0.00,
+                        VCOFINS = 0.00
+                    }
+                };
 
                 // Abrir a tag de totalização
-                xml.NFe[0].InfNFe[0].Total = new Total();
-                xml.NFe[0].InfNFe[0].Total.ICMSTot = new ICMSTot();
-
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VBC = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VICMS = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VICMSDeson = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VFCP = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VBCST = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VST = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VFCPST = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VFCPSTRet = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VProd = 84.90;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VFrete = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VSeg = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VDesc = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VII = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VIPI = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VIPIDevol = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VPIS = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VCOFINS = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VOutro = 0;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VNF = 84.90;
-                xml.NFe[0].InfNFe[0].Total.ICMSTot.VTotTrib = 12.63;
+                xml.NFe[0].InfNFe[0].Total = new Total
+                {
+                    ICMSTot = new ICMSTot
+                    {
+                        VBC = 0,
+                        VICMS = 0,
+                        VICMSDeson = 0,
+                        VFCP = 0,
+                        VBCST = 0,
+                        VST = 0,
+                        VFCPST = 0,
+                        VFCPSTRet = 0,
+                        VProd = 84.90,
+                        VFrete = 0,
+                        VSeg = 0,
+                        VDesc = 0,
+                        VII = 0,
+                        VIPI = 0,
+                        VIPIDevol = 0,
+                        VPIS = 0,
+                        VCOFINS = 0,
+                        VOutro = 0,
+                        VNF = 84.90,
+                        VTotTrib = 12.63
+                    }
+                };
 
                 // Abrir a tag de transporte
-                xml.NFe[0].InfNFe[0].Transp = new Transp();
-                xml.NFe[0].InfNFe[0].Transp.ModFrete = ModalidadeFrete.ContratacaoFretePorContaRemetente_CIF;
+                xml.NFe[0].InfNFe[0].Transp = new Transp
+                {
+                    ModFrete = ModalidadeFrete.ContratacaoFretePorContaRemetente_CIF,
 
-                //Abrir a tag de volume dos transportes contendo 2 volumes de exemplo
-                xml.NFe[0].InfNFe[0].Transp.Vol = new Vol[2];
+                    //Abrir a tag de volume dos transportes contendo 2 volumes de exemplo
+                    Vol = new Vol[2]
+                };
 
-                xml.NFe[0].InfNFe[0].Transp.Vol[0] = new Vol(); //Primeiro volume
-                xml.NFe[0].InfNFe[0].Transp.Vol[0].QVol = 1;
-                xml.NFe[0].InfNFe[0].Transp.Vol[0].Esp = "LU";
-                xml.NFe[0].InfNFe[0].Transp.Vol[0].Marca = "UNIMAKE";
-                xml.NFe[0].InfNFe[0].Transp.Vol[0].PesoL = 0.000;
-                xml.NFe[0].InfNFe[0].Transp.Vol[0].PesoB = 0.000;
+                xml.NFe[0].InfNFe[0].Transp.Vol[0] = new Vol
+                {
+                    QVol = 1,
+                    Esp = "LU",
+                    Marca = "UNIMAKE",
+                    PesoL = 0.000,
+                    PesoB = 0.000
+                }; //Primeiro volume
 
-                xml.NFe[0].InfNFe[0].Transp.Vol[1] = new Vol(); //Segundo volume
-                xml.NFe[0].InfNFe[0].Transp.Vol[1].QVol = 1;
-                xml.NFe[0].InfNFe[0].Transp.Vol[1].Esp = "LU";
-                xml.NFe[0].InfNFe[0].Transp.Vol[1].Marca = "UNIMAKE";
-                xml.NFe[0].InfNFe[0].Transp.Vol[1].PesoL = 0.000;
-                xml.NFe[0].InfNFe[0].Transp.Vol[1].PesoB = 0.000;
+                xml.NFe[0].InfNFe[0].Transp.Vol[1] = new Vol
+                {
+                    QVol = 1,
+                    Esp = "LU",
+                    Marca = "UNIMAKE",
+                    PesoL = 0.000,
+                    PesoB = 0.000
+                }; //Segundo volume
 
                 //Abrir a tag Cobr contendo 2 parcelas de exemplo
-                xml.NFe[0].InfNFe[0].Cobr = new Cobr();
+                xml.NFe[0].InfNFe[0].Cobr = new Cobr
+                {
+                    Fat = new Fat
+                    {
+                        NFat = "057910",
+                        VOrig = 84.90,
+                        VDesc = 0,
+                        VLiq = 84.90
+                    },
 
-                xml.NFe[0].InfNFe[0].Cobr.Fat = new Fat();
-                xml.NFe[0].InfNFe[0].Cobr.Fat.NFat = "057910";
-                xml.NFe[0].InfNFe[0].Cobr.Fat.VOrig = 84.90;
-                xml.NFe[0].InfNFe[0].Cobr.Fat.VDesc = 0;
-                xml.NFe[0].InfNFe[0].Cobr.Fat.VLiq = 84.90;
+                    Dup = new Dup[2]  //2 Parcelas
+                };
 
-                xml.NFe[0].InfNFe[0].Cobr.Dup = new Dup[2];  //2 Parcelas
+                xml.NFe[0].InfNFe[0].Cobr.Dup[0] = new Dup
+                {
+                    NDup = "001",
+                    DVenc = DateTime.Now,
+                    VDup = 84.90
+                }; //Primeira parcela
 
-                xml.NFe[0].InfNFe[0].Cobr.Dup[0] = new Dup(); //Primeira parcela
-                xml.NFe[0].InfNFe[0].Cobr.Dup[0].NDup = "001";
-                xml.NFe[0].InfNFe[0].Cobr.Dup[0].DVenc = DateTime.Now;
-                xml.NFe[0].InfNFe[0].Cobr.Dup[0].VDup = 84.90;
-
-                xml.NFe[0].InfNFe[0].Cobr.Dup[1] = new Dup(); //Segunda parcela
-                xml.NFe[0].InfNFe[0].Cobr.Dup[1].NDup = "002";
-                xml.NFe[0].InfNFe[0].Cobr.Dup[1].DVenc = DateTime.Now;
-                xml.NFe[0].InfNFe[0].Cobr.Dup[1].VDup = 84.90;
+                xml.NFe[0].InfNFe[0].Cobr.Dup[1] = new Dup
+                {
+                    NDup = "002",
+                    DVenc = DateTime.Now,
+                    VDup = 84.90
+                }; //Segunda parcela
 
                 //Abrir tag de formas de pagamento
-                xml.NFe[0].InfNFe[0].Pag = new Pag();
+                xml.NFe[0].InfNFe[0].Pag = new Pag
+                {
+                    DetPag = new DetPag[2] //Duas formas de pagamento
+                };
 
-                xml.NFe[0].InfNFe[0].Pag.DetPag = new DetPag[2]; //Duas formas de pagamento
+                xml.NFe[0].InfNFe[0].Pag.DetPag[0] = new DetPag
+                {
+                    IndPag = IndicadorPagamento.PagamentoVista,
+                    TPag = MeioPagamento.Outros,
+                    VPag = 84.90
+                }; //Forma de pagamento 1
 
-                xml.NFe[0].InfNFe[0].Pag.DetPag[0] = new DetPag(); //Forma de pagamento 1
-                xml.NFe[0].InfNFe[0].Pag.DetPag[0].IndPag = IndicadorPagamento.PagamentoVista;
-                xml.NFe[0].InfNFe[0].Pag.DetPag[0].TPag = MeioPagamento.Outros;
-                xml.NFe[0].InfNFe[0].Pag.DetPag[0].VPag = 84.90;
-
-                xml.NFe[0].InfNFe[0].Pag.DetPag[1] = new DetPag(); //Forma de pagamento 2
-                xml.NFe[0].InfNFe[0].Pag.DetPag[1].IndPag = IndicadorPagamento.PagamentoVista;
-                xml.NFe[0].InfNFe[0].Pag.DetPag[1].TPag = MeioPagamento.Outros;
-                xml.NFe[0].InfNFe[0].Pag.DetPag[1].VPag = 84.90;
+                xml.NFe[0].InfNFe[0].Pag.DetPag[1] = new DetPag
+                {
+                    IndPag = IndicadorPagamento.PagamentoVista,
+                    TPag = MeioPagamento.Outros,
+                    VPag = 84.90
+                }; //Forma de pagamento 2
 
                 //Abrir tag de informações adicionais
-                xml.NFe[0].InfNFe[0].InfAdic = new InfAdic();
-
-                xml.NFe[0].InfNFe[0].InfAdic.InfCpl = ";CONTROLE: 0000241197;PEDIDO(S) ATENDIDO(S): 300474;Empresa optante pelo simples nacional, conforme lei compl. 128 de 19/12/2008;Permite o aproveitamento do credito de ICMS no valor de R$ 2,40, correspondente ao percentual de 2,83% . Nos termos do Art. 23 - LC 123/2006 (Resolucoes CGSN n. 10/2007 e 53/2008);Voce pagou aproximadamente: R$ 6,69 trib. federais / R$ 5,94 trib. estaduais / R$ 0,00 trib. municipais. Fonte: IBPT/empresometro.com.br 18.2.B A3S28F;";
+                xml.NFe[0].InfNFe[0].InfAdic = new InfAdic
+                {
+                    InfCpl = ";CONTROLE: 0000241197;PEDIDO(S) ATENDIDO(S): 300474;Empresa optante pelo simples nacional, conforme lei compl. 128 de 19/12/2008;Permite o aproveitamento do credito de ICMS no valor de R$ 2,40, correspondente ao percentual de 2,83% . Nos termos do Art. 23 - LC 123/2006 (Resolucoes CGSN n. 10/2007 e 53/2008);Voce pagou aproximadamente: R$ 6,69 trib. federais / R$ 5,94 trib. estaduais / R$ 0,00 trib. municipais. Fonte: IBPT/empresometro.com.br 18.2.B A3S28F;"
+                };
 
                 //Abrir tag do responsável técnico
-                xml.NFe[0].InfNFe[0].InfRespTec = new InfRespTec();
-                xml.NFe[0].InfNFe[0].InfRespTec.CNPJ = "06117473000150";
-                xml.NFe[0].InfNFe[0].InfRespTec.XContato = "Wandrey Mundin Ferreira";
-                xml.NFe[0].InfNFe[0].InfRespTec.Email = "wandrey@unimake.com.br";
-                xml.NFe[0].InfNFe[0].InfRespTec.Fone = "04431414900";
+                xml.NFe[0].InfNFe[0].InfRespTec = new InfRespTec
+                {
+                    CNPJ = "06117473000150",
+                    XContato = "Wandrey Mundin Ferreira",
+                    Email = "wandrey@unimake.com.br",
+                    Fone = "04431414900"
+                };
 
                 //var xml = new EnviNFe
                 //{
@@ -1145,7 +1208,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(autorizacao.NfeProcResult.NomeArquivoDistribuicao);
 
                 //Gravar o XML de distribuição se a nota foi autorizada ou denegada
-                switch (autorizacao.Result.ProtNFe.InfProt.CStat)
+                switch(autorizacao.Result.ProtNFe.InfProt.CStat)
                 {
                     case 100: //Autorizado o uso da NF-e
                     case 110: //Uso Denegado
@@ -1162,7 +1225,7 @@ namespace TesteDLL_Unimake.Business.DFe
                         break;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -1189,7 +1252,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(retAutorizacao.RetornoWSString);
                 MessageBox.Show(retAutorizacao.Result.XMotivo);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 CatchException(ex);
             }
@@ -1213,22 +1276,22 @@ namespace TesteDLL_Unimake.Business.DFe
             {
                 message.AppendLine($"{ex.Message}\r\n");
                 ex = ex.InnerException;
-            } while (ex != null);
+            } while(ex != null);
 
             MessageBox.Show(message.ToString(), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void FormTestarNFe_Shown(object sender, EventArgs e)
+        {
+            var cert = new CertificadoDigital();
+            CertificadoSelecionado = cert.Selecionar();
         }
 
         #endregion Private Methods
 
         #region Public Constructors
 
-        public FormTestarNFe()
-        {
-            InitializeComponent();
-
-            var cert = new CertificadoDigital();
-            CertificadoSelecionado = cert.Selecionar();
-        }
+        public FormTestarNFe() => InitializeComponent();
 
         #endregion Public Constructors
     }

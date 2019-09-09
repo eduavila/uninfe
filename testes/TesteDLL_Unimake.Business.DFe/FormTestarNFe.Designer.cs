@@ -167,6 +167,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormTestarNFe";
             this.Text = "Form1";
+            this.Shown += new System.EventHandler(this.FormTestarNFe_Shown);
             this.ResumeLayout(false);
 
         }
