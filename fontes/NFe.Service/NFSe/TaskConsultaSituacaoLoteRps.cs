@@ -59,7 +59,7 @@ namespace NFe.Service.NFSe
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe, Servico, oDadosPedSitLoteRps.cMunicipio))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedSitLoteRps.cMunicipio, oDadosPedSitLoteRps.tpAmb, oDadosPedSitLoteRps.tpEmis, padraoNFSe, 0);
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, oDadosPedSitLoteRps.cMunicipio, oDadosPedSitLoteRps.tpAmb, oDadosPedSitLoteRps.tpEmis, padraoNFSe, oDadosPedSitLoteRps.cMunicipio);
                     if (wsProxy != null) pedSitLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
@@ -284,7 +284,8 @@ namespace NFe.Service.NFSe
                             oDadosPedSitLoteRps.cMunicipio == 5005707 ||
                             oDadosPedSitLoteRps.cMunicipio == 4314423 ||
                             oDadosPedSitLoteRps.cMunicipio == 3511102 ||
-                            oDadosPedSitLoteRps.cMunicipio == 3535804)
+                            oDadosPedSitLoteRps.cMunicipio == 3535804 ||
+                            oDadosPedSitLoteRps.cMunicipio == 4306932)
                         {
                             Pronin pronin = new Pronin((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
                                 Empresas.Configuracoes[emp].PastaXmlRetorno,
@@ -342,9 +343,17 @@ namespace NFe.Service.NFSe
                         simple.ConsultarSituacaoLoteRps(NomeArquivoXML);
 
                         break;
+
                     case PadroesNFSe.SISPMJP:
                         cabecMsg = "<cabecalho versao=\"2.02\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\" ><versaoDados>2.02</versaoDados></cabecalho>";
 
+                        break;
+
+                    case PadroesNFSe.DSF:
+                        if (oDadosPedSitLoteRps.cMunicipio == 3549904)
+                        {
+                            cabecMsg = "<cabecalho versao=\"3\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><versaoDados>3</versaoDados></cabecalho>";
+                        }
                         break;
                 }
 
