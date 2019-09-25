@@ -179,6 +179,14 @@ namespace NFe.Components
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-3535804-";
                                 break;
 
+                            case 3549904: //São José dos Campos-SP
+                                padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-3549904-";
+                                break;
+
+                            case 4306932: //Entre-Ijuís-RS
+                                padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-4306932-";
+                                break;
+
                             default:
                                 padraoNFSe = Functions.PadraoNFSe(UFCod).ToString() + "-";
                                 break;

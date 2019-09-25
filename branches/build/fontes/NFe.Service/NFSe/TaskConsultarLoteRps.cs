@@ -57,7 +57,7 @@ namespace NFe.Service.NFSe
 
                 if (IsUtilizaCompilacaoWs(padraoNFSe, Servico, ler.oDadosPedSitNfseRps.cMunicipio))
                 {
-                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe, 0); ;
+                    wsProxy = ConfiguracaoApp.DefinirWS(Servico, emp, ler.oDadosPedSitNfseRps.cMunicipio, ler.oDadosPedSitNfseRps.tpAmb, ler.oDadosPedSitNfseRps.tpEmis, padraoNFSe, ler.oDadosPedSitNfseRps.cMunicipio);
                     if (wsProxy != null) pedLoteRps = wsProxy.CriarObjeto(wsProxy.NomeClasseWS);
                 }
 
@@ -380,7 +380,8 @@ namespace NFe.Service.NFSe
                             ler.oDadosPedSitNfseRps.cMunicipio == 5005707 ||
                             ler.oDadosPedSitNfseRps.cMunicipio == 4314423 ||
                             ler.oDadosPedSitNfseRps.cMunicipio == 3511102 ||
-                            ler.oDadosPedSitNfseRps.cMunicipio == 3535804)
+                            ler.oDadosPedSitNfseRps.cMunicipio == 3535804 ||
+                            ler.oDadosPedSitNfseRps.cMunicipio == 4306932)
                         {
                             Pronin pronin = new Pronin((TipoAmbiente)Empresas.Configuracoes[emp].AmbienteCodigo,
                                 Empresas.Configuracoes[emp].PastaXmlRetorno,
@@ -510,6 +511,13 @@ namespace NFe.Service.NFSe
 
                     case PadroesNFSe.SMARAPD_204:
                         cabecMsg = "<cabecalho versao=\"2.04\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><versaoDados>2.04</versaoDados></cabecalho>";
+                        break;
+
+                    case PadroesNFSe.DSF:
+                        if (ler.oDadosPedSitNfseRps.cMunicipio == 3549904)
+                        {
+                            cabecMsg = "<cabecalho versao=\"3\" xmlns=\"http://www.abrasf.org.br/nfse.xsd\"><versaoDados>3</versaoDados></cabecalho>";
+                        }
                         break;
 
                     case PadroesNFSe.IIBRASIL:

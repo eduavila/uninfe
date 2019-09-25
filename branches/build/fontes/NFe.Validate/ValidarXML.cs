@@ -49,6 +49,9 @@ namespace NFe.Validate
         /// </summary>
         public void EncryptAssinatura(string arquivoXML)
         {
+            if (TipoArqXml.cArquivoSchema.Contains("DSF\\SJCSP"))
+                return;
+
             if (TipoArqXml.cArquivoSchema.Contains("PAULISTANA") ||
                 TipoArqXml.cArquivoSchema.Contains("BLUMENAU") ||
                 TipoArqXml.cArquivoSchema.Contains("DSF"))
@@ -471,6 +474,21 @@ namespace NFe.Validate
 
                     QRCodeMDFe qrCodeMDFe = new QRCodeMDFe(conteudoXML);
                     qrCodeMDFe.MontarLinkQRCode(Empresas.Configuracoes[emp].X509Certificado);
+
+                    StreamWriter sw = File.CreateText(Arquivo);
+                    sw.Write(conteudoXML.OuterXml);
+                    sw.Close();
+                }
+                else if (Arquivo.EndsWith(Propriedade.Extensao(Propriedade.TipoEnvio.CTe).EnvioXML, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    conteudoXML.Load(Arquivo);
+
+                    string urlCte = Empresas.Configuracoes[emp].AmbienteCodigo == (int)TipoAmbiente.taHomologacao ?
+                        Empresas.Configuracoes[emp].URLConsultaDFe.UrlCTeQrCodeH :
+                        Empresas.Configuracoes[emp].URLConsultaDFe.UrlCTeQrCodeP;
+
+                    QRCodeCTe qrCodeCTe = new QRCodeCTe(conteudoXML, urlCte);
+                    qrCodeCTe.MontarLinkQRCode(Empresas.Configuracoes[emp].X509Certificado);
 
                     StreamWriter sw = File.CreateText(Arquivo);
                     sw.Write(conteudoXML.OuterXml);
