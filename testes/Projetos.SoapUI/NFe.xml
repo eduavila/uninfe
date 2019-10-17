@@ -53,4 +53,108 @@
    <soap:Body>\r
       <nfes:nfeDadosMsg>\r<consStatServ versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe"><tpAmb>2</tpAmb><cUF>41</cUF><xServ>STATUS</xServ></consStatServ></nfes:nfeDadosMsg>\r
    </soap:Body>   
-</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4/NFeStatusServico4Soap12/nfeStatusServicoNFRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeStatusServico4/NFeStatusServico4Soap12/nfeStatusServicoNFRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="4fc0e693-0d1b-4c0e-bdb8-7c9654aa9521" wsaVersion="NONE" name="NFeDistribuicaoDFeSoap12" type="wsdl" bindingName="{http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe}NFeDistribuicaoDFeSoap12" soapVersion="1_2" anonymous="optional" definition="https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx</con:endpoint></con:endpoints><con:operation id="5a89529d-1f0b-45f3-af79-48d932bfd620" isOneWay="false" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/nfeDistDFeInteresse" name="nfeDistDFeInteresse" bindingOperationName="nfeDistDFeInteresse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3e946d29-0b4f-4001-8ed4-073a7fc0878d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:nfed="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <nfed:nfeDistDFeInteresse>\r
+         <!--Optional:-->\r
+         <nfed:nfeDadosMsg>\r
+<distDFeInt versao="1.01" xmlns="http://www.portalfiscal.inf.br/nfe">
+  <tpAmb>2</tpAmb>
+  <cUFAutor>41</cUFAutor>
+  <CNPJ>06117473000150</CNPJ>
+  <consNSU>
+    <NSU>000000000000000</NSU>
+  </consNSU>
+</distDFeInt>
+         </nfed:nfeDadosMsg>\r
+      </nfed:nfeDistDFeInteresse>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/NFeDistribuicaoDFeSoap/nfeDistDFeInteresseRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="135c2ae1-ed40-4d37-8499-77319f6dec9e" wsaVersion="NONE" name="NFeDistribuicaoDFeSoap" type="wsdl" bindingName="{http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe}NFeDistribuicaoDFeSoap" soapVersion="1_1" anonymous="optional" definition="https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx?WSDL"><con:part><con:url>https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx?WSDL</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe">
+      <s:element name="nfeDistDFeInteresse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nfeDadosMsg">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="nfeDistDFeInteresseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nfeDistDFeInteresseResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="nfeDistDFeInteresseSoapIn">
+    <wsdl:part name="parameters" element="tns:nfeDistDFeInteresse"/>
+  </wsdl:message>
+  <wsdl:message name="nfeDistDFeInteresseSoapOut">
+    <wsdl:part name="parameters" element="tns:nfeDistDFeInteresseResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="NFeDistribuicaoDFeSoap">
+    <wsdl:operation name="nfeDistDFeInteresse">
+      <wsdl:input message="tns:nfeDistDFeInteresseSoapIn"/>
+      <wsdl:output message="tns:nfeDistDFeInteresseSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NFeDistribuicaoDFeSoap" type="tns:NFeDistribuicaoDFeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="nfeDistDFeInteresse">
+      <soap:operation soapAction="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/nfeDistDFeInteresse" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NFeDistribuicaoDFeSoap12" type="tns:NFeDistribuicaoDFeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="nfeDistDFeInteresse">
+      <soap12:operation soapAction="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/nfeDistDFeInteresse" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NFeDistribuicaoDFe">
+    <wsdl:port name="NFeDistribuicaoDFeSoap" binding="tns:NFeDistribuicaoDFeSoap">
+      <soap:address location="https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="NFeDistribuicaoDFeSoap12" binding="tns:NFeDistribuicaoDFeSoap12">
+      <soap12:address location="https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx</con:endpoint></con:endpoints><con:operation id="3a2beaa9-d6c2-4a12-bd28-7f7fef59406e" isOneWay="false" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/nfeDistDFeInteresse" name="nfeDistDFeInteresse" bindingOperationName="nfeDistDFeInteresse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7a71853f-a81a-4751-b596-c189d6123e30" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://hom.nfe.fazenda.gov.br/NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:nfed="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <nfed:nfeDistDFeInteresse>\r
+         <!--Optional:-->\r
+         <nfed:nfeDadosMsg>\r
+            e\r
+            <!--You may enter ANY elements at this point-->\r
+            gero\r
+         </nfed:nfeDadosMsg>\r
+      </nfed:nfeDistDFeInteresse>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.portalfiscal.inf.br/nfe/wsdl/NFeDistribuicaoDFe/nfeDistDFeInteresse"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -11,7 +11,7 @@ using Unimake.Security.Platform;
 
 namespace TesteDLL_Unimake.Business.DFe
 {
-    public partial class FormTestarNFe: Form
+    public partial class FormTestarNFe : Form
     {
         #region Private Fields
 
@@ -41,7 +41,7 @@ namespace TesteDLL_Unimake.Business.DFe
             ofd.ShowDialog();
             path = ofd.FileName;
 
-            if(string.IsNullOrWhiteSpace(path))
+            if (string.IsNullOrWhiteSpace(path))
             {
                 MessageBox.Show("Arquivo é obrigatório!", "Arquivo é requerido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -49,7 +49,7 @@ namespace TesteDLL_Unimake.Business.DFe
 
             var password = Microsoft.VisualBasic.Interaction.InputBox("Informe a senha do certificado.", "Certificado");
 
-            if(string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Senha é obrigatória!", "Senha requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -61,7 +61,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 CertificadoSelecionado = certificadoDigital.CarregarCertificadoDigitalA1(bytes, password);
                 MessageBox.Show("O certificado foi selecionado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "ERRO!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -89,7 +89,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(statusServico.Result.XMotivo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -114,11 +114,11 @@ namespace TesteDLL_Unimake.Business.DFe
                             })
                             {
                                 COrgao = CUF,
-                                ChNFe = "41190906117473000150550010000579271257418308",
+                                ChNFe = "41191006117473000150550010000579281779843610",
                                 CNPJ = "06117473000150",
                                 DhEvento = DateTime.Now,
                                 TpEvento = TipoEventoNFe.CartaCorrecao,
-                                NSeqEvento = 7,
+                                NSeqEvento = 3,
                                 VerEvento = "1.00",
                                 TpAmb = TpAmb
                             }
@@ -133,11 +133,11 @@ namespace TesteDLL_Unimake.Business.DFe
                             })
                             {
                                 COrgao = CUF,
-                                ChNFe = "41190906117473000150550010000579271257418308",
+                                ChNFe = "41191006117473000150550010000579281779843610",
                                 CNPJ = "06117473000150",
                                 DhEvento = DateTime.Now,
                                 TpEvento = TipoEventoNFe.CartaCorrecao,
-                                NSeqEvento = 8,
+                                NSeqEvento = 4,
                                 VerEvento = "1.00",
                                 TpAmb = TpAmb
                             }
@@ -156,9 +156,9 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(recepcaoEvento.Result.XMotivo);
 
                 //Gravar o XML de distribuição se a inutilização foi homologada
-                if(recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
+                if (recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
                 {
-                    switch(recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
+                    switch (recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
                     {
                         case 135: //Evento homologado com vinculação da respectiva NFe
                         case 136: //Evento homologado sem vinculação com a respectiva NFe (SEFAZ não encontrou a NFe na base dela)
@@ -172,7 +172,7 @@ namespace TesteDLL_Unimake.Business.DFe
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -200,7 +200,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 //TODO: Bruno - Tem que ver porque o XMotivo está com acentuação destorcida
                 MessageBox.Show(consultaProtocolo.Result.XMotivo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -238,7 +238,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(inutilizacao.Result.InfInut.XMotivo);
 
                 //Gravar o XML de distribuição se a inutilização foi homologada
-                switch(inutilizacao.Result.InfInut.CStat)
+                switch (inutilizacao.Result.InfInut.CStat)
                 {
                     case 102: //Inutilização homologada
                         inutilizacao.GravarXmlDistribuicao(@"c:\testenfe\");
@@ -249,7 +249,7 @@ namespace TesteDLL_Unimake.Business.DFe
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -279,7 +279,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(consultaCad.RetornoWSString);
                 MessageBox.Show(consultaCad.Result.InfCons.XMotivo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -328,9 +328,9 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(recepcaoEvento.Result.XMotivo);
 
                 //Gravar o XML de distribuição se a inutilização foi homologada
-                if(recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
+                if (recepcaoEvento.Result.CStat == 128) //128 = Lote de evento processado com sucesso
                 {
-                    switch(recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
+                    switch (recepcaoEvento.Result.RetEvento[0].InfEvento.CStat)
                     {
                         case 135: //Evento homologado com vinculação da respectiva NFe
                         case 136: //Evento homologado sem vinculação com a respectiva NFe (SEFAZ não encontrou a NFe na base dela)
@@ -344,7 +344,7 @@ namespace TesteDLL_Unimake.Business.DFe
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -706,7 +706,7 @@ namespace TesteDLL_Unimake.Business.DFe
                                         NatOp = "VENDA PRODUC.DO ESTABELEC",
                                         Mod = ModeloDFe.NFe,
                                         Serie = 1,
-                                        NNF = 57927,
+                                        NNF = 57929,
                                         DhEmi = DateTime.Now,
                                         DhSaiEnt = DateTime.Now,
                                         TpNF = TipoOperacao.Saida,
@@ -1208,7 +1208,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(autorizacao.NfeProcResult.NomeArquivoDistribuicao);
 
                 //Gravar o XML de distribuição se a nota foi autorizada ou denegada
-                switch(autorizacao.Result.ProtNFe.InfProt.CStat)
+                switch (autorizacao.Result.ProtNFe.InfProt.CStat)
                 {
                     case 100: //Autorizado o uso da NF-e
                     case 110: //Uso Denegado
@@ -1225,7 +1225,7 @@ namespace TesteDLL_Unimake.Business.DFe
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -1252,7 +1252,7 @@ namespace TesteDLL_Unimake.Business.DFe
                 MessageBox.Show(retAutorizacao.RetornoWSString);
                 MessageBox.Show(retAutorizacao.Result.XMotivo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 CatchException(ex);
             }
@@ -1276,7 +1276,7 @@ namespace TesteDLL_Unimake.Business.DFe
             {
                 message.AppendLine($"{ex.Message}\r\n");
                 ex = ex.InnerException;
-            } while(ex != null);
+            } while (ex != null);
 
             MessageBox.Show(message.ToString(), "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -1291,8 +1291,81 @@ namespace TesteDLL_Unimake.Business.DFe
 
         #region Public Constructors
 
-        public FormTestarNFe() => InitializeComponent();
+        public FormTestarNFe()
+        {
+            InitializeComponent();
+        }
 
         #endregion Public Constructors
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+            var nsu = "000000000000000";
+            var configuracao = new Configuracao
+            {
+                CertificadoDigital = CertificadoSelecionado
+            };
+
+            pbConsultaDFe.Visible = true;
+            pbConsultaDFe.Minimum = 0;
+            Application.DoEvents();
+            pbConsultaDFe.Refresh();
+
+            while (true)
+            {
+                try
+                {
+                    var xml = new DistDFeInt
+                    {
+                        Versao = "1.01",
+                        TpAmb = TipoAmbiente.Producao,
+                        CNPJ = "06117473000150",
+                        CUFAutor = UFBrasil.PR,
+                        DistNSU = new DistNSU
+                        {
+                            UltNSU = nsu
+                        }
+                    };
+
+                    var distribuicaoDFe = new DistribuicaoDFe(xml, configuracao);
+                    distribuicaoDFe.Executar();
+                    
+                    #region Atualizar ProgressBar
+
+                    if (pbConsultaDFe.Maximum != Convert.ToInt32(distribuicaoDFe.Result.MaxNSU))
+                    {
+                        pbConsultaDFe.Maximum = Convert.ToInt32(distribuicaoDFe.Result.MaxNSU);
+                    }
+
+                    pbConsultaDFe.Value = Convert.ToInt32(distribuicaoDFe.Result.UltNSU);
+                    pbConsultaDFe.Refresh();
+                    Application.DoEvents();
+
+                    #endregion
+
+                    if (distribuicaoDFe.Result.CStat.Equals(138)) //Documentos localizados
+                    {
+                        //Salvar os XMLs do docZIP no HD
+                        distribuicaoDFe.GravarXMLDocZIP(@"c:\testenfe\doczip", true);
+                    }
+
+                    nsu = distribuicaoDFe.Result.UltNSU;
+
+                    if (Convert.ToInt64(distribuicaoDFe.Result.UltNSU) >= Convert.ToInt64(distribuicaoDFe.Result.MaxNSU))
+                    {
+                        break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    CatchException(ex);
+                }
+            }
+
+            pbConsultaDFe.Visible = false;
+            Application.DoEvents();
+
+            MessageBox.Show("Consulta finalizada.");
+        }
     }
 }
