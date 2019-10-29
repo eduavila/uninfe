@@ -71,16 +71,31 @@ namespace NFe.Components.PLucasDoRioVerdeMTConsultarSituacaoLoteRps {
         
         /// <remarks/>
         public event ExecuteCompletedEventHandler ExecuteCompleted;
-        
+
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("FISS-LEXaction/AWS_CONSULTARSITUACAOLOTERPS.Execute", RequestElementName="WS_ConsultarSituacaoLoteRps.Execute", RequestNamespace="FISS-LEX", ResponseElementName="WS_ConsultarSituacaoLoteRps.ExecuteResponse", ResponseNamespace="FISS-LEX", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("FISS-LEXaction/AWS_CONSULTARSITUACAOLOTERPS.Execute", RequestElementName = "WS_ConsultarSituacaoLoteRps.Execute", RequestNamespace = "FISS-LEX", ResponseElementName = "WS_ConsultarSituacaoLoteRps.ExecuteResponse", ResponseNamespace = "FISS-LEX", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("Consultarsituacaoloterpsresposta")]
-        public ConsultarSituacaoLoteRpsResposta Execute(ConsultarSituacaoLoteRpsEnvio Consultarsituacaoloterpsenvio) {
+        public ConsultarSituacaoLoteRpsResposta Execute(ConsultarSituacaoLoteRpsEnvio Consultarsituacaoloterpsenvio)
+        {
             object[] results = this.Invoke("Execute", new object[] {
-                        Consultarsituacaoloterpsenvio});
+                    Consultarsituacaoloterpsenvio});
             return ((ConsultarSituacaoLoteRpsResposta)(results[0]));
         }
-        
+
+        /// <remarks/>
+        public System.IAsyncResult BeginExecute(ConsultarSituacaoLoteRpsEnvio Consultarsituacaoloterpsenvio, System.AsyncCallback callback, object asyncState)
+        {
+            return this.BeginInvoke("Execute", new object[] {
+                    Consultarsituacaoloterpsenvio}, callback, asyncState);
+        }
+
+        /// <remarks/>
+        public ConsultarSituacaoLoteRpsResposta EndExecute(System.IAsyncResult asyncResult)
+        {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((ConsultarSituacaoLoteRpsResposta)(results[0]));
+        }
+
         /// <remarks/>
         public void ExecuteAsync(ConsultarSituacaoLoteRpsEnvio Consultarsituacaoloterpsenvio) {
             this.ExecuteAsync(Consultarsituacaoloterpsenvio, null);
@@ -244,7 +259,7 @@ namespace NFe.Components.PLucasDoRioVerdeMTConsultarSituacaoLoteRps {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="FISS-LEX")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "")]
     public partial class ConsultarSituacaoLoteRpsResposta {
         
         private int numeroLoteField;
@@ -274,10 +289,10 @@ namespace NFe.Components.PLucasDoRioVerdeMTConsultarSituacaoLoteRps {
                 this.situacaoField = value;
             }
         }
-        
+
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayAttribute("ListaMensagemRetorno")]
+        [System.Xml.Serialization.XmlArrayItemAttribute("MensagemRetorno", typeof(tcMensagemRetorno))]
         public tcMensagemRetorno[] ListaMensagemRetorno {
             get {
                 return this.listaMensagemRetornoField;

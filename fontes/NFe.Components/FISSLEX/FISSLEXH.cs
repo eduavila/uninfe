@@ -68,9 +68,10 @@ namespace NFe.Components.FISSLEX.h
             }
 
             #endregion Definições de proxy
+            ConsultarSituacaoLoteRpsEnvio oTcDadosConsultaNfse = ReadXML<ConsultarSituacaoLoteRpsEnvio>(file);
+            var result = ServiceConsultarSituacaoLoteRps.Execute(oTcDadosConsultaNfse);
 
-            ConsultarSituacaoLoteRpsEnvio envio = DeserializarObjeto<ConsultarSituacaoLoteRpsEnvio>(file);
-            string strResult = SerializarObjeto(ServiceConsultarSituacaoLoteRps.Execute(envio));
+            string strResult = base.CreateXML(result);
 
             GerarRetorno(file, strResult, Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).EnvioXML,
                                           Propriedade.Extensao(Propriedade.TipoEnvio.PedSitLoteRps).RetornoXML);
